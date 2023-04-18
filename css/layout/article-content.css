@@ -127,7 +127,7 @@
     --note-black-title-bg: #1e1e1e;
     --note-purple-title-bg: #4e1e4e;
     --home-banner-img: url("/images/wallhaven-wqery6-dark.webp");
-    --home-banner-text-color: #d1d1b6;
+    --home-banner-text-color: #f8f8ff;
     --home-banner-icons-container-border-color: rgba(197,197,197,0.35);
     --home-banner-icons-container-background-color: rgba(197,197,197,0.3);
     --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
@@ -218,7 +218,7 @@
   --note-black-title-bg: #1e1e1e;
   --note-purple-title-bg: #4e1e4e;
   --home-banner-img: url("/images/wallhaven-wqery6-dark.webp");
-  --home-banner-text-color: #d1d1b6;
+  --home-banner-text-color: #f8f8ff;
   --home-banner-icons-container-border-color: rgba(197,197,197,0.35);
   --home-banner-icons-container-background-color: rgba(197,197,197,0.3);
   --redefine-box-shadow: var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px;
@@ -318,7 +318,7 @@
   margin: 10px 0 30px 0;
   line-height: 1.4;
   color: var(--second-text-color);
-  font-family: 'Open Sans', 'Noto Sans', sans-serif, 'Noto Sans SC', sans-serif, "Noto Sans SC", sans-serif;
+  font-family: 'Ubuntu Mono', 'Noto Sans SC', sans-serif, "Noto Sans SC", sans-serif;
 }
 .post-page-container .article-content-container .article-title .article-title-cover {
   display: flex;
@@ -329,7 +329,7 @@
   bottom: 36px;
   left: 0;
   text-align: center;
-  font-family: 'Open Sans', 'Noto Sans', sans-serif, 'Noto Sans SC', sans-serif, "Noto Sans SC", sans-serif;
+  font-family: 'Ubuntu Mono', 'Noto Sans SC', sans-serif, "Noto Sans SC", sans-serif;
   color: var(--second-text-color);
   font-size: 3.2rem;
   font-weight: 600;
@@ -353,7 +353,7 @@
   }
 }
 .post-page-container .article-content-container .article-header {
-  font-family: 'Open Sans', 'Noto Sans', sans-serif, 'Noto Sans SC', sans-serif, "Noto Sans", "Noto Sans SC", sans-serif;
+  font-family: 'Ubuntu Mono', 'Noto Sans SC', sans-serif, "Noto Sans", "Noto Sans SC", sans-serif;
   position: relative;
   padding-left: 46px;
   width: 100%;
