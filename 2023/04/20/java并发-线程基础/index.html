@@ -13,18 +13,29 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/tags/jvm/"/>
+    <link rel="canonical" href="http://example.com/2023/04/20/java并发-线程基础/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/Jvm/index.html">
+        <meta name="description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待）    进入方法 退出方法    没有设置 Timeout 参数的 Object.wait()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java并发-线程基础">
+<meta property="og:url" content="http://example.com/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待）    进入方法 退出方法    没有设置 Timeout 参数的 Object.wait()">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img">
+<meta property="article:published_time" content="2023-04-20T13:16:37.000Z">
+<meta property="article:modified_time" content="2023-04-23T15:20:22.900Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Jvm">
+<meta property="article:tag" content="线程">
+<meta property="article:tag" content="并发">
+<meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img">
     
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/img/IMG_0067.PNG" sizes="192x192">
@@ -35,7 +46,7 @@
     
     <title>
         
-            Tag: Jvm -
+            java并发-线程基础 -
         
         DarkFlameMaster
     </title>
@@ -186,45 +197,323 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="tag-container">
-        <div class="tag-name"><i class="fa-solid fa-tag"></i>&nbsp;Jvm
-        </div>
-        <div class="tag-post-list">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
             
-<div class="archive-list-container">
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">java并发-线程基础</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/IMG_0067.PNG">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">DarkFlameMaster</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-20 21:16:37</span>
+        <span class="mobile">2023-04-20 21:16</span>
+        <span class="hover-info">Created</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count">[2]</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='04-20'>
-                <a href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-                  <span class="article-title">java并发-线程基础</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='04-19'>
-                <a href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/">
-                  <span class="article-title">java垃圾回收（GC）</span>
-                </a>
-              </li>
-              
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-23 23:20:22</span>
+            <span class="mobile">2023-04-23 23:20</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Jvm/">Jvm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>&nbsp;
+                    </li>
+                
             </ul>
-        </section>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
-    </div>
+                        </div>
+                    </div>
+                </div>
+            
 
-    <div class="tag-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span>
+            <div class="article-content markdown-body">
+                <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img"
+                      alt="editing.png"
+                ></p>
+<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><ol>
+<li><p>New（新建）</p>
+<p>创建后尚未启动。</p>
+</li>
+<li><p>Runnable（运行）</p>
+<p> 可能正在运行，也可能正在等待 CPU 时间片。</p>
+<p> 包含了操作系统线程状态中的 Running 和 Ready。</p>
+</li>
+<li><p>Blocking（阻塞）</p>
+<p>等待获取一个排它锁，如果其线程释放了锁就会结束此状态。</p>
+</li>
+<li><p>Waiting（无限期等待）</p>
+<table>
+<thead>
+<tr>
+<th>进入方法</th>
+<th>退出方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>没有设置 Timeout 参数的 Object.wait() 方法</td>
+<td>Object.notify() &#x2F; Object.notifyAll()</td>
+</tr>
+<tr>
+<td>没有设置 Timeout 参数的 Thread.join() 方法</td>
+<td>被调用的线程执行完毕</td>
+</tr>
+<tr>
+<td>LockSupport.park() 方法</td>
+<td>-</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Time-Waiting（限期等待）</p>
+<p>进入一个有期限的等待，时间到了自动被唤醒，或者被中断</p>
+<p>无需等待其它线程显式地唤醒，在一定时间之后会被系统自动唤醒。调用 Thread.sleep() 方法使线程进入限期等待状态时，常常用“使一个线程睡眠”进行描述。调用 Object.wait() 方法使线程进入限期等待或者无限期等待时，常常用“挂起一个线程”进行描述。睡眠和挂起是用来描述行为，而阻塞和等待用来描述状态。阻塞和等待的区别在于，阻塞是被动的，它是在等待获取一个排它锁。而等待是主动的，通过调用 Thread.sleep() 和 Object.wait() 等方法进入。</p>
+<table>
+<thead>
+<tr>
+<th>进入方法</th>
+<th>退出方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Thread.sleep()</td>
+<td>方法时间结束</td>
+</tr>
+<tr>
+<td>设置了 Timeout 参数的 Object.wait()</td>
+<td>方法时间结束 &#x2F; Object.notify() &#x2F; Object.notifyAll()</td>
+</tr>
+<tr>
+<td>设置了 Timeout 参数的 Thread.join() 方法</td>
+<td>时间结束 &#x2F; 被调用的线程执行完毕</td>
+</tr>
+<tr>
+<td>LockSupport.parkNanos() 方法，参数等待时间</td>
+<td>等待时间到了</td>
+</tr>
+<tr>
+<td>LockSupport.parkUntil() 方法，参数 deadline</td>
+<td>到指定的时间了</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Terminated  </p>
+<ul>
+<li>线程自己运行结束</li>
+<li>线程因为触发异常而被结束</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> java并发-线程基础</li>
+        <li><strong>Author:</strong> DarkFlameMaster</li>
+        <li><strong>Created at:</strong> 2023-04-20 21:16:37</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-04-23 23:20:22
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2023/04/20/java并发-线程基础/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
 </div>
 
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Java/">#Java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Jvm/">#Jvm</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BA%BF%E7%A8%8B/">#线程</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%B9%B6%E5%8F%91/">#并发</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/04/23/%E6%B2%A1%E5%95%A5%E7%94%A8%E7%9A%84Android%E5%B0%8F%E7%9F%A5%E8%AF%86/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">没啥用的Android小知识</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">java垃圾回收（GC）</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">java并发-线程基础</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.</span> <span class="nav-text">线程的状态</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
     </div>
 </div>
 
@@ -303,6 +592,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
@@ -414,6 +724,16 @@
 
 
 <div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
     
 </div>
 
