@@ -18,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待）    进入方法 退出方法    没有设置 Timeout 参数的 Object.wait()">
+        <meta name="description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待） 没有设置 Timeout 参数的 Object.wait() 方法没有设置 Timeout 参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java并发-线程基础">
 <meta property="og:url" content="http://example.com/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待）    进入方法 退出方法    没有设置 Timeout 参数的 Object.wait()">
+<meta property="og:description" content="线程的状态 New（新建） 创建后尚未启动。  Runnable（运行）  可能正在运行，也可能正在等待 CPU 时间片。  包含了操作系统线程状态中的 Running 和 Ready。  Blocking（阻塞） 等待获取一个排它锁，如果其线程释放了锁就会结束此状态。  Waiting（无限期等待） 没有设置 Timeout 参数的 Object.wait() 方法没有设置 Timeout 参">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/editing.png">
+<meta property="og:image" content="http://example.com/">
 <meta property="article:published_time" content="2023-04-20T13:16:37.000Z">
-<meta property="article:modified_time" content="2023-04-23T15:35:21.897Z">
+<meta property="article:modified_time" content="2023-04-25T13:32:05.032Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Jvm">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="并发">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/editing.png">
+<meta name="twitter:image" content="http://example.com/">
     
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/img/IMG_0067.PNG" sizes="192x192">
@@ -232,8 +232,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-04-23 23:35:21</span>
-            <span class="mobile">2023-04-23 23:35</span>
+            <span class="desktop">2023-04-25 21:32:05</span>
+            <span class="mobile">2023-04-25 21:32</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -287,7 +287,7 @@
                 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/editing.png"
+                     data-src="/"
                       alt="editing.png"
                 ></p>
 <h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><ol>
@@ -302,58 +302,24 @@
 <p>等待获取一个排它锁，如果其线程释放了锁就会结束此状态。</p>
 </li>
 <li><p>Waiting（无限期等待）</p>
-<table>
-<thead>
-<tr>
-<th>进入方法</th>
-<th>退出方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>没有设置 Timeout 参数的 Object.wait() 方法</td>
-<td>Object.notify() &#x2F; Object.notifyAll()</td>
-</tr>
-<tr>
-<td>没有设置 Timeout 参数的 Thread.join() 方法</td>
-<td>被调用的线程执行完毕</td>
-</tr>
-<tr>
-<td>LockSupport.park() 方法</td>
-<td>-</td>
-</tr>
-</tbody></table>
+<p>没有设置 Timeout 参数的 Object.wait() 方法<br>没有设置 Timeout 参数的 Thread.join() 方法<br>LockSupport.park() 方法</p>
 </li>
 <li><p>Time-Waiting（限期等待）</p>
 <p>进入一个有期限的等待，时间到了自动被唤醒，或者被中断</p>
-<p>无需等待其它线程显式地唤醒，在一定时间之后会被系统自动唤醒。调用 Thread.sleep() 方法使线程进入限期等待状态时，常常用“使一个线程睡眠”进行描述。调用 Object.wait() 方法使线程进入限期等待或者无限期等待时，常常用“挂起一个线程”进行描述。睡眠和挂起是用来描述行为，而阻塞和等待用来描述状态。阻塞和等待的区别在于，阻塞是被动的，它是在等待获取一个排它锁。而等待是主动的，通过调用 Thread.sleep() 和 Object.wait() 等方法进入。</p>
-<table>
-<thead>
-<tr>
-<th>进入方法</th>
-<th>退出方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Thread.sleep()</td>
-<td>方法时间结束</td>
-</tr>
-<tr>
-<td>设置了 Timeout 参数的 Object.wait()</td>
-<td>方法时间结束 &#x2F; Object.notify() &#x2F; Object.notifyAll()</td>
-</tr>
-<tr>
-<td>设置了 Timeout 参数的 Thread.join() 方法</td>
-<td>时间结束 &#x2F; 被调用的线程执行完毕</td>
-</tr>
-<tr>
-<td>LockSupport.parkNanos() 方法，参数等待时间</td>
-<td>等待时间到了</td>
-</tr>
-<tr>
-<td>LockSupport.parkUntil() 方法，参数 deadline</td>
-<td>到指定的时间了</td>
-</tr>
-</tbody></table>
+<blockquote>
+<p>调用 Thread.sleep() 方法使线程进入限期等待状态时，常常用“使一个线程睡眠”进行描述。</p>
+<p>调用 Object.wait() 方法使线程进入限期等待或者无限期等待时，常常用“挂起一个线程”进行描述。</p>
+<p>睡眠和挂起是用来描述行为，而阻塞和等待用来描述状态。</p>
+<p>阻塞和等待的区别在于，阻塞是被动的，它是在等待获取一个排它锁。</p>
+<p>而等待是主动的，通过调用 Thread.sleep() 和 Object.wait() 等方法进入。</p>
+</blockquote>
+<ul>
+<li>Thread.sleep()  </li>
+<li>设置了 Timeout 参数的 Object.wait()  </li>
+<li>设置了 Timeout 参数的 Thread.join() 方法  </li>
+<li>LockSupport.parkNanos() 方法，参数等待时间  </li>
+<li>LockSupport.parkUntil() 方法，参数 deadline</li>
+</ul>
 </li>
 <li><p>Terminated  </p>
 <ul>
@@ -374,7 +340,7 @@
         <li><strong>Created at:</strong> 2023-04-20 21:16:37</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-04-23 23:35:21
+                <strong>Updated at:</strong> 2023-04-25 21:32:05
             </li>
         
         <li>
