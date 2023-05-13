@@ -13,18 +13,29 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/tags/java/"/>
+    <link rel="canonical" href="http://example.com/2023/05/14/多继承-or-interface/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/Java/index.html">
+        <meta name="description" content="为什么 Java 要设计成单继承，但是允许实现多个 Interface ，为什么不干脆直接设计成多继承？ 以 C++ 为例我们都知道 C++ 是多继承的，这就会导致一些很复杂的情况出现，比如菱形继承  此时，我们假设 A 有一个变量 gender(性别)，B 继承 A ，所以 B 也有 gender ，C 继承 A ，所以 C 也有 gender ，那么 D 肯定也有 gender ，但是由于同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多继承 or interface">
+<meta property="og:url" content="http://example.com/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么 Java 要设计成单继承，但是允许实现多个 Interface ，为什么不干脆直接设计成多继承？ 以 C++ 为例我们都知道 C++ 是多继承的，这就会导致一些很复杂的情况出现，比如菱形继承  此时，我们假设 A 有一个变量 gender(性别)，B 继承 A ，所以 B 也有 gender ，C 继承 A ，所以 C 也有 gender ，那么 D 肯定也有 gender ，但是由于同">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://darkflamemasterdev.github.io/img/completed.png">
+<meta property="og:image" content="http://example.com/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/%E6%9C%AA%E5%91%BD%E5%90%8D.png">
+<meta property="og:image" content="http://example.com/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/%E6%9C%AA%E5%91%BD%E5%90%8D2.png">
+<meta property="og:image" content="http://example.com/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/jbsfdg.png">
+<meta property="og:image" content="http://example.com/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/fghjfsd.png">
+<meta property="article:published_time" content="2023-05-13T19:43:04.000Z">
+<meta property="article:modified_time" content="2023-05-13T21:59:51.455Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://darkflamemasterdev.github.io/img/completed.png">
     
     
     <!--- Icon Part-->
@@ -36,7 +47,7 @@
     
     <title>
         
-            Tag: Java -
+            多继承 or interface -
         
         DarkFlameMaster
     </title>
@@ -187,51 +198,276 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="tag-container">
-        <div class="tag-name"><i class="fa-solid fa-tag"></i>&nbsp;Java
-        </div>
-        <div class="tag-post-list">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
             
-<div class="archive-list-container">
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">多继承 or interface</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/IMG_0067.PNG">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">DarkFlameMaster</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-14 03:43:04</span>
+        <span class="mobile">2023-05-14 03:43</span>
+        <span class="hover-info">Created</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count">[3]</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='05-14'>
-                <a href="/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/">
-                  <span class="article-title">多继承 or interface</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='04-20'>
-                <a href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-                  <span class="article-title">java并发-线程基础</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='04-19'>
-                <a href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/">
-                  <span class="article-title">java垃圾回收（GC）</span>
-                </a>
-              </li>
-              
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 05:59:51</span>
+            <span class="mobile">2023-05-14 05:59</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
             </ul>
-        </section>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
-    </div>
+                        </div>
+                    </div>
+                </div>
+            
 
-    <div class="tag-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span>
+            <div class="article-content markdown-body">
+                <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://darkflamemasterdev.github.io/img/completed.png"
+                      alt="completed.png"
+                ></p>
+<p>为什么 Java 要设计成单继承，但是允许实现多个 Interface ，为什么不干脆直接设计成多继承？</p>
+<h2 id="以-C-为例"><a href="#以-C-为例" class="headerlink" title="以 C++ 为例"></a>以 C++ 为例</h2><p>我们都知道 C++ 是多继承的，这就会导致一些很复杂的情况出现，比如菱形继承</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/%E6%9C%AA%E5%91%BD%E5%90%8D.png"
+                      alt="ling.png"
+                ></p>
+<p>此时，我们假设 A 有一个变量 gender(性别)，<br>B 继承 A ，所以 B 也有 gender ，<br>C 继承 A ，所以 C 也有 gender ，<br>那么 D 肯定也有 gender ，<br>但是由于同时继承了 B 和 C ，所以 D 就有了两个 gender ，这太奇怪了，两个性别？？？<br>这样我们该如何操作 gender ？？？</p>
+<p>![a.png](多继承-or-interface&#x2F;Snipaste_2023-05-14_04-54-55.png &#x3D;100)</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/%E6%9C%AA%E5%91%BD%E5%90%8D2.png"
+                      alt="asd.png"
+                ></p>
+<p>可以看到根本没法操作，编译就报错了，<br>所以，我们只能改成这样…</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/jbsfdg.png"
+                      alt="fdghj.png"
+                ></p>
+<p>但是这写法也太难理解了，更何况我们确实知道还存在一个 C::gender 存在，但是却用不到它，这意味着这部分空间浪费了！！！</p>
+<p>所以 C++ 推出了虚继承</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/05/14/%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/fghjfsd.png"
+                      alt="dfgfdshb.png"
+                ></p>
+<blockquote>
+<p>但说实话，这个虚继承很难用！！！</p>
+</blockquote>
+<p>以菱形继承为例，假设 A 定义了一个名为 gender 的成员变量，当我们在 D 中直接访问 gender 时，会有三种可能性：</p>
+<ul>
+<li>如果 B 和 C 中都没有 gender 的定义，那么 gender 将被解析为 A 的成员，此时不存在二义性。</li>
+<li>如果 B 或 C 其中的一个类定义了 gender ，也不会有二义性，派生类 D 的 gender ，比虚基类 A 的 gender 优先级更高。</li>
+<li>如果 B 和 C 中都定义了 gender ，那么直接访问 gender 将产生二义性问题。</li>
+</ul>
+<blockquote>
+<p>如果多继承变得更复杂，织成了一张网，那就很痛苦了，这样代码会耦合严重，一旦设计不合理很容易出现离谱的问题</p>
+<p>不仅是成员变量，成员函数也是一样的道理</p>
+</blockquote>
+<p>这也就是为什么包括 Java 在内，很多语言设计为单继承的原因</p>
+<blockquote>
+<p>ps:  </p>
+<ul>
+<li>Java 的 Interface 之间也是单继承</li>
+<li>Java 的接口多实现，仅在一种情况下有二义性，那就是变量名冲突的情况<ul>
+<li>但是这种情况下，并不复杂，因为即使是多实现，也只需要处理现在这个类就可以了，因为实现接口的是类，再往下就是单继承了</li>
+</ul>
+</li>
+<li>Java 的接口多实现，不会使成员函数有二义性<ul>
+<li>因为只要实现了接口，就会有对成员函数的重新实现，所以只要以当前的实现为准就好了</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 多继承 or interface</li>
+        <li><strong>Author:</strong> DarkFlameMaster</li>
+        <li><strong>Created at:</strong> 2023-05-14 03:43:04</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 05:59:51
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2023/05/14/多继承-or-interface/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
 </div>
 
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Java/">#Java</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/04/23/%E6%B2%A1%E5%95%A5%E7%94%A8%E7%9A%84Android%E5%B0%8F%E7%9F%A5%E8%AF%86/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">没啥用的Android小知识</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">多继承 or interface</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5-C-%E4%B8%BA%E4%BE%8B"><span class="nav-text">以 C++ 为例</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
     </div>
 </div>
 
@@ -310,6 +546,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
@@ -422,6 +679,16 @@
 
 
 <div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
     
 </div>
 
