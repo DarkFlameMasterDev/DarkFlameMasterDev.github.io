@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="lucas">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/12/16/android自定义view02-canvas-和坐标系/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="概述Android 坐标系都是以左上角为原点，并且 canvas 是一个独立的坐标系 所以在使用 canvas 进行绘制的时候，比如：自定义 Drawable 或者自定义 View 我们绘制的时候，应该以怎样的思路去考虑呢 如过你看过扔物线的视频或者文章，又或者在网上搜索过，一定知道“倒着写绘制流程” 这种方法，但今天我其实是想说的是更详细的内部原理，写绘制的思路，如何将绘制流程真正和代码结合起来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义View02 - canvas 和坐标系">
+<meta property="og:url" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概述Android 坐标系都是以左上角为原点，并且 canvas 是一个独立的坐标系 所以在使用 canvas 进行绘制的时候，比如：自定义 Drawable 或者自定义 View 我们绘制的时候，应该以怎样的思路去考虑呢 如过你看过扔物线的视频或者文章，又或者在网上搜索过，一定知道“倒着写绘制流程” 这种方法，但今天我其实是想说的是更详细的内部原理，写绘制的思路，如何将绘制流程真正和代码结合起来">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/translate.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/rotate.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip01.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip02.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip03.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip04.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip11.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip12.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/Matrix_preRotate.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_coordinate_system.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera03.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera00.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera01.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera02.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_Location.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_Center.png">
+<meta property="og:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_translate00.png">
+<meta property="article:published_time" content="2023-12-16T02:18:42.000Z">
+<meta property="article:modified_time" content="2024-01-02T07:01:49.288Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/translate.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#FC2D4F">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Android自定义View02 - canvas 和坐标系 -
+        
+        DarkFlameMaster&#39;s blog
+    </title>
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fonts/Chillax/chillax.css">
+
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/assets/build/styles.css">
+    
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fonts/fonts.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fonts/Satoshi/satoshi.css">
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font-meslo.css" rel="stylesheet">
+    
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <style> .home-banner-container{ display:none; } .home-banner-background { filter: blur(10px) !important; } </style>
+                
+    
+            
+                
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px; border-radius: 4px; border: dashed; border-color: rgba(100,100,100,1); justify-content: left; } </style>
+                
+    
+            
+                
+                    <style> .dark-mode{--default-text-color: #E8E6E3; --first-text-color: #E8E6E3; --second-text-color: #E8E6E3; --third-text-color: #E8E6E3; --fourth-text-color: #E8E6E3;}</style>
+                
+    
+            
+                
+                    <style> .notel-content p {margin-top: 15px !important; margin-bottom: 10px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-large {border-radius: 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight-container {border-radius: 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight { border-radius: 0px 0px 4px 4px; !important;} </style>
+                
+    
+            
+                
+                    <style> .rounded-t-lg { border-top-left-radius: 0rem; border-top-right-radius: 0.25rem; !important; } </style>
+                
+    
+            
+                
+                    <style> .rounded-small { border-radius: 4px; !important; } </style>
+                
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"4px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":false,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["Loading..."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#000000"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"档案馆":{"path":"/archives","icon":"fa-solid fa-box-archive"},"请博主喝咖啡":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    档案馆
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    请博主喝咖啡
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                档案馆
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                请博主喝咖啡
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">69</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android自定义View02 - canvas 和坐标系" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">Android自定义View02 - canvas 和坐标系</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/img/lucas_avatar.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">lucas</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-12-16 10:18:42</span>
+        <span class="mobile">2023-12-16 10:18:42</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-02 15:01:49</span>
+            <span class="mobile">2024-01-02 15:01:49</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Android 坐标系都是以左上角为原点，并且 canvas 是一个独立的坐标系</p>
+<p>所以在使用 canvas 进行绘制的时候，比如：自定义 Drawable 或者自定义 View</p>
+<p>我们绘制的时候，应该以怎样的思路去考虑呢</p>
+<p>如过你看过扔物线的视频或者文章，又或者在网上搜索过，一定知道“倒着写绘制流程” 这种方法，但今天我其实是想说的是更详细的内部原理，写绘制的思路，如何将绘制流程真正和代码结合起来，一一对应</p>
+<h2 id="简单绘制"><a href="#简单绘制" class="headerlink" title="简单绘制"></a>简单绘制</h2><p>只进行 translate rotate clip skew scale 等系统预设的变换，我称之为 简单变换</p>
+<p>我们拿自定义 View 举例，在进行 canvas 绘制的时候，canvas 本身的坐标是和 View坐标独立的，也就是说 canvas 和 View 分别有自己的坐标</p>
+<h3 id="translate（平移）"><a href="#translate（平移）" class="headerlink" title="translate（平移）"></a>translate（平移）</h3><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.translate(<span class="number">200f</span>,<span class="number">100f</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, <span class="number">0f</span>, <span class="number">0f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/translate.png"
+                      alt="translate.png"
+                ></p>
+<p>如图所示，这是先将画布平移，然后绘制在画布的 (0, 0) 的位置</p>
+<p>也就是说，<code>canvas.translate()</code> 函数移动的是 canvas，并不是那个想象出来的“画笔”</p>
+<h3 id="rotate（旋转）"><a href="#rotate（旋转）" class="headerlink" title="rotate（旋转）"></a>rotate（旋转）</h3><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.rotate(<span class="number">20f</span>, <span class="number">400f</span>, <span class="number">400f</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, <span class="number">200f</span>, <span class="number">200f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/rotate.png"
+                      alt="rotate.png"
+                ></p>
+<p>理解了平移，那么这个你肯定也能快速想到是怎么样的绘制结果</p>
+<h3 id="clip（裁切）"><a href="#clip（裁切）" class="headerlink" title="clip（裁切）"></a>clip（裁切）</h3><h4 id="反着写绘制流程"><a href="#反着写绘制流程" class="headerlink" title="反着写绘制流程"></a>反着写绘制流程</h4><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> paint = Paint(Paint.ANTI_ALIAS_FLAG)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> image_width = <span class="number">400f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> image_height = <span class="number">400f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> flipRotation = <span class="number">45f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> padding = <span class="number">200f</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.translate(padding + image_width / <span class="number">2</span>, padding + image_height / <span class="number">2</span>)</span><br><span class="line">  canvas.rotate(-flipRotation)</span><br><span class="line">  canvas.clipRect(-image_width, -image_width, image_width, <span class="number">0f</span>)</span><br><span class="line">  canvas.rotate(flipRotation)</span><br><span class="line">  canvas.translate(-(padding + image_width / <span class="number">2</span>), -(padding + image_height / <span class="number">2</span>))</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个就开始有难度了，这是我 copy 的扔物线的代码，它的绘制流程倒着写的，我们来正着分析一下</p>
+<p>我们先进行前两步我们熟悉的————平移+旋转</p>
+<p>先平移 (400,400) ，再绕 canvas (200,200) 逆时针旋转 45°</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip01.png"
+                      alt="clip01.png"
+                ></p>
+<p>然后进行裁切，一定要注意，裁切本身也是对 canvas 进行裁切，通过减少绘制区域来达到绘制图形被裁切的效果</p>
+<p>我这里画了一个半透明的提箱，来表示这个图像即将在这个位置被绘制</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip02.png"
+                      alt="clip02.png"
+                ></p>
+<p>粉红色框是被裁剪的位置</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip03.png"
+                      alt="clip03.png"
+                ></p>
+
+  <div class="note p-4 mb-4 rounded-small orange">
+    <p>注意！这里粉色框并没有跟着旋转，这是 Android 规定的，只有这样才能使用 Rect 斜着进行裁剪（毕竟 Rec 的构造方法里边长都是平行或者垂直于对称轴的）</p>
+
+  </div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip04.png"
+                      alt="clip04.png"
+                ></p>
+<p>最后我们完成平移，然后进行绘制</p>
+<p>经过裁切，我们的绘制区域就只有粉色框了，因此我们绘制出来的图形就好像是右下角被裁剪了一样</p>
+<p>经过分析我们发现，正着分析这段代码，确实有点反直觉！！！</p>
+<p>并且经过分析，代码主要在设置了一个斜放的矩形绘制区域，那么我们可以这么写</p>
+<h4 id="正着写绘制流程"><a href="#正着写绘制流程" class="headerlink" title="正着写绘制流程"></a>正着写绘制流程</h4><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.rotate(-flipRotation, padding + image_width / <span class="number">2</span>, padding + image_height / <span class="number">2</span>)</span><br><span class="line">  canvas.clipRect(<span class="number">0f</span>, <span class="number">0f</span>, image_width * <span class="number">2</span>, image_width)</span><br><span class="line">  canvas.rotate(flipRotation, padding + image_width / <span class="number">2</span>, padding + image_height / <span class="number">2</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip11.png"
+                      alt="clip11.png"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/clip12.png"
+                      alt="clip12.png"
+                ></p>
+<p>这样的流程是不是更加顺畅呢？当然如果你看完了还是觉得倒着写更好，那其实也没问题，毕竟代码实现出来，稳定运行才是最重要的</p>
+<p>当然，最直接的方式还是利用 clipPath ，直接划出要裁剪的区域而不进行任何移动</p>
+<h4 id="直接设置裁剪路径"><a href="#直接设置裁剪路径" class="headerlink" title="直接设置裁剪路径"></a>直接设置裁剪路径</h4><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> path = Path().apply &#123;</span><br><span class="line">  moveTo(padding, padding)</span><br><span class="line">  lineTo(padding + image_width, padding)</span><br><span class="line">  lineTo(padding, padding + image_height)</span><br><span class="line">  close()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.clipPath(path)</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="3d-渲染（Matrix、Camera）"><a href="#3d-渲染（Matrix、Camera）" class="headerlink" title="3d 渲染（Matrix、Camera）"></a>3d 渲染（Matrix、Camera）</h2><p>Matrix 可以实现几乎任何变换，包括 2d 或者 3d 渲染，而 Camera 本质也是计算出 Matrix 来实现 3d 变换</p>
+<h3 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h3><h4 id="Matrix-是什么"><a href="#Matrix-是什么" class="headerlink" title="Matrix 是什么"></a>Matrix 是什么</h4><p>这里说的是 <code>android.graphics.Matrix</code> 而不是 <code>android.opengl.Matrix</code></p>
+<blockquote>
+<p>是的,每次我都想吐槽,只说这个类名而不说包名，然后遇到重名是真的抓狂</p>
+</blockquote>
+<p>我们先看这个 Matrix 到底是什么！</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log(<span class="string">&quot;matrix = <span class="variable">$matrix</span>&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matrix = Matrix&#123;[1.0, 0.0, 0.0][0.0, 1.0, 0.0][0.0, 0.0, 1.0]&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里我们调用 Matrix.toString() ，发现打印出来确实是一个矩阵，我们再看看他的 toString 是怎么写的</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="number">64</span>);</span><br><span class="line">    sb.append(<span class="string">&quot;Matrix&#123;&quot;</span>);</span><br><span class="line">    toShortString(sb);</span><br><span class="line">    sb.append(<span class="string">&#x27;&#125;&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">toShortString</span><span class="params">(StringBuilder sb)</span> &#123;</span><br><span class="line">    <span class="type">float</span>[] values = <span class="keyword">new</span> <span class="title class_">float</span>[<span class="number">9</span>];</span><br><span class="line">    getValues(values);</span><br><span class="line">    sb.append(<span class="string">&#x27;[&#x27;</span>);</span><br><span class="line">    sb.append(values[<span class="number">0</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">1</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">2</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;][&quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">3</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">4</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">5</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;][&quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">6</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">7</span>]);</span><br><span class="line">    sb.append(<span class="string">&quot;, &quot;</span>);</span><br><span class="line">    sb.append(values[<span class="number">8</span>]);</span><br><span class="line">    sb.append(<span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getValues</span><span class="params">(<span class="type">float</span>[] values)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (values.length &lt; <span class="number">9</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ArrayIndexOutOfBoundsException</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    nGetValues(native_instance, values);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FastNative</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">nGetValues</span><span class="params">(<span class="type">long</span> nObject, <span class="type">float</span>[] values)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到，这里其实就是调用了 nGetValues 这个 native 方法来填充 values，然后通过 StringBuilder 将他们连接起来</p>
+<p>而这个 values 其实就是关键性起作用的变量，但如果你看过 Java 层面的源码，你就知道，values 出现最多的就是 setValues 、 getValues 和 toString 里面，其他地方根本每调用过这个变量</p>
+<p>也就是说，这个变量的计算逻辑被完全封装到的 C++ 层了，在我们调用 <code>preRotate</code> ， <code>postRotate</code> ， <code>setSinCos</code> …… 这些方法的时候，他会在 C++ 层为我们计算好 Matrix ，然后在我们调用 <code>canvas.concat(matrix)</code> 或者 <code>canvas.setMatrix()</code> 的时候，将计算好的 Matrix 应用到 Canvas</p>
+
+  <div class="note p-4 mb-4 rounded-small info">
+    <p>pre 对应矩阵左乘，而 post 对应矩阵右乘</p>
+
+  </div>
+
+<p>Android 这么做的目的显而易见，是为了让我们不要过多关心矩阵运算，只通过他提供的一些方法，来完成绘制</p>
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>值得一提的是</p>
+
+    </div>
+    <div class="notel-content">
+      <p><code>canvas.setMatrix()</code> 这个方法并不好用，经常有人抱怨这个方法会出现奇奇怪怪的问题，但我还没遇到过，所以你可以优先使用 <code>canvas.concat(matrix)</code></p>
+<p><code>canvas.concat(matrix)</code> 是将 Matrix 和 Canvas 进行组合计算，而 <code>canvas.setMatrix()</code> 则是直接替换 Canvas 的矩阵</p>
+
+    </div>
+  </div>
+
+<h4 id="使用-Matrix-的简单例子"><a href="#使用-Matrix-的简单例子" class="headerlink" title="使用 Matrix 的简单例子"></a>使用 Matrix 的简单例子</h4><p>我们来看个例子</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">matrix.postRotate(<span class="number">30f</span>)</span><br><span class="line"></span><br><span class="line">canvas.concat(matrix)</span><br><span class="line">canvas.drawBitmap(bitmap, <span class="number">0f</span>, <span class="number">0f</span>, paint)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/Matrix_preRotate.png"
+                      alt="Matrix_preRotate.png"
+                ></p>
+<h4 id="使用-Matrix-稍微复杂一点的例子"><a href="#使用-Matrix-稍微复杂一点的例子" class="headerlink" title="使用 Matrix 稍微复杂一点的例子"></a>使用 Matrix 稍微复杂一点的例子</h4><p>另外，我们能否只使用 Matrix 就实现上面的那个 clip 呢？也就是不使用 clipPath ，正着写绘制流程</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> matrix = Matrix()</span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">clipRightBottomByMatrix</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  matrix.preRotate(-flipRotation, padding + image_width / <span class="number">2</span>, padding + image_height / <span class="number">2</span>)</span><br><span class="line">  canvas.concat(matrix)</span><br><span class="line">  matrix.reset()</span><br><span class="line">  canvas.clipRect(<span class="number">0f</span>, <span class="number">0f</span>, image_width * <span class="number">2</span>, image_width)</span><br><span class="line">  matrix.preRotate(flipRotation, padding + image_width / <span class="number">2</span>, padding + image_height / <span class="number">2</span>)</span><br><span class="line">  canvas.concat(matrix)</span><br><span class="line">  canvas.drawBitmap(</span><br><span class="line">    loadBitmapFromRes(resources, R.drawable.lucas_avatar, image_width.toInt()),</span><br><span class="line">    padding,</span><br><span class="line">    padding,</span><br><span class="line">    paint</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意，我这里使用了 <code>matrix.reset()</code> ，并且调用了两次 <code>canvas.concat(matrix)</code></p>
+<p>使用了 <code>matrix.reset()</code> 是因为，让上次的矩阵计算不会影响到下面的计算，所以需要将矩阵重置为单位矩阵</p>
+<p>而调用两次 canvas.concat(matrix) 是因为调用这个方法，矩阵的计算才会应用到 Canvas 上，所以我们需要在 clip 的时候，先调用 <code>canvas.concat(matrix)</code> 才能正确地裁剪 Canvas</p>
+<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><h4 id="Camera-模型"><a href="#Camera-模型" class="headerlink" title="Camera 模型"></a>Camera 模型</h4><p>Camera 类似于 3d 软件里的模型，如果你使用过类似 Blender 之类的软件一定非常好理解</p>
+<p>而 Camera 本质还是通过建立这样的 3d 模型计算出一个 Matrix</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_coordinate_system.png"
+                      alt="camera_coordinate_system.png"
+                ></p>
+<p>这是 Camera 的坐标系，除了 X 轴，其他的都是和 View 坐标轴相反的</p>
+<p>我们打开 Camera 这个类，发现很短，就只有短短 171 行</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera03.png"
+                      alt="camera03.png"
+                ></p>
+<p>方法也只有旋转而已，所以相机这个模型就是为了解决投影的倾斜对应的矩阵计算的</p>
+
+  <div class="note p-4 mb-4 rounded-small info">
+    <p>dotwithNormal 这个方法在 Google 的 Api 文档里也没有任何解释，调用它我也没有发现产生任何作用，所以我们暂时不去考虑它</p>
+
+  </div>
+
+<p>其中有一个 getMatrix 的方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// android.graphics.Camera</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getMatrix</span><span class="params">(Matrix matrix)</span> &#123;</span><br><span class="line">    nativeGetMatrix(matrix.ni());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>你可以传进去一个空的 Matrix 对象，然后 Camera 的信息会被复制进你传入的这个函数里</p>
+<p>所以你有理由怀疑，所有的自定义 View 变换都是通过矩阵变换计算来的，当然我也是这样想的…大概吧</p>
+<p>我们用 blender 模拟一下这样的摄像机模型，图片长 5 宽 5，摄像机距图片 14</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera00.png"
+                      alt="camera00.png"
+                ></p>
+<p>当摄像头默认在正上方，不旋转的时候，是这样的</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera01.png"
+                      alt="camera01.png"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera02.png"
+                      alt="camera02.png"
+                ></p>
+<p>上图是摄像机旋转 45 度的样子</p>
+<h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>我们先查看一下这个摄像机的默认设置，主要就是这个摄像机的位置信息</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  log(<span class="string">&quot;camera.locationX = <span class="subst">$&#123;camera.locationX&#125;</span>&quot;</span>)</span><br><span class="line">  log(<span class="string">&quot;camera.locationY = <span class="subst">$&#123;camera.locationY&#125;</span>&quot;</span>)</span><br><span class="line">  log(<span class="string">&quot;camera.locationZ = <span class="subst">$&#123;camera.locationZ&#125;</span>&quot;</span>)</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">camera.locationX = 0.0</span><br><span class="line">camera.locationY = 0.0</span><br><span class="line">camera.locationZ = -8.0</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到默认 X 是 0.0 ，Y 是 0.0 , Z 是 -8.0</p>
+<p>值得注意的的是，只是调用 Camera 的 setLocation 并不会改变绘制主体的大小，而是会改变绘制主体的位置</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> padding = <span class="number">200f</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    Camera().apply &#123;</span><br><span class="line">      setLocation(<span class="number">4f</span>, <span class="number">20f</span>, -<span class="number">72f</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> matrix = Matrix()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">    camera.getMatrix(matrix)</span><br><span class="line">    log(<span class="string">&quot;matrix = <span class="variable">$matrix</span>&quot;</span>)</span><br><span class="line">    camera.applyToCanvas(canvas)</span><br><span class="line">    canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matrix = Matrix&#123;[1.0, 0.0, -288.0][0.0, 1.0, 1440.0][0.0, 0.0, 1.0]&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>$$<br>  \begin{bmatrix}<br>    1 &amp; 0 &amp; -288\\<br>    0 &amp; 1 &amp; 144\\<br>    0 &amp; 0 &amp; 1<br>  \end{bmatrix}<br>$$</p>
+<p>这里通过简单的线性代数知识就知道，这是一个位移矩阵，而主对角线全是 1 说明了这个矩阵并不存在任何缩放</p>
+<p>为什么会是这个数字呢？</p>
+<p>首先我们将相机向右上角移动，对应的投影出来的绘制主体自然会向左下角移动</p>
+<p>按比例计算，向左平移 4×72 &#x3D; 288px ， 向下平移 20×72&#x3D;1440px</p>
+
+  <div class="note p-4 mb-4 rounded-small info">
+    <p>当我们在 Android 里调用 camera.setLocation() 的时候，里面填写的参数，单位是 inch（英寸） ，1 inch &#x3D; 72 px，所以我们将这个 bitmap 设为宽高</p>
+
+  </div>
+
+<h4 id="Rotate"><a href="#Rotate" class="headerlink" title="Rotate"></a>Rotate</h4><h5 id="LocationZ-影响-Rotate"><a href="#LocationZ-影响-Rotate" class="headerlink" title="LocationZ 影响 Rotate"></a>LocationZ 影响 Rotate</h5><p>从现在开始，一定要牢记，camera 的原理是矩阵变换</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> paint = Paint(Paint.ANTI_ALIAS_FLAG)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> padding = <span class="number">200f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">  Camera().apply &#123;</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8</span>)</span><br><span class="line">    <span class="comment">//setLocation(0f, 0f, -16)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们让相机绕 X 轴旋转 30°，分别设置两个不同的 Z 轴值</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_Location.png"
+                      alt="camera_rotateX_Location.png"
+                ></p>
+<p>左图是 LocationZ 为 -16，右图 Location 为 -8</p>
+<p>可见，Location 虽然不会缩放，它会影响旋转的效果，这很容易理解，因为旋转的角度相同，距离越近，肯定效果越明显</p>
+<p>对于这种效果我们是很难计算的，更多的我们是要进行更一些更有规律的变换效果，比如垂直翻转</p>
+<h5 id="垂直翻转"><a href="#垂直翻转" class="headerlink" title="垂直翻转"></a>垂直翻转</h5><p>由于，Camera 的原理是矩阵运算，并且其他操作包括 Canvas.translate 等操作都是矩阵运算，所以我们先执行最简单的翻转</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">  Camera().apply &#123;</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8f</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, -<span class="number">200f</span>, -<span class="number">200f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_Center.png"
+                      alt="camera_rotateX_Center.png"
+                ></p>
+<p>我们该如何将这个图放到中间呢？（也就是向右下角移动）</p>
+<p>牢记，所有的操作都基于 Matrix 变换，如果你移动了 Canvas，那么 Matrix 也会改变</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">  Camera().apply &#123;</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8f</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  camera.getMatrix(matrix)</span><br><span class="line">  log(<span class="string">&quot;matrix = <span class="variable">$matrix</span>&quot;</span>)</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  log(<span class="string">&quot;matrix = <span class="subst">$&#123;canvas.matrix&#125;</span>&quot;</span>)</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">400f</span>)</span><br><span class="line">  log(<span class="string">&quot;matrix = <span class="subst">$&#123;canvas.matrix&#125;</span>&quot;</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, -<span class="number">0f</span>, -<span class="number">0f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">matrix = Matrix&#123;[1.0, 0.0, 0.0][0.0, 0.8660254, 0.0][0.0, -8.6805556E-4, 1.0]&#125;</span><br><span class="line">matrix = Matrix&#123;[1.0, 0.0, 0.0][0.0, 0.8660254, 0.0][0.0, -8.6805556E-4, 1.0]&#125;</span><br><span class="line">matrix = Matrix&#123;[1.0, 0.0, 400.0][0.0, 0.8660254, 346.41016][0.0, -8.6805556E-4, 0.6527778]&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-canvas-%E5%92%8C%E5%9D%90%E6%A0%87%E7%B3%BB/camera_rotateX_translate00.png"
+                      alt="camera_rotateX_translate00.png"
+                ></p>
+<p>这就是因为你调用 Translate</p>
+<p>怎么才能让 Camera 计算出来的 Matrix 使得图形在任意位置垂直翻转呢？</p>
+<p>我们可以提前让 canvas 的矩阵变为向右下角平移的位移矩阵，然后再计算垂直翻转矩阵，最后再向左上角平移，这样就可以抵消矩阵</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Android自定义View02 - canvas 和坐标系</li>
+        <li><strong>Author:</strong> lucas</li>
+        <li><strong>Created at
+                :</strong> 2023-12-16 10:18:42</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-01-02 15:01:49
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2023/12/16/Android自定义View02-canvas-和坐标系/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap/" title="Android 里的 Bitmap、Drawable、Mipmap（没写完）" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android 里的 Bitmap、Drawable、Mipmap（没写完）" class="!max-w-none">
+  <span class="title">Android 里的 Bitmap、Drawable、Mipmap（没写完）</span>
+</a><a class="recommended-article-item" href="/2023/09/02/OpenGL-多个三角形/" title="OpenGL 多个三角形" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 多个三角形" class="!max-w-none">
+  <span class="title">OpenGL 多个三角形</span>
+</a><a class="recommended-article-item" href="/2023/09/24/OpenGL-纹理/" title="OpenGL 纹理" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 纹理" class="!max-w-none">
+  <span class="title">OpenGL 纹理</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap/" title="Android 里的 Bitmap、Drawable、Mipmap（没写完）" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android 里的 Bitmap、Drawable、Mipmap（没写完）" class="!max-w-none">
+  <span class="title">Android 里的 Bitmap、Drawable、Mipmap（没写完）</span>
+</a><a class="recommended-article-item" href="/2023/09/02/OpenGL-多个三角形/" title="OpenGL 多个三角形" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 多个三角形" class="!max-w-none">
+  <span class="title">OpenGL 多个三角形</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View03-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Android自定义View02 - 属性动画</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Android自定义View02 - canvas 和坐标系</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%BB%98%E5%88%B6"><span class="nav-text">简单绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#translate%EF%BC%88%E5%B9%B3%E7%A7%BB%EF%BC%89"><span class="nav-text">translate（平移）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rotate%EF%BC%88%E6%97%8B%E8%BD%AC%EF%BC%89"><span class="nav-text">rotate（旋转）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clip%EF%BC%88%E8%A3%81%E5%88%87%EF%BC%89"><span class="nav-text">clip（裁切）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E7%9D%80%E5%86%99%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="nav-text">反着写绘制流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E7%9D%80%E5%86%99%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="nav-text">正着写绘制流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E8%AE%BE%E7%BD%AE%E8%A3%81%E5%89%AA%E8%B7%AF%E5%BE%84"><span class="nav-text">直接设置裁剪路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3d-%E6%B8%B2%E6%9F%93%EF%BC%88Matrix%E3%80%81Camera%EF%BC%89"><span class="nav-text">3d 渲染（Matrix、Camera）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matrix"><span class="nav-text">Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">Matrix 是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Matrix-%E7%9A%84%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90"><span class="nav-text">使用 Matrix 的简单例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Matrix-%E7%A8%8D%E5%BE%AE%E5%A4%8D%E6%9D%82%E4%B8%80%E7%82%B9%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">使用 Matrix 稍微复杂一点的例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera"><span class="nav-text">Camera</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Camera-%E6%A8%A1%E5%9E%8B"><span class="nav-text">Camera 模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Location"><span class="nav-text">Location</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rotate"><span class="nav-text">Rotate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LocationZ-%E5%BD%B1%E5%93%8D-Rotate"><span class="nav-text">LocationZ 影响 Rotate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9E%82%E7%9B%B4%E7%BF%BB%E8%BD%AC"><span class="nav-text">垂直翻转</span></a></li></ol></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">lucas</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/Swup.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/SwupSlideTheme.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/SwupScriptsPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/SwupProgressPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/SwupScrollPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/SwupPreloadPlugin.min.js"></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/imageViewer.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/utils.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/main.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/layouts/navbarShrink.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/scrollTopBottom.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/lightDarkSwitch.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/layouts/categoryList.js"></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/localSearch.js"></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/codeBlock.js"></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/layouts/lazyload.js"></script>
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/runtime.js"></script>
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/odometer.min.js"></script>
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/Typed.min.js"></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/libs/anime.min.js"></script>'
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/tools/tocToggle.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/layouts/toc.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.0/source/js/plugins/tabs.js"></script>
+    
+</div>
+
+
+</body>
+</html>
