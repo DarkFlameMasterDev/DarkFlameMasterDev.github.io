@@ -653,16 +653,16 @@
   </entry>
   <entry>
     <title>Android自定义View02 - 绘制流程</title>
-    <url>/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Android 坐标系都是以左上角为原点，并且 canvas 是一个独立的坐标系</p>
-<p>所以在使用 canvas 进行绘制的时候，比如：自定义 Drawable 或者自定义 View，该如何去思考这个绘制流程呢？</p>
-<p>如过你看过扔物线的视频或者文章，又或者在网上搜索过，一定知道“倒着写绘制流程” 这种方法，但为什么要倒着写呢？？？</p>
+    <url>/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Android 坐标系都是以左上角为原点，并且 view、canvas、Camera 是一个独立的坐标系</p>
+<p>所以在进行绘制的时候，比如：自定义 Drawable 或者自定义 View，该如何去思考这个绘制流程呢？</p>
+<p>如过你看过扔物线的视频或者文章，又或者在网上搜索过，一定知道 “倒着写绘制流程” 这种方法，但为什么要倒着写呢？？？</p>
 <p>今天我来讲解更详细的内部原理</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理就是，Android 里面使用的都是 <strong>列矩阵右乘</strong></p>
 <p>也就是说，你需要反着写绘制流程才会正常的矩阵变换流程</p>
 
   <div class="note p-4 mb-4 rounded-small info">
-    <p>本文内容需要对矩阵的左乘右乘有一定的理解，比如列矩阵左乘对被乘物体的变换。</p>
+    <p>本文内容需要对矩阵的左乘右乘有一定的理解，比如列矩阵左乘是对被乘物体的变换。</p>
 <p>这些知识应该是很容易就可以在网上搜索到的，如果你之前已经了解了一些，那往下看也许会帮你回想起来一些</p>
 
   </div>
@@ -678,19 +678,19 @@
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">{[8.0],[9.0],[1.0]}</span><br><span class="line">{[2.428203],[11.7942295],[1.0]}</span><br><span class="line">{[14.569218],[23.588459],[1.0]}</span><br></pre></td></tr></table></figure></div>
 
 <p>我们来看结果，这里使用的是 <a href="www.desmos.com">desmos</a></p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/MatrixOperationResult.png" alt="MatrixOperationResult.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/MatrixOperationResult.png" alt="MatrixOperationResult.png"></p>
 <p>可以看到，矩阵左乘会让一个列向量按我们写的顺序进行变换</p>
 <h3 id="右乘"><a href="#右乘" class="headerlink" title="右乘"></a>右乘</h3><p>我们把这个情况在 Android 上复现（为了更明显，我们以 50px 是单位 1）</p>
 <p>当然，由于 Android 是右乘，我们需要倒着写，也就是先缩放，再旋转，最后位移</p>
 <div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> {</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line"></span><br><span class="line">  canvas.save()</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">  canvas.restore()</span><br><span class="line"></span><br><span class="line">  canvas.save()</span><br><span class="line">  canvas.rotate(<span class="number">30f</span>)</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">  canvas.restore()</span><br><span class="line"></span><br><span class="line">  canvas.scale(<span class="number">6f</span>, <span class="number">2f</span>)</span><br><span class="line">  canvas.rotate(<span class="number">30f</span>)</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/transformOnAndroid.png" alt="transformOnAndroid.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/transformOnAndroid.png" alt="transformOnAndroid.png"></p>
 <p>我们把两个坐标系对比一下：</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/transformOnAndroidCompare.png" alt="transformOnAndroid.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/transformOnAndroidCompare.png" alt="transformOnAndroid.png"></p>
 <p>而对于 Matrix ，右乘就是 <code>Matrix.post...</code> ， 而 <code>Matrix.pre...</code> 则是左乘，这个下面还会提到</p>
 <h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p>只进行 translate rotate clip skew scale 等系统预设的变换，我称之为 简单变换</p>
 <p>我们拿自定义 View 举例，在进行 canvas 绘制的时候，canvas 本身的坐标是和 View坐标独立的，也就是说 canvas 和 View 分别有自己的坐标</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/translation.png" alt="translation.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/translation.png" alt="translation.png"></p>
 <p>举个例子，蓝色为 View 坐标系，绿色为 Canvas 坐标系</p>
 <div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> {</span><br><span class="line">  canvas.translate(<span class="number">200f</span>,<span class="number">100f</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, <span class="number">0f</span>, <span class="number">0f</span>, paint)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 
@@ -745,7 +745,7 @@
 <p>果然和我们想的一模一样</p>
 <h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><h4 id="Camera-模型"><a href="#Camera-模型" class="headerlink" title="Camera 模型"></a>Camera 模型</h4><p>Camera 类似于 3d 软件里的模型，如果你使用过类似 Blender 之类的软件一定非常好理解</p>
 <p>而 Camera 本质还是通过建立这样的 3d 模型计算出一个 Matrix</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_coordinate_system.png" alt="camera_coordinate_system.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_coordinate_system.png" alt="camera_coordinate_system.png"></p>
 
   <div class="note p-4 mb-4 rounded-small info">
     <p>这是 Camera 的坐标系，除了 X 轴，其他的都是和 View 坐标轴相反的</p>
@@ -753,7 +753,7 @@
   </div>
 
 <p>我们打开 Camera 这个类，发现很短，就只有短短 171 行</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera03.png" alt="camera03.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera03.png" alt="camera03.png"></p>
 <p>方法也只有位移和旋转而已，所以相机这个模型就是为了解决投影的倾斜对应的矩阵计算的</p>
 
   <div class="note p-4 mb-4 rounded-small info">
@@ -767,10 +767,10 @@
 <p>你可以传进去一个空的 Matrix 对象，然后 Camera 的信息会被复制进你传入的这个函数里</p>
 <p>所以你有理由怀疑，所有的自定义 View 变换都是通过矩阵变换计算来的，当然我也是这样想的…大概吧</p>
 <p>我们用 blender 模拟一下这样的摄像机模型，图片长 5 宽 5，摄像机距图片 14</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera00.png" alt="camera00.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera00.png" alt="camera00.png"></p>
 <p>当摄像头默认在正上方，不旋转的时候，是这样的</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera01.png" alt="camera01.png"></p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera02.png" alt="camera02.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera01.png" alt="camera01.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera02.png" alt="camera02.png"></p>
 <p>上图是摄像机旋转 45 度的样子</p>
 <h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>我们先查看一下这个摄像机的默认设置，主要就是这个摄像机的位置信息</p>
 <div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> {</span><br><span class="line">  log(<span class="string">"camera.locationX = <span class="subst">${camera.locationX}</span>"</span>)</span><br><span class="line">  log(<span class="string">"camera.locationY = <span class="subst">${camera.locationY}</span>"</span>)</span><br><span class="line">  log(<span class="string">"camera.locationZ = <span class="subst">${camera.locationZ}</span>"</span>)</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
@@ -798,7 +798,7 @@
 <div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> paint = Paint(Paint.ANTI_ALIAS_FLAG)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> padding = <span class="number">200f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy {</span><br><span class="line">  Camera().apply {</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8</span>)</span><br><span class="line">    <span class="comment">//setLocation(0f, 0f, -16)</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> {</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 
 <p>我们让相机绕 X 轴旋转 30°，分别设置两个不同的 Z 轴值</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_rotateX_Location.png" alt="camera_rotateX_Location.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_rotateX_Location.png" alt="camera_rotateX_Location.png"></p>
 <p>左图是 LocationZ 为 -16，右图 Location 为 -8</p>
 <p>可见，Location 虽然不会缩放，它会影响旋转的效果，这很容易理解，因为旋转的角度相同，距离越近，肯定效果越明显</p>
 <p>我们将矩阵打印出来</p>
@@ -809,7 +809,7 @@
 <h5 id="垂直翻转"><a href="#垂直翻转" class="headerlink" title="垂直翻转"></a>垂直翻转</h5><p>由于，Camera 的原理是矩阵运算，并且其他操作包括 Canvas.translate 等操作都是矩阵运算，所以我们先执行最简单的翻转</p>
 <div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy {</span><br><span class="line">  Camera().apply {</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8f</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> {</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, -<span class="number">200f</span>, -<span class="number">200f</span>, paint)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_rotateX_Center.png" alt="camera_rotateX_Center.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/camera_rotateX_Center.png" alt="camera_rotateX_Center.png"></p>
 <p>我们该如何将这个图放到中间呢？（也就是向右下角移动）</p>
 <h5 id="垂直翻转-平移"><a href="#垂直翻转-平移" class="headerlink" title="垂直翻转 + 平移"></a>垂直翻转 + 平移</h5><p>怎么才能让 Camera 计算出来的 Matrix 使得图形在任意位置垂直翻转呢？</p>
 <p>我们可以将位移和相机的矩阵运算结合起来</p>
@@ -830,7 +830,7 @@
 <p>这句话是不对的！！！！！！</p>
 <p>你依旧是按照第一个代码倒着写的原理就行</p>
 <p>这个代码我们将位移的变量进行了修改，最终效果就是这样的</p>
-<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/Matrix_Center00.png" alt="Matrix_Center00.png"></p>
+<p><img src="/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View02-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/Matrix_Center00.png" alt="Matrix_Center00.png"></p>
 ]]></content>
       <tags>
         <tag>Android</tag>
@@ -892,9 +892,65 @@
       </tags>
   </entry>
   <entry>
-    <title>Android自定义View02 - 属性动画</title>
-    <url>/2023/12/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89View03-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<h2 id="自带的动画"><a href="#自带的动画" class="headerlink" title="自带的动画"></a>自带的动画</h2><div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line">view.animate()</span><br><span class="line">  .translationX(<span class="number">200.</span>toDp())</span><br><span class="line">  .translationY(<span class="number">100.</span>toDp())</span><br><span class="line">  .rotation(<span class="number">180f</span>)</span><br><span class="line">  .setStartDelay(<span class="number">1000</span>)</span><br><span class="line">  .setDuration(<span class="number">2000</span>)</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure></div>
+    <title>Android自定义View03 - 属性动画</title>
+    <url>/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View03-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这次的内容其实相比上篇要容易的多，只需要接触代码上的知识就好了</p>
+<p>本文介绍的是 <code>ViewPropertyAnimator</code> 和 <code>ObjectAnimator</code></p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p><code>ViewPropertyAnimator</code> 和 <code>ObjectAnimator</code> 原理都是使用了 <code>ValueAnimator</code></p>
+<p><code>ViewPropertyAnimator</code> 是作为一个辅助类来调用 <code>ValueAnimator</code></p>
+<p>而 <code>ObjectAnimator</code> 则是继承了 <code>ValueAnimator</code> ，实现了更灵活的功能</p>
+<p>下图就对比了两个类声明的不同函数，<code>ViewPropertyAnimator</code> 都是一些现成的变换（位移、旋转…），而 <code>ObjectAnimation</code> 则是侧重于你希望通过改变什么变量来控制动画（属于是面向对象的动画，非常符合 <code>ObjectAnimation</code> 的名字）</p>
+<p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View03-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/compareAnimation.png" alt="compareAnimation.png"></p>
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>使用场景</p>
+
+    </div>
+    <div class="notel-content">
+      <p><a class="link"   href="https://developer.android.com/reference/android/view/ViewPropertyAnimator" >Android 官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 里写到：If only one or two properties on a View object are being animated, then using an ObjectAnimator is fine; the property setters called by ObjectAnimator are well equipped to do the right thing to set the property and invalidate the view appropriately. But if several properties are animated simultaneously, or if you just want a more convenient syntax to animate a specific property, then ViewPropertyAnimator might be more well-suited to the task.</p>
+<p>也就是，在你使用 1~2 个属性变换的时候，<code>ObjectAnimator</code> 是非常合适的，但属性多了会导致一些性能问题，这其实也很好理解，如果你了解过他的实现原理，就知道他其实是用反射，调用 <code>set/get</code> 方法并调用 <code>invalidate()</code> 重绘当前 <code>View</code> ，过多的重绘自然会影响性能</p>
+<p>而 <code>ViewPropertyAnimator</code> 将这些做了优化，但灵活性下降了不少</p>
+<p>但由于 <code>ObjectAnimation</code> 更加灵活，还是深受开发者喜爱</p>
+
+    </div>
+  </div>
+
+<p>关于 <code>ViewPropertyAnimator</code> 的优化，我这里简单说一丢丢，拿这个简单代码为例</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line">view.animate()</span><br><span class="line">  .translationX(<span class="number">200f</span>)</span><br><span class="line">  .setInterpolator(LinearInterpolator())</span><br><span class="line">  .setDuration(<span class="number">2000</span>)</span><br><span class="line">  .translationY(<span class="number">300f</span>)</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li><p><code>view.animate()</code> 会构造一个 <code>ViewPropertyAnimator</code></p>
+</li>
+<li><p><code>translationX(200f)</code> 会将这个位移 200 的动画，保存到 <code>ValueAnimator</code> 里面，<code>post</code> 出去，而这个 post 就最终调用这个方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">animatePropertyBy</span><span class="params">(<span class="type">int</span> constantName, <span class="type">float</span> startValue, <span class="type">float</span> byValue)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    mPendingAnimations.add(nameValuePair);</span><br><span class="line">    mView.removeCallbacks(mAnimationStarter);</span><br><span class="line">    mView.postOnAnimation(mAnimationStarter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><code>mPendingAnimations.add(nameValuePair)</code> 就是添加动画行为，<code>mPendingAnimations</code> 是一个 ArrayList</p>
+<p>而 <code>postOnAnimation</code> 这个方法就是下面这个方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Causes the Runnable to execute on the next animation time step.</span></span><br><span class="line"><span class="comment">* The runnable will be run on the user interface thread.&lt;/p&gt;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> action The Runnable that will be executed.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@see</span> #postOnAnimationDelayed</span></span><br><span class="line"><span class="comment">* <span class="doctag">@see</span> #removeCallbacks</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postOnAnimation</span><span class="params">(Runnable action)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">AttachInfo</span> <span class="variable">attachInfo</span> <span class="operator">=</span> mAttachInfo;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="literal">null</span>) &#123;</span><br><span class="line">        attachInfo.mViewRootImpl.mChoreographer.postCallback(</span><br><span class="line">                Choreographer.CALLBACK_ANIMATION, action, <span class="literal">null</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Postpone the runnable until we know</span></span><br><span class="line">        <span class="comment">// on which thread it needs to run.</span></span><br><span class="line">        getRunQueue().post(action);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><code>getRunQueue()</code> 是一个 <code>HandlerActionQueue</code></p>
+<p>看到这里应该就非常清晰了，本质就是把这个 <code>animator</code> 交由 <code>Handler</code> 处理</p>
+</li>
+<li><p><code>setInterpolator(LinearInterpolator())</code> 和 <code>setDuration(2000)</code> 这都是设置动画参数</p>
+</li>
+<li><p>最后还是，将动画保存下来 post 过去，但这里要注意一下 <code>removeCallbacks</code> 将上一个 <code>mAnimationStarter</code> 移除了，这达到了去重操作，这就是关键的优化操作</p>
+</li>
+</ol>
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>问题</p>
+
+    </div>
+    <div class="notel-content">
+      <p>那么有一个问题，我们先把动画 post 过去，再设置动画时长（<code>setDuration</code>），那这个动画是会在没给他设置动画时长的时候，启动吗？</p>
+<p>肯定是没有这个问题的，因为这都是在主线程里，方法整体的调用栈会先执行完，再有可能执行其他的任务，也就是说，这个 <code>post</code> 过去的任务肯定是会在我们设置这些动画参数之后的，肯定不会出问题的</p>
+
+    </div>
+  </div>
+
+<h2 id="使用-ObjectAnimation"><a href="#使用-ObjectAnimation" class="headerlink" title="使用 ObjectAnimation"></a>使用 ObjectAnimation</h2><h3 id="简单用法"><a href="#简单用法" class="headerlink" title="简单用法"></a>简单用法</h3><p><img src="/2023/12/16/Android%E8%87%AA%E5%AE%9A%E4%B9%89View03-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/progress.gif" alt="progress.gif"></p>
 ]]></content>
   </entry>
   <entry>
@@ -3430,5 +3486,68 @@
       <tags>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>上传你的 SDK 到 MavenCentral</title>
+    <url>/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/</url>
+    <content><![CDATA[<p>参考链接：<a class="link"   href="https://juejin.cn/post/7023219116534136840" >https://juejin.cn/post/7023219116534136840 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h2><p>Maven Central 是由 Sonatype 公司负责维护的，所以我们要使用Maven Central 的话，首先需要注册 Sonatype 账号。</p>
+<p>链接：<a class="link"   href="https://issues.sonatype.org/secure/Dashboard.jspa" >https://issues.sonatype.org/secure/Dashboard.jspa <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>账号密码会在提交 SDK 的时候用到</p>
+<h2 id="新建提交-SDK-的工单"><a href="#新建提交-SDK-的工单" class="headerlink" title="新建提交 SDK 的工单"></a>新建提交 SDK 的工单</h2><p>新建一个工单</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/new-project.png" alt="new-project.png"></p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/new-project-detail.png" alt="new-project-detail.png"></p>
+<p>Group Id 填你的域名</p>
+<p>Project URL 填你仓库的地址</p>
+<p>SCM url 填你仓库的 git 链接</p>
+<p>最后点击 新建 就会生成一个工单</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/new-projcet-ready.png" alt="new-projcet-ready.png"></p>
+<h2 id="审核通过"><a href="#审核通过" class="headerlink" title="审核通过"></a>审核通过</h2><p>接下来就是等待审核，这个时长可能很短，也可能有点长，一般不到 24 小时</p>
+<p>审核通过后，会让你建一个 public 临时仓库，来证明这就是你自己的仓库</p>
+<p>新建完了之后回复一下就行，可以参考我的回复</p>
+<p>然后再等待，等他说 Congratulations! 就说明你拥有了上传的权限</p>
+<h2 id="登录仓库"><a href="#登录仓库" class="headerlink" title="登录仓库"></a>登录仓库</h2><p>登录链接：<a class="link"   href="https://s01.oss.sonatype.org/" >https://s01.oss.sonatype.org/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>使用一开始注册的 Sonatype 的账号密码</p>
+<p>现在你的仓库已经准备完毕了</p>
+<h2 id="创建-GPG-签名"><a href="#创建-GPG-签名" class="headerlink" title="创建 GPG 签名"></a>创建 GPG 签名</h2><p>GPG签名主要是给上传的library使用，每个上传的library都需要进行签名后才可以</p>
+<p>不同的library可以使用相同的签名文件，所以GPG密钥一般只需要申请一次即可</p>
+<p>gpg 工具：<a class="link"   href="https://www.gnupg.org/download/index.html" >https://www.gnupg.org/download/index.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这个工具 Windows 和 MacOS 通用，并且推荐使用命令行</p>
+<p>我这里以 MacOS 为例：</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/gpg.png" alt="gpg.png"></p>
+<p>使用这行命令开始创建你的 gpg 签名</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">gpg --gen-key</span><br></pre></td></tr></table></figure></div>
+
+<p>然后会让你输入 real name （其实只要输入一个你记得的名字就行，不一定要是真实姓名）和 email address</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/gpg-gen01.png" alt="gpg-gen01.png"></p>
+<p>确认无误输入 O</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/gpg-gen02.png" alt="gpg-gen02.png"></p>
+<p>创建一个密码并记住他，点击 OK</p>
+<p><img src="/2024/01/29/%E4%B8%8A%E4%BC%A0%E4%BD%A0%E7%9A%84-SDK-%E5%88%B0-MavenCentral/gpg-gen03.png" alt="gpg-gen03.png"></p>
+<p>这样就生成成功了！（那串数字就是公钥，最后 8 位这就是你这个签名的 ID）</p>
+<h2 id="上传-gpg"><a href="#上传-gpg" class="headerlink" title="上传 gpg"></a>上传 gpg</h2><p>使用这行命令（记得将最后的 8 位改成你的签名 ID，也就是你刚刚得到的那串数字的后8位）</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">gpg --keyserver hkp://keyserver.ubuntu.com --send-keys 2918944A</span><br></pre></td></tr></table></figure></div>
+
+<p>上传完之后，记得使用 <code>search-key</code> 验证一下</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">gpg --keyserver hkp://keyserver.ubuntu.com --search-keys 2918944A</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="导出私钥-gpg"><a href="#导出私钥-gpg" class="headerlink" title="导出私钥 gpg"></a>导出私钥 gpg</h2><p>这里需要填写路径并命名 gpg 文件，同样使用你自己的 8 位 ID</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">gpg -o ~/Desktop/test.gpg --export-secret-keys 2918944A</span><br></pre></td></tr></table></figure></div>
+
+<p>这个 test.gpg 就是你的私钥，切记不要上传这个东西</p>
+<h2 id="开始准备上传"><a href="#开始准备上传" class="headerlink" title="开始准备上传"></a>开始准备上传</h2><p>我这里使用的是大佬写的上传插件：<a class="link"   href="https://github.com/vanniktech/gradle-maven-publish-plugin" >https://github.com/vanniktech/gradle-maven-publish-plugin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这里是官方文档：<a class="link"   href="https://vanniktech.github.io/gradle-maven-publish-plugin/" >https://vanniktech.github.io/gradle-maven-publish-plugin/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>可以参考我的 <code>build.gradle.kts</code></p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.vanniktech.maven.publish.SonatypeHost</span><br><span class="line"></span><br><span class="line">plugins &#123;</span><br><span class="line">  kotlin(<span class="string">&quot;jvm&quot;</span>)</span><br><span class="line">  id(<span class="string">&quot;com.vanniktech.maven.publish&quot;</span>) version <span class="string">&quot;0.27.0&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">&quot;io.github.darkflamemasterdev&quot;</span></span><br><span class="line">version = <span class="string">&quot;1.1.2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// see the link:https://vanniktech.github.io/gradle-maven-publish-plugin/central/</span></span><br><span class="line">mavenPublishing &#123;</span><br><span class="line">  publishToMavenCentral(SonatypeHost.S01)</span><br><span class="line"></span><br><span class="line">  signAllPublications()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// groupId: artifactId: version cannot be wrong!!!</span></span><br><span class="line">  coordinates(group.toString(), <span class="string">&quot;MatrixKotlin&quot;</span>, version.toString())</span><br><span class="line"></span><br><span class="line">  pom &#123;</span><br><span class="line">    name.<span class="keyword">set</span>(<span class="string">&quot;MatrixKotlin&quot;</span>)</span><br><span class="line">    description.<span class="keyword">set</span>(<span class="string">&quot;a kotlin library for matrix calculations&quot;</span>)</span><br><span class="line">    inceptionYear.<span class="keyword">set</span>(<span class="string">&quot;2024&quot;</span>)</span><br><span class="line">    url.<span class="keyword">set</span>(<span class="string">&quot;https://github.com/darkflamemasterdev/MatrixKotlin&quot;</span>)</span><br><span class="line">    licenses &#123;</span><br><span class="line">      license &#123;</span><br><span class="line">        name.<span class="keyword">set</span>(<span class="string">&quot;GNU Lesser General Public License, Version 3.0&quot;</span>)</span><br><span class="line">        url.<span class="keyword">set</span>(<span class="string">&quot;https://www.gnu.org/licenses/gpl-3.0.txt&quot;</span>)</span><br><span class="line">        distribution.<span class="keyword">set</span>(<span class="string">&quot;https://www.gnu.org/licenses/gpl-3.0.txt&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    developers &#123;</span><br><span class="line">      developer &#123;</span><br><span class="line">        id.<span class="keyword">set</span>(<span class="string">&quot;DarkFlameMasterDev&quot;</span>)</span><br><span class="line">        name.<span class="keyword">set</span>(<span class="string">&quot;lucas&quot;</span>)</span><br><span class="line">        url.<span class="keyword">set</span>(<span class="string">&quot;https://github.com/darkflamemasterdev&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    scm &#123;</span><br><span class="line">      url.<span class="keyword">set</span>(<span class="string">&quot;https://github.com/darkflamemasterdev/MatrixKotlin&quot;</span>)</span><br><span class="line">      connection.<span class="keyword">set</span>(<span class="string">&quot;scm:git:git://github.com/darkflamemasterdev/MatrixKotlin.git&quot;</span>)</span><br><span class="line">      developerConnection.<span class="keyword">set</span>(<span class="string">&quot;scm:git:ssh://git@github.com/darkflamemasterdev/MatrixKotlin.git&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">  mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  implementation(<span class="string">&quot;com.vanniktech:gradle-maven-publish-plugin:0.27.0&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">kotlin &#123;</span><br><span class="line">  jvmToolchain(<span class="number">11</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个插件给了两种配置 MavenCentral 账号密码的方式，一种是配置在 <code>gradle.properties</code> 里</p>
+<p>一种是写在本地环境变量里</p>
+<p>我是直接写在了环境变量里，这个参考 <a class="link"   href="https://vanniktech.github.io/gradle-maven-publish-plugin/central/#in-memory-gpg-key" >https://vanniktech.github.io/gradle-maven-publish-plugin/central/#in-memory-gpg-key <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>使用这个命令生成 signingInMemoryKey</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">gpg2 --export-secret-keys --armor &lt;key id&gt; &lt;path to secring.gpg&gt; | grep -v &#x27;\-\-&#x27; | grep -v &#x27;^=.&#x27; | tr -d &#x27;\n&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>参考我的环境变量配置 （.zshrc）</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mavenCentral</span></span><br><span class="line">export ORG_GRADLE_PROJECT_mavenCentralUsername=你的 MavenCentral 账号</span><br><span class="line">export ORG_GRADLE_PROJECT_mavenCentralPassword=你的 MavenCentral 密码</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">signingInMemoryKey</span></span><br><span class="line">export ORG_GRADLE_PROJECT_signingInMemoryKey=你自己的 key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">signingInMemoryKeyId</span></span><br><span class="line">export ORG_GRADLE_PROJECT_signingInMemoryKeyId=你的 ID</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">signingInMemoryKeyPassword</span></span><br><span class="line">export ORG_GRADLE_PROJECT_signingInMemoryKeyPassword=你的 gpg 密码</span><br></pre></td></tr></table></figure></div>
+]]></content>
   </entry>
 </search>
