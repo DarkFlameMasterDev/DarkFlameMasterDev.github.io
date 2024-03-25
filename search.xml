@@ -3563,4 +3563,23 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>虚幻5 乱七八糟的小问题</title>
+    <url>/2024/03/25/%E8%99%9A%E5%B9%BB5%20%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我最近在玩 虚幻5，并且还为此买了张显卡</p>
+<p>为啥不用 Mac 开发 虚幻5 呢？</p>
+<p>使用 虚幻5 会发生什么问题呢？</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>首先是就是没有 VS，无法打开 sln项目，Uproject 还有一些限制，但好像使用 Xcode 也可以，我还没试过</li>
+<li>我感觉这就是 Bug，Mac 会出现输入中文失灵的情况，就是无法输入中文，时好时坏，目前很多教程都是纯中文，不能输入中文会很麻烦</li>
+<li>随时保存，这是很多博主经常说的，因为虚幻编辑器崩溃时有发生，而且是直接闪退</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>游戏</tag>
+        <tag>虚幻引擎</tag>
+        <tag>虚幻5</tag>
+        <tag>game</tag>
+      </tags>
+  </entry>
 </search>
