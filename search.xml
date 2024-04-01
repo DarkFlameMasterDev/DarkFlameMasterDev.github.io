@@ -3381,7 +3381,7 @@
 <li>如果你在两个以上文件声明了同样的函数（方法），就会很容易产生重复。</li>
 <li>预处理阶段（Preprocessing），预处理指令会对源码文件（cpp 文件）进行临时扩充，预处理命令以 <code>#</code> 开头，例如：<code>#include</code>，<code>#define</code>，<code>#ifdef</code>等<br>对于 <code>#define</code> 指令，编译器将源码中的宏替换成宏定义中的内容；对于 <code>#if</code>、<code>#ifdef</code> 和 <code>#ifndef</code> 指令，编译器将有选择地跳过或选中部分源代码；而对于 <code>#include</code> 指令，编译器将把对应的库的源码插入到当前源代码中——这通常是一些通用的声明。被 <code>#include</code> 指令引入的头文件（ .h ）往往会包含大量的代码，你引入的越多，最后生成的预编译文件就越大。总的来说，预编译过的文件会比原来的 C++ 源码更大一些。</li>
 <li>编译编译和汇编阶段（Compilation &amp; assembly），预处理结束后，将预处理好的文件编译成 object 目标文，也就是 .o 文件。</li>
-<li>链接阶段（linking），将未定义标识符的引用全部替换成它们对应的正确地址，地址对应上，这就算是链接上了，这一步就是我们代码编译过程中产生 duplicate symbol（重复）的地方。</li>
+<li>链接阶段（linking），将 .o 文件里 未定义标识符的引用全部替换成它们对应的正确地址，地址对应上，这就算是链接上了，这一步就是我们代码编译过程中产生 duplicate symbol（重复）的地方。</li>
 </ol>
 <p>也就是说，在编译器进行链接（linking）的时候，由于某个方法我们声明了多次，所以它并不知道要链接到那个地址，所以就报报错了</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="消除-symbol，直接不声明了"><a href="#消除-symbol，直接不声明了" class="headerlink" title="消除 symbol，直接不声明了"></a>消除 symbol，直接不声明了</h3><ol>
@@ -3395,6 +3395,10 @@
 </ol>
 <h3 id="声明为静态"><a href="#声明为静态" class="headerlink" title="声明为静态"></a>声明为静态</h3><p>静态函数会只在当前 object目标文件（.o文件）可见</p>
 ]]></content>
+      <tags>
+        <tag>C++</tag>
+        <tag>编译原理</tag>
+      </tags>
   </entry>
   <entry>
     <title>没啥用的 Android Linux Mac Windows 小知识、问题（持续更新）</title>
@@ -3610,6 +3614,9 @@
         <tag>MacOS</tag>
         <tag>Mac</tag>
         <tag>Linux</tag>
+        <tag>Windows</tag>
+        <tag>Cpp</tag>
+        <tag>C</tag>
       </tags>
   </entry>
 </search>
