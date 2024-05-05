@@ -996,11 +996,11 @@
 </blockquote>
 <h3 id="ofstream"><a href="#ofstream" class="headerlink" title="ofstream"></a>ofstream</h3>]]></content>
       <tags>
-        <tag>C++</tag>
         <tag>IO</tag>
         <tag>stream</tag>
         <tag>流</tag>
         <tag>读写</tag>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1125,8 +1125,8 @@
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span>* <span class="title">createAndReturnDynamicArray</span><span class="params">(<span class="type">int</span> size)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span>* arr = <span class="keyword">new</span> <span class="type">int</span>[size];</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <tags>
-        <tag>C++</tag>
         <tag>指针</tag>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1155,8 +1155,8 @@
 <h3 id="声明为静态"><a href="#声明为静态" class="headerlink" title="声明为静态"></a>声明为静态</h3><p>静态函数会只在当前 object目标文件（.o文件）可见</p>
 ]]></content>
       <tags>
-        <tag>C++</tag>
         <tag>编译原理</tag>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1406,8 +1406,8 @@
     </div>
   </div>]]></content>
       <tags>
-        <tag>C++</tag>
         <tag>Java</tag>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -3201,7 +3201,6 @@
 ]]></content>
       <tags>
         <tag>Android</tag>
-        <tag>C++</tag>
         <tag>Android Studio</tag>
         <tag>Gradle</tag>
         <tag>OpenGL ES</tag>
