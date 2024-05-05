@@ -3709,7 +3709,8 @@
   <entry>
     <title>教资-信息技术-知识点</title>
     <url>/2024/04/25/%E6%95%99%E8%B5%84-%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF-%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
-    <content><![CDATA[<h3 id="1-CRC-循环冗余校验（Cyclic-Redundancy-Check，-CRC）"><a href="#1-CRC-循环冗余校验（Cyclic-Redundancy-Check，-CRC）" class="headerlink" title="1. CRC 循环冗余校验（Cyclic Redundancy Check， CRC）"></a>1. CRC 循环冗余校验（Cyclic Redundancy Check， CRC）</h3><h4 id="1-1-原理解释"><a href="#1-1-原理解释" class="headerlink" title="1.1 原理解释"></a>1.1 原理解释</h4><p>CRC 的原理是模二除法。</p>
+    <content><![CDATA[<hr>
+<h3 id="1-CRC-循环冗余校验（Cyclic-Redundancy-Check，-CRC）"><a href="#1-CRC-循环冗余校验（Cyclic-Redundancy-Check，-CRC）" class="headerlink" title="1. CRC 循环冗余校验（Cyclic Redundancy Check， CRC）"></a>1. CRC 循环冗余校验（Cyclic Redundancy Check， CRC）</h3><h4 id="1-1-原理解释"><a href="#1-1-原理解释" class="headerlink" title="1.1 原理解释"></a>1.1 原理解释</h4><p>CRC 的原理是模二除法。</p>
 <p>模二运算是一种二进制算法。与四则运算相同，模二运算也包括加、减、乘、除四种运算，运算符也是相同的。</p>
 <p><img src="/2024/04/25/%E6%95%99%E8%B5%84-%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF-%E7%9F%A5%E8%AF%86%E7%82%B9/CRC-%E6%A8%A1%E4%BA%8C%E8%BF%90%E7%AE%971.png" alt="模二运算1.png"></p>
 
@@ -3793,5 +3794,9 @@
 <li>最后再看是否需要反转，这里也不需要</li>
 </ol>
 ]]></content>
+      <tags>
+        <tag>教资</tag>
+        <tag>CRC</tag>
+      </tags>
   </entry>
 </search>
