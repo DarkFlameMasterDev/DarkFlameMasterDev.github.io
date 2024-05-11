@@ -3792,6 +3792,67 @@
 <li>计算完之后在看是否需要异或运算，这里不需要</li>
 <li>最后再看是否需要反转，这里也不需要</li>
 </ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h4><p><a class="link" href="https://darkflamemasterdev.github.io/2024/04/22/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/">数据库-关系代数 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="SQL-语句"><a href="#SQL-语句" class="headerlink" title="SQL 语句"></a>SQL 语句</h4><p>语句分4类</p>
+<ul>
+<li>DQL 数据查询（select）</li>
+<li>DDL 数据定义（create table，alter table，drop table）</li>
+<li>DML 数据操作（insert，update，delete）</li>
+<li>DCL 数据控制（grant，revoke）</li>
+</ul>
+<p>基本操作？我也不知道这些属于什么类型的语句</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line"><span class="keyword">create</span> database 数据库名</span><br><span class="line"></span><br><span class="line"># 显示所有的数据库</span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"># 切换到指定数据库</span><br><span class="line">use 数据库名;</span><br><span class="line"></span><br><span class="line"># 显示表结构</span><br><span class="line"><span class="keyword">desc</span> 表名;</span><br><span class="line"></span><br><span class="line"># 显示 <span class="keyword">sql</span> 语句（以 <span class="keyword">table</span> 为例）</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h5><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"># 创建表</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(</span><br><span class="line">  列名 类型 [列<span class="operator">-</span>完整性约束],</span><br><span class="line">  列名 类型 [列<span class="operator">-</span>完整性约束],</span><br><span class="line">  列名 类型 [列<span class="operator">-</span>完整性约束],</span><br><span class="line">  ...</span><br><span class="line">) 表<span class="operator">-</span>完整性约束;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"># 修改表</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 [操作语句];</span><br></pre></td></tr></table></figure></div>
+
+<p>操作语句有</p>
+<ul>
+<li><code>add 列名 类型 [列-完整性约束]</code> 增加新列和新的完整性约束</li>
+<li><code>drop column 列名</code> 删除列和指定的完整性约束条件</li>
+<li><code>alter column 列名 类型</code> 修改列名和数据类型</li>
+<li><code>add primary key(列名，...)</code> 增加主键</li>
+<li><code>add foreign key(列名) referneces (列名)</code> 增加外键</li>
+<li><code>add default key [默认值] for (列名)</code></li>
+<li><code>add check (约束表达式)</code></li>
+<li><code>add unique (列名)</code></li>
+</ul>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"># 删除表</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 表名 [restrict<span class="operator">|</span>cascade]; # 默认是 restrict ，cascade 是删除相关的其他依赖，包括索引、视图、触发器等等</span><br><span class="line"></span><br><span class="line"># 删除并重建表（格式化）</span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> 表名;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h5><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> [<span class="keyword">into</span>] 表名 [(属性列,...)]</span><br><span class="line"><span class="keyword">values</span> (常量,...);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="1-快速排序"><a href="#1-快速排序" class="headerlink" title="1.快速排序"></a>1.快速排序</h4><p>直接上代码</p>
+<div class="highlight-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">quickSort</span><span class="params">(a: <span class="type">IntArray</span>, l: <span class="type">Int</span>, r: <span class="type">Int</span>)</span></span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (l &lt; r) {</span><br><span class="line">        <span class="keyword">var</span> i = l</span><br><span class="line">        <span class="keyword">var</span> j = r</span><br><span class="line">        <span class="keyword">val</span> x = a[i]</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) {</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt; x) {</span><br><span class="line">                j--</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (i &lt; j) {</span><br><span class="line">                a[i++] = a[j]</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt; x) {</span><br><span class="line">                i++</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (i &lt; j) {</span><br><span class="line">                a[j--] = a[i]</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        a[i] = x</span><br><span class="line">        quickSort(a, l, i - <span class="number">1</span>)</span><br><span class="line">        quickSort(a, i + <span class="number">1</span>, r)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+
+<p>我不知道为什么，快排我每次都要重新学，每次学完，过了半年，再问我，我就只记得“选一个基准数，把比他小的放在左边，比他大的放在右边”，然后后面的就不记得了</p>
+<p>感觉是因为我，对于数据的精细操作，不够熟练，比如链表，数组，while 循环之类的</p>
+<p>首先，假设我们有一个数组 <code>a[6] = 3，4，6，1，2，5</code></p>
+<ol>
+<li><p>我们首先要选一个基准数，比如 <code>a[0] = 3</code> 对应第 6 行代码</p>
+</li>
+<li><p>然后我们要先从右找比基准数小的数，这里使用 <code>while 循环</code> <code>j--</code> ，循环的条件是当没有找到比基准数小，并且 <code>i&lt;j</code></p>
+<p>同样，我们在左边找到比基准数更小的，循环条件也要对应改变</p>
+<p>对应第 8 到 第 19 行代码</p>
+<p>这里有一个知识点，在将右边那个较小得数赋值到左边 i 位置的时候，可以直接赋值而不是交换，因为 i 位置已经被赋值给了 基准数 pri ，所以不会丢数据</p>
+<p>并且在后续，将左边那个较大的数赋值到右边 j 的时候，可以直接赋值，因为 j 位置的数据已经在刚才赋值给左边了</p>
+<p>我称之为 <code>连环存储 不丢数据 赋值</code></p>
+<p><img src="/2024/04/25/%E6%95%99%E8%B5%84-%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF-%E7%9F%A5%E8%AF%86%E7%82%B9/quicksort01.png" alt="quicksort01.png"></p>
+</li>
+<li><p>请注意，这是我觉的一个难点，就是 while 循环的条件</p>
+<p>这里一级循环条件是 <code>i&lt;j</code> ，因为在找到一大一小并进行赋值之后，进行判断，是否需要再进行下一次循环</p>
+<p>而内部的二级循环，是为了判断，当前这次循环是否符合大小关系，并且当前这个数是否符合大小关系，是否需要判断下一个数</p>
+<p>所以 while 有 if 的作用</p>
+</li>
+<li><p>最后 i 和 j 相遇，将 <code>连环存储 不丢数据 赋值</code> 最开始的基准数 pri 赋值到最后 i 的位置（此时 i=j ，用谁其实都一样），完成第一趟将数据大小分开的操作</p>
+</li>
+<li><p>然后将左边的分过一次的较小的数，进行二次分开操作，同样右边也需要二次分开操作</p>
+</li>
+<li><p>最后，我们需要一个判断条件，也就是判断什么时候递归停止，当然是数组里元素等于 1 的时候，此时当然也就是 <code>l=r</code> 的时候，所以我们只需要在 <code>l&lt;r</code> 的时候，进行操作就可以了</p>
+<p>对应 第 3 行的代码</p>
+</li>
+</ol>
+<p>这就是快排的整体思路</p>
 ]]></content>
       <tags>
         <tag>教资</tag>
