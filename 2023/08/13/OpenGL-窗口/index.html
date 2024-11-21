@@ -24,12 +24,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="学习地址我是从这里学习的 OpenGL LearnOpenGL-CN  了解背景首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念 概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接  实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开发的。">
+        <meta name="description" content="学习地址我是从这里学习的 OpenGL LearnOpenGL-CN 了解背景首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念 概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接 实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开发的。 当">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenGL 窗口">
 <meta property="og:url" content="http://example.com/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="学习地址我是从这里学习的 OpenGL LearnOpenGL-CN  了解背景首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念 概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接  实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开发的。">
+<meta property="og:description" content="学习地址我是从这里学习的 OpenGL LearnOpenGL-CN 了解背景首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念 概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接 实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开发的。 当">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/window.png">
 <meta property="og:image" content="http://example.com/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/viewport.png">
@@ -56,7 +56,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -122,12 +122,7 @@
     
             
                 
-                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border: dashed !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important;} </style>
-                
-    
-            
-                
-                    <style> mjx-container { justify-content: left !important; scrollbar-width: auto !important;} </style>
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -143,6 +138,11 @@
             
                 
                     <style> .rounded-small { border-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note.orange { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
@@ -193,6 +193,16 @@
             
                 
                     <style> .highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight .code pre { padding-right:80px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight-container[data-rel] {  width:fit-content !important; max-width:100% !important; } </style>
                 
     
             
@@ -251,11 +261,11 @@
 
 
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/build/styles.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/css/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
         <link href="" rel="stylesheet">
@@ -276,16 +286,16 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Library":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/regular.min.css">
     
     
     
@@ -293,29 +303,26 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
+
 <body>
-<div class="progress-bar-container">
-    
+	<div class="progress-bar-container">
+	
 
-    
-        <span class="pjax-progress-bar"></span>
-<!--        <span class="swup-progress-icon">-->
-<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-<!--        </span>-->
-    
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
 </div>
-
-
 
 <main class="page-container" id="swup">
 
-    
+	
 
-    <div class="main-content-container flex flex-col justify-between min-h-dvh">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
     <div class="navbar-content transition-navbar ">
         <div class="left">
             
@@ -357,7 +364,7 @@
                                    href="/archives"
                                         >
                                     <i class="fa-solid fa-box-archive fa-fw"></i>
-                                    LIBRARY
+                                    ARCHIVES
                                     
                                 </a>
 
@@ -452,7 +459,7 @@
                            href="/archives"
                         >
                             <span>
-                                LIBRARY
+                                ARCHIVES
                             </span>
                             
                                 <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
@@ -510,7 +517,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">77</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -518,7 +525,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -529,44 +536,41 @@
 </header>
 
 
-        </div>
+		</div>
 
-        <div class="main-content-body">
+		<div class="main-content-body transition-fade-up">
+			
 
-            
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-            <div class="main-content">
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 窗口" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">OpenGL 窗口</h1>
+			</div>
+			
+		</div>
 
-                
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
-
-        <div class="article-title relative w-full">
-            
-                
-                
-                <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 窗口" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
-                
-                <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">OpenGL 窗口</h1>
-                </div>
-            
-            </div>
-
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/lucas_avatar.png">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">lucas</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2023-08-13 11:13:27</span>
@@ -614,18 +618,18 @@
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
+				</div>
+			</div>
+		</div>
+		
 
-        
+		
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="学习地址"><a href="#学习地址" class="headerlink" title="学习地址"></a>学习地址</h2><p>我是从这里学习的 OpenGL <a class="link"   target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/" >LearnOpenGL-CN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="学习地址"><a href="#学习地址" class="headerlink" title="学习地址"></a>学习地址</h2><p>我是从这里学习的 OpenGL <a class="link"   target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/" >LearnOpenGL-CN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h2 id="了解背景"><a href="#了解背景" class="headerlink" title="了解背景"></a>了解背景</h2><p>首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念</p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>OpenGL 并不是一个 API ，它仅仅是一个由<code>Khronos</code>组织制定并维护的规范（ Specification ）。<br><a class="link"   target="_blank" rel="noopener" href="https://registry.khronos.org/OpenGL/specs/gl/" >文档链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>OpenGL 并不是一个 API ，它仅仅是一个由<code>Khronos</code>组织制定并维护的规范（ Specification ）。<br><a class="link"   target="_blank" rel="noopener" href="https://registry.khronos.org/OpenGL/specs/gl/" >文档链接<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>实际的<code>OpenGL</code>库的开发者通常是显卡的生产商。你购买的显卡所支持的<code>OpenGL</code>版本都为这个系列的显卡专门开发的。</p>
 <p>当你使用<code>Apple</code>系统的时候，<code>OpenGL</code>库是由<code>Apple</code>自身维护的。</p>
 <p>在 Linux 下，有显卡生产商提供的<code>OpenGL</code>库，也有一些爱好者改编的版本。这也意味着任何时候<code>OpenGL</code>库表现的行为与规范规定的不一致时，基本都是库的开发者留下的<code>bug</code>。</p>
@@ -663,7 +667,7 @@
 <p>接下来我们设置窗口的选项。</p>
 <p>最后我们将目标位置的对象<code>id</code>设回<code>0</code>，解绑这个对象。</p>
 <p>设置的选项将被保存在<code>objectId</code>所引用的对象中，一旦我们重新绑定这个对象到<code>GL_WINDOW_TARGET</code>位置，这些选项就会重新生效。</p>
-<h2 id="代码讲解"><a href="#代码讲解" class="headerlink" title="代码讲解"></a>代码讲解</h2><p>这里我以在 Mac 端为例，贴上全部代码，其实就是 <a class="link"   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/" >OpenGL on Mac 环境 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的那些代码</p>
+<h2 id="代码讲解"><a href="#代码讲解" class="headerlink" title="代码讲解"></a>代码讲解</h2><p>这里我以在 Mac 端为例，贴上全部代码，其实就是 <a class="link"   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/" >OpenGL on Mac 环境<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 的那些代码</p>
 <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glad/glad.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GLFW/glfw3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">framebuffer_size_callback</span><span class="params">(GLFWwindow*  window, <span class="type">int</span> width, <span class="type">int</span> height)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">processInput</span><span class="params">(GLFWwindow* window)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glfwInit</span>(); <span class="comment">// init glfw</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// use version 3.3</span></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR,  <span class="number">3</span>); <span class="comment">// set major version</span></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR,  <span class="number">3</span>); <span class="comment">// set minor version</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE,</span><br><span class="line">        GLFW_OPENGL_CORE_PROFILE); <span class="comment">// use core profile</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// MacOS specific code</span></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);</span><br><span class="line"></span><br><span class="line">    GLFWwindow* window = <span class="built_in">glfwCreateWindow</span>(<span class="number">800</span>,  <span class="number">600</span>, <span class="string">&quot;LearnOpenGL&quot;</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);   <span class="comment">//    800*600 size window called LearnOpenGL</span></span><br><span class="line">    <span class="keyword">if</span> (window == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Failed to create GLFW window&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">glfwTerminate</span>();    <span class="comment">// 释放/删除之前的分配的所有资源</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">glfwMakeContextCurrent</span>(window);   <span class="comment">// set the current window</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">gladLoadGLLoader</span>((GLADloadproc) glfwGetProcAddress)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Failed to initialize GLAD&quot;</span>    &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>);    <span class="comment">// 设置窗口位置</span></span><br><span class="line">    <span class="built_in">glfwSetFramebufferSizeCallback</span>(window,  framebuffer_size_callback);    <span class="comment">// 设置窗口大小调整回调</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环检查窗口是否需要被关闭</span></span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">glfwWindowShouldClose</span>(window))&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">processInput</span>(window);    <span class="comment">// 监控ESC退出窗口</span></span><br><span class="line">        <span class="built_in">glClearColor</span>(<span class="number">0.2f</span>, <span class="number">0.3f</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);     <span class="comment">// 调用glClearColor来设置清空屏幕所用的颜色</span></span><br><span class="line">        <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);    <span class="comment">// 调用glClear函数来清空屏幕的颜色缓冲</span></span><br><span class="line">        <span class="built_in">glfwSwapBuffers</span>(window);    <span class="comment">// 函数会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素 颜色值的大缓冲），它在这一迭代中被用来绘 制，并且将会作为输出显示在屏幕上。</span></span><br><span class="line">        <span class="built_in">glfwPollEvents</span>();    <span class="comment">// 检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的回调函数（可以通过回调方法手动设置）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放/删除之前的分配的所有资源</span></span><br><span class="line">    <span class="built_in">glfwTerminate</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">framebuffer_size_callback</span><span class="params">(GLFWwindow*  window, <span class="type">int</span> width, <span class="type">int</span> height)</span></span>&#123;</span><br><span class="line">    <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监控ESC退出窗口</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">processInput</span><span class="params">(GLFWwindow* window)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) ==  GLFW_PRESS)</span><br><span class="line">        <span class="built_in">glfwSetWindowShouldClose</span>(window, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <blockquote>
@@ -713,18 +717,18 @@
 <p>放个文档在这</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*This function processes only those events that are already in the event queue and then returns immediately. Processing events will cause the window and input callbacks associated with those events to be called.</span></span><br><span class="line"><span class="comment"> *此函数仅处理事件队列中已有的那些事件，然后立即返回。处理事件将导致调用与这些事件关联的窗口和输入回调。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *On some platforms, a window move, resize or menu operation will cause event processing to block. This is due to how event processing is designed on those platforms. You can use the window refresh callback to redraw the contents of your window when necessary during such operations.</span></span><br><span class="line"><span class="comment"> *在某些平台上，窗口移动、调整大小或菜单操作将导致事件处理阻塞。这是由于事件处理在这些平台上的设计方式。在此类操作期间，如有必要，可以使用窗口刷新回调重绘窗口的内容。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *Do not assume that callbacks you set will only be called in response to event processing functions like this one. While it is necessary to poll for events, window systems that require GLFW to register callbacks of its own can pass events to GLFW in response to many window system function calls. GLFW will pass those events on to the application callbacks before returning.</span></span><br><span class="line"><span class="comment"> *不要假设您设置的回调只会在响应像这样的事件处理函数时才被调用。虽然有必要轮询事件，但需要 GLFW 注册自己的回调的窗口系统可以将事件传递给 GLFW 以响应许多窗口系统函数调用。GLFW 会在返回之前将这些事件传递给应用程序回调。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *Event processing is not required for joystick input to work.</span></span><br><span class="line"><span class="comment"> *游戏杆输入不需要事件处理即可工作。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">glfwPollEvents</span><span class="params">(<span class="type">void</span>)</span></span></span><br></pre></td></tr></table></figure></div>
 
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.glfw.org/docs/3.3/" >glfw文档在这里看 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.glfw.org/docs/3.3/" >glfw文档在这里看<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>另外有一个翻译插件非常好用，之前也有<code>safari 版本</code>现在好像只有<code>Chrome 版本</code>了</p>
 <p><img src="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/translation.png" alt="translation.png"></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glfwTerminate</span>();</span><br></pre></td></tr></table></figure></div>
 
 <p>这个是设置所有资源，我们放在<code>return 0;</code>的前一行</p>
 
-        </div>
+		</div>
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
     <ul>
         <li><strong>Title:</strong> OpenGL 窗口</li>
         <li><strong>Author:</strong> lucas</li>
@@ -752,20 +756,20 @@
     </ul>
 </div>
 
-            </div>
-        
+		</div>
+		
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/OpenGL/">#OpenGL</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/OpenGL/">#OpenGL</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
-        
+		
   <div class="recommended-article px-2 sm:px-6 md:px-8">
    <div class="recommended-desktop">
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
@@ -796,47 +800,41 @@
    </div>
   </div>
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">OpenGL 三角形</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">OpenGL on Mac 环境</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">OpenGL 三角形</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">OpenGL on Mac 环境</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
 
 
-        
-            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                <div class="comments-container mt-10 w-full ">
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
     <div id="comment-anchor" class="w-full h-2.5"></div>
     <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
         Comments
@@ -891,36 +889,30 @@
     
 </div>
 
-            </div>
-        
-    </div>
+		</div>
+		
+	</div>
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">OpenGL 窗口</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%9C%B0%E5%9D%80"><span class="nav-text">学习地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E8%83%8C%E6%99%AF"><span class="nav-text">了解背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%98%E6%9B%B4"><span class="nav-text">渲染模式的变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%89%A9%E5%B1%95-Extension-%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-text">对扩展(Extension)的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-%E6%98%AF%E4%B8%AA%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-text">OpenGL 是个状态机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-%E9%87%8C%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">OpenGL 里的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3"><span class="nav-text">代码讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E4%BD%9C"><span class="nav-text">初始化工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-window"><span class="nav-text">设置 window</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%BE%AA%E7%8E%AF"><span class="nav-text">渲染循环</span></a></li></ol></li></ol>
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">OpenGL 窗口</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%9C%B0%E5%9D%80"><span class="nav-text">学习地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E8%83%8C%E6%99%AF"><span class="nav-text">了解背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%98%E6%9B%B4"><span class="nav-text">渲染模式的变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%89%A9%E5%B1%95-Extension-%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-text">对扩展(Extension)的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-%E6%98%AF%E4%B8%AA%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-text">OpenGL 是个状态机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenGL-%E9%87%8C%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">OpenGL 里的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3"><span class="nav-text">代码讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E4%BD%9C"><span class="nav-text">初始化工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-window"><span class="nav-text">设置 window</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%BE%AA%E7%8E%AF"><span class="nav-text">渲染循环</span></a></li></ol></li></ol>
 
-    </div>
+	</div>
 </div>
-        </div>
-    
+	</div>
+	
 </div>
+			</div>
 
+			
+		</div>
 
-
-                
-
-            </div>
-
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
         <div class="text-center">
@@ -934,11 +926,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        42 posts in total
+                        43 posts in total
                     </span>
                     
                         <span>
-                            62.3k words in total
+                            63.1k words in total
                         </span>
                     
                 </p>
@@ -963,7 +955,7 @@
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
         </div>
         
         
@@ -997,113 +989,102 @@
         
     </div>  
 </footer>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
 
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
 </div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
+	
 
 </main>
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1126,29 +1107,27 @@
 
 
 
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/categoryList.js" ></script>
 
 
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/categoryList.js" ></script>
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/localSearch.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/localSearch.js" ></script>
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/codeBlock.js" ></script>
 
 
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/runtime.js" ></script>
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/odometer-theme-minimal.css">
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/assets/odometer-theme-minimal.css">
 
 
 
-  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Typed.min.js" ></script>
-  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/typed.js" ></script>
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/typed.js" ></script>
 
 
 
@@ -1156,18 +1135,21 @@
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/anime.min.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/anime.min.js" ></script>
 
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/tabs.js" data-swup-reload-script></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/essays.js" data-swup-reload-script></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/essays.js" data-swup-reload-script></script>
 
 
 
+
+	
 </body>
+
 </html>

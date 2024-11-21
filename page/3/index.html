@@ -46,7 +46,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -112,12 +112,7 @@
     
             
                 
-                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border: dashed !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important;} </style>
-                
-    
-            
-                
-                    <style> mjx-container { justify-content: left !important; scrollbar-width: auto !important;} </style>
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -133,6 +128,11 @@
             
                 
                     <style> .rounded-small { border-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note.orange { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
@@ -183,6 +183,16 @@
             
                 
                     <style> .highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight .code pre { padding-right:80px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight-container[data-rel] {  width:fit-content !important; max-width:100% !important; } </style>
                 
     
             
@@ -241,11 +251,11 @@
 
 
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/build/styles.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/css/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
         <link href="" rel="stylesheet">
@@ -266,41 +276,152 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Library":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/regular.min.css">
     
     
     
     
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
 
 
 <body>
-<div class="progress-bar-container">
-    
+	<div class="progress-bar-container">
+	
 
-    
-        <span class="pjax-progress-bar"></span>
-<!--        <span class="swup-progress-icon">-->
-<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-<!--        </span>-->
-    
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
 </div>
-
-
 
 <main class="page-container" id="swup">
 
-    
-        <style>
+	
+	<style>
     .home-article-item,
     .sidebar-links,
     .sidebar-content,
@@ -334,13 +455,11 @@
 </div>
 
 
-    
+	
 
-    <div class="main-content-container flex flex-col justify-between min-h-dvh">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
     <div class="navbar-content transition-navbar ">
         <div class="left">
             
@@ -382,7 +501,7 @@
                                    href="/archives"
                                         >
                                     <i class="fa-solid fa-box-archive fa-fw"></i>
-                                    LIBRARY
+                                    ARCHIVES
                                     
                                 </a>
 
@@ -477,7 +596,7 @@
                            href="/archives"
                         >
                             <span>
-                                LIBRARY
+                                ARCHIVES
                             </span>
                             
                                 <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
@@ -535,7 +654,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">77</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -543,7 +662,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -554,12 +673,11 @@
 </header>
 
 
-        </div>
+		</div>
 
-        <div class="main-content-body">
-
-            
-                <div class="home-sidebar-container">
+		<div class="main-content-body transition-fade-up">
+			
+			<div class="home-sidebar-container">
     <div class="sticky-container sticky">
         
         
@@ -576,7 +694,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">77</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -584,7 +702,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -594,13 +712,102 @@
     </div>
 </div>
 
-            
+			
 
-            <div class="main-content">
+			<div class="main-content">
+				<div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
 
                 
-                    <div class="home-content-container">
-    <ul class="home-article-list">
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">
+                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 矩阵（没写完）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">
+                            OpenGL 矩阵（没写完）
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            向量向量点乘（内积）
+此方法可类比物理做功
+
+力  和位移  已给出，需要用  来表示做的功
+计算方法就是
+
+所以向量点乘（内积）就是向量模相乘再乘夹角余弦
+、
+换成坐标形式是：
+
+向量叉乘（外积）此方法可以
+计算方法
+
+坐标形式
+
+
+
+坐标形式规律总结
+
+至于为啥 用行列式来计算，我也没太明白
+但是至少明白了，矩阵运算和这个没啥关系
+矩阵矩阵乘法
+数乘
+
+
+
+相乘
+
+
+
+
+前面的行乘以后面...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Oct 05 2023 15:24:28 GMT+0800">
+                
+                    2023-10-05
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">Read more<span class="seo-reader-text">OpenGL 矩阵（没写完）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -807,17 +1014,17 @@ loo...
                     
                         <li>
                             
-                            <a href="/tags/Mac/">Mac</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
                             <a href="/tags/%E7%9B%B4%E6%92%AD/">直播</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
                             <a href="/tags/%E8%AE%BE%E5%A4%87/">设备</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Mac/">Mac</a>&nbsp;
                         </li>
                     
                         <li>
@@ -868,9 +1075,9 @@ loo...
                             
                             简介本文记录一下C++的IO stream的使用
 相对路径
-ios_base 
-ios 
-istream 
+ios_base
+ios
+istream
 ifstream
 
 首先要说明这个相对路径是相对于谁
@@ -878,7 +1085,7 @@ ifstream
 他相对的其实是，你当前的操作环境的路径
 也就是你终端（terminal）当前的路径
 举个例子Main.cpp输出当前的目录
-123456789101112131415161718#include...
+123456789101112131415161718#include &l...
                         
                     </div>
 
@@ -1227,10 +1434,10 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
                     <div class="home-article-content markdown-body">
                         
                             
-                            学习地址我是从这里学习的 OpenGL LearnOpenGL-CN 
+                            学习地址我是从这里学习的 OpenGL LearnOpenGL-CN
 了解背景首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念
-概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接 
-实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开...
+概念OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。文档链接
+实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专门开发的...
                         
                     </div>
 
@@ -1265,97 +1472,23 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
-                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL on Mac 环境" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
-                            OpenGL on Mac 环境
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            环境介绍这次我将环境部署到了Mac + Clion上
-
-其实并没有解决上次的编译glfw的问题，但好像不太影响使用因为我不会自己写编译脚本(〒︿〒)
-解决了！！！chatGPT 真好用！！！
-
-
-1xcode-select --install
-
-123git clone https://github.com/glfw/glfw.gitcd glfwgit checkout 3.3.8
-
-12...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Aug 08 2023 09:42:52 GMT+0800">
-                
-                    2023-08-08
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">Read more<span class="seo-reader-text">OpenGL on Mac 环境</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa-regular fa-angle-right"></i></a>
+	<a class="extend prev" rel="prev" href="/page/2/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
-
+  
     </div>
 </div>
 
-                    <div class="comment-container pjax"></div>
-                
+			</div>
 
-            </div>
+			
+		</div>
 
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
         <div class="text-center">
@@ -1369,11 +1502,11 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        42 posts in total
+                        43 posts in total
                     </span>
                     
                         <span>
-                            62.3k words in total
+                            63.1k words in total
                         </span>
                     
                 </p>
@@ -1398,7 +1531,7 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
         </div>
         
         
@@ -1432,92 +1565,82 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
         
     </div>  
 </footer>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    
+	
 
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
 
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
 
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
 
-        <!-- rss -->
-        
+		<!-- rss -->
+		
 
-        
+		
 
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
 
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
+	
 
 </main>
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1540,30 +1663,27 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
 
 
 
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/localSearch.js" ></script>
 
 
 
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/categoryList.js" ></script>
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/codeBlock.js" ></script>
 
 
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/runtime.js" ></script>
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/odometer-theme-minimal.css">
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/assets/odometer-theme-minimal.css">
 
 
 
-  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Typed.min.js" ></script>
-  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/typed.js" ></script>
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/typed.js" ></script>
 
 
 
@@ -1571,18 +1691,21 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/anime.min.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/anime.min.js" ></script>
 
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/tabs.js" data-swup-reload-script></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/essays.js" data-swup-reload-script></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/essays.js" data-swup-reload-script></script>
 
 
 
+
+	
 </body>
+
 </html>

@@ -24,12 +24,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="第一个视频（学不会协程？很可能因为你看过的教程都是错的）学不会协程？很可能因为你看过的教程都是错的  协程的概念开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程） 而对于 kotlin 协程，明确给出了，就是一套线程 API  协程的好处">
+        <meta name="description" content="第一个视频（学不会协程？很可能因为你看过的教程都是错的）学不会协程？很可能因为你看过的教程都是错的 协程的概念开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程） 而对于 kotlin 协程，明确给出了，就是一套线程 API  协程的好处基">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录扔物线的三个协程视频">
 <meta property="og:url" content="http://example.com/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第一个视频（学不会协程？很可能因为你看过的教程都是错的）学不会协程？很可能因为你看过的教程都是错的  协程的概念开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程） 而对于 kotlin 协程，明确给出了，就是一套线程 API  协程的好处">
+<meta property="og:description" content="第一个视频（学不会协程？很可能因为你看过的教程都是错的）学不会协程？很可能因为你看过的教程都是错的 协程的概念开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程） 而对于 kotlin 协程，明确给出了，就是一套线程 API  协程的好处基">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_%E7%BA%BF%E7%A8%8BAPI.png">
 <meta property="og:image" content="http://example.com/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_%E5%8D%8F%E7%A8%8B%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7.png">
@@ -63,7 +63,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -129,12 +129,7 @@
     
             
                 
-                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border: dashed !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important;} </style>
-                
-    
-            
-                
-                    <style> mjx-container { justify-content: left !important; scrollbar-width: auto !important;} </style>
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -150,6 +145,11 @@
             
                 
                     <style> .rounded-small { border-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note.orange { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
@@ -200,6 +200,16 @@
             
                 
                     <style> .highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight .code pre { padding-right:80px !important;} </style>
+                
+    
+            
+                
+                    <style> .highlight-container[data-rel] {  width:fit-content !important; max-width:100% !important; } </style>
                 
     
             
@@ -258,11 +268,11 @@
 
 
     
-        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/build/styles.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/css/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
         <link href="" rel="stylesheet">
@@ -283,16 +293,16 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Library":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"350px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/fontawesome/regular.min.css">
     
     
     
@@ -300,29 +310,26 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
+
 <body>
-<div class="progress-bar-container">
-    
+	<div class="progress-bar-container">
+	
 
-    
-        <span class="pjax-progress-bar"></span>
-<!--        <span class="swup-progress-icon">-->
-<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-<!--        </span>-->
-    
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
 </div>
-
-
 
 <main class="page-container" id="swup">
 
-    
+	
 
-    <div class="main-content-container flex flex-col justify-between min-h-dvh">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
     <div class="navbar-content transition-navbar ">
         <div class="left">
             
@@ -364,7 +371,7 @@
                                    href="/archives"
                                         >
                                     <i class="fa-solid fa-box-archive fa-fw"></i>
-                                    LIBRARY
+                                    ARCHIVES
                                     
                                 </a>
 
@@ -459,7 +466,7 @@
                            href="/archives"
                         >
                             <span>
-                                LIBRARY
+                                ARCHIVES
                             </span>
                             
                                 <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
@@ -517,7 +524,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">77</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -525,7 +532,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -536,44 +543,41 @@
 </header>
 
 
-        </div>
+		</div>
 
-        <div class="main-content-body">
+		<div class="main-content-body transition-fade-up">
+			
 
-            
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-            <div class="main-content">
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="记录扔物线的三个协程视频" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">记录扔物线的三个协程视频</h1>
+			</div>
+			
+		</div>
 
-                
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
-
-        <div class="article-title relative w-full">
-            
-                
-                
-                <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="记录扔物线的三个协程视频" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
-                
-                <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">记录扔物线的三个协程视频</h1>
-                </div>
-            
-            </div>
-
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/img/lucas_avatar.png">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">lucas</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2023-11-30 09:07:19</span>
@@ -633,16 +637,16 @@
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
+				</div>
+			</div>
+		</div>
+		
 
-        
+		
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="第一个视频（学不会协程？很可能因为你看过的教程都是错的）"><a href="#第一个视频（学不会协程？很可能因为你看过的教程都是错的）" class="headerlink" title="第一个视频（学不会协程？很可能因为你看过的教程都是错的）"></a>第一个视频（学不会协程？很可能因为你看过的教程都是错的）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV164411C7FK" >学不会协程？很可能因为你看过的教程都是错的 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="第一个视频（学不会协程？很可能因为你看过的教程都是错的）"><a href="#第一个视频（学不会协程？很可能因为你看过的教程都是错的）" class="headerlink" title="第一个视频（学不会协程？很可能因为你看过的教程都是错的）"></a>第一个视频（学不会协程？很可能因为你看过的教程都是错的）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV164411C7FK" >学不会协程？很可能因为你看过的教程都是错的<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h3 id="协程的概念"><a href="#协程的概念" class="headerlink" title="协程的概念"></a>协程的概念</h3><p>开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程）</p>
 <p>而对于 kotlin 协程，明确给出了，就是一套线程 API</p>
 <p><img src="/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_%E7%BA%BF%E7%A8%8BAPI.png" alt="第一个视频_线程API.png"></p>
@@ -660,7 +664,7 @@
 <p><img src="/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_%E5%88%87%E7%BA%BF%E7%A8%8B.png" alt="第一个视频_切线程.png"></p>
 <p>withContext 可以让我们把协程切回去再切回来，这样就可以方便地把异步代码写成同步代码了</p>
 <h4 id="suspend-关键字"><a href="#suspend-关键字" class="headerlink" title="suspend 关键字"></a>suspend 关键字</h4><p>suspend 函数需要在协程里调用，或者 suspend 函数里调用（其实也就是最终会在协程里调用，毕竟 suspend 函数也在协程调用）</p>
-<h2 id="第二个视频（Kotlin-协程的挂起好神奇好难懂？今天我把它的皮给扒了）"><a href="#第二个视频（Kotlin-协程的挂起好神奇好难懂？今天我把它的皮给扒了）" class="headerlink" title="第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）"></a>第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KJ41137E9" >Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="第二个视频（Kotlin-协程的挂起好神奇好难懂？今天我把它的皮给扒了）"><a href="#第二个视频（Kotlin-协程的挂起好神奇好难懂？今天我把它的皮给扒了）" class="headerlink" title="第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）"></a>第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KJ41137E9" >Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h3 id="suspend-挂起的是什么"><a href="#suspend-挂起的是什么" class="headerlink" title="suspend 挂起的是什么"></a>suspend 挂起的是什么</h3><p>挂起的是协程，不是函数，也不是线程</p>
 <p>挂起就是：协程脱离当前线程，不是停下来了，而是跑到另一个线程了</p>
 <h4 id="例子：主线程启动一个协程"><a href="#例子：主线程启动一个协程" class="headerlink" title="例子：主线程启动一个协程"></a>例子：主线程启动一个协程</h4><p><img src="/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_%E4%B8%BB%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8D%8F%E7%A8%8B.png" alt="第一个视频_主线程的协程.png"></p>
@@ -695,7 +699,7 @@
 
 <h4 id="怎么自定义-suspend"><a href="#怎么自定义-suspend" class="headerlink" title="怎么自定义 suspend"></a>怎么自定义 suspend</h4><h5 id="什么时候定义成-suspend"><a href="#什么时候定义成-suspend" class="headerlink" title="什么时候定义成 suspend"></a>什么时候定义成 suspend</h5><p>原则是，如果这个是耗时操作，就可以给他添加 suspend</p>
 <h5 id="怎么写-suspend"><a href="#怎么写-suspend" class="headerlink" title="怎么写 suspend"></a>怎么写 suspend</h5><p>直接写一个 suspend 关键字，然后在实现里，调用 suspend 函数就行了</p>
-<h2 id="第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）"><a href="#第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）" class="headerlink" title="第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）"></a>第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JE411R7hp/" >到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）"><a href="#第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）" class="headerlink" title="第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）"></a>第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JE411R7hp/" >到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h3 id="非阻塞式是协程独有的吗？"><a href="#非阻塞式是协程独有的吗？" class="headerlink" title="非阻塞式是协程独有的吗？"></a>非阻塞式是协程独有的吗？</h3><p>其实，主线程里新启动一个子线程，然后将耗时操作放进子线程里，这也是耗时操作</p>
 
   <div class="note-large red">
@@ -716,11 +720,11 @@
 <p><img src="/2023/11/30/%E8%AE%B0%E5%BD%95%E6%89%94%E7%89%A9%E7%BA%BF%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8D%8F%E7%A8%8B%E8%A7%86%E9%A2%91/%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91_kotlin%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E9%94%99%E8%AF%AF.png" alt="第一个视频_kotlin官方文档的错误.png"></p>
 <p>只有使用绿色框框里的才是正确的对比方式，而且就没有性能差异了</p>
 
-        </div>
+		</div>
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
     <ul>
         <li><strong>Title:</strong> 记录扔物线的三个协程视频</li>
         <li><strong>Author:</strong> lucas</li>
@@ -748,32 +752,32 @@
     </ul>
 </div>
 
-            </div>
-        
+		</div>
+		
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/kotlin/">#kotlin</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E5%8D%8F%E7%A8%8B/">#协程</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/Coroutine/">#Coroutine</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E6%89%94%E7%89%A9%E7%BA%BF/">#扔物线</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/kotlin/">#kotlin</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%8D%8F%E7%A8%8B/">#协程</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Coroutine/">#Coroutine</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%89%94%E7%89%A9%E7%BA%BF/">#扔物线</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
-        
+		
   <div class="recommended-article px-2 sm:px-6 md:px-8">
    <div class="recommended-desktop">
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
@@ -804,47 +808,41 @@
    </div>
   </div>
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/12/02/Android%E5%B0%8F%E6%8A%80%E5%B7%A701-%E9%95%BF%E6%8C%89%E6%8C%81%E7%BB%AD%E8%BE%93%E5%87%BA/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Android小技巧01-持续按钮</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2023/11/17/hexo-%E5%AE%89%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%9A%84%E6%80%9D%E8%B7%AF/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">hexo 安装自定义字体的思路</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2023/12/02/Android%E5%B0%8F%E6%8A%80%E5%B7%A701-%E9%95%BF%E6%8C%89%E6%8C%81%E7%BB%AD%E8%BE%93%E5%87%BA/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Android小技巧01-持续按钮</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2023/11/17/hexo-%E5%AE%89%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%9A%84%E6%80%9D%E8%B7%AF/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">hexo 安装自定义字体的思路</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
 
 
-        
-            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                <div class="comments-container mt-10 w-full ">
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
     <div id="comment-anchor" class="w-full h-2.5"></div>
     <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
         Comments
@@ -899,36 +897,30 @@
     
 </div>
 
-            </div>
-        
-    </div>
+		</div>
+		
+	</div>
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">记录扔物线的三个协程视频</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88%E5%AD%A6%E4%B8%8D%E4%BC%9A%E5%8D%8F%E7%A8%8B%EF%BC%9F%E5%BE%88%E5%8F%AF%E8%83%BD%E5%9B%A0%E4%B8%BA%E4%BD%A0%E7%9C%8B%E8%BF%87%E7%9A%84%E6%95%99%E7%A8%8B%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84%EF%BC%89"><span class="nav-text">第一个视频（学不会协程？很可能因为你看过的教程都是错的）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">协程的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-text">协程的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-text">基本的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E6%9C%89%E7%94%A8%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%9A%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E6%8C%82%E8%B5%B7"><span class="nav-text">最有用的好处：非阻塞式挂起</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%EF%BC%9F"><span class="nav-text">协程长什么样？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-text">协程怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%87%E7%BA%BF%E7%A8%8B"><span class="nav-text">切线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#suspend-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">suspend 关键字</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88Kotlin-%E5%8D%8F%E7%A8%8B%E7%9A%84%E6%8C%82%E8%B5%B7%E5%A5%BD%E7%A5%9E%E5%A5%87%E5%A5%BD%E9%9A%BE%E6%87%82%EF%BC%9F%E4%BB%8A%E5%A4%A9%E6%88%91%E6%8A%8A%E5%AE%83%E7%9A%84%E7%9A%AE%E7%BB%99%E6%89%92%E4%BA%86%EF%BC%89"><span class="nav-text">第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#suspend-%E6%8C%82%E8%B5%B7%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">suspend 挂起的是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%B8%BB%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E5%8D%8F%E7%A8%8B"><span class="nav-text">例子：主线程启动一个协程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#suspend-%E5%B9%B6%E6%B2%A1%E6%9C%89%E8%B5%B7%E5%88%B0%E6%8C%82%E8%B5%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">suspend 并没有起到挂起的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E8%87%AA%E5%AE%9A%E4%B9%89-suspend"><span class="nav-text">怎么自定义 suspend</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%AE%9A%E4%B9%89%E6%88%90-suspend"><span class="nav-text">什么时候定义成 suspend</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%86%99-suspend"><span class="nav-text">怎么写 suspend</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E3%80%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E3%80%8D%E6%8C%82%E8%B5%B7%EF%BC%9F%E5%8D%8F%E7%A8%8B%E7%9C%9F%E7%9A%84%E6%AF%94%E7%BA%BF%E7%A8%8B%E6%9B%B4%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%90%97%EF%BC%9F%EF%BC%89"><span class="nav-text">第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E6%98%AF%E5%8D%8F%E7%A8%8B%E7%8B%AC%E6%9C%89%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-text">非阻塞式是协程独有的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin%E5%AE%98%E6%96%B9%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-text">kotlin官方的错误</span></a></li></ol></li></ol>
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">记录扔物线的三个协程视频</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88%E5%AD%A6%E4%B8%8D%E4%BC%9A%E5%8D%8F%E7%A8%8B%EF%BC%9F%E5%BE%88%E5%8F%AF%E8%83%BD%E5%9B%A0%E4%B8%BA%E4%BD%A0%E7%9C%8B%E8%BF%87%E7%9A%84%E6%95%99%E7%A8%8B%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84%EF%BC%89"><span class="nav-text">第一个视频（学不会协程？很可能因为你看过的教程都是错的）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">协程的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-text">协程的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-text">基本的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E6%9C%89%E7%94%A8%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%9A%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E6%8C%82%E8%B5%B7"><span class="nav-text">最有用的好处：非阻塞式挂起</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%EF%BC%9F"><span class="nav-text">协程长什么样？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-text">协程怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%87%E7%BA%BF%E7%A8%8B"><span class="nav-text">切线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#suspend-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">suspend 关键字</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88Kotlin-%E5%8D%8F%E7%A8%8B%E7%9A%84%E6%8C%82%E8%B5%B7%E5%A5%BD%E7%A5%9E%E5%A5%87%E5%A5%BD%E9%9A%BE%E6%87%82%EF%BC%9F%E4%BB%8A%E5%A4%A9%E6%88%91%E6%8A%8A%E5%AE%83%E7%9A%84%E7%9A%AE%E7%BB%99%E6%89%92%E4%BA%86%EF%BC%89"><span class="nav-text">第二个视频（Kotlin 协程的挂起好神奇好难懂？今天我把它的皮给扒了）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#suspend-%E6%8C%82%E8%B5%B7%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">suspend 挂起的是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%B8%BB%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E5%8D%8F%E7%A8%8B"><span class="nav-text">例子：主线程启动一个协程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#suspend-%E5%B9%B6%E6%B2%A1%E6%9C%89%E8%B5%B7%E5%88%B0%E6%8C%82%E8%B5%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">suspend 并没有起到挂起的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E8%87%AA%E5%AE%9A%E4%B9%89-suspend"><span class="nav-text">怎么自定义 suspend</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%AE%9A%E4%B9%89%E6%88%90-suspend"><span class="nav-text">什么时候定义成 suspend</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%86%99-suspend"><span class="nav-text">怎么写 suspend</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E8%A7%86%E9%A2%91%EF%BC%88%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E3%80%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E3%80%8D%E6%8C%82%E8%B5%B7%EF%BC%9F%E5%8D%8F%E7%A8%8B%E7%9C%9F%E7%9A%84%E6%AF%94%E7%BA%BF%E7%A8%8B%E6%9B%B4%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%90%97%EF%BC%9F%EF%BC%89"><span class="nav-text">第三个视频（到底什么是「非阻塞式」挂起？协程真的比线程更轻量级吗？）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%8F%E6%98%AF%E5%8D%8F%E7%A8%8B%E7%8B%AC%E6%9C%89%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-text">非阻塞式是协程独有的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin%E5%AE%98%E6%96%B9%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-text">kotlin官方的错误</span></a></li></ol></li></ol>
 
-    </div>
+	</div>
 </div>
-        </div>
-    
+	</div>
+	
 </div>
+			</div>
 
+			
+		</div>
 
-
-                
-
-            </div>
-
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
         <div class="text-center">
@@ -942,11 +934,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        42 posts in total
+                        43 posts in total
                     </span>
                     
                         <span>
-                            62.3k words in total
+                            63.1k words in total
                         </span>
                     
                 </p>
@@ -971,7 +963,7 @@
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
         </div>
         
         
@@ -1005,113 +997,102 @@
         
     </div>  
 </footer>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
 
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
 </div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
+	
 
 </main>
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1134,29 +1115,27 @@
 
 
 
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/categoryList.js" ></script>
 
 
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/categoryList.js" ></script>
-
-
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/localSearch.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/localSearch.js" ></script>
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/codeBlock.js" ></script>
 
 
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/runtime.js" ></script>
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/assets/odometer-theme-minimal.css">
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/assets/odometer-theme-minimal.css">
 
 
 
-  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/Typed.min.js" ></script>
-  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/typed.js" ></script>
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/typed.js" ></script>
 
 
 
@@ -1164,18 +1143,21 @@
 
 
 
-    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/anime.min.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/anime.min.js" ></script>
 
 
 
 
-    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/plugins/tabs.js" data-swup-reload-script></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.3/files/source/js/layouts/essays.js" data-swup-reload-script></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.1/files/source/build/js/layouts/essays.js" data-swup-reload-script></script>
 
 
 
+
+	
 </body>
+
 </html>
