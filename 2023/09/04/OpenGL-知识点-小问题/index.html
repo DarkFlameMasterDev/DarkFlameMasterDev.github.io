@@ -19,28 +19,28 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/09/25/typora-写-markdown/"/>
+    <link rel="canonical" href="http://example.com/2023/09/04/opengl-知识点-小问题/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="最近不用VSCode了，改用Typora感觉还不错 主要是VSCode 没行号，就有点痛苦，快捷键也麻烦一点 1. 改字体 全局字体   123body&#123;	font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace;&#125;   行内代码块   123code&#123;      font-family: Menlo">
+        <meta name="description" content="世界坐标局部空间（vec local）对于一个物体，建立它本身的时候，他自己会设置一个坐标系，但这个坐标只在建立它的那个空间可以使用，称为局部坐标，比如你在 Blender 里面构建一个立方体，将这个模型导入其他软件之后，就不会再使用到 Blender 里面的坐标系了，这个在 Blender 里面的坐标就是局部坐标（你可以理解这个局部坐标的是物体的元数据）  也就是你在刚开始学 OpenGL 里，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora 写 Markdown">
-<meta property="og:url" content="http://example.com/2023/09/25/Typora-%E5%86%99-Markdown/index.html">
+<meta property="og:title" content="OpenGL 知识点、小问题（持续更新）">
+<meta property="og:url" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="最近不用VSCode了，改用Typora感觉还不错 主要是VSCode 没行号，就有点痛苦，快捷键也麻烦一点 1. 改字体 全局字体   123body&#123;	font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace;&#125;   行内代码块   123code&#123;      font-family: Menlo">
+<meta property="og:description" content="世界坐标局部空间（vec local）对于一个物体，建立它本身的时候，他自己会设置一个坐标系，但这个坐标只在建立它的那个空间可以使用，称为局部坐标，比如你在 Blender 里面构建一个立方体，将这个模型导入其他软件之后，就不会再使用到 Blender 里面的坐标系了，这个在 Blender 里面的坐标就是局部坐标（你可以理解这个局部坐标的是物体的元数据）  也就是你在刚开始学 OpenGL 里，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/09/25/Typora-%E5%86%99-Markdown/meta-data.png">
-<meta property="og:image" content="http://example.com/2023/09/25/Typora-%E5%86%99-Markdown/img_link.png">
-<meta property="og:image" content="http://example.com/2023/09/25/Typora-%E5%86%99-Markdown/img_imporant.png">
-<meta property="article:published_time" content="2023-09-25T09:57:08.000Z">
-<meta property="article:modified_time" content="2024-11-12T01:01:29.089Z">
+<meta property="og:image" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4.png">
+<meta property="og:image" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E6%AD%A3%E5%B0%84%E6%8A%95%E5%BD%B1-cube.png">
+<meta property="og:image" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1-bed.png">
+<meta property="og:image" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1-cube.png">
+<meta property="article:published_time" content="2023-09-04T06:47:33.000Z">
+<meta property="article:modified_time" content="2024-11-29T00:18:38.811Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Markdown">
-<meta property="article:tag" content="Typora">
+<meta property="article:tag" content="OpenGL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/09/25/Typora-%E5%86%99-Markdown/meta-data.png">
+<meta name="twitter:image" content="http://example.com/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4.png">
     
     
     <!--- Icon Part-->
@@ -52,7 +52,7 @@
     
     <title>
         
-            Typora 写 Markdown | DarkFlameMaster&#39;s blog
+            OpenGL 知识点、小问题（持续更新） | DarkFlameMaster&#39;s blog
         
     </title>
 
@@ -122,7 +122,7 @@
     
             
                 
-                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; border: dashed !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -142,12 +142,32 @@
     
             
                 
-                    <style> .note.orange { width:fit-content !important; max-width:100% !important;} </style>
+                    <style> .note { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
                 
-                    <style> .note-large {border-radius: 6px !important;} </style>
+                    <style> .note { padding-left: 20px !important; padding-right:40px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-icon { padding-left: 5px !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { padding-right:40px !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-icon { padding-left:5px !important;} </style>
                 
     
             
@@ -158,6 +178,11 @@
             
                 
                     <style> .rounded-t-lg { border-top-left-radius: 0rem !important; border-top-right-radius: 0.25rem !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
@@ -197,7 +222,7 @@
     
             
                 
-                    <style> .highlight .code pre { padding-right:80px !important;} </style>
+                    <style> .highlight .code pre { padding-right:120px !important;} </style>
                 
     
             
@@ -517,7 +542,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">88</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -525,7 +550,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">51</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -549,10 +574,10 @@
 			
 			
 			
-			<img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="Typora 写 Markdown" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 知识点、小问题（持续更新）" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Typora 写 Markdown</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">OpenGL 知识点、小问题（持续更新）</h1>
 			</div>
 			
 		</div>
@@ -573,15 +598,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-09-25 17:57:08</span>
-        <span class="mobile">2023-09-25 17:57:08</span>
+        <span class="desktop">2023-09-04 14:47:33</span>
+        <span class="mobile">2023-09-04 14:47:33</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-12 09:01:29</span>
-            <span class="mobile">2024-11-12 09:01:29</span>
+            <span class="desktop">2024-11-29 08:18:38</span>
+            <span class="mobile">2024-11-29 08:18:38</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -593,11 +618,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Markdown/">Markdown</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Typora/">Typora</a>&nbsp;
+                        <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
                     </li>
                 
             </ul>
@@ -607,7 +628,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>134 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>523 Words</span>
         </span>
     
     
@@ -631,30 +652,23 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>最近不用<code>VSCode</code>了，改用<code>Typora</code>感觉还不错</p>
-<p>主要是<code>VSCode</code> 没行号，就有点痛苦，快捷键也麻烦一点</p>
-<h4 id="1-改字体"><a href="#1-改字体" class="headerlink" title="1. 改字体"></a>1. 改字体</h4><ul>
-<li>全局字体</li>
-</ul>
- <div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">	<span class="attribute">font-family</span>: Menlo, Monaco, <span class="string">&quot;Courier New&quot;</span>, monospace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li>行内代码块</li>
-</ul>
- <div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">code</span>&#123;</span><br><span class="line">      <span class="attribute">font-family</span>: Menlo, Monaco, <span class="string">&quot;Courier New&quot;</span>, monospace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li>代码块（代码段）</li>
-</ul>
- <div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pre &gt; * &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>-<code>Meta-data</code>(也就分割线隔开，并不会加载到<code>Markdown</code>文档里那些)</p>
-<p>  <img src="/2023/09/25/Typora-%E5%86%99-Markdown/meta-data.png" alt="meta-data.png"></p>
-<ul>
-<li>图片链接字体</li>
-</ul>
- <div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.md-image</span>&gt;<span class="selector-class">.md-meta</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Menlo, Monaco, <span class="string">&quot;Courier New&quot;</span>, monospace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>  <img src="/2023/09/25/Typora-%E5%86%99-Markdown/img_link.png" alt="img_link.png"></p>
-<h4 id="2-图片引入"><a href="#2-图片引入" class="headerlink" title="2. 图片引入"></a>2. 图片引入</h4><p><img src="/2023/09/25/Typora-%E5%86%99-Markdown/img_imporant.png" alt="img_imporant"></p>
+			<h2 id="世界坐标"><a href="#世界坐标" class="headerlink" title="世界坐标"></a>世界坐标</h2><h3 id="局部空间（vec-local）"><a href="#局部空间（vec-local）" class="headerlink" title="局部空间（vec local）"></a>局部空间（vec local）</h3><p>对于一个物体，建立它本身的时候，他自己会设置一个坐标系，但这个坐标只在建立它的那个空间可以使用，称为局部坐标，比如你在 Blender 里面构建一个立方体，将这个模型导入其他软件之后，就不会再使用到 Blender 里面的坐标系了，这个在 Blender 里面的坐标就是局部坐标（你可以理解这个局部坐标的是物体的元数据）</p>
+<p><img src="/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4.png" alt="局部空间.png"></p>
+<p>也就是你在刚开始学 OpenGL 里，一开始的顶点坐标，都是局部坐标</p>
+<h3 id="世界空间"><a href="#世界空间" class="headerlink" title="世界空间"></a>世界空间</h3><p>我们们需要一个世界坐标，让不同物体显示在不同的位置，这需要 模型矩阵（Model Matrix）来实现，模型矩阵存储着对于当前物体的变换（旋转、缩放）。</p>
+<p>大概就是这样 $M_{model}\cdot V_{local}$</p>
+<h3 id="观察空间"><a href="#观察空间" class="headerlink" title="观察空间"></a>观察空间</h3><p>又叫摄像机空间，或者视觉空间。</p>
+<p>到现在，我们已经将物体放到了世界坐标系的不同位置，并且进行了变换，但是如果将这些物体呈现在屏幕上，我们需要选一个角度给我们搭的景拍一张照片，这就需要观察空间，又叫摄像机空间。</p>
+<p>就像这样 $M_{view}\cdot M_{model}\cdot V_{local}$</p>
+<h3 id="裁剪空间"><a href="#裁剪空间" class="headerlink" title="裁剪空间"></a>裁剪空间</h3><p>裁剪空间会稍微抽象一点，用投影矩阵来实现，它的作用是将呈现在我们屏幕上的坐标进行裁剪。</p>
+<p>例如：每个维度上 $(-1000,1000)$ 。投影矩阵会将这个指定范围坐标变换为标准化坐标的范围 $(-1,1)$ 。$(1250,700,500)$ 就会被裁剪掉，因为 $x$ 坐标已经超过了范围。</p>
+<p>那么具体该如何裁剪呢？</p>
+<h4 id="正射投影"><a href="#正射投影" class="headerlink" title="正射投影"></a>正射投影</h4><p>这个其实很常见，我们中学学的数学几何，基本用的都是这种方式</p>
+<p><img src="/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E6%AD%A3%E5%B0%84%E6%8A%95%E5%BD%B1-cube.png" alt="正射投影-cube.png"></p>
+<p>这种方式，每条边与之对边都是平行且相等的</p>
+<h4 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h4><p>透视投影是绘画中用的很多的技巧，比如：</p>
+<p><img src="/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1-bed.png" alt="透视投影-bed.png"></p>
+<p><img src="/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1-cube.png" alt="透视投影-cube.png"></p>
 
 		</div>
 
@@ -662,18 +676,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Typora 写 Markdown</li>
+        <li><strong>Title:</strong> OpenGL 知识点、小问题（持续更新）</li>
         <li><strong>Author:</strong> lucas</li>
         <li><strong>Created at
-                :</strong> 2023-09-25 17:57:08</li>
+                :</strong> 2023-09-04 14:47:33</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-12 09:01:29
+                    :</strong> 2024-11-29 08:18:38
             </li>
         
         <li>
-            <strong>Link:</strong> https://darkflamemasterdev.github.io/2023/09/25/Typora-写-Markdown/
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2023/09/04/OpenGL-知识点-小问题/
         </li>
         <li>
             <strong>
@@ -695,11 +709,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/Markdown/">#Markdown</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/Typora/">#Typora</a>&nbsp;
+				<a href="/tags/OpenGL/">#OpenGL</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -711,27 +721,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>其他文章</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/11/17/hexo-安装自定义字体的思路/" title="hexo 安装自定义字体的思路" rel="bookmark">
-  <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="hexo 安装自定义字体的思路" class="!max-w-none">
-  <span class="title">hexo 安装自定义字体的思路</span>
-</a><a class="recommended-article-item" href="/2023/11/06/Jvm-类加载-balabala/" title="Jvm 类加载 balabala" rel="bookmark">
-  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Jvm 类加载 balabala" class="!max-w-none">
-  <span class="title">Jvm 类加载 balabala</span>
-</a><a class="recommended-article-item" href="/2023/04/18/部署hexo到github.io的一些小问题/" title="部署hexo到github.io的一些小问题（持续更新）" rel="bookmark">
-  <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="部署hexo到github.io的一些小问题（持续更新）" class="!max-w-none">
-  <span class="title">部署hexo到github.io的一些小问题（持续更新）</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/10/12/OpenGL-四元数/" title="OpenGL 四元数" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 四元数" class="!max-w-none">
+  <span class="title">OpenGL 四元数</span>
+</a><a class="recommended-article-item" href="/2023/08/21/OpenGL-齐次坐标的妙用/" title="OpenGL 齐次坐标的妙用" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 齐次坐标的妙用" class="!max-w-none">
+  <span class="title">OpenGL 齐次坐标的妙用</span>
+</a><a class="recommended-article-item" href="/2023/12/08/Android自定义View02-绘制流程/" title="Android自定义View02 - 绘制流程" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android自定义View02 - 绘制流程" class="!max-w-none">
+  <span class="title">Android自定义View02 - 绘制流程</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>其他文章</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/11/17/hexo-安装自定义字体的思路/" title="hexo 安装自定义字体的思路" rel="bookmark">
-  <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="hexo 安装自定义字体的思路" class="!max-w-none">
-  <span class="title">hexo 安装自定义字体的思路</span>
-</a><a class="recommended-article-item" href="/2023/11/06/Jvm-类加载-balabala/" title="Jvm 类加载 balabala" rel="bookmark">
-  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Jvm 类加载 balabala" class="!max-w-none">
-  <span class="title">Jvm 类加载 balabala</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/10/12/OpenGL-四元数/" title="OpenGL 四元数" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 四元数" class="!max-w-none">
+  <span class="title">OpenGL 四元数</span>
+</a><a class="recommended-article-item" href="/2023/08/21/OpenGL-齐次坐标的妙用/" title="OpenGL 齐次坐标的妙用" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 齐次坐标的妙用" class="!max-w-none">
+  <span class="title">OpenGL 齐次坐标的妙用</span>
 </a></div>
    </div>
   </div>
@@ -740,12 +750,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">
+				<a class="prev" rel="prev" href="/2023/09/04/OpenGL-%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84%E9%94%99%E8%AF%AF/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">OpenGL 矩阵（没写完）</span>
+						<span class="post-nav-title-item">OpenGL 容易犯的错误（持续更新）</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -753,9 +763,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2023/09/24/OpenGL-%E7%BA%B9%E7%90%86/">
+				<a class="next" rel="next" href="/2023/09/02/OpenGL-%E5%A4%9A%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">OpenGL 纹理</span>
+						<span class="post-nav-title-item">OpenGL 多个三角形</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -834,8 +844,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">Typora 写 Markdown</div>
-		<ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%94%B9%E5%AD%97%E4%BD%93"><span class="nav-text">1. 改字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9B%BE%E7%89%87%E5%BC%95%E5%85%A5"><span class="nav-text">2. 图片引入</span></a></li></ol>
+		<div class="page-title">OpenGL 知识点、小问题（持续更新）</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87"><span class="nav-text">世界坐标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4%EF%BC%88vec-local%EF%BC%89"><span class="nav-text">局部空间（vec local）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4"><span class="nav-text">世界空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E7%A9%BA%E9%97%B4"><span class="nav-text">观察空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%81%E5%89%AA%E7%A9%BA%E9%97%B4"><span class="nav-text">裁剪空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%B0%84%E6%8A%95%E5%BD%B1"><span class="nav-text">正射投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1"><span class="nav-text">透视投影</span></a></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
@@ -862,11 +872,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        43 posts in total
+                        51 posts in total
                     </span>
                     
                         <span>
-                            63.1k words in total
+                            80.9k words in total
                         </span>
                     
                 </p>

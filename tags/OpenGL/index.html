@@ -112,7 +112,7 @@
     
             
                 
-                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
+                    <style> .markdown-body mjx-container[display="true"] { padding: 20px !important; border-radius: 6px !important; border-color: rgba(80,80,80,1) !important; border: dashed !important; text-align: left !important; scrollbar-width: auto !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -132,12 +132,32 @@
     
             
                 
-                    <style> .note.orange { width:fit-content !important; max-width:100% !important;} </style>
+                    <style> .note { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
                 
-                    <style> .note-large {border-radius: 6px !important;} </style>
+                    <style> .note { padding-left: 20px !important; padding-right:40px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-icon { padding-left: 5px !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { padding-right:40px !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-icon { padding-left:5px !important;} </style>
                 
     
             
@@ -148,6 +168,11 @@
             
                 
                     <style> .rounded-t-lg { border-top-left-radius: 0rem !important; border-top-right-radius: 0.25rem !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large { width:fit-content !important; max-width:100% !important;} </style>
                 
     
             
@@ -187,7 +212,7 @@
     
             
                 
-                    <style> .highlight .code pre { padding-right:80px !important;} </style>
+                    <style> .highlight .code pre { padding-right:120px !important;} </style>
                 
     
             
@@ -507,7 +532,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">79</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">88</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -515,7 +540,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">51</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -546,13 +571,25 @@
         <section class="archive-item mb-spacing-unit last:mb-0">
             <div class="archive-item-header flex flex-row items-center mb-2">
                 <span class="archive-year font-semibold text-3xl mr-2">2023</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">8</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">10</span>
             </div>
             
             <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
                 
                     
                     
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-12'>
+                    
+                    <a href="/2023/10/12/OpenGL-%E5%9B%9B%E5%85%83%E6%95%B0/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">OpenGL 四元数</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
                          <!-- Close the previous LI if not the first item -->
                         <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-05'>
                     
@@ -587,6 +624,13 @@
                 
                     
                     
+                    <a href="/2023/09/04/OpenGL-%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%B0%8F%E9%97%AE%E9%A2%98/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">OpenGL 知识点、小问题（持续更新）</span>
+                    </a>
+                    
+                
+                    
+                    
                         
                             </li>
                          <!-- Close the previous LI if not the first item -->
@@ -594,6 +638,18 @@
                     
                     <a href="/2023/09/02/OpenGL-%E5%A4%9A%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">OpenGL 多个三角形</span>
+                    </a>
+                    
+                
+                    
+                    
+                        
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-21'>
+                    
+                    <a href="/2023/08/21/OpenGL-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E5%A6%99%E7%94%A8/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">OpenGL 齐次坐标的妙用</span>
                     </a>
                     
                 
@@ -633,18 +689,6 @@
                     </a>
                     
                 
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-02'>
-                    
-                    <a href="/2023/08/02/OpenGL-on-Windows-%E7%8E%AF%E5%A2%83/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">OpenGL on Windows 环境</span>
-                    </a>
-                    
-                
                 </li> <!-- Ensure the last item is properly closed -->
             </ul>
         </section>
@@ -665,7 +709,7 @@
 </div>
 
 <div class="paginator">
-	<span class="page-number current">1</span>
+	<span class="page-number current">1</span><a class="page-number" href="/tags/OpenGL/page/2/">2</a><a class="extend next" rel="next" href="/tags/OpenGL/page/2/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
 			</div>
@@ -688,11 +732,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        43 posts in total
+                        51 posts in total
                     </span>
                     
                         <span>
-                            63.1k words in total
+                            80.9k words in total
                         </span>
                     
                 </p>
