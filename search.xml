@@ -487,12 +487,11 @@
 <h4 id="尺寸压缩"><a href="#尺寸压缩" class="headerlink" title="尺寸压缩"></a>尺寸压缩</h4><p>尺寸压缩，顾名思义，就是将尺寸缩小（或者说分辨率降低），以此来压缩图片</p>
 <p>尺寸压缩会直接缩小 Bitmap 的内存占用，也会压缩输出到硬盘的图片文件大小</p>
 <ol>
-<li>改变 inSampleSize</li>
-</ol>
-  <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">decodeSampleBitmapFromResource</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  res: <span class="type">Resources</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  resId: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqWidth: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqHeight: <span class="type">Int</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>: Bitmap {</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取图片的原始宽高</span></span><br><span class="line">  <span class="keyword">val</span> options = BitmapFactory.Options()</span><br><span class="line">  options.inJustDecodeBounds = <span class="literal">true</span></span><br><span class="line">  BitmapFactory.decodeResource(res, resId, options)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 计算缩放比例</span></span><br><span class="line">  options.inSampleSize = calculateInSampleSize(options,    reqWidth, reqHeight)</span><br><span class="line"></span><br><span class="line">  options.inJustDecodeBounds = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">return</span> BitmapFactory.decodeResource(res, resId, options)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">calculateInSampleSize</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  options: <span class="type">BitmapFactory</span>.<span class="type">Options</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqWidth: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqHeight: <span class="type">Int</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>: <span class="built_in">Int</span> {</span><br><span class="line">  <span class="keyword">val</span> height = options.outHeight</span><br><span class="line">  <span class="keyword">val</span> width = options.outWidth</span><br><span class="line">  <span class="keyword">var</span> inSampleSize = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (height &gt; reqHeight || width &gt; reqWidth) {</span><br><span class="line">    <span class="keyword">val</span> halfHeight = height / <span class="number">2</span></span><br><span class="line">    <span class="keyword">val</span> halfWidth = width / <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (halfHeight / inSampleSize &gt;= reqHeight &amp;&amp; halfWidth /   inSampleSize &gt;= reqWidth) {</span><br><span class="line">      inSampleSize *= <span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> inSampleSize</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
-
-<ol start="2">
-<li>改变 inDensity<br>这个变量就是改变 Bitmap 密度的<br>如果你将</li>
+<li><p>改变 inSampleSize</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">decodeSampleBitmapFromResource</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  res: <span class="type">Resources</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  resId: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqWidth: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqHeight: <span class="type">Int</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>: Bitmap {</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取图片的原始宽高</span></span><br><span class="line">  <span class="keyword">val</span> options = BitmapFactory.Options()</span><br><span class="line">  options.inJustDecodeBounds = <span class="literal">true</span></span><br><span class="line">  BitmapFactory.decodeResource(res, resId, options)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 计算缩放比例</span></span><br><span class="line">  options.inSampleSize = calculateInSampleSize(options,    reqWidth, reqHeight)</span><br><span class="line"></span><br><span class="line">  options.inJustDecodeBounds = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">return</span> BitmapFactory.decodeResource(res, resId, options)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">calculateInSampleSize</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  options: <span class="type">BitmapFactory</span>.<span class="type">Options</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqWidth: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  reqHeight: <span class="type">Int</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>: <span class="built_in">Int</span> {</span><br><span class="line">  <span class="keyword">val</span> height = options.outHeight</span><br><span class="line">  <span class="keyword">val</span> width = options.outWidth</span><br><span class="line">  <span class="keyword">var</span> inSampleSize = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (height &gt; reqHeight || width &gt; reqWidth) {</span><br><span class="line">    <span class="keyword">val</span> halfHeight = height / <span class="number">2</span></span><br><span class="line">    <span class="keyword">val</span> halfWidth = width / <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (halfHeight / inSampleSize &gt;= reqHeight &amp;&amp; halfWidth /   inSampleSize &gt;= reqWidth) {</span><br><span class="line">      inSampleSize *= <span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> inSampleSize</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>改变 inDensity<br>这个变量就是改变 Bitmap 密度的<br>如果你将</p>
+</li>
 </ol>
 ]]></content>
       <tags>
@@ -3190,7 +3189,7 @@
   </entry>
   <entry>
     <title>关于学习新技术的个人看法（持续更新）</title>
-    <url>/2023/06/05/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0%E6%96%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95/</url>
+    <url>/2025/02/27/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0%E6%96%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95/</url>
     <content><![CDATA[<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>我其实不是一个特别厉害的代码高手，本篇只是写一下我自己学习技术的一些习惯和思考</p>
 <p>我所说的技术，更多的是指一些抽象的技术，比如：多线程，编译原理，跨平台……</p>
 <h2 id="详细内容"><a href="#详细内容" class="headerlink" title="详细内容"></a>详细内容</h2><h3 id="1-了解背景"><a href="#1-了解背景" class="headerlink" title="1. 了解背景"></a>1. 了解背景</h3><h4 id="什么是了解背景？"><a href="#什么是了解背景？" class="headerlink" title="什么是了解背景？"></a>什么是了解背景？</h4><p>了解一项技术的背景，就是它的由来，他一开始是用来干嘛的，现在是用来干嘛的，这期间有哪些改变……这是你应该优先去做的事情</p>
@@ -3202,6 +3201,29 @@
 <p>那为什么之前不写呢？</p>
 <p>因为今天我挺喜欢的一个 B站up主 TheCW 发了一个视频，一下子就戳中了我的点，讲的是 Flutter</p>
 <p><a class="link"   href="https://www.bilibili.com/video/BV1D8411o71k?vd_source=ab5d2d30e75485eb5cb5691db418a1eb" >跨平台开发该不该用Flutter？2023年版Flutter全面解析<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="2-学习的本质在于摸透底层逻辑"><a href="#2-学习的本质在于摸透底层逻辑" class="headerlink" title="2.学习的本质在于摸透底层逻辑"></a>2.学习的本质在于摸透底层逻辑</h3><p>这个事情最准确最直接的例子是健身中的肌肉增长</p>
+<p>如果你希望肌肉增长，底层逻辑在于————肌纤维断裂，然后再重新长好</p>
+<p>围绕这个底层逻辑，我们可以去探究————肌纤维断裂到什么程度？肌纤维生长周期是多少？饮食上注意哪些可以促进肌纤维恢复？参与哪些运动会让让哪些肌纤维断裂？</p>
+<p>然后再围绕之后得到的答案，再去探究————不同姿势会怎样促进肌纤维断裂？大重量少次和小重量多次对肌肉的影响？如何让自己的运动状态更好，效率更高？肌纤维断裂会引起哪些问题，该如何规避或者解决？</p>
+<p>然后再去探究蛋白粉如何更有性价比……这样一系列的问题都像一棵树木一样，长得枝繁叶茂，并且联系紧密，印象深刻，甚至会让你养成良好的思考学习习惯，影响到你在做其他事情的方式方法和效率。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>底层逻辑的地位</p>
+
+    </div>
+    <div class="notel-content">
+      <p>所以底层逻辑就是一个大树的根部，你在思考所有问题的时候，就会无意间思考到底层逻辑，就像树木的养分会从根部流向各个树枝一样，你在思考运动的标准姿势的时候，也在考虑肌纤维断裂和长好；你在思考和哪个牌子的蛋白粉也是在思考哪个牌子的蛋白粉可以更有性价比地辅助断裂的肌纤维增长</p>
+
+    </div>
+  </div>
+
+<p>当然，事情说到这里，其实已然足够了，我不是想说懂的人自然懂这类抽象话，但确实找到大树的根部（底层逻辑）就和高中最难的数学物理一样，需要非常强的抽象思维和具体思维，既要能精准地总结概括，也要能随时展开。</p>
+
+  <div class="note p-4 mb-4 rounded-small red">
+    <p>对于程序员，阅读源码，理解设计模式，了解技术发展历程，多看别人写的代码，多尝试，多总结，这就是去尝试摸透底层逻辑的好办法</p>
+
+  </div>
 ]]></content>
       <tags>
         <tag>思考</tag>
@@ -4802,6 +4824,148 @@
         <tag>协程</tag>
         <tag>异步</tag>
         <tag>同步</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin data class 被 gson 解析遇到的坑</title>
+    <url>/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<blockquote>
+<p>此篇文章来自于学习 <a class="link"   href="https://juejin.cn/post/6908391430977224718" >Gson 和 Kotlin Data Class 的避坑指南<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>原文写的非常好，但我也希望你能看看我的这篇文章，本文的所有代码和结论都经过实际验证和推敲，并且加入了我自己的理解和细节，更多算是对原文作者的补充</p>
+<p>因为我对于我底层逻辑的思考很有信心，这里有简单的介绍 <a class="link"   href="https://darkflamemasterdev.github.io/2025/02/27/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0%E6%96%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95/#2-%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%9C%A8%E4%BA%8E%E6%91%B8%E9%80%8F%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91" >学习的本质在于摸透底层逻辑<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+<h2 id="从一个-NullPointerException-开始"><a href="#从一个-NullPointerException-开始" class="headerlink" title="从一个 NullPointerException 开始"></a>从一个 NullPointerException 开始</h2><div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.czb</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.gson.Gson</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span>(<span class="keyword">val</span> userName: String, <span class="keyword">val</span> userAge: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;&quot;&#123;&quot;userName&quot;:null,&quot;userAge&quot;:26&#125;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> userBean = Gson().fromJson(json, UserBean::<span class="keyword">class</span>.java) <span class="comment">//第一步</span></span><br><span class="line">    println(userBean) <span class="comment">//第二步</span></span><br><span class="line">    printMsg(userBean.userName) <span class="comment">//第三步</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printMsg</span><span class="params">(msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>这里例子输出的结果是</p>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">UserBean(userName=null, userAge=26)</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NullPointerException: Parameter specified as non-null is null: method org.czb.MainKt.printMsg, parameter msg</span><br><span class="line">    at org.czb.MainKt.printMsg(Main.kt)</span><br><span class="line">    at org.czb.MainKt.main(Main.kt:11)</span><br><span class="line">    at org.czb.MainKt.main(Main.kt)</span><br></pre></td></tr></table></figure></div>
+
+<p>这里初级程序员也能看出来 <code>&quot;userName&quot;:null</code> 和 <code>username</code> 的 <code>String</code> 类型声明是不对应的，<code>String</code> 是非空的 <code>String</code> 类型</p>
+<p>那么这次 gson 的反序列化，居然在调用 <code>printMsg</code> 的时候（第三步），报出了 NPE(NullPointerException)</p>
+<p>我们看看这个 <code>printMsg</code>，把它反编译成 Java 方法</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">printMsg</span><span class="params">(<span class="meta">@NotNull</span> String msg)</span> &#123;</span><br><span class="line">   Intrinsics.checkNotNullParameter(msg, <span class="string">&quot;msg&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到，这里有 <code>checkNotNullParameter</code> 所以才会有 NPE</p>
+<p>也就是说，gson 反序列化成功了</p>
+<p>那么我们就需要再看 gson 到底是如何绕过非空类型的判断（nullsafe）的</p>
+<h2 id="gson-如何绕过-null-check"><a href="#gson-如何绕过-null-check" class="headerlink" title="gson 如何绕过 null check"></a>gson 如何绕过 null check</h2><p>我们在 <code>fromJson</code> 处打个断点，使用 IDEA 的 step into 功能，跳到源码去分析</p>
+<p>可以发现，前面都是 fromJson 的重名函数，直到这个 <code>typeAdapter.read(reader)</code></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/typeAdapter.read(reader).png" alt="typeAdapter.read(reader).png"></p>
+<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/read-detail.png" alt="read-detail.png"></p>
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>提示</p>
+
+    </div>
+    <div class="notel-content">
+      <p>这里我使用的是 <code>com.google.code.gson:gson:2.12.1</code> ，和原文章的作者应该是不一致的，所以源码也有所区别</p>
+
+    </div>
+  </div>
+
+<p>我们可以看到 <code>508~526</code> 都是在遍历 <code>JsonReader</code> ，我们稍后再看</p>
+<p><code>505</code> 行是创建了一个累加器，我们看看这是干什么的，使用 <code>step into</code> 进去</p>
+<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/createAccumulator.png" alt="createAccumulator.png"></p>
+<p>可以看到，<code>createAccumulator</code> 这里是调用了 <code>ObjectConstructor</code> 的 <code>construct()</code> 函数</p>
+<p>如果你直接从这里 step into 会直接跳转到 <code>newUnsafeAllocator</code></p>
+<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor-newUnsafeAllocator.png" alt="ObjectConstructor-newUnsafeAllocator.png"></p>
+<p>而这个 lambda 就是 <code>constuct()</code>，所以这个 <code>newUnsafeAllocator</code> 会返回一个 <code>ObjectConstructor</code></p>
+<p>我们再看看 <code>ObjectConstructor</code> 除了这个实现，还有哪些实现</p>
+<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor.png" alt="ObjectConstructor.png"></p>
+<p><code>newSpecialCollectionConstructor</code> 使用特殊集合类的构造函数（EnumSet，EnumMap）。</p>
+<p><code>newDefaultConstructor</code> 使用无参构造函数。</p>
+<p><code>newDefaultImplementationConstructor</code> 回退到默认接口实现，支持一些 Gson 写好的集合类型</p>
+<p>最后就是 <code>newUnsafeAllocator</code> 也就是我们确定的，这个 Gson 将这次我们使用的 data class 反序列化的构建对象的方式</p>
+<blockquote>
+<p>注意上面的注释 <code>// Consider usage of Unsafe as reflection, so don&#39;t use if BLOCK_ALL // Additionally, since it is not calling any constructor at all, don&#39;t use if BLOCK_INACCESSIBLE</code><br>考虑使用不安全的反射，因此请不要使用block_all，因为它根本不调用任何构造函数<br>所以这是一个兜底策略，或者说最终手段</p>
+</blockquote>
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>UnsafeAllocator</p>
+
+    </div>
+    <div class="notel-content">
+      <p>类似 C 里面的 malloc 这里 Allocator 其实是一个含义————分配器。所以我们可以大概猜测，这里是和 C 类似的内存分配方式。这里其实也是对于中国程序员不友好的地方，英语的本身意思其实多多少少蕴含了一些代码的设计意图。</p>
+
+    </div>
+  </div>
+
+<p>然后我们在继续推进，看看这里 <code>newUnsafeAllocator</code></p>
+<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/newUnsafeAllocator.png" alt="newUnsafeAllocator.png"></p>
+<p>可以看到这里使用 <code>sun.misc.Unsafe</code> 反射初始化了一个对象，然后又使用反射获取了 <code>allocateInstance</code> ，调用它生成了一个 <code>UnsafeAllocator</code> 也就是 <code>ObjectConstructor&lt;T&gt;</code></p>
+<p>而 <code>ObjectConstructor&lt;T&gt;</code> 里面只有一个返回 <code>T</code> 的 <code>construct()</code> 函数，所以 <code>createAccumulator</code> 最终就会返回这个被构造出来对象，并且没有使用 要被反序列化的那个类的任何构造函数，因此就跳过了 <code>null check</code></p>
+<h2 id="使用默认值规避-null-风险？？？"><a href="#使用默认值规避-null-风险？？？" class="headerlink" title="使用默认值规避 null 风险？？？"></a>使用默认值规避 null 风险？？？</h2><p>如果我们给 <code>userName</code> 一个默认值，那么就可以规避掉风险了吗？我们看例子。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span>(<span class="keyword">val</span> userName: String = <span class="string">&quot;dark&quot;</span>, <span class="keyword">val</span> userAge: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;&quot;&#123;&quot;userAge&quot;:26&#125;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> userBean = Gson().fromJson(json, UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">    println(userBean)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>它的输出结果如下</p>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">UserBean(userName=null, userAge=26)</span><br></pre></td></tr></table></figure></div>
+
+<p>这里直接放结论，因为 <code>Gson</code> 使用了 <code>UnsafeAllocator</code> 没有使用任何构造函数，所以默认值并不会被加进去，而是会出现 null</p>
+<h3 id="解决-gson-反序列化中-null-的方法"><a href="#解决-gson-反序列化中-null-的方法" class="headerlink" title="解决 gson 反序列化中 null 的方法"></a>解决 gson 反序列化中 null 的方法</h3><p>为什么我们要在之前分析 <code>gson</code> 的生成 <code>ObjectConstructor</code> 的多种方式呢？</p>
+<p>最重要的点就在于可以帮我们找到解决问题的思路，也就是看看如何不使用 <code>newUnsafeAllocator</code></p>
+<h4 id="生成无参构造函数"><a href="#生成无参构造函数" class="headerlink" title="生成无参构造函数"></a>生成无参构造函数</h4><ol>
+<li><p>添加无参构造函数</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span>(<span class="keyword">val</span> userName: String, <span class="keyword">val</span> userAge: <span class="built_in">Int</span>)&#123;</span><br><span class="line">    <span class="keyword">constructor</span>():<span class="keyword">this</span>(userName = <span class="string">&quot;dark&quot;</span>, userAge = <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>使用 @JvmOverloads<br>这个方法类似于第一种，也是相当于提供了一个无参构造函数</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span> <span class="meta">@JvmOverloads</span> <span class="keyword">constructor</span>(<span class="keyword">val</span> userName: String = <span class="string">&quot;dark&quot;</span>, <span class="keyword">val</span> userAge: <span class="built_in">Int</span> = <span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>注意</p>
+
+    </div>
+    <div class="notel-content">
+      <p>@JvmOverloads 会将有默认值的参数依次忽略，生成重载方法，所以我们需要将所有参数都给上默认值，这样才能生成默认构造函数</p>
+
+    </div>
+  </div>
+</li>
+<li><p>不使用 <code>data class</code> 像 java 一样，写成成员变量（字段）</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserBean</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> userName = <span class="string">&quot;dark&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> userAge = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;UserBean(userName=<span class="variable">$userName</span>, userAge=<span class="variable">$userAge</span>)&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<p>这前三种都是通过生成默认构造函数<br>这里我们继续打断点 debug 看出，<code>gson</code> 调用的是 <code>newDefaultConstructor</code></p>
+<h4 id="终极方案-放弃-Gson"><a href="#终极方案-放弃-Gson" class="headerlink" title="终极方案 放弃 Gson"></a>终极方案 放弃 Gson</h4><p>比如我们可以改用 moshi</p>
+<p>gson 目前对 kotlin 还不够友好，moshi 对 kotlin 的支持会更好，里面有专门针对 kotlin 的适配器<br>moshi 是 square 公司提供的一个开源库，就是那个开发了 okhttp 的公司</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.squareup.moshi.JsonAdapter</span><br><span class="line"><span class="keyword">import</span> com.squareup.moshi.Moshi</span><br><span class="line"><span class="keyword">import</span> com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span>(<span class="keyword">val</span> userName: String = <span class="string">&quot;dark&quot;</span>, <span class="keyword">val</span> userAge: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;&quot;&#123;&quot;userAge&quot;:26&#125;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> moshi = Moshi.Builder()</span><br><span class="line">        .addLast(KotlinJsonAdapterFactory())</span><br><span class="line">        .build()</span><br><span class="line">    <span class="keyword">val</span> jsonAdapter: JsonAdapter&lt;UserBean&gt; = moshi.adapter(UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">    <span class="keyword">val</span> userBean = jsonAdapter.fromJson(json)</span><br><span class="line">    println(userBean)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">UserBean(userName=dark, userAge=26)</span><br></pre></td></tr></table></figure></div>
+
+<p>另外，还有之前的问题，moshi 并不会在出现类型冲突的时候，成功反序列化</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 空出 3 行对齐我 IDEA 里的行号，方便对应输出结果对应的行号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.squareup.moshi.JsonAdapter</span><br><span class="line"><span class="keyword">import</span> com.squareup.moshi.Moshi</span><br><span class="line"><span class="keyword">import</span> com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">UserBean</span>(<span class="keyword">val</span> userName: String = <span class="string">&quot;dark&quot;</span>, <span class="keyword">val</span> userAge: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;&quot;&#123;&quot;userName&quot;:null,&quot;userAge&quot;:26&#125;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> moshi = Moshi.Builder()</span><br><span class="line">        .addLast(KotlinJsonAdapterFactory())</span><br><span class="line">        .build()</span><br><span class="line">    <span class="keyword">val</span> jsonAdapter: JsonAdapter&lt;UserBean&gt; = moshi.adapter(UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">    <span class="keyword">val</span> userBean = jsonAdapter.fromJson(json)</span><br><span class="line">    println(userBean)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> com.squareup.moshi.JsonDataException: Non-<span class="literal">null</span> value <span class="string">&#x27;userName&#x27;</span> was <span class="literal">null</span> at $.userName</span><br><span class="line">    at com.squareup.moshi.<span class="keyword">internal</span>.Util.unexpectedNull(Util.java:<span class="number">674</span>)</span><br><span class="line">    at com.squareup.moshi.kotlin.reflect.KotlinJsonAdapter.fromJson(KotlinJsonAdapter.kt:<span class="number">89</span>)</span><br><span class="line">    at com.squareup.moshi.<span class="keyword">internal</span>.NullSafeJsonAdapter.fromJson(NullSafeJsonAdapter.java:<span class="number">41</span>)</span><br><span class="line">    at com.squareup.moshi.JsonAdapter.fromJson(JsonAdapter.java:<span class="number">70</span>)</span><br><span class="line">    at org.czb.MainKt.main(Main.kt:<span class="number">15</span>)</span><br><span class="line">    at org.czb.MainKt.main(Main.kt)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="四、扩展知识（平台类型）"><a href="#四、扩展知识（平台类型）" class="headerlink" title="四、扩展知识（平台类型）"></a>四、扩展知识（平台类型）</h2><p>再来看个扩展知识，和 Gson 无直接关联，但是在开发中也是蛮重要的一个知识点<br>json 为空字符串，此时 Gson 可以成功反序列化，且得到的 userBean 为 null</p>
+<p>还是以 <code>data class UserBean(val userName: String, val userAge: Int)</code> 为例子</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> userBean = Gson().fromJson(json, UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>如果加上类型声明：UserBean?，那也可以成功反序列化</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> userBean: UserBean? = Gson().fromJson(json, UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>如果加上的类型声明是 UserBean 的话，那就比较好玩了，会直接抛出 NullPointerException</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> json = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">val</span> userBean: UserBean = Gson().fromJson(json, UserBean::<span class="keyword">class</span>.java)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.NullPointerException: fromJson(...) must not be null</span><br><span class="line">   at org.czb.MainKt.main(Main.kt:12)</span><br><span class="line">   at org.czb.MainKt.main(Main.kt)</span><br></pre></td></tr></table></figure></div>
+
+<p>以上三个例子会有不同区别的原因是什么呢？</p>
+<p>这是在 kotlin 调用 java 的时候会出现的，官方文档写着“Java 中的任何引用都可能是 <code>null</code>，这使得 Kotlin 对来自 Java 的对象要求严格空安全是不现实的。 Java 声明的类型在 Kotlin 中会以特殊方式对待并称为平台类型。”</p>
+<p>我补充两句，就是 kotlin 在调用 java 代码的时候，会把 java 里的类型以平台类型（platform type）对待，例如 java 中的 String 会当做 String!</p>
+
+  <div class="note p-4 mb-4 rounded-small orange icon-padding">
+    <i class="note-icon fa-solid fa-circle-exclamation"></i><p>平台类型只是编译器的中间产物，并不能显式使用在代码里， <code>val s:String!</code> 是不允许出现在代码里的</p>
+
+  </div>
+
+<p>因此，当我们从 <code>Kotlin</code> 承接 <code>Gson</code> 这个 <code>Java</code> 类返回的变量时，既可以将其当做 <code>UserBean</code> 类型，也可以当做 <code>UserBean?</code> 类型。而如果我们直接显式声明为 <code>UserBean</code> 类型，就说明我们确信返回的是非空类型，当返回的是 <code>null</code> 时就会触发 <code>Kotlin</code> 的 <code>null check</code>，导致直接抛出 <code>NullPointerException</code></p>
+]]></content>
+      <tags>
+        <tag>kotlin</tag>
+        <tag>json</tag>
+        <tag>gson</tag>
+        <tag>data class</tag>
       </tags>
   </entry>
 </search>
