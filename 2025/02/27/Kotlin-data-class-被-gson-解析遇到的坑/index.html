@@ -70,7 +70,12 @@
     
             
                 
-                    <style> mjx-container[jax="SVG"][display="true"] { text-align: left !important; border: dashed !important;  border-radius: 18px !important; padding: 18px !important; width: fit-content !important;} </style>
+                    <style> .markdown-body ol { margin-left: 12px !important;} </style>
+                
+    
+            
+                
+                    <style> mjx-container[jax="SVG"][display="true"] { text-align: left !important; border: dashed !important;  border-radius: 18px !important; padding: 18px !important; width: fit-content !important; max-width: 100% !important;} </style>
                 
     
             
@@ -350,7 +355,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">91</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">92</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -358,7 +363,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">52</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">53</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -485,7 +490,7 @@
 <h2 id="gson-如何绕过-null-check"><a href="#gson-如何绕过-null-check" class="headerlink" title="gson 如何绕过 null check"></a>gson 如何绕过 null check</h2><p>我们在 <code>fromJson</code> 处打个断点，使用 IDEA 的 step into 功能，跳到源码去分析</p>
 <p>可以发现，前面都是 fromJson 的重名函数，直到这个 <code>typeAdapter.read(reader)</code></p>
 <p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/typeAdapter.read(reader).png" alt="typeAdapter.read(reader).png"></p>
-<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/read-detail.png" alt="read-detail.png"></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/read-detail.png" alt="read-detail.png"></p>
 
   <div class="note-large orange">
     <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
@@ -500,13 +505,13 @@
 
 <p>我们可以看到 <code>508~526</code> 都是在遍历 <code>JsonReader</code> ，我们稍后再看</p>
 <p><code>505</code> 行是创建了一个累加器，我们看看这是干什么的，使用 <code>step into</code> 进去</p>
-<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/createAccumulator.png" alt="createAccumulator.png"></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/createAccumulator.png" alt="createAccumulator.png"></p>
 <p>可以看到，<code>createAccumulator</code> 这里是调用了 <code>ObjectConstructor</code> 的 <code>construct()</code> 函数</p>
 <p>如果你直接从这里 step into 会直接跳转到 <code>newUnsafeAllocator</code></p>
-<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor-newUnsafeAllocator.png" alt="ObjectConstructor-newUnsafeAllocator.png"></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor-newUnsafeAllocator.png" alt="ObjectConstructor-newUnsafeAllocator.png"></p>
 <p>而这个 lambda 就是 <code>constuct()</code>，所以这个 <code>newUnsafeAllocator</code> 会返回一个 <code>ObjectConstructor</code></p>
 <p>我们再看看 <code>ObjectConstructor</code> 除了这个实现，还有哪些实现</p>
-<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor.png" alt="ObjectConstructor.png"></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ObjectConstructor.png" alt="ObjectConstructor.png"></p>
 <p><code>newSpecialCollectionConstructor</code> 使用特殊集合类的构造函数（EnumSet，EnumMap）。</p>
 <p><code>newDefaultConstructor</code> 使用无参构造函数。</p>
 <p><code>newDefaultImplementationConstructor</code> 回退到默认接口实现，支持一些 Gson 写好的集合类型</p>
@@ -527,7 +532,7 @@
   </div>
 
 <p>然后我们在继续推进，看看这里 <code>newUnsafeAllocator</code></p>
-<p><img src="/2023/11/08/Android-%E9%87%8C%E7%9A%84-dpi-dp-px/son-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/newUnsafeAllocator.png" alt="newUnsafeAllocator.png"></p>
+<p><img src="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/newUnsafeAllocator.png" alt="newUnsafeAllocator.png"></p>
 <p>可以看到这里使用 <code>sun.misc.Unsafe</code> 反射初始化了一个对象，然后又使用反射获取了 <code>allocateInstance</code> ，调用它生成了一个 <code>UnsafeAllocator</code> 也就是 <code>ObjectConstructor&lt;T&gt;</code></p>
 <p>而 <code>ObjectConstructor&lt;T&gt;</code> 里面只有一个返回 <code>T</code> 的 <code>construct()</code> 函数，所以 <code>createAccumulator</code> 最终就会返回这个被构造出来对象，并且没有使用 要被反序列化的那个类的任何构造函数，因此就跳过了 <code>null check</code></p>
 <h2 id="使用默认值规避-null-风险？？？"><a href="#使用默认值规避-null-风险？？？" class="headerlink" title="使用默认值规避 null 风险？？？"></a>使用默认值规避 null 风险？？？</h2><p>如果我们给 <code>userName</code> 一个默认值，那么就可以规避掉风险了吗？我们看例子。</p>
@@ -688,6 +693,18 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/05/Android-Studio-Gradle-%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%80%A7%E9%80%82%E9%85%8D-%E7%90%86%E8%AE%BA%E7%AF%87/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Android Studio Gradle 版本兼容性适配（理论篇）</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2025/02/27/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0%E6%96%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95/">
@@ -799,7 +816,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        52 posts in total
+                        53 posts in total
                     </span>
                     
                 </p>
