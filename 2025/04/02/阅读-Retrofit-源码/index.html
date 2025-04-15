@@ -19,7 +19,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/04/02/阅读-retrofit-源码来学习网络请求/"/>
+    <link rel="canonical" href="http://example.com/2025/04/02/阅读-retrofit-源码/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -29,14 +29,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阅读 Retrofit 源码来学习网络请求">
-<meta property="og:url" content="http://example.com/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81%E6%9D%A5%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:title" content="阅读 Retrofit 源码">
+<meta property="og:url" content="http://example.com/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-04-02T12:17:50.000Z">
-<meta property="article:modified_time" content="2025-04-15T15:25:42.478Z">
+<meta property="article:modified_time" content="2025-04-15T15:29:42.567Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="kotlin">
 <meta property="article:tag" content="java">
@@ -59,7 +59,7 @@
     
     <title>
         
-            阅读 Retrofit 源码来学习网络请求 | DarkFlameMaster&#39;s blog
+            阅读 Retrofit 源码 | DarkFlameMaster&#39;s blog
         
     </title>
 
@@ -396,10 +396,10 @@
 			
 			
 			
-			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码来学习网络请求" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">阅读 Retrofit 源码来学习网络请求</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">阅读 Retrofit 源码</h1>
 			</div>
 			
 		</div>
@@ -427,8 +427,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-04-15 23:25:42</span>
-            <span class="mobile">2025-04-15 23:25:42</span>
+            <span class="desktop">2025-04-15 23:29:42</span>
+            <span class="mobile">2025-04-15 23:29:42</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -774,7 +774,7 @@
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CallAdapter</span>&lt;Object, Call&lt;?&gt;&gt;() {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Type <span class="title function_">responseType</span><span class="params">()</span> {</span><br><span class="line">      <span class="keyword">return</span> responseType;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Call&lt;Object&gt; <span class="title function_">adapt</span><span class="params">(Call&lt;Object&gt; call)</span> {</span><br><span class="line">      <span class="keyword">return</span> executor == <span class="literal">null</span> ? call : <span class="keyword">new</span> <span class="title class_">ExecutorCallbackCall</span>&lt;&gt;(executor, call);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></div>
 
 <p>然后大致就知道这个就是返回一个 <code>Call</code> 的实例（在这里是 <code>ExecutorCallbackCall</code>），返回看代码注释里写的就是</p>
-<img src="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81%E6%9D%A5%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/call-注释.png" width="800">
+<img src="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/call-注释.png" width="800">
 
 <h5 id="闭环了"><a href="#闭环了" class="headerlink" title="闭环了"></a>闭环了</h5><p>所以我们挖了这么久回头梳理一下，就是要搞明白 <code>loadServiceMethod(service, method).invoke(proxy, args)</code> 这行代码最终干了什么————就是返回了一个 <code>ExecutorCallbackCall</code></p>
 <ul>
@@ -847,18 +847,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 阅读 Retrofit 源码来学习网络请求</li>
+        <li><strong>Title:</strong> 阅读 Retrofit 源码</li>
         <li><strong>Author:</strong> lucas</li>
         <li><strong>Created at
                 :</strong> 2025-04-02 20:17:50</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-04-15 23:25:42
+                    :</strong> 2025-04-15 23:29:42
             </li>
         
         <li>
-            <strong>Link:</strong> https://darkflamemasterdev.github.io/2025/04/02/阅读-Retrofit-源码来学习网络请求/
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2025/04/02/阅读-Retrofit-源码/
         </li>
         <li>
             <strong>
@@ -1043,7 +1043,7 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">阅读 Retrofit 源码来学习网络请求</div>
+		<div class="page-title">阅读 Retrofit 源码</div>
 		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit-%E7%AE%80%E4%BB%8B"><span class="nav-text">Retrofit 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%BC%80%E8%AF%BB"><span class="nav-text">源码开读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#validateServiceInterface%EF%BC%88%E9%AA%8C%E8%AF%81%EF%BC%89"><span class="nav-text">validateServiceInterface（验证）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newProxyInstance%EF%BC%88%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-text">newProxyInstance（动态代理）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-text">静态代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E7%BB%AD%E7%9C%8B-Retrofit"><span class="nav-text">继续看 Retrofit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#newProxyInstance"><span class="nav-text">newProxyInstance</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loadServiceMethod"><span class="nav-text">loadServiceMethod</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE-invoke"><span class="nav-text">寻找 invoke</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ServiceMethod-parseAnnotations"><span class="nav-text">ServiceMethod.parseAnnotations</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%BE%E5%88%B0-invoke"><span class="nav-text">找到 invoke</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE-adapt"><span class="nav-text">寻找 adapt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpServiceMethod-parseAnnotations"><span class="nav-text">HttpServiceMethod.parseAnnotations</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%BE%E5%88%B0-adapt"><span class="nav-text">找到 adapt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AD%E7%8E%AF%E4%BA%86"><span class="nav-text">闭环了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9E%E7%9C%8B-OkHttpCall"><span class="nav-text">回看 OkHttpCall</span></a></li></ol></li></ol></li></ol></li></ol>
 
 	</div>
