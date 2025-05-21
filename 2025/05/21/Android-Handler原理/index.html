@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="lucas">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/05/21/android-handler原理/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Handler原理">
+<meta property="og:url" content="http://example.com/2025/05/21/Android-Handler%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-05-21T08:59:41.000Z">
+<meta property="article:modified_time" content="2025-05-21T09:02:57.342Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Handler">
+<meta property="article:tag" content="ThreadLocal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#FC2D4F">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Android - Handler原理 | DarkFlameMaster&#39;s blog
+        
+    </title>
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <style> .home-banner-container { display: none !important;} </style>
+                
+    
+            
+                
+                    <style> span.nav-text {word-wrap: break-word !important;word-break: break-word !important;white-space: normal !important;} </style>
+                
+    
+            
+                
+                    <style> mjx-container[jax="SVG"][display="true"] { text-align: left !important; border: dotted !important;  border-radius: 6px !important; padding: 18px !important; display: block !important; } </style>
+                
+    
+            
+                
+                    <style> mjx-container.MathJax { display: inline-block !important; width: fit-content !important; max-width: 100% !important; } </style>
+                
+    
+            
+                
+                    <style> .code-container { border-radius: 6px !important; } </style>
+                
+    
+            
+                
+                    <style> figure.iseeu.highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body img { border: solid !important;} </style>
+                
+    
+            
+                
+                    <style> table { display:block !important; border-radius: 6px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:first-child, .markdown-body .tab-pane > table thead th:first-child { border-top-left-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+        <link href="" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font-meslo.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font-meslo.css" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font-meslo.css" rel="stylesheet">
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FC2D4F","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"},"title":{"enable":true,"family":"Meslo","url":"https://darkflamemasterdev.github.io/css/font-meslo.css"}},"content_max_width":"1200px","sidebar_width":"360px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#000","dark":"#fff"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    COFFEE FOR ME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                COFFEE FOR ME
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android - Handler原理" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Android - Handler原理</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-05-21 16:59:41</span>
+        <span class="mobile">2025-05-21 16:59:41</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-21 17:02:57</span>
+            <span class="mobile">2025-05-21 17:02:57</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Handler/">Handler</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ThreadLocal/">ThreadLocal</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="Handler的主要作用是收发消息和切线程"><a href="#Handler的主要作用是收发消息和切线程" class="headerlink" title="Handler的主要作用是收发消息和切线程"></a>Handler的主要作用是收发消息和切线程</h2><h3 id="功能一：收发消息"><a href="#功能一：收发消息" class="headerlink" title="功能一：收发消息"></a>功能一：收发消息</h3><h4 id="简单流程介绍"><a href="#简单流程介绍" class="headerlink" title="简单流程介绍"></a>简单流程介绍</h4><p><strong>希望你看完这篇文章后也可以把流程自己讲出来，并且每个环节还可以讲出很多细节</strong></p>
+<p>他的消息机制离不开Looper、MessageQueue</p>
+<ul>
+<li>其中 <code>Looper</code> 每个线程只能持有一个，主要负责循环查看 <code>MessageQueue</code> 里面是否有 <code>msg</code> 需要处理，并将需要处理的消息取出，交给 <code>Handler</code></li>
+<li><code>MessageQueue</code> 是负责存放消息的，数据结构是一个单链表，这样就可以方便地插入或删除 <code>msg</code></li>
+</ul>
+<p>具体流程一般是:</p>
+<ol>
+<li><p><code>Handler</code> 发送一条<code>msg</code> &#x3D;&gt; 本质是向<code>MessageQueue</code>里插入一条<code>msg</code>，插入时候的依据是<code>msg.when</code> &#x3D;&gt; <code>SystemClock.uptimeMillis() + delayMillis</code></p>
+</li>
+<li><p>这条<code>msg</code>被<code>MessageQueue.next()</code>返回并交给<code>Handler</code>去处理，<br><code>next()</code>会在有同步屏障（<code>msg.target==null</code>）的时候 遍历查找并返回 <code>最早的异步消息</code>，并在移除屏障后，从头取出并返回 同步消息</p>
+</li>
+</ol>
+<p>ps: 同步屏障就是在消息队列中插入一个屏障（<code>target = null</code> 的消息），插入之后，所有的同步消息都会被屏蔽，不能被执行，但是异步消息却不受影响，可以继续执行。</p>
+<ol start="3">
+<li><code>Handler.dispatchMessage(msg)</code>会优先处理<code>msg.callback</code>，如果<code>msg.callback</code>为空，就处理<code>Handler.mCallback</code>，然后处理是<code>msg</code>本身。</li>
+</ol>
+<p><code>msg.callback</code>是在调用<code>Handler.post(Runnable)</code>时，里面的<code>Runnable</code></p>
+<p><code>runOnUIThread</code>，<code>view.post(Runnable)</code>也用的是<code>Handler.post(Runnable)</code>，<code>Runnable</code>是一样的)</p>
+<p>这是在不新增<code>Handler</code>的情况下，另一种调用<code>Handler</code>的方式（如下）</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyHandlerCallBack</span>: <span class="type">Handler.Callback</span> &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">handleMessage</span><span class="params">(msg: <span class="type">Message</span>?)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    TODO(<span class="string">&quot;Not yet implemented&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>可以看到他也有<code>handleMessage</code>这个方法</p>
+<h4 id="Looper是个死循环"><a href="#Looper是个死循环" class="headerlink" title="Looper是个死循环"></a>Looper是个死循环</h4><h5 id="（1）死循环的目的"><a href="#（1）死循环的目的" class="headerlink" title="（1）死循环的目的"></a>（1）死循环的目的</h5><p>目的就是<strong>让主线程一直卡在这个死循环里面</strong></p>
+<p>因为Looper的作用就是<strong>在这个死循环里面取出消息，然后交给<code>Handler</code>处理</strong></p>
+<p>Android的生命周期，你了解的onCreate，onStop，onStart…… 等等都是由<code>Handler</code>来处理的，都是在这个死循环里面运行的</p>
+<p>所以什么<code>Looper</code>死循环卡死主线程怎么办？？？</p>
+<p>必须给我卡住！！！不卡住的话，消息就没法整了！！！</p>
+<p>看下Android启动的时候的源码<br><strong>Activitythread.java &gt;&gt; main()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        Looper.prepareMainLooper();</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">if</span> (sMainThreadHandler == <span class="literal">null</span>) &#123;</span><br><span class="line">            sMainThreadHandler = thread.getHandler();</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">        Looper.loop();</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Main thread loop unexpectedly exited&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>想想写java的时候，main最后一行执行完了，不就彻底玩完了嘛！！！</p>
+<h5 id="（2）死循环里干了啥"><a href="#（2）死循环里干了啥" class="headerlink" title="（2）死循环里干了啥"></a>（2）死循环里干了啥</h5><p>其实想都不用想，一直在看<code>MessageQueue</code>里面有没有消息呗，太简单了！</p>
+<p>咋看？</p>
+<p><strong>答：</strong> 调用<code>MessageQueue.next()</code></p>
+<p>看下源码 <strong>Looper.java &gt;&gt; loop()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (;;) &#123;</span><br><span class="line">     <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> queue.next(); <span class="comment">// might block</span></span><br><span class="line">     <span class="keyword">if</span> (msg == <span class="literal">null</span>) &#123;</span><br><span class="line">         <span class="comment">// No message indicates that the message queue is quitting.</span></span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     ... </span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">         msg.target.dispatchMessage(msg);</span><br><span class="line">         <span class="keyword">if</span> (observer != <span class="literal">null</span>) &#123;</span><br><span class="line">             observer.messageDispatched(token, msg);</span><br><span class="line">         &#125;</span><br><span class="line">         dispatchEnd = needEndTime ? SystemClock.uptimeMillis() : <span class="number">0</span>;</span><br><span class="line">     &#125; <span class="keyword">catch</span> (Exception exception) &#123;</span><br><span class="line">         <span class="keyword">if</span> (observer != <span class="literal">null</span>) &#123;</span><br><span class="line">             observer.dispatchingThrewException(token, msg, exception);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">throw</span> exception;</span><br><span class="line">     &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">         ThreadLocalWorkSource.restore(origWorkSource);</span><br><span class="line">         <span class="keyword">if</span> (traceTag != <span class="number">0</span>) &#123;</span><br><span class="line">             Trace.traceEnd(traceTag);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>很简单，<code>next()</code>返回<code>Message</code>，<code>msg.target.dispatchMessage()</code> 处理<code>Message</code></p>
+<p>但是队列里没消息就会返回null，这是错误的！！！具体往下看</p>
+<h4 id="MessageQueue是个单链表"><a href="#MessageQueue是个单链表" class="headerlink" title="MessageQueue是个单链表"></a>MessageQueue是个单链表</h4><h5 id="1-插队"><a href="#1-插队" class="headerlink" title="1.插队"></a>1.插队</h5><p><code>Handler</code>发消息的时候，目的就是对<code>msg</code>经过一系列操作，最终也只是调用<code>enqueueMessage</code>插入队列而已</p>
+<p>看下源码 <strong>Handler&gt;&gt;enqueueMessage()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">enqueueMessage</span><span class="params">(<span class="meta">@NonNull</span> MessageQueue queue, <span class="meta">@NonNull</span> Message msg,<span class="type">long</span> uptimeMillis)</span> &#123;</span><br><span class="line">    msg.target = <span class="built_in">this</span>;</span><br><span class="line">    msg.workSourceUid = ThreadLocalWorkSource.getUid();</span><br><span class="line">    <span class="keyword">if</span> (mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(<span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><code>return</code>直接调用Message的插入队列方法</p>
+<h5 id="2-出队"><a href="#2-出队" class="headerlink" title="2.出队"></a>2.出队</h5><p>出队就是<code>next()</code>方法，之前已经见过了</p>
+<h5 id="（1）时间顺序"><a href="#（1）时间顺序" class="headerlink" title="（1）时间顺序"></a>（1）时间顺序</h5><p><code>Message</code><strong>是按时间排序的</strong>，也就是<code>msg.when</code> &#x3D;&gt; <code>SystemClock.uptimeMillis() + delayMillis</code></p>
+<p><code>msg.when</code>是<code>Message</code>期望被处理的时间</p>
+<p><code>SystemClock.uptimeMillis()</code>是开机到现在的时间，<code>delayMills</code>是延迟时间，这个在<code>sendMessageDelayed</code>方法里直接可以直接传参</p>
+<p><code>next()</code>就是按照时间顺序处理<code>MessageQueue</code>里面的消息的</p>
+<p>但是<code>next()</code>里有个概念叫 <strong>同步屏障</strong></p>
+<h5 id="（2）同步屏障"><a href="#（2）同步屏障" class="headerlink" title="（2）同步屏障"></a>（2）同步屏障</h5><p><strong>同步屏障</strong>，就是说，平时<code>MessageQueue</code>都是处理同步消息，也就是按顺序来，一个个出队</p>
+<p><strong>同步屏障就是阻挡同步消息的意思</strong></p>
+<p>就是<code>msg.target == null</code> 的时候，<code>MessageQueue</code>就会去找<code>msg.isAsynchronous()</code>返回<code>true</code>的<code>msg</code></p>
+<p>is<strong>Async</strong>hronous，没错 <strong>!</strong> 这是异步消息，就是优先级很高，需要立刻执行的消息，比如：更新<code>View</code></p>
+<p>ps：<strong>同步屏障不会自动移除，使用完成之后需要手动移除，不然会造成同步消息无法处理</strong>。<br>通过removeSyncBarrier(int token)方法进行移除，token就是之前添加屏障时返回的token。</p>
+<h5 id="（3）阻塞"><a href="#（3）阻塞" class="headerlink" title="（3）阻塞"></a>（3）阻塞</h5><p>值得注意的是，讲Looper的时候，源码<code>next()</code>后面官方给我们注释了 <code>// might block</code>可能阻塞，也就是说可能这个<code>next()</code>也许会执行好久</p>
+<p><code>next()</code>会阻塞？，<strong>什么时候阻塞？</strong></p>
+<p><code>now &lt; msg.when</code>也就是时间还没到，期望时间大于现在的时间</p>
+<h5 id="（4）退出"><a href="#（4）退出" class="headerlink" title="（4）退出"></a>（4）退出</h5><p>另外看第一行，只有<code>ptr == 0</code>,才会返回<code>null</code></p>
+<p>所以上面才说<code>next()</code>不会因为没消息而返回<code>null</code>，原来返回<code>null</code>的时候在这呢！</p>
+<p>看下源码，<strong>MessageQueue.java &gt;&gt; next()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@UnsupportedAppUsage</span></span><br><span class="line">   Message <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="keyword">final</span> <span class="type">long</span> <span class="variable">ptr</span> <span class="operator">=</span> mPtr;</span><br><span class="line">       <span class="keyword">if</span> (ptr == <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">pendingIdleHandlerCount</span> <span class="operator">=</span> -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">nextPollTimeoutMillis</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nextPollTimeoutMillis != <span class="number">0</span>) &#123;</span><br><span class="line">               Binder.flushPendingCommands();</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           nativePollOnce(ptr, nextPollTimeoutMillis);</span><br><span class="line"></span><br><span class="line">           <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">               <span class="keyword">final</span> <span class="type">long</span> <span class="variable">now</span> <span class="operator">=</span> SystemClock.uptimeMillis();</span><br><span class="line">               <span class="type">Message</span> <span class="variable">prevMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">               <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> mMessages;</span><br><span class="line">               <span class="keyword">if</span> (msg != <span class="literal">null</span> &amp;&amp; msg.target == <span class="literal">null</span>) &#123;</span><br><span class="line">                   <span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></span><br><span class="line">                   <span class="keyword">do</span> &#123;</span><br><span class="line">                       prevMsg = msg;</span><br><span class="line">                       msg = msg.next;</span><br><span class="line">                   &#125; <span class="keyword">while</span> (msg != <span class="literal">null</span> &amp;&amp; !msg.isAsynchronous());</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (msg != <span class="literal">null</span>) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (now &lt; msg.<span class="keyword">when</span>) &#123;</span><br><span class="line">                       <span class="comment">// Next message is not ready.  Set a timeout to wake up when it is ready.</span></span><br><span class="line">                       nextPollTimeoutMillis = (<span class="type">int</span>) Math.min(msg.<span class="keyword">when</span> - now, Integer.MAX_VALUE);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   ...</span><br><span class="line">                       msg.next = <span class="literal">null</span>;</span><br><span class="line">                       <span class="keyword">if</span> (DEBUG) Log.v(TAG, <span class="string">&quot;Returning message: &quot;</span> + msg);</span><br><span class="line">                       msg.markInUse();</span><br><span class="line">                       <span class="keyword">return</span> msg;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="comment">// No more messages.</span></span><br><span class="line">                   nextPollTimeoutMillis = -<span class="number">1</span>;</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">               <span class="comment">// Process the quit message now that all pending messages have been handled.</span></span><br><span class="line">               <span class="keyword">if</span> (mQuitting) &#123;</span><br><span class="line">                   dispose();</span><br><span class="line">                   <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               ...</span><br><span class="line">           &#125;</span><br><span class="line">           ...</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>代码简略了还是有点多，别着急，慢慢看</p>
+<p>那<code>pre</code>什么时候就是<code>0</code>了呢？</p>
+<p>答：<code>quit()</code>了之后</p>
+<p>看下源码，<strong>Looper.java</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quit</span><span class="params">()</span> &#123;</span><br><span class="line">     mQueue.quit(<span class="literal">false</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">quitSafely</span><span class="params">()</span> &#123;</span><br><span class="line">     mQueue.quit(<span class="literal">true</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>可以看到只是一个传参不同而已</strong>，下面看看这个参数是干嘛的</p>
+<p>看下源码，<strong>MessageQueue.java &gt;&gt; quit()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">quit</span><span class="params">(<span class="type">boolean</span> safe)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (!mQuitAllowed) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Main thread not allowed to quit.&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (mQuitting) &#123;</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           mQuitting = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (safe) &#123;</span><br><span class="line">               removeAllFutureMessagesLocked();</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               removeAllMessagesLocked();</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="comment">// We can assume mPtr != 0 because mQuitting was previously false.</span></span><br><span class="line">           nativeWake(mPtr);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到，<code>safe == true</code>，就移除未来的<code>Message</code><br><code>safe == false</code>，就移除所有的<code>Message</code></p>
+<p><code>mQuiting</code>变成了<code>true</code>，记住他我们一会儿会用到</p>
+<p>而改变ptr的地方在这里</p>
+<p>在<code>next()</code>里面</p>
+<p>里面有个<code>dispose</code>，找不到可以<code>ctrl+F</code>找一下</p>
+<p>这里只有在<code>mQuiting == true</code>的时候，才会调用</p>
+<p>这就是改<code>mPtr</code>的地方，然后下次<code>next()</code>的时候就会返回<code>null</code>了</p>
+<h4 id="Handler流程"><a href="#Handler流程" class="headerlink" title="Handler流程"></a>Handler流程</h4><h5 id="（1）post过来的msg"><a href="#（1）post过来的msg" class="headerlink" title="（1）post过来的msg"></a>（1）post过来的msg</h5><p>我们已经知道了在<code>Looper</code>的死循环里面，会将<code>next()</code>返回的<code>msg</code>交给<code>Handler</code>,调用<code>dispatchMessage()</code></p>
+<p><code>dispatchMessage()</code>里面会先判断<code>msg</code>是不是被<code>post</code>过来的，因为<code>post</code>要执行的逻辑在<code>msg.callback</code>里面，<code>callback</code>是一个<code>Runnable</code>，这可能不是很好理解</p>
+<p>你可以想想<code>runOnUIThread(Runnable)</code>，这里的<code>Runnable</code>就是上面的<code>callback</code>，<br>他们都是调用了<code>Handler.post(Runnable)</code></p>
+<p>至于为啥起个名叫<code>callback</code>，我也纳闷儿</p>
+<h5 id="（2）send过来的msg"><a href="#（2）send过来的msg" class="headerlink" title="（2）send过来的msg"></a>（2）send过来的msg</h5><p>这些<code>msg</code>是会的逻辑是你重写的<code>handleMessage</code>那里的逻辑</p>
+<p>如果实现了<code>Handler.Callback</code>这个<code>Interface</code>，就会处理<code>mCallback</code>的<code>handleMessage</code><br>而不是<code>Handler</code>自己的<code>handleMessage</code></p>
+<p>这是一个优先级策略，没什么好奇怪的</p>
+<p>我们看下源码 &#x3D;&gt; <strong>Handler.java &gt;&gt; dispatchMessage()</strong></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dispatchMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (msg.callback != <span class="literal">null</span>) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (mCallback != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>这就是Handler的消息机制了</strong></p>
+<p>接下来我们讲讲<code>Handler</code>的另一个功能，切线程</p>
+<h3 id="功能二：切线程"><a href="#功能二：切线程" class="headerlink" title="功能二：切线程"></a>功能二：切线程</h3><p>Handler切线程使用的是<code>ThreadLocal</code></p>
+<h4 id="（1）ThreadLocal"><a href="#（1）ThreadLocal" class="headerlink" title="（1）ThreadLocal"></a>（1）ThreadLocal</h4><p><code>ThreadLocal</code>是线程里面的一个数据储存类，用法<strong>类似</strong><code>map</code>，<code>key</code>就是<code>thread</code></p>
+<p>但是他没有提供，根据<code>key</code>来找<code>ThreadLocal</code>的<code>Values</code>的方法，所以暴露的<code>api</code>就只能让你去<code>get</code>当前线程的<code>ThreadLocal</code>的<code>Values</code>对象而已，就是<code>key</code>——你自己没法作为参数传进去，只能是<code>currentThread</code></p>
+<p><strong>如果</strong>你没用过<code>ThreadLocal</code>，我给你举个例子</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> booleanThreadLocal = ThreadLocal&lt;<span class="built_in">Boolean</span>&gt;()</span><br><span class="line">    booleanThreadLocal.<span class="keyword">set</span>(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    println(<span class="string">&quot;in Thread[<span class="subst">$&#123;Thread.currentThread().name&#125;</span>] booleanThreadLocal value = <span class="subst">$&#123;booleanThreadLocal.get()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    thread(name = <span class="string">&quot;thread#001&quot;</span>) &#123;</span><br><span class="line">        booleanThreadLocal.<span class="keyword">set</span>(<span class="literal">false</span>)</span><br><span class="line">        println(<span class="string">&quot;in Thread[<span class="subst">$&#123;Thread.currentThread().name&#125;</span>] booleanThreadLocal value = <span class="subst">$&#123;booleanThreadLocal.get()&#125;</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    thread(name = <span class="string">&quot;thread#002&quot;</span>) &#123;</span><br><span class="line">        println(<span class="string">&quot;in Thread[<span class="subst">$&#123;Thread.currentThread().name&#125;</span>] booleanThreadLocal value = <span class="subst">$&#123;booleanThreadLocal.get()&#125;</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>结果</strong>是这样的：你可以自己运行看看</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">in Thread[main] booleanThreadLocal value = true</span><br><span class="line">in Thread[thread#001] booleanThreadLocal value = false</span><br><span class="line">in Thread[thread#002] booleanThreadLocal value = null</span><br></pre></td></tr></table></figure></div>
+<h4 id="（2）切线程的细节"><a href="#（2）切线程的细节" class="headerlink" title="（2）切线程的细节"></a>（2）切线程的细节</h4><p>话说回来，Handler怎么通过ThreadLocal切线程的呢？</p>
+<p>答案是：<code>Looper</code>是放在<code>ThreadLocal</code>里的</p>
+<p>回顾片头的流程，<code>Handler</code>将消息插入<code>MessageQueue</code>，然后<code>Looper</code>取出来，再还给<code>Handler</code>，这种设计不止是为了让<code>msg</code>可以按顺序处理，还可以让外部接口只有<code>Handler</code></p>
+<p>最关键的是，<code>Looper</code>跟<code>Handler</code>的触发关系只有<code>Looper</code>触发<code>Handler</code>，<code>Handler</code>不会触发<code>Looper</code></p>
+<p>因此<code>Handler</code>把消息放在<code>MessageQueue</code>之后，就在等着<code>Looper</code>来给自己派发任务（<code>msg</code>）</p>
+<p>举个例子：</p>
+<p><strong>线程A</strong>调用<strong>主线程</strong>的<code>Handler</code>发一个消息</p>
+<p><code>Handler</code>将这个消息插入<code>MessageQueue</code>，此时其实还在<strong>线程A</strong>里</p>
+<p>只有<code>Looper</code>在<code>next()</code>调用<code>msg.target.dispatchMessage()</code>时，就变成了<strong>主线程</strong>了</p>
+<p>仅仅是因为<code>Looper</code>在 <strong>主线程</strong> 而已</p>
+<h2 id="OVER"><a href="#OVER" class="headerlink" title="OVER"></a>OVER</h2>
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Android - Handler原理</li>
+        <li><strong>Author:</strong> lucas</li>
+        <li><strong>Created at
+                :</strong> 2025-05-21 16:59:41</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-21 17:02:57
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://darkflamemasterdev.github.io/2025/05/21/Android-Handler原理/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Android/">#Android</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Handler/">#Handler</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/ThreadLocal/">#ThreadLocal</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/27/Kotlin-data-class-被-gson-解析遇到的坑/" title="Kotlin data class 被 gson 解析遇到的坑" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Kotlin data class 被 gson 解析遇到的坑" class="!max-w-none">
+  <span class="title">Kotlin data class 被 gson 解析遇到的坑</span>
+</a><a class="recommended-article-item" href="/2023/12/06/Android自定义View01-事件分发原理/" title="Android自定义View01 - 事件分发原理" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android自定义View01 - 事件分发原理" class="!max-w-none">
+  <span class="title">Android自定义View01 - 事件分发原理</span>
+</a><a class="recommended-article-item" href="/2023/10/29/读《深入理解-kotlin-协程》-01-同步异步/" title="读《深入理解 kotlin 协程》- 01 同步异步" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="读《深入理解 kotlin 协程》- 01 同步异步" class="!max-w-none">
+  <span class="title">读《深入理解 kotlin 协程》- 01 同步异步</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/27/Kotlin-data-class-被-gson-解析遇到的坑/" title="Kotlin data class 被 gson 解析遇到的坑" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Kotlin data class 被 gson 解析遇到的坑" class="!max-w-none">
+  <span class="title">Kotlin data class 被 gson 解析遇到的坑</span>
+</a><a class="recommended-article-item" href="/2023/12/06/Android自定义View01-事件分发原理/" title="Android自定义View01 - 事件分发原理" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android自定义View01 - 事件分发原理" class="!max-w-none">
+  <span class="title">Android自定义View01 - 事件分发原理</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/05/19/Android-%E9%87%8C%E7%9A%84-IPC/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Android 里的 IPC</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Android - Handler原理</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%E6%98%AF%E6%94%B6%E5%8F%91%E6%B6%88%E6%81%AF%E5%92%8C%E5%88%87%E7%BA%BF%E7%A8%8B"><span class="nav-text">Handler的主要作用是收发消息和切线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%94%B6%E5%8F%91%E6%B6%88%E6%81%AF"><span class="nav-text">功能一：收发消息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="nav-text">简单流程介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looper%E6%98%AF%E4%B8%AA%E6%AD%BB%E5%BE%AA%E7%8E%AF"><span class="nav-text">Looper是个死循环</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%AD%BB%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-text">（1）死循环的目的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%87%8C%E5%B9%B2%E4%BA%86%E5%95%A5"><span class="nav-text">（2）死循环里干了啥</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MessageQueue%E6%98%AF%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-text">MessageQueue是个单链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%8F%92%E9%98%9F"><span class="nav-text">1.插队</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%87%BA%E9%98%9F"><span class="nav-text">2.出队</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%97%B6%E9%97%B4%E9%A1%BA%E5%BA%8F"><span class="nav-text">（1）时间顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%90%8C%E6%AD%A5%E5%B1%8F%E9%9A%9C"><span class="nav-text">（2）同步屏障</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E9%98%BB%E5%A1%9E"><span class="nav-text">（3）阻塞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E9%80%80%E5%87%BA"><span class="nav-text">（4）退出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler%E6%B5%81%E7%A8%8B"><span class="nav-text">Handler流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89post%E8%BF%87%E6%9D%A5%E7%9A%84msg"><span class="nav-text">（1）post过来的msg</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89send%E8%BF%87%E6%9D%A5%E7%9A%84msg"><span class="nav-text">（2）send过来的msg</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9A%E5%88%87%E7%BA%BF%E7%A8%8B"><span class="nav-text">功能二：切线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89ThreadLocal"><span class="nav-text">（1）ThreadLocal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%88%87%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-text">（2）切线程的细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OVER"><span class="nav-text">OVER</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">lucas</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        64 posts in total
+                    </span>
+                    
+                        <span>
+                            117.8k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.2/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>
