@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lucas">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/08/15/opengl-三角形/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 三角形">
+<meta property="og:url" content="http://example.com/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2023-08-15T14:31:41.000Z">
+<meta property="article:modified_time" content="2025-11-20T13:37:31.539Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            OpenGL 三角形 | DarkFlameMaster&#39;s blog
+        
+    </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+                
+    
+            
+                
+                    <style> .katex-block {border-radius: 6px !important; padding-left: 12px !important; padding-right: 12px !important; width: fit-content;border: dashed !important;} </style>
+                
+    
+            
+                
+                    <style> .home-banner-container { display: none !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                
+    
+            
+                
+                    <style> .code-container { border-radius: 6px !important; } </style>
+                
+    
+            
+                
+                    <style> figure.iseeu.highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body img { border: solid !important;} </style>
+                
+    
+            
+                
+                    <style> table { display:block !important; border-radius: 6px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:first-child, .markdown-body .tab-pane > table thead th:first-child { border-top-left-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"},"title":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"content_max_width":"1400px","sidebar_width":"360px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster’s Blog","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    COFFEE FOR ME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                COFFEE FOR ME
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 三角形" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">OpenGL 三角形</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-08-15 22:31:41</span>
+        <span class="mobile">2023-08-15 22:31:41</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-20 21:37:31</span>
+            <span class="mobile">2025-11-20 21:37:31</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="渲染管线">渲染管线</h2>
+<img src="/2023/08/15/OpenGL-三角形/Graphics_Pipeline.png" alt="Graphics-Pipeline.png"  class="article-image">
+<p>这是常见的渲染管线的图，每一步都以上一步的输出为输入，图形渲染管线接受一组3D坐标，然后把它们转变为你屏幕上的有色2D像素输出。</p>
+<ol>
+<li>
+<p>图形渲染管线的第一个部分是顶点着色器(Vertex Shader)，它把一个单独的顶点作为输入。</p>
+<p>顶点着色器主要的目的是把3D坐标转为另一种3D坐标，同时顶点着色器允许我们对顶点属性进行一些基本处理。</p>
+</li>
+<li>
+<p>图元装配(Primitive Assembly)阶段将顶点着色器输出的所有顶点作为输入（如果是GL_POINTS，那么就是一个顶点），并所有的点装配成指定图元的形状；本节例子中是一个三角形。</p>
+</li>
+<li>
+<p>图元装配阶段的输出会传递给几何着色器(Geometry Shader)。几何着色器把图元形式的一系列顶点的集合作为输入，它可以通过产生新顶点构造出新的（或是其它的）图元来生成其他形状。例子中，它生成了另一个三角形。</p>
+</li>
+<li>
+<p>几何着色器的输出会被传入光栅化阶段(Rasterization Stage)，这里它会把图元映射为最终屏幕上相应的<code>像素</code>，生成供片段着色器(Fragment Shader)使用的<code>片段(Fragment)</code>。在片段着色器运行之前会执行<code>裁切(Clipping)</code>。裁切会丢弃超出你的视图以外的所有像素，用来提升执行效率。</p>
+<p>OpenGL中的一个片段是OpenGL渲染一个像素所需的所有数据。</p>
+</li>
+<li>
+<p>片段着色器的主要目的是<code>计算一个像素的最终颜色</code>，这也是所有OpenGL高级效果产生的地方。通常，片段着色器包含3D场景的数据（比如光照、阴影、光的颜色等等），这些数据可以被用来计算最终像素的颜色。</p>
+</li>
+<li>
+<p>在所有对应颜色值确定以后，最终的对象将会被传到最后一个阶段，我们叫做<code>Alpha测试和混合(Blending)阶段</code>。这个阶段检测片段的对应的深度（和模板(Stencil)）值，用它们来判断这个像素是其它物体的前面还是后面，决定是否应该丢弃。这个阶段也会检查<code>alpha值（alpha值定义了一个物体的透明度）</code>并对物体进行混合(Blend)。所以，即使在片段着色器中计算出来了一个像素输出的颜色，在渲染多个三角形的时候最后的像素颜色也可能完全不同。</p>
+</li>
+</ol>
+<h2 id="看代码之前">看代码之前</h2>
+<p>看代码之前我们要明确怎么写</p>
+<ol>
+<li>我们要初始化我们使用的工具, 比如：glfw</li>
+<li>创建一个窗口，并为窗口注册事件监听，后面的绘制都在这个窗口上操作</li>
+<li>编译着色器
+<ul>
+<li>编译顶点着色器</li>
+<li>编译片段着色器</li>
+</ul>
+</li>
+<li>生成 program，链接着色器</li>
+<li>绑定 VAO，VBO，或者以后还可能有 EBO，并设置他们的参数</li>
+<li>循环中绘制图形</li>
+</ol>
+<h2 id="代码">代码</h2>
+<p><code>hello_triangle.h</code>👇</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> OPENGL_ENVIRONMENT_TEST_HELLO_TRIANGLE_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OPENGL_ENVIRONMENT_TEST_HELLO_TRIANGLE_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// GLAD is used to manage Open GL function pointers</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glad/glad.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GLFW/glfw3.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WINDOW_WIDTH 800</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WINDOW_HEIGHT 800</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WINDOW_TITLE <span class="string">&quot;lucas-opengl&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hello_triangle</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">create_a_triangle</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">draw_frame</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shaderProgram, <span class="type">unsigned</span> <span class="type">int</span> VAO)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">processInput</span><span class="params">(GLFWwindow *window)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">framebuffer_size_callback</span><span class="params">(GLFWwindow *window, <span class="type">int</span> width, <span class="type">int</span> height)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">init_glfw</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> GLFWwindow *<span class="title">create_glfw_window</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">check_shader</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shader, <span class="type">const</span> string &amp;type)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">check_program</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shaderProgram)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">//OPENGL_ENVIRONMENT_TEST_HELLO_TRIANGLE_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><code>hello_triangle.cpp</code>👇</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;hello_triangle.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">hello_triangle::create_a_triangle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">init_glfw</span>();</span><br><span class="line"></span><br><span class="line">    GLFWwindow *window = <span class="built_in">create_glfw_window</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (window == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set the context of our window to the main context of the current thread</span></span><br><span class="line">    <span class="built_in">glfwMakeContextCurrent</span>(window);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// glfwGetProcAddress is the function GLFW get Open GL pointer</span></span><br><span class="line">    <span class="comment">// check if GLAD can use the glfw function in order to initialize GLAD</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">gladLoadGLLoader</span>((GLADloadproc) glfwGetProcAddress)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;failed to initialize GLAD&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">glfwTerminate</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注册 framebuffer_size_callback</span></span><br><span class="line">    <span class="built_in">glfwSetFramebufferSizeCallback</span>(window, framebuffer_size_callback);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ********************* 编译着色器 ****************************</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *vertexShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line">                                     <span class="string">&quot;layout (location = 0) in vec3 aPos;\n&quot;</span></span><br><span class="line">                                     <span class="string">&quot;void main()&#123;\n&quot;</span></span><br><span class="line">                                     <span class="string">&quot;   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n&quot;</span></span><br><span class="line">                                     <span class="string">&quot;&#125;\0&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *fragmentShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line">                                       <span class="string">&quot;out vec4 FragColor;\n&quot;</span></span><br><span class="line">                                       <span class="string">&quot;void main()&#123;\n&quot;</span></span><br><span class="line">                                       <span class="string">&quot;    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n&quot;</span></span><br><span class="line">                                       <span class="string">&quot;&#125;\0&quot;</span>;</span><br><span class="line">    <span class="comment">// vertex shader</span></span><br><span class="line">    <span class="comment">// create a shader</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> vertexShader = <span class="built_in">glCreateShader</span>(GL_VERTEX_SHADER);</span><br><span class="line">    <span class="built_in">glShaderSource</span>(vertexShader, <span class="number">1</span>, &amp;vertexShaderSource, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">glCompileShader</span>(vertexShader);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// check if the vertexShader compiled successfully</span></span><br><span class="line">    <span class="built_in">check_shader</span>(vertexShader, <span class="string">&quot;GL_VERTEX_SHADER&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fragment shader</span></span><br><span class="line">    <span class="comment">// create a shader</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> fragmentShader = <span class="built_in">glCreateShader</span>(GL_FRAGMENT_SHADER);</span><br><span class="line">    <span class="built_in">glShaderSource</span>(fragmentShader, <span class="number">1</span>, &amp;fragmentShaderSource, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">glCompileShader</span>(fragmentShader);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// check if the fragmentShader compiled successfully</span></span><br><span class="line">    <span class="built_in">check_shader</span>(fragmentShader, <span class="string">&quot;GL_FRAGMENT_SHADER&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ********************* 链接着色器，编译 program ****************************</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> shaderProgram = <span class="built_in">glCreateProgram</span>();</span><br><span class="line">    <span class="built_in">glAttachShader</span>(shaderProgram, vertexShader);</span><br><span class="line">    <span class="built_in">glAttachShader</span>(shaderProgram, fragmentShader);</span><br><span class="line">    <span class="built_in">glLinkProgram</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// check if the program compiled successfully</span></span><br><span class="line">    <span class="built_in">check_program</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// delete shader</span></span><br><span class="line">    <span class="built_in">glDeleteShader</span>(vertexShader);</span><br><span class="line">    <span class="built_in">glDeleteShader</span>(fragmentShader);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// ********************************************************************************</span></span><br><span class="line"> <span class="comment">// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">float</span> vertices[] = &#123;</span><br><span class="line">            <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">            <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">            <span class="number">0.0f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> VAO, VBO;</span><br><span class="line">    <span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br><span class="line">    <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;VBO);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.绑定 VAO</span></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line">    <span class="comment">// 2.绑定 VBO</span></span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">    <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line">    <span class="comment">// 3.设置 Attribute</span></span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span> *) <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// ********************************************************************************</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute&#x27;s bound vertex buffer object so afterward we can safely unbind</span></span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// You can unbind the VAO afterward so other VAO calls won&#x27;t accidentally modify this VAO, but this rarely happens. Modifying other</span></span><br><span class="line">    <span class="comment">// VAOs requires a call to glBindVertexArray , so we generally don&#x27;t unbind VAOs (nor VBOs) when it&#x27;s not directly necessary.</span></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">glfwWindowShouldClose</span>(window)) &#123;</span><br><span class="line">        <span class="built_in">processInput</span>(window);</span><br><span class="line">        <span class="built_in">draw_frame</span>(shaderProgram, VAO);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 交换 Buffer</span></span><br><span class="line">        <span class="built_in">glfwSwapBuffers</span>(window);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的回调函数（可以通过回调方法手动设置）</span></span><br><span class="line">        <span class="built_in">glfwPollEvents</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放/删除之前的分配的所有资源</span></span><br><span class="line">    <span class="built_in">glfwTerminate</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * initialize glfw</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::init_glfw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// glfw initialize</span></span><br><span class="line">    <span class="built_in">glfwInit</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Use OpenGL 3.3 version</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// GLFW use core profile</span></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// MacOS specific code</span></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * create_glfw_window and check</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">GLFWwindow *<span class="title">hello_triangle::create_glfw_window</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Create a windows</span></span><br><span class="line">    GLFWwindow *window = <span class="built_in">glfwCreateWindow</span>(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Check if the window is created successfully</span></span><br><span class="line">    <span class="keyword">if</span> (window == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;failed to create GLFW window&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">glfwTerminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> window;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 回调函数，在窗口大小调整的时候，调整 ViewPort 的大小</span></span><br><span class="line"><span class="comment"> * @param window</span></span><br><span class="line"><span class="comment"> * @param width</span></span><br><span class="line"><span class="comment"> * @param height</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::framebuffer_size_callback</span><span class="params">(GLFWwindow *window, <span class="type">int</span> width, <span class="type">int</span> height)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检测是否有按键输入</span></span><br><span class="line"><span class="comment"> * 如果按下了 esc 就设置当前窗口应该退出</span></span><br><span class="line"><span class="comment"> * @param window</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::processInput</span><span class="params">(GLFWwindow *window)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) &#123;</span><br><span class="line">        <span class="built_in">glfwSetWindowShouldClose</span>(window, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::check_shader</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shader, <span class="type">const</span> string &amp;type)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> success;</span><br><span class="line">    <span class="type">char</span> infoLog[<span class="number">512</span>];</span><br><span class="line">    <span class="built_in">glGetShaderiv</span>(shader, GL_COMPILE_STATUS, &amp;success);</span><br><span class="line">    <span class="keyword">if</span> (!success) &#123;</span><br><span class="line">        <span class="built_in">glGetShaderInfoLog</span>(shader, <span class="number">512</span>, <span class="literal">NULL</span>, infoLog);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ERROR::SHADER:: &quot;</span> &lt;&lt; type &lt;&lt; <span class="string">&quot; ::COMPILATION_FAILED\n&quot;</span> &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::check_program</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shaderProgram)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> success;</span><br><span class="line">    <span class="type">char</span> infoLog[<span class="number">512</span>];</span><br><span class="line">    <span class="built_in">glGetProgramiv</span>(shaderProgram, GL_LINK_STATUS, &amp;success);</span><br><span class="line">    <span class="keyword">if</span> (!success) &#123;</span><br><span class="line">        <span class="built_in">glGetProgramInfoLog</span>(shaderProgram, <span class="number">512</span>, <span class="literal">NULL</span>, infoLog);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;ERROR::shaderProgram::COMPILATION_FAILED\n&quot;</span> &lt;&lt; infoLog &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::draw_frame</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shaderProgram, <span class="type">unsigned</span> <span class="type">int</span> VAO)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置调用 clear 所使用的颜色</span></span><br><span class="line">    <span class="built_in">glClearColor</span>(<span class="number">0.2f</span>, <span class="number">0.3f</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空屏幕</span></span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// draw our first triangle</span></span><br><span class="line">    <span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// seeing as we only have a single VAO there&#x27;s no need to bind it every time, but we&#x27;ll do so to keep things a bit more organized</span></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line">    <span class="built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="代码讲解">代码讲解</h2>
+<p>对比上次的代码，这次多了不少，除了一些代码结构的改动，剩下的主要是在于</p>
+<h3 id="1-编译着色器">1. 编译着色器</h3>
+<p><code>第 29 到 59 行</code></p>
+<p>这里是编译着色器</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ********************* 编译着色器 ****************************</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *vertexShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line">                                 <span class="string">&quot;layout (location = 0) in vec3 aPos;\n&quot;</span></span><br><span class="line">                                 <span class="string">&quot;void main()&#123;\n&quot;</span></span><br><span class="line">                                 <span class="string">&quot;   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n&quot;</span></span><br><span class="line">                                 <span class="string">&quot;&#125;\0&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *fragmentShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line">                                   <span class="string">&quot;out vec4 FragColor;\n&quot;</span></span><br><span class="line">                                   <span class="string">&quot;void main()&#123;\n&quot;</span></span><br><span class="line">                                   <span class="string">&quot;    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n&quot;</span></span><br><span class="line">                                   <span class="string">&quot;&#125;\0&quot;</span>;</span><br><span class="line"><span class="comment">// vertex shader</span></span><br><span class="line"><span class="comment">// create a shader</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> vertexShader = <span class="built_in">glCreateShader</span>(GL_VERTEX_SHADER);</span><br><span class="line"><span class="built_in">glShaderSource</span>(vertexShader, <span class="number">1</span>, &amp;vertexShaderSource, <span class="literal">nullptr</span>);</span><br><span class="line"><span class="built_in">glCompileShader</span>(vertexShader);</span><br><span class="line"></span><br><span class="line"><span class="comment">// check if the vertexShader compiled successfully</span></span><br><span class="line"><span class="built_in">check_shader</span>(vertexShader, <span class="string">&quot;GL_VERTEX_SHADER&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// fragment shader</span></span><br><span class="line"><span class="comment">// create a shader</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> fragmentShader = <span class="built_in">glCreateShader</span>(GL_FRAGMENT_SHADER);</span><br><span class="line"><span class="built_in">glShaderSource</span>(fragmentShader, <span class="number">1</span>, &amp;fragmentShaderSource, <span class="literal">NULL</span>);</span><br><span class="line"><span class="built_in">glCompileShader</span>(fragmentShader);</span><br><span class="line"></span><br><span class="line"><span class="comment">// check if the fragmentShader compiled successfully</span></span><br><span class="line"><span class="built_in">check_shader</span>(fragmentShader, <span class="string">&quot;GL_FRAGMENT_SHADER&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+<p>这里定义了两个着色器源代码</p>
+<h4 id="1-1-顶点着色器源码-GLSL">1.1 顶点着色器源码 GLSL</h4>
+<p><code>layout (location = 0) in vec3 aPos;</code></p>
+<p>这里是<code>in</code>代表输入，类型是 vec3 ，含有 3 个值的向量，同时设置了<code>location=0</code>的位置值</p>
+<p><code>gl_position</code>为输出，是一种图元类型，类型为 vec4 ，四个分量分别是 gl_position.x , gl_position.y , gl_position.z , gl_position.w ，xyz 是坐标量，w 是到相机的距离（这个以后再研究）</p>
+<p>vec 最多有 4 个分量，通过后缀可以看出来</p>
+<h4 id="1-2-片段着色器源码-GLSL">1.2 片段着色器源码 GLSL</h4>
+<p><code>out vec4 FragColor</code></p>
+<p><code>out</code>代表输出，<code>FragColor</code>类型是 vec4，四个分量分别是 red , green , blue , alpha(透明度)</p>
+<p>每个值的范围都是 0-1，float</p>
+<h4 id="1-3-编译操作">1.3 编译操作</h4>
+<p>我们先调用<code>glCreateShader(GL_VERTEX_SHADER)</code>创建一个<code>GL_VERTEX_SHADER</code>类型的着色器，并返回句柄</p>
+<p>在调用<code>glShaderSource</code>来指定着色器源代码</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">glShaderSource</span><span class="params">(GLuint shader, GLsizei count, <span class="type">const</span> GLchar **string, <span class="type">const</span> GLint *length)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<p>这个函数帮我们把多个字符串拼接成一整个源代码，以便编译</p>
+<blockquote>
+<p>这个函数有四个参数，第一个是我们上一行创建的<code>shader</code>的句柄，第二个是字符串的数量（因为有可能我们会编译多个<code>shader</code>，如果这些<code>shader</code>的某些源代码是一样的，我们就可以将这部分写成共用的，减少字符串冗余），第三个是字符串数组的起始指针（也就是数组的起始地址，如果只有一个字符串，只需传入这个字符串的首地址即可），最后一个是结束编译源代码的结束标志（这里也是一个指针类型，要求传入一个长度为第二个参数<code>count</code>的整形数组，为了给每个字符串设置长度限制，如果整形数组里有负数，对应字符串以空字符为结束标志，如果这里直接传入<code>NULL</code>那么所有字符串都以空字符为结束标志）</p>
+</blockquote>
+<p><code>glCompileShader</code>就是编译源代码的过程，我们可以通过<code>glGetShaderiv</code>来检查是否编译成功</p>
+<blockquote>
+<p>ps : 片段着色器创建的时候，和顶点着色器填写的类型不同，为<code>GL_FRAGMENT_SHADER</code></p>
+</blockquote>
+<h3 id="2-生成-program，链接着色器">2. 生成 program，链接着色器</h3>
+<p><code>第 61 到 72 行</code></p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> shaderProgram = <span class="built_in">glCreateProgram</span>();</span><br><span class="line"><span class="built_in">glAttachShader</span>(shaderProgram, vertexShader);</span><br><span class="line"><span class="built_in">glAttachShader</span>(shaderProgram, fragmentShader);</span><br><span class="line"><span class="built_in">glLinkProgram</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line"><span class="comment">// check if the program compiled successfully</span></span><br><span class="line"><span class="built_in">check_program</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line"><span class="comment">// delete shader</span></span><br><span class="line"><span class="built_in">glDeleteShader</span>(vertexShader);</span><br><span class="line"><span class="built_in">glDeleteShader</span>(fragmentShader);</span><br></pre></td></tr></table></figure></div>
+<p>这里我们需要将编译好的着色器链接到一个可执行的程序，以便后续一键执行</p>
+<p>这里和上面是一样的，我们需要调用一个<code>create</code>函数，来创建一个<code>program</code>，并拿到他的句柄</p>
+<p><code>glAttachShader</code>是用来着色器附到<code>program</code>上面</p>
+<p><code>glLinkProgram</code>是用来将他们链接起来，这步操作会生成着色器对应的可执行文件</p>
+<p>同样我们可以使用<code>glGetProgramiv</code>来检验是否链接成功</p>
+<p>然后，我们链接成功了，编译好的<code>Shader</code>就没用了，可以直接删除了</p>
+<p>直接调用<code>glDelete</code>将它删除</p>
+<h3 id="3-VAO-和-VBO">3. VAO 和 VBO</h3>
+<ul>
+<li>
+<p>顶点数组对象：<code>Vertex Array Object，VAO</code></p>
+<p><code>VAO</code> 存储顶点属性（vertex attributes）的调用，这个有点抽象，我们后面详细讲解。</p>
+</li>
+<li>
+<p>顶点缓冲对象：<code>Vertex Buffer Object，VBO</code></p>
+<p><code>VBO</code> 存储顶点本身，是为了一次性向 <code>GPU</code> 传输大量顶点，因为从 <code>CPU</code> 往 <code>GPU</code> 发送数据是相对慢的。</p>
+</li>
+</ul>
+<p><code>第 74 到 102 行</code></p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ********************************************************************************</span></span><br><span class="line"><span class="comment">// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> vertices[] = &#123;</span><br><span class="line">        <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">        <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">        <span class="number">0.0f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> VAO, VBO;</span><br><span class="line"><span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br><span class="line"><span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;VBO);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.绑定 VAO</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="comment">// 2.绑定 VBO</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 3.设置 Attribute</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span> *) <span class="literal">nullptr</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// ********************************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute&#x27;s bound vertex buffer object so afterward we can safely unbind</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can unbind the VAO afterward so other VAO calls won&#x27;t accidentally modify this VAO, but this rarely happens. Modifying other</span></span><br><span class="line"><span class="comment">// VAOs requires a call to glBindVertexArray , so we generally don&#x27;t unbind VAOs (nor VBOs) when it&#x27;s not directly necessary.</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></div>
+<p>这里定义了 <code>vertices</code> 也就是顶点，为了说明三角形的位置</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> vertices[] = &#123;</span><br><span class="line">     <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">     <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">     <span class="number">0.0f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span></span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure></div>
+<p>这里是 3D 坐标，所以最后一个都是 0</p>
+<p>图形大概长这样</p>
+<img src="/2023/08/15/OpenGL-三角形/triangle0.png" alt="triangle0.png"  class="article-image">
+<h4 id="3-1-VBO-和-顶点缓冲对象">3.1 VBO 和 顶点缓冲对象</h4>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绑定 VBO</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure></div>
+<p><code>glBind</code>来绑定 <code>VAO</code> 和 <code>VBO</code></p>
+<p><code>glBufferData</code> 会把之前定义的顶点数据复制到缓冲的内存中，所以这个函数只能在绑定了 VBO 之后调用</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 它的第一个参数是目标缓冲的类型：顶点缓冲对象当前绑定到GL_ARRAY_BUFFER目标上。</span></span><br><span class="line"><span class="comment"> * 第二个参数指定传输数据的大小(以字节为单位)；用一个简单的`sizeof`计算出顶点数据大小就行。</span></span><br><span class="line"><span class="comment"> * 第三个参数是我们希望发送的实际数据。</span></span><br><span class="line"><span class="comment"> * 第四个参数指定了我们希望显卡如何管理给定的数据。它有三种形式：</span></span><br><span class="line"><span class="comment"> * - GL_STATIC_DRAW ：数据不会或几乎不会改变。</span></span><br><span class="line"><span class="comment"> * - GL_DYNAMIC_DRAW：数据会被改变很多。</span></span><br><span class="line"><span class="comment"> * - GL_STREAM_DRAW ：数据每次绘制时都会改变。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 三角形的位置数据不会改变，每次渲染调用时都保持原样，所以它的使用类型最好是GL_STATIC_DRAW。</span></span><br><span class="line"><span class="comment"> * 如果，比如说一个缓冲中的数据将频繁被改变，那么使用的类型就是GL_DYNAMIC_DRAW或GL_STREAM_DRAW，这样就能确保显卡把数据放在能够高速写入的内存部分。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">glBufferData</span><span class="params">(GLenum target, GLsizeiptr size, <span class="type">const</span> GLvoid * data, GLenum usage)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<h4 id="3-2-VAO-和-顶点属性">3.2 VAO 和 顶点属性</h4>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绑定 VAO</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br></pre></td></tr></table></figure></div>
+<p>我们之前说的了—— <code>VAO</code> 存储顶点属性（vertex attributes）的调用，我们使用 <a class="link"   target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/#_2" >learn-opengl<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 的图来解释一下</p>
+<img src="/2023/08/15/OpenGL-三角形/VAO.png" alt="VAO.png"  class="article-image">
+<p>可以看到 <code>VAO</code> 里面都是 <code>pointer</code> ，我们将一开始写的那个 <code>float</code> 数组存放在 <code>VBO</code> 里面，然后调用 <code>glVertexAttribPointer</code> 进行设置属性调用指针（从函数名里的 <code>pointer</code> 就能看出来）</p>
+<p>接下来我们来看这个 <code>glVertexAttribPointer</code> 函数：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span> *) <span class="literal">nullptr</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * index : 指定要修改的通用顶点属性的索引，还记得我们一开始 vertices 里填写的 location 吗，就是这个数。</span></span><br><span class="line"><span class="comment"> * size : 指定每个顶点属性的向量大小。，就个属性一次读取几个数，vec3类型 就填写 3 就行。</span></span><br><span class="line"><span class="comment"> * type : 指定数组中每个组件的数据类型，直接填写 GL_FLOAT。</span></span><br><span class="line"><span class="comment"> * normalized : 是否标准化，填写 GL_TRUE 会让显卡帮我们把点映射到 0~1 之间（因为这里我们写的是 unsigned），如果我们写的是有符号的数，则会被限制在 -1~1 之间，</span></span><br><span class="line"><span class="comment"> * 所以我们这里填写 GL_FALSE</span></span><br><span class="line"><span class="comment"> * stride : 步长（步幅），指定连续通顶点属性之间的字节偏移量。显然我们下一组顶点数据在 3 个 float 之后，所以我们直接 sizeof 3 个 float</span></span><br><span class="line"><span class="comment"> * pointer : 这里是位置数据偏移量，就是开始读取的位置，由于是从头开始，我们可以直接写 0（C++ 新标准 写的是 nullptr）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, <span class="type">const</span> <span class="type">void</span> *pointer)</span><br></pre></td></tr></table></figure></div>
+<p>这样我们的顶点属性就设置好了，最后调用一句<code>glEnableVertexAttribArray(0);</code>让这个<code>location</code>为<code>0</code>的定点生效（激活）</p>
+<blockquote>
+<p>每个顶点属性从一个<code>VBO</code>管理的内存中获得它的数据，而具体是从哪个<code>VBO</code>（程序中可以有多个<code>VBO</code>）</p>
+<p>获取则是通过在调用<code>glVertexAttribPointer</code>时绑定到<code>GL_ARRAY_BUFFER</code>的VBO决定的。</p>
+<p>由于在调用<code>glVertexAttribPointer</code>之前绑定的是先前定义的<code>VBO</code>对象，顶点属性<code>0</code>现在会链接到它的顶点数据。</p>
+</blockquote>
+<h4 id="3-3-解绑">3.3 解绑</h4>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></div>
+<p>然后我们就可以解绑 <code>VAO</code> 和 <code>VBO</code> 了，可以看到，我们希望 <code>VAO</code> 和 <code>VBO</code> 对应起来，就需要绑定并设置他们，然后再解绑</p>
+<p>在后面我们需要调用 VAO 来绘制的时候，也是这样</p>
+<p>绑定 -&gt; 操作 -&gt; 解绑</p>
+<p>只不过这是只有一个<code>VAO</code>，没有切换到其他<code>VAO</code>的需求，所以我们没必要不断绑定再解绑，但如果写了解绑其实更加标准，更加完整。</p>
+<h3 id="4-开始绘制">4. 开始绘制</h3>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (!<span class="built_in">glfwWindowShouldClose</span>(window)) &#123;</span><br><span class="line">    <span class="built_in">processInput</span>(window);</span><br><span class="line">    <span class="built_in">draw_frame</span>(shaderProgram, VAO);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 交换 Buffer</span></span><br><span class="line">    <span class="built_in">glfwSwapBuffers</span>(window);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的回调函数（可以通过回调方法手动设置）</span></span><br><span class="line">    <span class="built_in">glfwPollEvents</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放/删除之前的分配的所有资源</span></span><br><span class="line"><span class="built_in">glfwTerminate</span>();</span><br></pre></td></tr></table></figure></div>
+<p>这里我们用一个循环不断执行绘制流程，这个上篇文章就讲过，我们这里尤其讲一下这个<code>draw_frame</code></p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">hello_triangle::draw_frame</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> shaderProgram, <span class="type">unsigned</span> <span class="type">int</span> VAO)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置调用 clear 所使用的颜色</span></span><br><span class="line">    <span class="built_in">glClearColor</span>(<span class="number">0.2f</span>, <span class="number">0.3f</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空屏幕</span></span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// draw our first triangle</span></span><br><span class="line">    <span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// seeing as we only have a single VAO there&#x27;s no need to bind it every time, but we&#x27;ll do so to keep things a bit more organized</span></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line">    <span class="built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>我们这里中看下最后四行代码</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// draw our first triangle</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"></span><br><span class="line"><span class="comment">// seeing as we only have a single VAO there&#x27;s no need to bind it every time, but we&#x27;ll do so to keep things a bit more organized</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="built_in">glDrawArrays</span>(GL_TRIANGLES, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></div>
+<p>可以看到在调用了<code>glUseProgram</code>之后，和之前说的一样，绑定 -&gt; 绘制 -&gt; 解绑</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * mode : 渲染的图元类型，我们这里指定的是 GL_TRIANGLES（三角形）</span></span><br><span class="line"><span class="comment"> * first : 起始索引</span></span><br><span class="line"><span class="comment"> * count : 一共绘制几个顶点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">glDrawArrays</span><span class="params">(GLenum mode, GLint first, GLsizei count)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<p>到这里，三角形应该就会出现在你的屏幕上了</p>
+<img src="/2023/08/15/OpenGL-三角形/result.png" alt="result.png"  class="article-image">
+<p>开始欢呼吧！！！🎉🎉🎉</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> OpenGL 三角形</li>
+        <li><strong>作者:</strong> Lucas</li>
+        <li><strong>创建于
+                :</strong> 2023-08-15 22:31:41</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-20 21:37:31
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://darkflamemasterdev.github.io/2023/08/15/OpenGL-三角形/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/OpenGL/">#OpenGL</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/09/02/OpenGL-%E5%A4%9A%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/" title="OpenGL 多个三角形" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 多个三角形" class="!max-w-none">
+  <span class="title">OpenGL 多个三角形</span>
+</a><a class="recommended-article-item" href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/" title="OpenGL 窗口" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 窗口" class="!max-w-none">
+  <span class="title">OpenGL 窗口</span>
+</a><a class="recommended-article-item" href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/" title="OpenGL on Mac 环境" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL on Mac 环境" class="!max-w-none">
+  <span class="title">OpenGL on Mac 环境</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/09/02/OpenGL-%E5%A4%9A%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2/" title="OpenGL 多个三角形" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 多个三角形" class="!max-w-none">
+  <span class="title">OpenGL 多个三角形</span>
+</a><a class="recommended-article-item" href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/" title="OpenGL 窗口" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 窗口" class="!max-w-none">
+  <span class="title">OpenGL 窗口</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2023/08/17/%E5%BE%AE%E6%98%9F-4060-%E4%B8%87%E5%9B%BE%E5%B8%88-8G-%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">微星 4060 万图师 8G 游戏设置</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">OpenGL 窗口</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">OpenGL 三角形</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF"><span class="nav-text">渲染管线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%8B%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%89%8D"><span class="nav-text">看代码之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3"><span class="nav-text">代码讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BC%96%E8%AF%91%E7%9D%80%E8%89%B2%E5%99%A8"><span class="nav-text">1. 编译着色器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%E6%BA%90%E7%A0%81-GLSL"><span class="nav-text">1.1 顶点着色器源码 GLSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E7%89%87%E6%AE%B5%E7%9D%80%E8%89%B2%E5%99%A8%E6%BA%90%E7%A0%81-GLSL"><span class="nav-text">1.2 片段着色器源码 GLSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E7%BC%96%E8%AF%91%E6%93%8D%E4%BD%9C"><span class="nav-text">1.3 编译操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%94%9F%E6%88%90-program%EF%BC%8C%E9%93%BE%E6%8E%A5%E7%9D%80%E8%89%B2%E5%99%A8"><span class="nav-text">2. 生成 program，链接着色器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-VAO-%E5%92%8C-VBO"><span class="nav-text">3. VAO 和 VBO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-VBO-%E5%92%8C-%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%AF%B9%E8%B1%A1"><span class="nav-text">3.1 VBO 和 顶点缓冲对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-VAO-%E5%92%8C-%E9%A1%B6%E7%82%B9%E5%B1%9E%E6%80%A7"><span class="nav-text">3.2 VAO 和 顶点属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E8%A7%A3%E7%BB%91"><span class="nav-text">3.3 解绑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BC%80%E5%A7%8B%E7%BB%98%E5%88%B6"><span class="nav-text">4. 开始绘制</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lucas</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 65 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>

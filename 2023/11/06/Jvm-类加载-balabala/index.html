@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lucas">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/11/06/jvm-类加载-balabala/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jvm 类加载 balabala">
+<meta property="og:url" content="http://example.com/2023/11/06/Jvm-%E7%B1%BB%E5%8A%A0%E8%BD%BD-balabala/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2023-11-06T00:38:37.000Z">
+<meta property="article:modified_time" content="2025-11-20T12:54:51.746Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Jvm">
+<meta property="article:tag" content="kotlin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Jvm 类加载 balabala | DarkFlameMaster&#39;s blog
+        
+    </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+                
+    
+            
+                
+                    <style> .katex-block {border-radius: 6px !important; padding-left: 12px !important; padding-right: 12px !important; width: fit-content;border: dashed !important;} </style>
+                
+    
+            
+                
+                    <style> .home-banner-container { display: none !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                
+    
+            
+                
+                    <style> .code-container { border-radius: 6px !important; } </style>
+                
+    
+            
+                
+                    <style> figure.iseeu.highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body img { border: solid !important;} </style>
+                
+    
+            
+                
+                    <style> table { display:block !important; border-radius: 6px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:first-child, .markdown-body .tab-pane > table thead th:first-child { border-top-left-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"},"title":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"content_max_width":"1400px","sidebar_width":"360px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster’s Blog","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    COFFEE FOR ME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                COFFEE FOR ME
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Jvm 类加载 balabala" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Jvm 类加载 balabala</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-11-06 08:38:37</span>
+        <span class="mobile">2023-11-06 08:38:37</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-20 20:54:51</span>
+            <span class="mobile">2025-11-20 20:54:51</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Jvm/">Jvm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>本文大量挪用 <a class="link"   target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/6055" >我竟然被” 双亲委派” 给虐了！-HollisChuang’s Blog<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>
+如果可以还请看原文，原文写的非常好！！！强烈建议观看原文并点赞<br>
+并且全网写得比较全的，我找了好几篇，基本都是抄的这个文章！！！</p>
+<p>另外<code>juejin</code>某篇 <a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7218916720324182071" >双亲委派机制（奥利给干就完了）<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 也是我写的，我正在慢慢把<code>juejin</code>里写过的文章慢慢倒过来。。。</p>
+<h2 id="起因">起因</h2>
+<p>起因是因为某实习期的同事，在写代码的时候，写了大量<code>static</code>代码，导致启动缓慢</p>
+<p>因为<code>kotlin</code>去掉了<code>static</code>关键字，所以很多人在使用的时候会写入很多<code>static</code>代码</p>
+<p>趁此机会我输出一篇关于类加载的文章</p>
+<h2 id="看类加载器">看类加载器</h2>
+<h4 id="1-启动类加载器（Bootstrap-Class-Loader）">1. 启动类加载器（Bootstrap Class Loader）</h4>
+<details class="red" data-header-exclude>
+    <summary><i class="fa-solid fa-chevron-right"></i>启动类加载器（Bootstrap Class Loader）点击查看更多 </summary>
+    <div class='content markdown-body'>
+      <p>启动类加载器（Bootstrap Class Loader）是<code>Java</code>类加载器体系中的最顶层加载器，也是类加载器中最特殊的一个。它负责加载<code>Java</code>核心库，如<code>java.lang</code>等核心类，以及其他基础类库。以下是关于启动类加载器的详细讲解：</p>
+<ol>
+<li>
+<p>实现和特点：</p>
+<ul>
+<li>启动类加载器通常是由<code>Java</code>虚拟机的实现提供的，并不是一个普通的<code>Java</code>类。</li>
+<li>它位于<code>JVM</code>内部，不是<code>Java</code>代码实现的，因此不能通过<code>Java</code>代码直接访问或自定义。</li>
+<li>启动类加载器是<code>Java</code>类加载器体系的最顶层，没有父加载器。</li>
+</ul>
+</li>
+<li>
+<p>加载范围：</p>
+<ul>
+<li>启动类加载器负责加载<code>Java</code>核心类库，这些类位于<code>JVM</code>的核心运行时环境中，如<code>java.lang</code>、<code>java.util</code>等核心包中的类。</li>
+<li>启动类加载器加载的类是所有<code>Java</code>应用程序共享的，它们具有最高的优先级。</li>
+</ul>
+</li>
+<li>
+<p>加载过程：</p>
+<ul>
+<li>启动类加载器的加载过程不同于其他类加载器。它是<code>JVM</code>启动时自行加载的，不经过类路径（Classpath）的搜索。<br>
+-<code>JVM</code>内部的实现机制确保了核心类库的加载，因此无需自定义加载逻辑或自定义类加载器。</li>
+</ul>
+</li>
+<li>
+<p>安全性：</p>
+<ul>
+<li>启动类加载器的主要目的是确保<code>Java</code>核心库的安全性和完整性，防止用户自定义的类或恶意代码覆盖核心类库。</li>
+<li>由于启动类加载器不经过类路径的搜索，这样可以防止用户通过自定义的类加载器来加载核心类库的替代版本。</li>
+</ul>
+</li>
+<li>
+<p>自定义类加载器和扩展类加载器：</p>
+<ul>
+<li>虽然不能自定义或修改启动类加载器，但可以自定义类加载器，并通过它加载应用程序自身的类和资源。</li>
+<li>扩展类加载器（Extension Class Loader）位于启动类加载器和应用程序类加载器之间，它可以加载位于扩展类路径中的类。</li>
+</ul>
+</li>
+</ol>
+<p>总之，启动类加载器是Java类加载器体系中的顶层加载器，负责加载<code>Java</code>核心类库，确保核心类库的安全性和完整性。它是<code>Java</code>虚拟机的一部分，不需要自定义或修改，通常由<code>JVM</code>的实现提供。这个加载器的存在有助于保持<code>Java</code>的安全性和稳定性。</p>
+
+    </div>
+  </details>
+<h4 id="2-扩展类加载器（Extension-Class-Loader）">2. 扩展类加载器（Extension Class Loader）</h4>
+<details class="pink" data-header-exclude>
+    <summary><i class="fa-solid fa-chevron-right"></i>扩展类加载器（Extension Class Loader）点击查看更多 </summary>
+    <div class='content markdown-body'>
+      <p>扩展类加载器（Extension Class Loader）是<code>Java</code>类加载器体系中的一个重要组成部分，位于应用程序类加载器（Application Class Loader）之上，负责加载<code>Java</code>的扩展库和用户自定义的扩展类。以下是关于扩展类加载器的详细讲解：</p>
+<ol>
+<li>
+<p>实现和层次结构：</p>
+<ul>
+<li>扩展类加载器通常由<code>Java</code>类<code>sun.misc.Launcher$ExtClassLoader</code>实现。</li>
+<li>它是应用程序类加载器的父加载器，属于类加载器体系中的第二层。</li>
+<li>扩展类加载器是纯<code>Java</code>代码实现的，相对于启动类加载器来说更容易理解和扩展。</li>
+</ul>
+</li>
+<li>
+<p>加载范围：</p>
+<ul>
+<li>扩展类加载器主要负责加载<code>Java</code>的扩展库，这些库包括位于<code>&lt;JAVA_HOME&gt;/lib/ext</code>目录下的JAR文件和用户自定义的扩展类库。</li>
+<li>用户可以将自己编写的扩展类放置在扩展类库目录中，然后扩展类加载器就可以加载它们。</li>
+</ul>
+</li>
+<li>
+<p>扩展类库目录：</p>
+<ul>
+<li>扩展类加载器搜索扩展类库的目录通常位于<code>&lt;JAVA_HOME&gt;/lib/ext</code>，这个目录包含了<code>Java</code>的标准扩展库。</li>
+<li>用户可以通过<code>Java</code>系统属性<code>java.ext.dirs</code>来指定其他扩展类库目录，以加载自定义扩展类。</li>
+</ul>
+</li>
+<li>
+<p>加载过程：</p>
+<ul>
+<li>当需要加载一个类时，扩展类加载器首先会检查是否已经加载了该类。如果已经加载，它直接返回类的<code>Class</code>对象。</li>
+<li>如果尚未加载该类，扩展类加载器尝试加载它。首先，它询问自己的父加载器（应用程序类加载器）是否能够加载。只有在父加载器无法加载时，扩展类加载器才会尝试加载。</li>
+</ul>
+</li>
+<li>
+<p>用户自定义扩展类：</p>
+<ul>
+<li>用户可以创建自定义的扩展类，并将它们放置在扩展类库目录中。</li>
+<li>这些自定义扩展类可以用于扩展<code>Java</code>的功能，例如添加自定义的API或功能。</li>
+</ul>
+</li>
+<li>
+<p>使用场景：</p>
+<ul>
+<li>扩展类加载器通常用于加载与<code>Java</code>平台相关的扩展库，以及用户自定义的扩展类。这些库和类通常不包含在<code>Java</code>核心库中，但可以为特定应用或环境提供有用的功能。</li>
+</ul>
+</li>
+</ol>
+<p>总之，扩展类加载器是<code>Java</code>类加载器体系中的一个重要组成部分，用于加载<code>Java</code>的扩展库和用户自定义的扩展类。它的存在有助于扩展<code>Java</code>平台的功能，同时保持类加载的层次结构和隔离性。用户可以通过将自定义扩展类放置在扩展类库目录中来扩展<code>Java</code>的功能，而不需要修改核心类库或创建自定义类加载器。</p>
+
+    </div>
+  </details>
+<h4 id="3-应用程序类加载器（Application-Class-Loader）">3. 应用程序类加载器（Application Class Loader）</h4>
+<details class="orange" data-header-exclude>
+    <summary><i class="fa-solid fa-chevron-right"></i>应用程序类加载器（Application Class Loader）点击查看更多 </summary>
+    <div class='content markdown-body'>
+      <p>应用程序类加载器（Application Class Loader），也称为系统类加载器，是Java类加载器中的一个重要组成部分。它主要负责加载应用程序中的类，包括用户编写的类和第三方库，通常是位于类路径（Classpath）上的类。以下是关于应用程序类加载器的详细讲解：</p>
+<ol>
+<li>
+<p>实现和层次结构：</p>
+<ul>
+<li>应用程序类加载器是由<code>Java</code>虚拟机提供的，通常由Java类<code>sun.misc.Launcher$AppClassLoader</code>实现。</li>
+<li>它属于类加载器体系中的一级，是双亲委派模型中的中间层，其父加载器是扩展类加载器（Extension Class Loader），并且它的父加载器没有固定的<code>Java</code>类来实现。</li>
+</ul>
+</li>
+<li>
+<p>加载范围：</p>
+<ul>
+<li>应用程序类加载器负责加载应用程序的类，包括主程序和应用程序所依赖的第三方库。</li>
+<li>它搜索的类路径包括环境变量<code>CLASSPATH</code>指定的目录，以及<code>Java</code>虚拟机启动时通过命令行参数指定的类路径。</li>
+</ul>
+</li>
+<li>
+<p>加载过程：</p>
+<ul>
+<li>当应用程序需要加载一个类时，应用程序类加载器首先检查是否已经加载了该类。如果已经加载，它直接返回类的<code>Class</code>对象。</li>
+<li>如果尚未加载该类，应用程序类加载器会尝试加载它。首先，它询问扩展类加载器是否能够加载，如果扩展类加载器也无法加载，最终由应用程序类加载器自行尝试加载。</li>
+</ul>
+</li>
+<li>
+<p>自定义类加载器：</p>
+<ul>
+<li>应用程序类加载器可以作为自定义类加载器的父加载器，这意味着开发人员可以通过自定义类加载器来扩展或修改类加载的行为。</li>
+<li>自定义类加载器通常继承自<code>ClassLoader</code>类，并重写<code>findClass</code>方法以实现自定义的加载逻辑。</li>
+</ul>
+</li>
+<li>
+<p>安全性和隔离：</p>
+<ul>
+<li>应用程序类加载器有助于实现类加载的隔离和安全性。不同的Java应用程序可以有不同的应用程序类加载器，它们加载的类互相隔离，不会相互影响。</li>
+<li>这有助于防止不同应用程序之间的类冲突，确保每个应用程序都能够独立加载并执行其自己的类。</li>
+</ul>
+</li>
+</ol>
+<p>总之，应用程序类加载器是<code>Java</code>类加载器体系中的一个重要组成部分，它负责加载应用程序中的类，包括用户编写的类和第三方库。它的工作遵循双亲委派模型，有助于保持类的一致性和安全性，并支持类加载的隔离和独立性。</p>
+
+    </div>
+  </details>
+<h4 id="4-自定义类加载器（Custom-Class-Loader）">4. 自定义类加载器（Custom Class Loader）</h4>
+<details class="green" data-header-exclude>
+    <summary><i class="fa-solid fa-chevron-right"></i>自定义类加载器（Custom Class Loader）点击查看更多 </summary>
+    <div class='content markdown-body'>
+      <p>自定义类加载器（Custom Class Loader）是<code>Java</code>类加载机制的一个重要部分，允许开发人员根据特定需求创建自定义加载逻辑，以加载类或资源。自定义类加载器通常用于特殊的场景，如加载加密的类文件、动态生成类、热部署等。以下是关于自定义类加载器的详细讲解：</p>
+<ol>
+<li>
+<p>实现自定义类加载器：</p>
+<ul>
+<li>要实现自定义类加载器，需要创建一个<code>Java</code>类，该类应该继承自<code>ClassLoader</code>类，并重写其中的方法，尤其是<code>findClass</code>方法。<code>findClass</code>方法负责加载指定名称的类字节码，并将其转换为<code>Class</code>对象。</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClassLoader</span> <span class="keyword">extends</span> <span class="title class_">ClassLoader</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="comment">// 加载类的字节码并转换为Class对象的逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li>
+<p>加载逻辑：</p>
+<ul>
+<li>在<code>findClass</code>方法中，您需要实现加载类的逻辑，通常是从特定位置加载类文件的字节码。</li>
+<li>您可以从文件系统、网络、数据库或其他来源加载字节码。</li>
+<li>加载的字节码需要经过类加载器转换成<code>Class</code>对象。</li>
+</ul>
+</li>
+<li>
+<p>父加载器：</p>
+<ul>
+<li>自定义类加载器通常会有一个父加载器，可以是应用程序类加载器或其他自定义类加载器。您可以在构造函数中指定父加载器，也可以使用系统类加载器作为默认父加载器。</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">MyClassLoader</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(); <span class="comment">// 使用系统类加载器作为父加载器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li>
+<p>使用场景：</p>
+<ul>
+<li>自定义类加载器可用于许多场景，包括动态代码生成、插件化架构、热部署、安全沙盒等。</li>
+<li>例如，Web应用程序容器（如Tomcat）使用自定义类加载器来隔离不同Web应用程序的类加载，以防止类冲突。</li>
+</ul>
+</li>
+<li>
+<p>安全性和隔离：</p>
+<ul>
+<li>自定义类加载器的一个重要作用是实现类加载的隔离，防止不同类加载器加载的类相互干扰。</li>
+<li>每个自定义类加载器加载的类都在其加载范围内，不会影响其他类加载器加载的类。</li>
+</ul>
+</li>
+<li>
+<p>类加载器层次结构：</p>
+<ul>
+<li>自定义类加载器可以作为类加载器层次结构的一部分，可以根据需要创建多个自定义类加载器，形成类加载器的层次结构。</li>
+</ul>
+</li>
+<li>
+<p>安全性和权限：</p>
+<ul>
+<li>自定义类加载器可以设置安全策略和权限控制，以确保加载的类或资源遵循安全规则。</li>
+</ul>
+</li>
+</ol>
+<p>总之，自定义类加载器是<code>Java</code>类加载机制的灵活部分，允许开发人员根据具体需求实现自定义加载逻辑。自定义类加载器通常继承自<code>ClassLoader</code>类，重写<code>findClass</code>方法来实现加载逻辑，同时可以实现加载的隔离和安全性。这些特性使自定义类加载器在特殊场景下非常有用。</p>
+
+    </div>
+  </details>
+<h2 id="分析-static-类加载">分析 static 类加载</h2>
+<ol>
+<li>
+<p>静态变量（Static Variables）：</p>
+<ul>
+<li>静态变量是属于类而不是对象的成员变量。它们在类加载时被初始化，且只会初始化一次。</li>
+<li>静态变量的初始化通常发生在类加载的初始化阶段，这是类加载的一个子阶段。初始化是在类加载时执行的代码块，用来初始化静态变量。</li>
+<li>静态变量的值在整个应用程序中是共享的，可以通过类名访问，而不需要创建类的实例。</li>
+</ul>
+</li>
+<li>
+<p>静态方法（Static Methods）：</p>
+<ul>
+<li>
+<p>静态方法也属于类而不是对象。它们在类加载时被加载到内存中，并且不需要类的实例来调用。</p>
+</li>
+<li>
+<p>静态方法可以在类加载时执行一些初始化工作，例如初始化静态变量，或执行其他与类相关的操作。</p>
+</li>
+<li>
+<p>静态方法通常用于工具类或辅助方法，不需要与特定的实例关联。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>所以他会在加载类的时候，把静态成员执行加载</p>
+<h2 id="双亲委派机制是什么">双亲委派机制是什么</h2>
+<p>当一个<code>ClassLoader</code>收到了 类加载的请求 的时候，他不会直接去加载指定的类，而是把这个请求 委托给自己的 父加载器 去加载。只有父加载器 无法加载这个类的时候，才会由 当前这个加载器 来负责类的加载。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>什么情况下父加载器会无法加载某一个类呢？</p>
+
+    </div>
+    <div class="notel-content markdown-body">
+      <p>也就是说，一个用户自定义的类，是永远不会被<code>Bootstrap ClassLoader</code> <code>Extension ClassLoader</code>加载的<br>
+但是一个用户自定义的类，他也会被一直委托到<code>Bootstrap ClassLoader</code>，但是因为<code>Bootstrap ClassLoader</code>不负责加载该类，那么会再由<code>Extension ClassLoader</code>尝<br>
+试加载，而<code>Extension ClassLoader</code>也不负责这个类的加载，最终才会被<code>Application ClassLoader</code>加载。</p>
+
+    </div>
+  </div>
+<h3 id="为什么需要双亲委派？">为什么需要双亲委派？</h3>
+<p>首先，<code>通过委派的方式，可以避免类的重复加载</code>，当父加载器已经加载过某一个类时，子加载器就不会再重新加载这个类。</p>
+<p>另外，<code>通过双亲委派的方式，还保证了安全性</code>。</p>
+<p>因为<code>Bootstrap ClassLoader</code>在加载的时候，只会加载<code>JAVA_HOME</code>中的<code>jar</code>包里面的类，如<code>java.lang.Integer</code>，那么这个类是不会被随意替换的。</p>
+<p>除非有人跑到你的机器上， 在你的应用启动前破坏你的<code>JDK</code>，<br>
+如果他在<code>JDK</code>已经启动的时候破坏你的<code>JDK</code>，因为你已经用<code>Bootstrap ClassLoader</code>加载了类，所以并不影响 ，所以只有从启动前对<code>JDK</code>搞破坏才可以。</p>
+<h3 id="“父子加载器”-之间的关系是继承吗？">“父子加载器” 之间的关系是继承吗？</h3>
+<p>很多人看到父加载器、子加载器这样的名字，就会认为<code>Java</code>中的类加载器之间存在着继承关系。</p>
+<p>甚至网上很多文章也会有类似的错误观点。</p>
+<blockquote>
+<p>这里需要明确一下，双亲委派模型中，类加载器之间的父子关系一般不会以继承（Inheritance）的关系来实现，而是都使用组合（Composition）关系来复用父加载器的代码的。</p>
+</blockquote>
+<p>如下为 ClassLoader 中父加载器的定义：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">ClassLoader</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The parent class loader for delegation</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ClassLoader parent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="双亲委派是怎么实现的？">双亲委派是怎么实现的？</h3>
+<p>双亲委派模型对于保证<code>Java</code>程序的稳定运作很重要，但它的实现并不复杂。</p>
+<p>实现双亲委派的代码都集中在<code>java.lang.ClassLoader</code>的<code>loadClass()</code>方法之中：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="type">boolean</span> resolve)</span><br><span class="line">    <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 第一步，先检查类是否已经被加载过 </span></span><br><span class="line">        Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</span><br><span class="line">        </span><br><span class="line">            <span class="comment">// 第二步，若没有加载则调用父加载器的 loadClass() 方法进行加载</span></span><br><span class="line">            <span class="type">long</span> <span class="variable">t0</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (parent != <span class="literal">null</span>) &#123;</span><br><span class="line">                    c = parent.loadClass(name, <span class="literal">false</span>);</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               </span><br><span class="line">                   <span class="comment">// 第三步，若父加载器为空则默认使用 Bootstrap ClassLoader 作为父加载器 </span></span><br><span class="line">                   c = findBootstrapClassOrNull(name);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">               <span class="comment">// 第四步，如果父类加载失败，抛出 ClassNotFoundException 异常</span></span><br><span class="line">               <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">               <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</span><br><span class="line">               <span class="comment">// 第五步，如果前面都失败，再调用自己的 findclass() </span></span><br><span class="line">               <span class="type">long</span> <span class="variable">t1</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">               c = findClass(name);</span><br><span class="line">               <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">               PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">               PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">               PerfCounter.getFindClasses().increment();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">           resolveClass(c);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> c;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>代码不难理解，主要就是以下几个步骤：</p>
+<ol>
+<li>先检查类是否已经被加载过</li>
+<li>若没有加载则调用父加载器的<code>loadClass()</code>方法进行加载</li>
+<li>若父加载器为空则默认使用<code>Bootstrap ClassLoader</code>作为父加载器</li>
+<li>如果父类加载失败，抛出<code>ClassNotFoundException</code>异常</li>
+<li>上一步如果失败，再调用自己的<code>findClass()</code>方法进行加载。</li>
+</ol>
+<h3 id="如何主动破坏双亲委派机制？">如何主动破坏双亲委派机制？</h3>
+<p>知道了双亲委派模型的实现，那么想要破坏双亲委派机制就很简单了。</p>
+<p>因为他的双亲委派过程都是在 loadClass 方法中实现的，那么<code>想要破坏这种机制，那么就自定义一个类加载器，重写其中的 loadClass 方法，使其不进行双亲委派即可。</code></p>
+<h3 id="loadClass（）、findClass（）、defineClass（）区别">loadClass（）、findClass（）、defineClass（）区别</h3>
+<p><code>ClassLoader</code>中和类加载有关的方法有很多，前面提到了<code>loadClass</code>，除此之外，还有<code>findClass</code>和<code>defineClass</code>等，那么这几个方法有什么区别呢？</p>
+<p><code>loadClass()</code><br>
+就是主要进行类加载的方法，默认的双亲委派机制就实现在这个方法中，重写这个方法可以破坏双亲委派机制。</p>
+<p><code>findClass()</code><br>
+根据名称或位置加载<code>.class</code>字节码</p>
+<p><code>definclass()</code><br>
+把<code>.class</code>字节码转化为<code>Class</code></p>
+<p>这里面需要展开讲一下<code>loadClass</code>和<code>findClass</code>，我们前面说过，当我们想要自定义一个类加载器的时候，并且想破坏双亲委派原则时，我们会重写<code>loadClass</code>方法。</p>
+<blockquote>
+<p>那么，如果我们想定义一个类加载器，但是不想破坏双亲委派模型的时候呢？</p>
+</blockquote>
+<p>这时候，就可以继承<code>ClassLoader</code>，并且重写<code>findClass</code>方法。<code>findClass()</code>方法是<code>JDK1.2</code>之后的<code>ClassLoader</code>新添加的一个方法。</p>
+<blockquote>
+<p>这是显而易见的，<code>ClassLoader</code>是一个抽象类，并且<code>findClass(String name)</code>是一个没有具体实现的方法，并且在上面我们看到了<code>loadClass()</code>里面调用了<code>findClass()</code></p>
+</blockquote>
+<img src="/2023/11/06/Jvm-类加载-balabala/类加载 01.png" alt="类加载 01.png"  class="article-image">
+<blockquote>
+<p>如图：这个方法只抛出了一个异常，没有默认实现。</p>
+<p><code>JDK1.2</code>之后已不再提倡用户直接覆盖<code>loadClass()</code>方法，而是建议把自己的类加载逻辑实现到<code>findClass()</code>方法中。</p>
+<p>因为在<code>loadClass()</code>方法的逻辑里，如果父类加载器加载失败，则会调用自己的<code>findClass()</code>方法来完成加载。</p>
+</blockquote>
+<p>所以，如果你想定义一个自己的类加载器，并且要遵守双亲委派模型，那么可以继承<code>ClassLoader</code>，并且在<code>findClass()</code>中实现你自己的加载逻辑即可。</p>
+<h3 id="双亲委派被破坏的例子">双亲委派被破坏的例子</h3>
+<p>双亲委派机制的破坏不是什么稀奇的事情，很多框架、容器等都会破坏这种机制来实现某些功能。</p>
+<ol>
+<li>
+<p>第一种被破坏的情况是在双亲委派出现之前。<br>
+由于双亲委派模型是在<code>JDK1.2</code>之后才被引入的，而在这之前已经有用户自定义类加载器在用了。所以，这些是没有遵守双亲委派原则的。</p>
+</li>
+<li>
+<p>第二种，是 JNDI、JDBC 等需要加载 SPI 接口实现类的情况。</p>
+</li>
+<li>
+<p>第三种是为了实现热插拔热部署工具。<br>
+为了让代码动态生效而无需重启，实现方式时把模块连同类加载器一起换掉就实现了代码的热替换。</p>
+</li>
+<li>
+<p>tomcat 等 web 容器的出现。</p>
+</li>
+<li>
+<p>OSGI、Jigsaw 等模块化技术的应用。</p>
+</li>
+</ol>
+<h3 id="为什么-JNDI，JDBC-等需要破坏双亲委派？">为什么 JNDI，JDBC 等需要破坏双亲委派？</h3>
+<p>我们日常开发中，大多数时候会通过<code>API</code>的方式调用<code>Java</code>提供的那些基础类，这些基础类时被<code>Bootstrap</code>加载的。</p>
+<p>但是，调用方式除了<code>API</code>之外，还有一种<code>SPI</code>的方式。</p>
+<p>如典型的<code>JDBC</code>服务，我们通常通过以下方式创建数据库连接：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/mysql&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;1234&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+<p>在以上代码执行之前，<code>DriverManager</code>会先被类加载器加载，因为<code>java.sql.DriverManager</code>类是位于<code>rt.jar</code>下面的 ，所以他会被<code>Bootstrap ClassLoader</code>加载。</p>
+<p>类加载时，会执行该类的静态方法。其中有一段关键的代码是：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</span><br></pre></td></tr></table></figure></div>
+<p>这段代码，会尝试加载<code>classpath</code>下面的所有实现了<code>Driver</code>接口的实现类。</p>
+<p>那么，问题就来了。</p>
+<blockquote>
+<p><code>DriverManager</code>是被<code>Bootstrap ClassLoader</code>加载的，那么在加载时遇到以上代码，会尝试加载所有<code>Driver</code>的实现类，但是这些实现类基本都是第三方提供的，根据双亲委派原则，第三方的类不能<code>Bootstrap ClassLoader</code>加载。</p>
+</blockquote>
+<p>那么，怎么解决这个问题呢？</p>
+<p>于是，就在<code>JDBC</code>中通过引入<code>ThreadContextClassLoader</code>（线程上下文加载器，默认情况下是<code>ApplicationClassLoader</code>）的方式破坏了双亲委派原则。</p>
+<p>我们深入到<code>ServiceLoader.load</code>方法就可以看到：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;S&gt; ServiceLoader&lt;S&gt; <span class="title function_">load</span><span class="params">(Class&lt;S&gt; service)</span> &#123;</span><br><span class="line">    <span class="type">ClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> Thread.currentThread().getContextClassLoader();</span><br><span class="line">    <span class="keyword">return</span> ServiceLoader.load(service, cl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>第一行，获取当前线程的线程上下⽂类加载器<code>ApplicationClassLoader</code>，⽤于加载<code>classpath</code>中的具体实现类。</p>
+<blockquote>
+<p>说实话，我没怎么深入了解过<code>JDBC</code>，这一段没看太懂</p>
+</blockquote>
+<h3 id="为什么-Tomcat-要破坏双亲委派">为什么 Tomcat 要破坏双亲委派</h3>
+<p>我们知道，Tomcat 是 web 容器，那么一个 web 容器可能需要部署多个应用程序。</p>
+<p>不同的应用程序可能会依赖同一个第三方类库的不同版本，但是不同版本的类库中某一个类的全路径名可能是一样的。</p>
+<p>如多个应用都要依赖<code>lucas.jar</code>，但是 A 应用需要依赖<code>1.0.0</code>版本，但是 B 应用需要依赖<code>1.0.1</code>版本。这两个版本中都有一个类是<code>com.lucas.Test.class</code>。</p>
+<p><strong>如果采用默认的双亲委派类加载机制，那么是无法加载多个相同的类。</strong></p>
+<p>所以，<code>Tomcat</code>破坏双亲委派原则，提供隔离的机制，为每个<code>web 容器</code>单独提供一个<code>WebAppClassLoader</code>加载器。</p>
+<p><code>Tomcat</code>的类加载机制：为了实现隔离性，优先加载<code>Web 应用自己定义的类</code>，所以没有遵照双亲委派的约定，每一个应用自己的类加载器——<code>WebAppClassLoader</code>负责加载本身的目录下的<code>class</code>文件，加载不到时再交给<code>CommonClassLoader</code>加载，这和双亲委派刚好相反。</p>
+<h3 id="模块化技术与类加载机制">模块化技术与类加载机制</h3>
+<p>近几年模块化技术已经很成熟了，在 JDK 9 中已经应用了模块化的技术。</p>
+<blockquote>
+<p>其实早在<code>JDK 9</code>之前，<code>OSGI</code>这种框架已经是模块化的了，而<code>OSGI</code>之所以能够实现模块热插拔和模块内部可见性的精准控制都归结于其特殊的类加载机制，加载器之间的关系不再是双亲委派模型的树状结构，而是发展成复杂的网状结构。</p>
+</blockquote>
+<img src="/2023/11/06/Jvm-类加载-balabala/类加载 2.png" alt="image.png"  class="article-image">
+<blockquote>
+<p>在<code>JDK</code>中，双亲委派也不是绝对的了。</p>
+</blockquote>
+<p>在<code>JDK9</code>之前，<code>JVM</code>的基础类以前都是在<code>rt.jar</code>这个包里，这个包也是<code>JRE</code>运行的基石。</p>
+<p>这不仅是违反了单一职责原则，同样程序在编译的时候会将很多无用的类也一并打包，造成臃肿。</p>
+<p>在<code>JDK9</code>中，整个<code>JDK</code>都基于模块化进行构建，以前的<code>rt.jar</code>,<code>tool.jar</code>被拆分成数十个模块，编译的时候只编译实际用到的模块，同时各个类加载器各司其职，只加载自己负责的模块。</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; c = findLoadedClass(cn);</span><br><span class="line"><span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// 找到当前类属于哪个模块</span></span><br><span class="line">    <span class="type">LoadedModule</span> <span class="variable">loadedModule</span> <span class="operator">=</span> findLoadedModule(cn);</span><br><span class="line">    <span class="keyword">if</span> (loadedModule != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">//获取当前模块的类加载器</span></span><br><span class="line">        <span class="type">BuiltinClassLoader</span> <span class="variable">loader</span> <span class="operator">=</span> loadedModule.loader();</span><br><span class="line">        <span class="comment">//进行类加载</span></span><br><span class="line">        c = findClassInModuleOrNull(loadedModule, cn);</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="comment">// 找不到模块信息才会进行双亲委派</span></span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="literal">null</span>) &#123;</span><br><span class="line">              c = parent.loadClassOrNull(cn);</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="总结">总结</h3>
+<p>… 没有总结</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Jvm 类加载 balabala</li>
+        <li><strong>作者:</strong> Lucas</li>
+        <li><strong>创建于
+                :</strong> 2023-11-06 08:38:37</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-20 20:54:51
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://darkflamemasterdev.github.io/2023/11/06/Jvm-类加载-balabala/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/kotlin/">#kotlin</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Java/">#Java</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Jvm/">#Jvm</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/" title="阅读 Retrofit 源码" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="!max-w-none">
+  <span class="title">阅读 Retrofit 源码</span>
+</a><a class="recommended-article-item" href="/2025/04/08/java-static-%E5%92%8C-kotlin-%E7%9A%84-object/" title="kotlin 中的 java static" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 中的 java static" class="!max-w-none">
+  <span class="title">kotlin 中的 java static</span>
+</a><a class="recommended-article-item" href="/2025/03/18/kotlin-%E7%9A%84-class-java-%E5%92%8C-javaClass/" title="kotlin 的 ::class.java 和 .javaClass" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 的 ::class.java 和 .javaClass" class="!max-w-none">
+  <span class="title">kotlin 的 ::class.java 和 .javaClass</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/" title="阅读 Retrofit 源码" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="!max-w-none">
+  <span class="title">阅读 Retrofit 源码</span>
+</a><a class="recommended-article-item" href="/2025/04/08/java-static-%E5%92%8C-kotlin-%E7%9A%84-object/" title="kotlin 中的 java static" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 中的 java static" class="!max-w-none">
+  <span class="title">kotlin 中的 java static</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2023/11/06/Kotlin-%E6%89%8B%E5%8A%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">Kotlin 手动环境配置</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2023/10/29/%E8%AF%BB%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-kotlin-%E5%8D%8F%E7%A8%8B%E3%80%8B-01-%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">读《深入理解 kotlin 协程》- 01 同步异步</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">Jvm 类加载 balabala</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">看类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88Bootstrap-Class-Loader%EF%BC%89"><span class="nav-text">1. 启动类加载器（Bootstrap Class Loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%89%A9%E5%B1%95%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88Extension-Class-Loader%EF%BC%89"><span class="nav-text">2. 扩展类加载器（Extension Class Loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88Application-Class-Loader%EF%BC%89"><span class="nav-text">3. 应用程序类加载器（Application Class Loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88Custom-Class-Loader%EF%BC%89"><span class="nav-text">4. 自定义类加载器（Custom Class Loader）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90-static-%E7%B1%BB%E5%8A%A0%E8%BD%BD"><span class="nav-text">分析 static 类加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">双亲委派机制是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%EF%BC%9F"><span class="nav-text">为什么需要双亲委派？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E7%88%B6%E5%AD%90%E5%8A%A0%E8%BD%BD%E5%99%A8%E2%80%9D-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E6%98%AF%E7%BB%A7%E6%89%BF%E5%90%97%EF%BC%9F"><span class="nav-text">“父子加载器” 之间的关系是继承吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="nav-text">双亲委派是怎么实现的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%B8%BB%E5%8A%A8%E7%A0%B4%E5%9D%8F%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-text">如何主动破坏双亲委派机制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadClass%EF%BC%88%EF%BC%89%E3%80%81findClass%EF%BC%88%EF%BC%89%E3%80%81defineClass%EF%BC%88%EF%BC%89%E5%8C%BA%E5%88%AB"><span class="nav-text">loadClass（）、findClass（）、defineClass（）区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E8%A2%AB%E7%A0%B4%E5%9D%8F%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">双亲委派被破坏的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-JNDI%EF%BC%8CJDBC-%E7%AD%89%E9%9C%80%E8%A6%81%E7%A0%B4%E5%9D%8F%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%EF%BC%9F"><span class="nav-text">为什么 JNDI，JDBC 等需要破坏双亲委派？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Tomcat-%E8%A6%81%E7%A0%B4%E5%9D%8F%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE"><span class="nav-text">为什么 Tomcat 要破坏双亲委派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-text">模块化技术与类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lucas</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 65 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>

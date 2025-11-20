@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lucas">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/03/24/kotlin泛型/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kotlin泛型">
+<meta property="og:url" content="http://example.com/2025/03/24/kotlin%E6%B3%9B%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-03-24T13:49:32.000Z">
+<meta property="article:modified_time" content="2025-11-20T12:40:11.599Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Generic">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="kotlin">
+<meta property="article:tag" content="泛型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            kotlin泛型 | DarkFlameMaster&#39;s blog
+        
+    </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+                
+    
+            
+                
+                    <style> .katex-block {border-radius: 6px !important; padding-left: 12px !important; padding-right: 12px !important; width: fit-content;border: dashed !important;} </style>
+                
+    
+            
+                
+                    <style> .home-banner-container { display: none !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                
+    
+            
+                
+                    <style> .code-container { border-radius: 6px !important; } </style>
+                
+    
+            
+                
+                    <style> figure.iseeu.highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body img { border: solid !important;} </style>
+                
+    
+            
+                
+                    <style> table { display:block !important; border-radius: 6px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:first-child, .markdown-body .tab-pane > table thead th:first-child { border-top-left-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"},"title":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"content_max_width":"1400px","sidebar_width":"360px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster’s Blog","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    COFFEE FOR ME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                COFFEE FOR ME
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin泛型" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">kotlin泛型</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-24 21:49:32</span>
+        <span class="mobile">2025-03-24 21:49:32</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-20 20:40:11</span>
+            <span class="mobile">2025-11-20 20:40:11</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Generic/">Generic</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="前言">前言</h2>
+<p>学习 kotlin 泛型肯定离不开 java 泛型，这是显而易见的<br>
+很多大佬写过 kotlin 泛型的文章或者出过讲 kotlin 泛型的教程，我深受启发<br>
+所以，我们先学 java 泛型</p>
+<h2 id="Java-泛型">Java 泛型</h2>
+<h3 id="泛型是什么">泛型是什么</h3>
+<blockquote>
+<p>一些前提术语</p>
+<ul>
+<li>泛型：泛型是 Java 引入的一种参数化类型机制，允许在定义类、接口或方法时使用类型占位符（如 T、E 等），并在调用&gt; 时指定具体类型，从而增强代码的类型安全性和复用性。</li>
+<li>泛型类型：指包含类型参数的类或接口。例如 <code>List&lt;T&gt;</code> 是一个泛型类型，而 <code>List&lt;String&gt;</code> 是其参数化后的具体&gt; 类型。</li>
+<li>泛型类型参数：泛型定义中使用的类型占位符（如 T、K、V 等），用于表示未知的具体类型，在实例化时由开发者指定。</li>
+</ul>
+</blockquote>
+<p>泛型类型是一种参数化的类型，比如 <code>List&lt;T&gt;</code> 这个 <code>List</code> 本身是一种类型，但它的泛型类型参数（<code>T</code>）不同，它本身的类型也不同，也就是说 <code>List&lt;String&gt;</code> 和 <code>List&lt;Integer&gt;</code> 就是不同的类型</p>
+<p>当然，我们也不一定非要使用这种套一层的泛型类型，直接使用泛型类型参数 <code>T</code> 就可以，此时泛型类型 等同于 泛型类型参数</p>
+<p>但我们往往都会给泛型类型参数（<code>T</code>）加一个“范围”，或者一个限制，这样方便我们更明确地表示使用泛型类型的意义，比如让 <code>T</code> 作为 <code>List</code> 里的元素，或者让 <code>T</code> 作为 <code>Number</code> 的子类，例子如下：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T <span class="keyword">extends</span> <span class="title class_">Number</span>&gt; <span class="type">double</span> <span class="title function_">add</span><span class="params">(T a, T b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a.doubleValue() + b.doubleValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="泛型类型声明的写法">泛型类型声明的写法</h4>
+<ol>
+<li>
+<p>定义泛型类/接口<br>
+将 <code>&lt;T&gt;</code> 写在类名或接口名之后，表示该类/接口接受一个泛型类型参数 <code>T</code></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">List</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(T element)</span>;</span><br><span class="line">    T <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li>
+<p>定义泛型方法<br>
+将 <code>&lt;T&gt;</code> 写在方法的返回类型之前，表示该方法独立于类的泛型参数，拥有自己的泛型类型 <code>T</code>。</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">printArray</span><span class="params">(T[] array)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (T element : array) &#123;</span><br><span class="line">        System.out.println(element);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+</ol>
+<h3 id="第一个问题：类型擦除">第一个问题：类型擦除</h3>
+<p>我们肯定都听过类型擦除，他是实现泛型的原理中的一部分，简单来说就是在编译期间将类型直接打回到声明时的边界类型，在运行时无法识别具体类型是什么</p>
+<h4 id="边界类型">边界类型</h4>
+<p>如果你的泛型类型这么写 <code>&lt;T extends String&gt;</code> 那类型擦除后的就是 <code>String</code>，如果你泛型类型这么写 <code>&lt;String&gt;</code> 那边界类型是 <code>Object</code></p>
+<p>也就是，有继承关系，边界类型就是继承关系的上界，没有继承关系就是 <code>Object</code></p>
+<blockquote>
+<p>java 泛型可以多继承？</p>
+<ul>
+<li>java 泛型允许多继承，但这其实是一种语法简化，是将 <code>implement</code> 接口也用 <code>extends</code> 了</li>
+<li>比如 <code>&lt;T extends Number &amp; Comparable&lt;? extends T&gt;&gt;</code>，这样的多重边界，选择第一个为边界类型，并且编译器还会给你提示，让你将类作为第一个边界，并且不允许集成多个类</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>? extends 和 T extends</p>
+<ul>
+<li>
+<p><code>? extends</code> 是在使用泛型类型的时候，写的</p>
+</li>
+<li>
+<p>一般含有 <code>T</code> 或 <code>E</code> 的都是在定义（声明）泛型类或者泛型函数的时候，写的</p>
+</li>
+<li>
+<p>除非在定义的时候，也存在调用，例如：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>  &lt;E <span class="keyword">extends</span> <span class="title class_">Comparable</span>&lt;? <span class="built_in">super</span> E&gt;&gt; E <span class="title function_">max</span><span class="params">(List&lt;? extends E&gt; e1)</span> </span><br></pre></td></tr></table></figure></div>
+</li>
+<li>
+<p>这里的 <code>Comparable&lt;? super E&gt;</code> 就是调用 <code>E</code>，并非定义</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>容易混淆的写法</p>
+<ul>
+<li>所以编译器的类型擦除，只是在定义泛型类型参数（<code>T</code>）的时候，也就是调用 <code>T extends String</code> 的时候，会将边界&gt; 类型识别为 <code>String</code> ，而 <code>? extends String</code> 与类型擦除的边界类型无关。这涉及我们后面讲的协变和逆变。</li>
+<li>不用管有些教程里面说的什么上界下界，那是协变逆变里的知识，而且在我看来属于冗余知识，对写代码没什么帮助，而且还&gt; 会迷惑初学者</li>
+<li>你肯定也发现了，<code>T extends String</code> 和 <code>? extends String</code> 是容易混淆的两个写法，这确实是学习泛型的一个&gt; 难点，而 <code>kotlin</code> 的泛型很好地规避了这点，这在后面讲。</li>
+</ul>
+</blockquote>
+<h4 id="类型擦除干了什么">类型擦除干了什么</h4>
+<p>类型擦除会在编译期间，将泛型类型参数（<code>T</code>）替换成他的边界类型，然后在字节码中插入强制类型转换，并在继承的子类中，为重写（覆盖）方法生成桥方法</p>
+<h5 id="强制类型转换">强制类型转换</h5>
+<ul>
+<li>
+<p>将边界类型再转回声明时的类型</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">value0</span> <span class="operator">=</span> list.get(<span class="number">0</span>); <span class="comment">// 这里就有字节码插入的强制类型转换</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li>
+<p>返回泛型类型对象时<br>
+开发者需要使用 <code>Class.cast()</code> 进行类型安全转换，<code>try-catch</code> 一下及时处理，而不是直接强制类型转换 <code>(T)obj</code></p>
+<blockquote>
+<p><code>Class.cast()</code> 和 <code>(T)obj</code> 的区别</p>
+<ul>
+<li>为什么说 <code>Class.cast()</code> 更安全，因为 <code>cast()</code> 会在此方法执行的时候，就抛出 <code>ClassCastException</code></li>
+<li>而 <code>(T)obj</code> 会在转换完之后，调用的时候抛出异常，这个时间点比 <code>Class.cast()</code> 更晚</li>
+<li>转换的时候不进行异常捕捉，在调用的时候，再抛出异常，这就容易出错</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>在生成的桥方法中也会有强制类型转换</p>
+</li>
+</ul>
+<h5 id="什么是桥方法？">什么是桥方法？</h5>
+<p>桥方法是为了避免 java 多态失效的</p>
+<p>java 多态中，有一个方法重写，也就是子类重写父类方法，比如：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是一个什么都能装的 Box，放入&quot;</span> + t.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">StringBox</span> <span class="keyword">extends</span> <span class="title class_">Box</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是一个只能装 String 的 Box，放入&quot;</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box_class</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Box</span> <span class="variable">box</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBox</span>();</span><br><span class="line">        box.putIn(<span class="string">&quot;ABC&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>重写的规则</p>
+<ul>
+<li>重写的规则就是，子类的 <code>Override</code> 方法必须要和父类的声明（访问权限修饰符，参数列表，返回类型）完全一致，但内部实现可以重新定义</li>
+<li>因为我们这里使用了泛型，所以 <code>T</code> 和 <code>String</code> 这样是被允许的</li>
+<li>如果参数一个是 <code>Integer</code> 一个是 <code>String</code> 则不被允许</li>
+</ul>
+</blockquote>
+<p>上述代码中，<code>StringBox</code> 是 <code>Box</code> 的子类，在声明一个 <code>Box box</code> 但是 <code>new</code> 一个 <code>StringBox</code> 的时候，调用 <code>box.putIn();</code> 会去实际调用 <code>StringBox</code> 的 <code>putIn()</code> 方法</p>
+<p>但是如果，你在使用泛型，<code>T</code> 会被擦除为 <code>Object</code> ，也就是说，父类变成了 <code>void putIn(Object obj)</code>，此时如果没有桥方法，重写就失效了，因为此时父类方法和子类方法的参数不一样了</p>
+<p>这时候，编译器就是在子类生成一个桥方法，也就是生成一个参数为 <code>Object</code> 的方法，让重写继续生效</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">StringBox</span> <span class="keyword">extends</span> <span class="title class_">Box</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是一个只能装 String 的 Box，放入&quot;</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 编译器生成的桥方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">        putIn((String)obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="第二个问题：协变和逆变">第二个问题：协变和逆变</h3>
+<p>接下来我们就使用这三个类的继承关系</p>
+<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png"  class="article-image">
+<p>搞明白了类型擦除，我们就可以解释为什么 <code>List&lt;Animal&gt;</code> 和 <code>List&lt;Peopple&gt;</code> 是完全不同的类型</p>
+<p>因为 <code>List&lt;Animal&gt;</code> 和 <code>List&lt;People&gt;</code> 在运行时表现为相同的原始类型（<code>List&lt;Object&gt;</code>），但编译器在编译时通过类型擦除和强制转换确保它们无法互换使用，从而维护泛型类型的安全性。运行时的类型擦除不影响编译时对类型一致性的严格检查。</p>
+<blockquote>
+<p>为什么这么设计呢？</p>
+<ul>
+<li>这是 java 的有意为之，原因就在于泛型会在编译的时候进行类型擦除之后，导致运行时无法进行类型判断。</li>
+<li>即使使用父类子类进行约束泛型类型参数，也会出现混乱的情况，导致使用泛型类型参数的时候，开发者无法判断出来到是是什么类型。</li>
+<li>在运行时，也无法动态判断类型，导致代码出现不可空的问题</li>
+<li>其实数组其实也有这个问题，但是它就可以在运行时捕捉到异常，导致类型不匹配可以被检测出来，这就变得可控了</li>
+<li>至于为啥数组和泛型要使用不同的设计，这是语言设计开发的考量，并且其中多多少少都有一些历史问题，为了兼容性啊什么之类的。</li>
+</ul>
+</blockquote>
+<p>所以 <code>List&lt;Animal&gt;</code> 和 <code>List&lt;People&gt;</code> 在编译器认为，这就不是同种类型，没有任何继承关系</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 协变 People[] 是 Animal[] 的子类</span></span><br><span class="line">Animal[] animals = <span class="keyword">new</span> <span class="title class_">People</span>[<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 这里会抛出 ArrayStoreException 尝试将错误类型的对象类型存储到对象数组中</span></span><br><span class="line">animals[<span class="number">0</span>] = <span class="keyword">new</span> <span class="title class_">Animal</span>(); </span><br></pre></td></tr></table></figure></div>
+<p>也正是因为泛型使用了类型擦除，很难在运行时捕捉到类型异常，所以干脆直接禁止了协变（参数是子类的泛型类，可以赋值给，参数是父类的泛型类）</p>
+<blockquote>
+<p>为什么使用类型擦除？</p>
+<ul>
+<li>既然类型擦除这么不好，为什么要是用类型擦除呢？</li>
+<li>其实也没有很不好，毕竟这样设计避免一些类型安全问题，在编译期间就直接报出类型匹配问题，避免了运行时的类型问题</li>
+</ul>
+</blockquote>
+<p>然后为了突破这种限制，java 给了协变和逆变的修饰符 <code>? super</code> 和 <code>? extends</code></p>
+<p>协变（<code>? extends</code>）：参数是子类的泛型类 是 参数是父类的泛型类的 子类<br>
+逆变（<code>? super</code>）：参数是父类的泛型类 是 参数是子类的泛型类的 父类</p>
+<p>注意，这个 <code>super</code> 和 <code>extends</code> 又和 平时在使用类的继承和父类的不一样</p>
+<p>无论是 <code>? super</code> 还是 <code>? extends</code>，都是修饰符，语法像 <code>public</code> <code>static</code></p>
+<blockquote>
+<p>注意区别</p>
+<p>协变逆变并不是改变使用泛型类型参数的功能，而是改变泛型类型本身继承关系的功能，以下代码在不使用协变逆变的时候也会正常编译运行</p>
+</blockquote>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Animal&gt; animalArrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">animalArrayList.add(<span class="keyword">new</span> <span class="title class_">People</span>());</span><br><span class="line">animalArrayList.add(<span class="keyword">new</span> <span class="title class_">Man</span>());</span><br><span class="line"></span><br><span class="line">System.out.println(animalArrayList.get(<span class="number">0</span>));</span><br><span class="line">System.out.println(animalArrayList.get(<span class="number">1</span>));</span><br></pre></td></tr></table></figure></div>
+<h4 id="协变">协变</h4>
+<p><code>? extends</code> 的修饰，表示使用协变————类型参数是子类的泛型类型，是此泛型类型的，子类。</p>
+<p>但是这会还有一个限制，你只能用这个泛型类型参数，但不能修改它，也就是只读不写，因为你没法找到一个类型为 <code>? extends</code> 的变量。</p>
+<p>是的，编译器会直接把类型识别成 <code>? extends</code></p>
+<img src="/2025/03/24/kotlin泛型/capture-extends.png" alt="capture-extends.png"  class="article-image">
+<p>具体表现在，你不能调用，方法参数里 包含泛型类型参数 的方法。也不能给它 包含类型参数的字段 赋值，除了 <code>null</code>。</p>
+<blockquote>
+<p>以上原因————都是，因为没法填写类型为 <code>? extends</code> 的参数。</p>
+</blockquote>
+<p>举个例子：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化一个 泛型类型参数为 People 的 ArrayList</span></span><br><span class="line">List&lt;People&gt; peopleArrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">peopleArrayList.add(<span class="keyword">new</span> <span class="title class_">People</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 ? extends Animal 就表示所有 泛型类型参数使用 Animal 子类的</span></span><br><span class="line"><span class="comment">// 都是参数类型是 ? extends Animal 的泛型类型的子类，所以可以赋值</span></span><br><span class="line">List&lt;? <span class="keyword">extends</span> <span class="title class_">Animal</span>&gt; animalList = peopleArrayList;</span><br><span class="line"><span class="type">People</span> <span class="variable">p</span> <span class="operator">=</span> (People) animalList.get(<span class="number">0</span>);</span><br><span class="line">System.out.println(p);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行会报错 animalList01.add(new People());</span></span><br><span class="line"><span class="comment">//                   ^</span></span><br><span class="line"><span class="comment">//   方法 List.add(CAP#1)不适用</span></span><br><span class="line"><span class="comment">//     (参数不匹配; People无法转换为CAP#1)</span></span><br><span class="line"><span class="comment">//   方法 List.add(int,CAP#1)不适用</span></span><br><span class="line"><span class="comment">//     (实际参数列表和形式参数列表长度不同)</span></span><br><span class="line"><span class="comment">// 其中, CAP#1是新类型变量:</span></span><br><span class="line"><span class="comment">//   CAP#1从? extends Animal的捕获扩展Animal</span></span><br><span class="line">animalList.add(<span class="keyword">new</span> <span class="title class_">Man</span>());</span><br></pre></td></tr></table></figure></div>
+<h4 id="逆变">逆变</h4>
+<p>逆变有点反直觉</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 协变</span></span><br><span class="line">List&lt;People&gt; peopleList01 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">peopleList01.add(<span class="keyword">new</span> <span class="title class_">People</span>());</span><br><span class="line">List&lt;? <span class="keyword">extends</span> <span class="title class_">Animal</span>&gt; animalList01 = peopleList01;</span><br><span class="line">System.out.println(animalList01.get(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆变</span></span><br><span class="line">List&lt;Animal&gt; animalList02 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">List&lt;? <span class="built_in">super</span> People&gt; peopleList02 = animalList02;</span><br><span class="line">peopleList02.add(<span class="keyword">new</span> <span class="title class_">People</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行会报错 peopleList02.add(new Animal());</span></span><br><span class="line"><span class="comment">//                           ^</span></span><br><span class="line"><span class="comment">//     方法 List.add(CAP#1)不适用</span></span><br><span class="line"><span class="comment">//       (参数不匹配; Animal无法转换为CAP#1)</span></span><br><span class="line"><span class="comment">//     方法 List.add(int,CAP#1)不适用</span></span><br><span class="line"><span class="comment">//       (实际参数列表和形式参数列表长度不同)</span></span><br><span class="line"><span class="comment">//   其中, CAP#1是新类型变量:</span></span><br><span class="line"><span class="comment">//     CAP#1从? super People的捕获扩展Object 超 People</span></span><br><span class="line">peopleList02.add(<span class="keyword">new</span> <span class="title class_">Animal</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆变在知道类型的时候，可以进行读取</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">animal02</span> <span class="operator">=</span> (Animal) peopleList02.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></div>
+<p>逆变用 <code>? super</code> 修饰，表示类型参数是父类的泛型类型，是此泛型类型的，父类。</p>
+<blockquote>
+<p>逆变不是允许泛型类型参数是父类吗？？？</p>
+<ul>
+<li>因为这里确实有个歧义，逆变说的泛型类型参数允许是父类，指的是对于整个泛型类型而言的。</li>
+<li>也就是 <code>List&lt;? super People&gt;</code> 的子类变成了 类型参数为 <code>People</code> 子类的泛型类型。</li>
+<li>而 <code>List&lt;? super People&gt;</code> 还是只允许添加 <code>People</code> 的子类。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>只读不写 vs 只写不读</p>
+<ul>
+<li>很多大佬，包括扔物线都说，协变是只允许读不允许写，逆变是只允许写不允许读</li>
+<li>但这种说法不仅仅是不对的，还没有透彻地解释清楚这些限制的由来，而且逆变是可以读的，但是前提是你可以准确判断他的类型是什么。</li>
+<li>在 java 语法中，最起码在我使用的 java17 里面是没有任何问题的（OpenJDK Runtime Environment Temurin-17.0.14+7 (build 17.0.14+7)）</li>
+</ul>
+</blockquote>
+<h4 id="总结一下">总结一下</h4>
+<ol>
+<li>
+<p>协变逆变只是改变泛型类型本身的子类父类关系，并不影响泛型类型参数的继承关系，使用泛型类型参数的时候，还是只能使用类型参数的子类。</p>
+</li>
+<li>
+<p>协变会增加一些写的限制，这些限制的来源是因为编译器自己在生成了一个类型，一般叫做 <code>CAP#0</code> 或 <code>CAP#1</code><br>
+之类的，你声明这个类型。</p>
+<ul>
+<li>协变里，<code>CAP#1</code> 这个新类型，不允许你初始化它，所以你没办法将这个类型填写到任何地方，并且他的子类也没发用，或者说，它没有继承关系，连 <code>Object</code> 跟他都没关系。</li>
+<li>逆变里，你可以像不使用协变逆变一样读写，但是只能使用当前声明的类型参数的本身或子类。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<?>
+<ul>
+<li><code>&lt;?&gt;</code> 相当于 <code>&lt;? extends Object&gt;</code></li>
+</ul>
+</blockquote>
+<h3 id="泛型数组">泛型数组</h3>
+<p>确切的泛型数组是不允许创建的，因为所有的泛型类型，都会被类型擦除，所以就会出现 <code>List&lt;String&gt;[]</code> 和 <code>List&lt;Integer&gt;[]</code> 都会擦除成 <code>List&lt;Object&gt;[]</code><br>
+但如下代码是被允许的</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;?&gt;[] lists_0 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[<span class="number">10</span>];</span><br><span class="line">List[] lists_1 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[<span class="number">10</span>];</span><br></pre></td></tr></table></figure></div>
+<h3 id="多个泛型类型参数">多个泛型类型参数</h3>
+<p>java 允许多个泛型类型参数，比如 <code>HashMap&lt;K,V&gt;</code>，那么我们思考一下，多个泛型参数如何进行协变和逆变呢？</p>
+<p>答案是交集！</p>
+<p>比如你有一个 <code>HashMap&lt;? extends Animal, ? super People&gt;</code> 的对象，那他的子类，必须是第一个参数是 <code>Animal</code> 及其子类，第二个参数是 <code>People</code> 及其父类，这样的才是他的子类，就像这样：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;People, Animal&gt; hm = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">HashMap&lt;? <span class="keyword">extends</span> <span class="title class_">Animal</span>, ? <span class="built_in">super</span> People&gt; map = hm;</span><br></pre></td></tr></table></figure></div>
+<p>到调用的时候，还是，参与协变的类型参数不在继承关系里，没法手动生成，所以没法填进方法参数里；参与逆变的类型参数需要知道具体类型进行强制类型转换。</p>
+<p>OK ！说了这么多，终于要开始对接 <code>Kotlin</code> 泛型了</p>
+<h2 id="Kotlin-泛型">Kotlin 泛型</h2>
+<h3 id="泛型类型的声明写法">泛型类型的声明写法</h3>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">List</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">    void add(T element);</span><br><span class="line">    T <span class="keyword">get</span>(int index);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型函数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">printArray</span><span class="params">(array: <span class="type">Array</span>&lt;<span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (element <span class="keyword">in</span> array) &#123;</span><br><span class="line">        println(element)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="extends-在-kotlin-里是"><code>extends</code> 在 <code>kotlin</code> 里是 <code>:</code></h3>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Number&gt;</span> <span class="title">add</span><span class="params">(a: <span class="type">T</span>, b: <span class="type">T</span>)</span></span>: <span class="built_in">Double</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a.toDouble() + b.toDouble()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="kotlin-的协变和逆变">kotlin 的协变和逆变</h3>
+<p>我们还是使用之前的 Animal People<br>
+<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png"  class="article-image"></p>
+<p>java 的 <code>? extends</code> 在 kotlin 里变成了 <code>out</code>，<code>? super</code> 在 kotlin 里变成了 <code>in</code></p>
+<p>这样就会避免了 <code>? extends</code> 和 <code>T extends</code> 的歧义</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 协变</span></span><br><span class="line"><span class="keyword">val</span> peopleArrayList: MutableList&lt;People&gt; = ArrayList()</span><br><span class="line">peopleArrayList.add(People())</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalList: MutableList&lt;<span class="keyword">out</span> Animal&gt; = peopleArrayList</span><br><span class="line"><span class="keyword">val</span> p = animalList[<span class="number">0</span>] <span class="keyword">as</span> People</span><br><span class="line">println(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行会报错，Argument type mismatch: actual </span></span><br><span class="line"><span class="comment">// type is &#x27;org.czb.bean.Man&#x27;, but </span></span><br><span class="line"><span class="comment">// &#x27;CapturedType(out org.czb.bean.Animal)&#x27; was expected.</span></span><br><span class="line"><span class="comment">// 参数类型不匹配：实际类型是 &#x27;org.czb.bean.Man&#x27;，但</span></span><br><span class="line"><span class="comment">// &#x27;CapturedType（out org.czb.bean.Animal）&#x27; 是预期的。</span></span><br><span class="line">animalList.add(Man())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆变</span></span><br><span class="line">peopleArrayList.clear()</span><br><span class="line"><span class="keyword">val</span> manList: MutableList&lt;<span class="keyword">in</span> Man&gt; = peopleArrayList</span><br><span class="line">manList.add(Man())</span><br><span class="line"><span class="keyword">val</span> m = manList[<span class="number">0</span>] <span class="keyword">as</span> Man</span><br><span class="line">println(m)</span><br></pre></td></tr></table></figure></div>
+<p>协变这里，说预期的类型是 <code>CapturedType（out org.czb.bean.Animal）</code> ，这和 java 的 <code>CAP#1</code> 是一个意思，这里的参数没法写入，因为这个类型是编译器自己生成的，开发者自己没法生成</p>
+<p>逆变这里，也是和 java 一样，可以读取，但是前提是你必须知道类型，因为返回的是 <code>Any?</code> 类型</p>
+<p>在看一个例子：</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">consume</span><span class="params">(list: <span class="type">MutableList</span>&lt;<span class="type">out</span> <span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    list.add()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<img src="/2025/03/24/kotlin泛型/add_Nothing.png" alt="add_Nothing.png"  class="article-image">
+<blockquote>
+<p><code>out</code> 和 <code>? extends</code> / <code>in</code> 和 <code>? super</code></p>
+<ul>
+<li>java 的 <code>? extends</code> 和 <code>? super</code> 会给一种，类型参数的继承关系改变的错觉（实际上 <code>? extends</code> 和 <code>? super</code> 是将泛型类型的继承关系改变，而不是类型参数）</li>
+<li>kotlin 的 <code>out</code> <code>in</code> 可以避免这种歧义，但泛型类型的继承关系就变的不太明显了</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>官方文档的胡言乱语</p>
+<ul>
+<li>为了修正这一点，我们必须声明对象的类型为 <code>Source&lt;? extends Object&gt;</code>。这么做毫无意义， 因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。 但编译器并不知道。</li>
+<li>在 Kotlin 中，有一种方法向编译器解释这种情况。这称为声明处型变： 可以标注 <code>Source</code> 的类型参数 <code>T</code> 来确保它仅从 <code>Source&lt;T&gt;</code> 成员中返回（生产），并从不被消费。 为此请使用 <code>out</code> 修饰符：</li>
+</ul>
+</blockquote>
+<p>另外，<code>out</code> 和 <code>in</code> 可以写在声明泛型类或者接口的地方（泛型函数不允许声明），这是 <code>? extends</code> 和 <code>? super</code> 做不到的，例如：</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 协变</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box1</span>&lt;<span class="type">out T</span>&gt; &#123;</span><br><span class="line">    <span class="comment">// 这行会报错，Type parameter T is declared as &#x27;out&#x27; </span></span><br><span class="line">    <span class="comment">// but occurs in &#x27;in&#x27; position in type T</span></span><br><span class="line">    <span class="comment">// 类型参数t被声明为“ out”，但在出现在类型 T 的 &#x27;in&#x27; 位置</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addValue</span><span class="params">(value: <span class="type">T</span>)</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆变</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box2</span>&lt;<span class="type">in T</span>&gt; &#123;</span><br><span class="line">    <span class="comment">// 这行会报错，Type parameter T is declared as &#x27;in&#x27; </span></span><br><span class="line">    <span class="comment">// but occurs in &#x27;out&#x27; position in type T</span></span><br><span class="line">    <span class="comment">// 类型参数 T 声明为 &#x27;in&#x27;，但出现在类型 T 的 &#x27;out&#x27; 位置</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">()</span></span>: T &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>当你直接将 <code>out</code> 和 <code>in</code> 写在类和接口的声明时，表明你在定义类或者接口的时候，你的意图就是将泛型类型设计成只写不读，或者只读不写。</p>
+<p>这时候的 <code>out</code> 和 <code>in</code> 是 kotlin 的独家语法，并且这个语法要求会更严格</p>
+<p>借助郭霖大佬的一个图</p>
+<img src="/2025/03/24/kotlin泛型/第三行代码泛型-in-out.png" alt="第三行代码泛型-in-out.png"  class="article-image">
+<p>方法参数位置是 <code>in position</code> ，返回值位置是 <code>out position</code></p>
+<h3 id="kotlin-多类型参数">kotlin 多类型参数</h3>
+<p>kotlin 这里也和 java 保持一致，取交集</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> hm = HashMap&lt;People, Animal&gt;()</span><br><span class="line"><span class="keyword">val</span> map: HashMap&lt;<span class="keyword">out</span> Animal, <span class="keyword">in</span> People&gt; = hm</span><br></pre></td></tr></table></figure></div>
+<h3 id="kotlin-星号投影">kotlin 星号投影 <code>&lt;*&gt;</code></h3>
+<p>这是一个比较复杂的东西，首先 <code>&lt;*&gt;</code> 是在调用的写的</p>
+<table>
+<thead>
+<tr>
+<th>泛型定义</th>
+<th><code>&lt;*&gt; 代表的含义</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MutableList&lt;T&gt;</code></td>
+<td><code>MutableList&lt;out Any?&gt;</code></td>
+</tr>
+<tr>
+<td><code>MutableList&lt;T : TUpper&gt;</code></td>
+<td><code>MutableList&lt;out TUppper&gt;</code></td>
+</tr>
+<tr>
+<td><code>MutableList&lt;out T&gt;</code></td>
+<td><code>MutableList&lt;out Any?&gt;</code></td>
+</tr>
+<tr>
+<td><code>MutableList&lt;out T : TUpper&gt;</code></td>
+<td><code>MutableList&lt;out TUppper&gt;</code></td>
+</tr>
+<tr>
+<td><code>MutableList&lt;in T&gt;</code></td>
+<td><code>MutableList&lt;in Nothing&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果泛型类型具有多个类型参数，则每个类型参数都可以单独投影。 例如，如果类型被声明为 <code>interface Function &lt;in T, out U&gt;</code>，可以使用以下星投影：</p>
+<ul>
+<li><code>Function&lt;*, String&gt;</code> 表示 <code>Function&lt;in Nothing, String&gt;</code></li>
+<li><code>Function&lt;Int, *&gt;</code> 表示 <code>Function&lt;Int, out Any?&gt;</code></li>
+<li><code>Function&lt;*, *&gt;</code> 表示 <code>Function&lt;in Nothing, out Any?&gt;</code></li>
+</ul>
+<h3 id="不可空的泛型类型">不可空的泛型类型</h3>
+<p>·要将泛型类型 <code>T</code> 声明为绝对不可空，请使用 <code>&amp; Any</code> 声明该类型。例如： <code>T &amp; Any</code></p>
+<h3 id="下划线类型推导"><code>_</code> 下划线类型推导</h3>
+<p>下划线运算符 <code>_</code> 可用于类型参数。当明确指定其他类型时，使用它来自动推断参数的类型：</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">SomeClass</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span> : T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SomeImplementation</span> : <span class="type">SomeClass</span>&lt;<span class="type">String</span>&gt;() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span>: String = <span class="string">&quot;Test&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OtherImplementation</span> : <span class="type">SomeClass</span>&lt;<span class="type">Int</span>&gt;() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span>: <span class="built_in">Int</span> = <span class="number">42</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> Runner &#123;</span><br><span class="line">    <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> S: SomeClass&lt;T&gt;</span>, T&gt; <span class="title">run</span><span class="params">()</span></span> : T &#123;</span><br><span class="line">        <span class="keyword">return</span> S::<span class="keyword">class</span>.java.getDeclaredConstructor().newInstance().execute()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// T is inferred as String because SomeImplementation derives from SomeClass&lt;String&gt;</span></span><br><span class="line">    <span class="keyword">val</span> s = Runner.run&lt;SomeImplementation, _&gt;()</span><br><span class="line">    assert(s == <span class="string">&quot;Test&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// T is inferred as Int because OtherImplementation derives from SomeClass&lt;Int&gt;</span></span><br><span class="line">    <span class="keyword">val</span> n = Runner.run&lt;OtherImplementation, _&gt;()</span><br><span class="line">    assert(n == <span class="number">42</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="可实例化的泛型类型">可实例化的泛型类型</h3>
+<p>在 java 中泛型类型是无法实例化的，获取泛型类型的 <code>Class</code> 对象 <code>T.class</code> 或者类型转换 <code>a as T</code> 的写法是不被支持的，因为 <code>T</code> 在运行的时候类型就被擦除了，但在 kotlin （或者说其他所有的 JVM 语言）中想实现泛型的实例化就不再是梦了</p>
+<p>kotlin 有内联函数（<code>inline</code>），内联函数会直接把函数体了的代码直接替换到调用位置，并且将参数直接改成实际调用的对象。这也就是 kotlin 将泛型类型实例化的秘密了，当然了，实例化泛型类型参数，还需要一个关键字 <code>reified</code></p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">getGenericType</span><span class="params">()</span></span> = T::<span class="keyword">class</span>.java</span><br></pre></td></tr></table></figure></div>
+<p>附上郭霖大佬在第三行代码里推荐的写启动 <code>Activity</code> 的写法</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">startActivity</span><span class="params">(context: <span class="type">Context</span>, block: <span class="type">Intent</span>.() -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(context, T::<span class="keyword">class</span>.java)</span><br><span class="line">    intent.block()</span><br><span class="line">    context.startActivity(intent)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际调用的时候</span></span><br><span class="line"><span class="comment">// 在 Activity 里面</span></span><br><span class="line">startActivity&lt;MainActivity&gt;(<span class="keyword">this</span>) &#123;</span><br><span class="line">    putExtra(<span class="string">&quot;param1&quot;</span>, <span class="string">&quot;data1&quot;</span>)</span><br><span class="line">    putExtra(<span class="string">&quot;param2&quot;</span>, <span class="string">&quot;data2&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>特别强调，得是 <code>inline</code> 函数</p>
+</blockquote>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> kotlin泛型</li>
+        <li><strong>作者:</strong> Lucas</li>
+        <li><strong>创建于
+                :</strong> 2025-03-24 21:49:32</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-20 20:40:11
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://darkflamemasterdev.github.io/2025/03/24/kotlin泛型/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/kotlin/">#kotlin</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/java/">#java</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B3%9B%E5%9E%8B/">#泛型</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Generic/">#Generic</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/" title="阅读 Retrofit 源码" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="!max-w-none">
+  <span class="title">阅读 Retrofit 源码</span>
+</a><a class="recommended-article-item" href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="开发小知识、问题（持续更新）" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="!max-w-none">
+  <span class="title">开发小知识、问题（持续更新）</span>
+</a><a class="recommended-article-item" href="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="Kotlin data class 被 gson 解析遇到的坑" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Kotlin data class 被 gson 解析遇到的坑" class="!max-w-none">
+  <span class="title">Kotlin data class 被 gson 解析遇到的坑</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/" title="阅读 Retrofit 源码" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="!max-w-none">
+  <span class="title">阅读 Retrofit 源码</span>
+</a><a class="recommended-article-item" href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="开发小知识、问题（持续更新）" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="!max-w-none">
+  <span class="title">开发小知识、问题（持续更新）</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">阅读 Retrofit 源码</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/18/kotlin-%E7%9A%84-class-java-%E5%92%8C-javaClass/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">kotlin 的 ::class.java 和 .javaClass</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">kotlin泛型</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E6%B3%9B%E5%9E%8B"><span class="nav-text">Java 泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">泛型是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-text">泛型类型声明的写法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4"><span class="nav-text">第一个问题：类型擦除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E7%B1%BB%E5%9E%8B"><span class="nav-text">边界类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E5%B9%B2%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-text">类型擦除干了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">强制类型转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A1%A5%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-text">什么是桥方法？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98"><span class="nav-text">第二个问题：协变和逆变</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%8F%98"><span class="nav-text">协变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%8F%98"><span class="nav-text">逆变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B"><span class="nav-text">总结一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-text">泛型数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="nav-text">多个泛型类型参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kotlin-%E6%B3%9B%E5%9E%8B"><span class="nav-text">Kotlin 泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A3%B0%E6%98%8E%E5%86%99%E6%B3%95"><span class="nav-text">泛型类型的声明写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extends-%E5%9C%A8-kotlin-%E9%87%8C%E6%98%AF"><span class="nav-text">extends 在 kotlin 里是 :</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin-%E7%9A%84%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98"><span class="nav-text">kotlin 的协变和逆变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin-%E5%A4%9A%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="nav-text">kotlin 多类型参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin-%E6%98%9F%E5%8F%B7%E6%8A%95%E5%BD%B1"><span class="nav-text">kotlin 星号投影 &lt;*&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E7%A9%BA%E7%9A%84%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B"><span class="nav-text">不可空的泛型类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC"><span class="nav-text">_ 下划线类型推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%9A%84%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B"><span class="nav-text">可实例化的泛型类型</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lucas</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 65 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>

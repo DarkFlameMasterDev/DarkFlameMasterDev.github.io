@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Lucas">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/04/23/开发小知识、问题（持续更新）/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发小知识、问题（持续更新）">
+<meta property="og:url" content="http://example.com/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2023-04-23T14:30:58.000Z">
+<meta property="article:modified_time" content="2025-11-20T14:40:09.154Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Android Studio">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="Cpp">
+<meta property="article:tag" content="Gradle">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="MacOS">
+<meta property="article:tag" content="OpenGL ES">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/lucas_avatar.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/lucas_avatar.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/img/lucas_avatar.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            开发小知识、问题（持续更新） | DarkFlameMaster&#39;s blog
+        
+    </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+                
+    
+            
+                
+                    <style> .katex-block {border-radius: 6px !important; padding-left: 12px !important; padding-right: 12px !important; width: fit-content;border: dashed !important;} </style>
+                
+    
+            
+                
+                    <style> .home-banner-container { display: none !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                
+    
+            
+                
+                    <style> .code-container { border-radius: 6px !important; } </style>
+                
+    
+            
+                
+                    <style> figure.iseeu.highlight { border-radius: 0px 0px 6px 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body img { border: solid !important;} </style>
+                
+    
+            
+                
+                    <style> table { display:block !important; border-radius: 6px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:first-child, .markdown-body .tab-pane > table thead th:first-child { border-top-left-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+        <link href="https://darkflamemasterdev.github.io/css/font_maple_mono.css" rel="stylesheet">
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.8,"image_border_radius":"6px","image_alignment":"left","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":false,"pangu_js":false,"recommendation":{"enable":true,"title":"其他文章","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif SC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap"},"english":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"},"title":{"enable":true,"family":"Maple Mono","url":"https://darkflamemasterdev.github.io/css/font_maple_mono.css"}},"content_max_width":"1400px","sidebar_width":"360px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DarkflameMaster’s Blog","subtitle":{"text":["博客文章向下翻"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/DarkFlameMasterDev","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":"/img/wx_qrcode.png"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"Archives":{"path":"/archives","icon":"fa-solid fa-box-archive"},"Coffee for me":{"path":"https://darkflamemasterdev.github.io/img/wx_qrcode.png","icon":"fa-solid fa-mug-hot"},"Github":{"path":"https://github.com/DarkFlameMasterDev","icon":"fa-brands fa-github"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":12},"tags":{"enable":true,"limit":12}},"footerStart":"2023/4/17 02:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DarkFlameMaster&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-box-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                                        >
+                                    <i class="fa-solid fa-mug-hot fa-fw"></i>
+                                    COFFEE FOR ME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-box-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://darkflamemasterdev.github.io/img/wx_qrcode.png"
+                        >
+                            <span>
+                                COFFEE FOR ME
+                            </span>
+                            
+                                <i class="fa-solid fa-mug-hot fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/DarkFlameMasterDev"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">开发小知识、问题（持续更新）</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/img/lucas_avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Lucas</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-23 22:30:58</span>
+        <span class="mobile">2023-04-23 22:30:58</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-20 22:40:09</span>
+            <span class="mobile">2025-11-20 22:40:09</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Gradle/">Gradle</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Android-Studio/">Android Studio</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/C/">C</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/OpenGL-ES/">OpenGL ES</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/MacOS/">MacOS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Mac/">Mac</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Cpp/">Cpp</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Windows/">Windows</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="1-AS-apk-安装包安装位置">1. AS apk 安装包安装位置</h2>
+<p>2022.3.1版本</p>
+<p><code>/app/build/intermediates/</code></p>
+<p><code>/app/build/outputs/apk/debug/app-debug.apk</code></p>
+<h2 id="2-AS-R-文件位置">2. AS R 文件位置</h2>
+<p>2022.3.1版本</p>
+<img src="/2023/04/23/开发小知识、问题（持续更新）/R.png" alt="R.png"  class="article-image">
+<p><code>/app/build/intermediates/runtime_symbol_list/debug/R.txt</code></p>
+<h2 id="3-AS-OpenGL-ES-相关库文件在什么位置">3. AS OpenGL ES 相关库文件在什么位置</h2>
+<p>2022.3.1版本</p>
+<p>在 <code>ndk</code> 目录里面，<code>MacOS</code> 在 <code>/Users/yourUserName/Library/Android/sdk/ndk/</code></p>
+<h2 id="4-Android-开发-OpenGL-ES-找不到-GL-TEXTURE-BORDER-COLOR">4. Android 开发 OpenGL ES 找不到 GL_TEXTURE_BORDER_COLOR</h2>
+<p>在 <code>GLES3/gl3.h</code> 里面没有，在 <code>GLES3/gl32.h</code></p>
+<h2 id="5-AS-写-C-的时候，一直提示当前文件不属于任何项目">5. AS 写 C++ 的时候，一直提示当前文件不属于任何项目</h2>
+<p>2022.3.1版本</p>
+<p>如果你确定你已经将文件添加到 <code>CMakeList.txt</code> 里面，但依旧没作用</p>
+<p>那大概率是下面的问题</p>
+<p><code>This file is not part of the project. Please include it in the appropriate build file (build.gradle, CMakeLists.txt or Android.mk etc.) and sync the project.</code></p>
+<p>这是因为 CMake 没有重新加载，你可以 Sync Project with Gradle Files ，就是这个图标</p>
+<img src="/2023/04/23/开发小知识、问题（持续更新）/Sync_Project_with_Gradle_Files.png" alt="Sync Project with Gradle Files.png"  class="article-image">
+<p>如果没有效果，那大概是直接用了缓存，没有重新加载</p>
+<p>你可以在 <code>CMakeList.txt</code> 里写几行 <code>message</code> ，直到右上角出现 <code>Sync Project</code></p>
+<p><code>External build files have changed since last project sync. A project sync may be necessary for the IDE to work properly.</code></p>
+<h2 id="6-AS-C-没有代码提示，并且代码高亮多处爆红">6. AS C++ 没有代码提示，并且代码高亮多处爆红</h2>
+<p>2022.3.1版本</p>
+<p>这是因为 <code>Android Studio</code> 在你没有 <code>#include</code> <code>.h</code>文件 或者没有调用某个 <code>C++</code> 函数的时候，是不给你进行代码检查的</p>
+<p>我还专门跟 <code>Google</code> 发了邮件，得到了如上回复</p>
+<h2 id="7-MacOS-删除-DS-Store">7. MacOS 删除 .DS_Store</h2>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /Users/username/dir/ -name &quot;.DS_Store&quot; -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure></div>
+<p><code>/Users/username/dir/</code> 这是你想删除 <code>.DS_Store</code> 的文件夹</p>
+<h2 id="8-jni-中，类型映射">8. jni 中，类型映射</h2>
+<p>写这个的主要原因是因为 <code>Kotlin</code> 类型需要对应到 <code>Java</code> 包名才可以</p>
+<p>基本类型（Primitive Type）</p>
+<table>
+<thead>
+<tr>
+<th>Java 类型</th>
+<th>Kotlin 类型</th>
+<th>Native 类型</th>
+<th>描述</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>Int</td>
+<td>jint</td>
+<td>有符号32位整型（int）</td>
+<td>I</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+<td>jshort</td>
+<td>有符号16位整型（short）</td>
+<td>S</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+<td>jlong</td>
+<td>有符号64位整型（long）</td>
+<td>J</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+<td>jfloat</td>
+<td>32位浮点型（float）</td>
+<td>F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+<td>jdouble</td>
+<td>64位浮点型（double）</td>
+<td>D</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+<td>Jboolean</td>
+<td>无符号8位整型（unsigned char）</td>
+<td>Z</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Char</td>
+<td>Jchar</td>
+<td>无符号16位整型（unsigned short）</td>
+<td>C</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+<td>jbyte</td>
+<td>有符号8位整型（char）</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<p>引用类型（Reference Type）</p>
+<table>
+<thead>
+<tr>
+<th>Java 类型</th>
+<th>Kotlin 类型</th>
+<th>Native 类型</th>
+<th>描述</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class</td>
+<td>Class</td>
+<td>jclass</td>
+<td>Class类对象</td>
+<td>Ljava.lang.Class;</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Any</td>
+<td>jobject</td>
+<td>-</td>
+<td>Ljava.lang.Object;</td>
+</tr>
+<tr>
+<td>String</td>
+<td>String</td>
+<td>jstring</td>
+<td>-</td>
+<td>Ljava/lang/String;</td>
+</tr>
+<tr>
+<td>Object[]</td>
+<td>AnyArray</td>
+<td>jobjectArray</td>
+<td>-</td>
+<td>[Ljava.lang.Object;</td>
+</tr>
+<tr>
+<td>boolean[]</td>
+<td>BooleanArray</td>
+<td>jbooleanArray</td>
+<td>-</td>
+<td>[Z</td>
+</tr>
+<tr>
+<td>byte[]</td>
+<td>ByteArray</td>
+<td>jbyteArray</td>
+<td>-</td>
+<td>[B</td>
+</tr>
+<tr>
+<td>char[]</td>
+<td>CharArray</td>
+<td>jcharArray</td>
+<td>-</td>
+<td>[C</td>
+</tr>
+<tr>
+<td>short[]</td>
+<td>ShortArray</td>
+<td>jshortArray</td>
+<td>-</td>
+<td>[S</td>
+</tr>
+<tr>
+<td>int[]</td>
+<td>IntArray</td>
+<td>jintArray</td>
+<td>-</td>
+<td>[I</td>
+</tr>
+<tr>
+<td>long[]</td>
+<td>LongArray</td>
+<td>jlongArray</td>
+<td>-</td>
+<td>[J</td>
+</tr>
+<tr>
+<td>float[]</td>
+<td>FloatArray</td>
+<td>jfloatArray</td>
+<td>-</td>
+<td>[F</td>
+</tr>
+<tr>
+<td>double[]</td>
+<td>DoubleArray</td>
+<td>jdoubleArray</td>
+<td>-</td>
+<td>[D</td>
+</tr>
+<tr>
+<td>void</td>
+<td>Unit</td>
+<td>Void</td>
+<td>-</td>
+<td>V</td>
+</tr>
+</tbody>
+</table>
+<p>除了基本数据类型，以及 <code>void</code> ，基本都是 <code>L+包名+;</code> ，数组再在开头加一个 <code>[</code></p>
+<h2 id="9-Windows-的狗屎快捷键-🖕🖕🖕💩💩💩">9. Windows 的狗屎快捷键 🖕🖕🖕💩💩💩</h2>
+<p>总有一些“才智冠绝”、“谦虚谨慎”的人，提出让大众“赞不绝口”的设计需求</p>
+<p>使用频率低，还无法更改的快捷键就是一种（他甚至连关闭都不让！！！）</p>
+<p>ctrl + 空格切换中英文、win + → 改窗口位置…</p>
+<p>这些无法更改的快捷键对于一个使用大量快捷键的程序猿简直就是噩梦</p>
+<h2 id="10-什么是内存泄漏">10. 什么是内存泄漏</h2>
+<ul>
+<li>内存泄漏是指“逻辑”上某个实例无用了，但是仍旧没有回收</li>
+<li>并不能用是否持有引用来进行判断</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MemoryLeak</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        <span class="type">Name</span> <span class="variable">n</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Name</span>();</span><br><span class="line">        p.name = n;</span><br><span class="line">        n = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    Name name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Name</span> &#123;</span><br><span class="line">    String firstName;</span><br><span class="line">    String SecondName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>这里 <code>n = null</code> 但是 <code>p</code> 依旧持有 <code>n</code> 的引用，这不一定是内存泄漏，只是对 <code>n</code> 主动丢弃了一个引用，有可能后面还是要使用这个<code>n</code></p>
+<h2 id="11-mac-常用命令">11. mac 常用命令</h2>
+<ol>
+<li>
+<p>清除 app 的扩展属性</p>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xattr -cr</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p><code>-c</code>：表示 <strong>清除</strong>（clear）文件的所有扩展属性。<br>
+<code>-r</code>：表示 <strong>递归</strong>（recursive），即对目录下的所有子文件和子目录也执行相同操作。</p>
+</blockquote>
+<p>当然还有其他操作：</p>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">xattr -h</span></span><br><span class="line">用法：xattr [-l] [-r] [-s] [-v] [-x] 文件 [文件 ...]</span><br><span class="line">xattr -p [-l] [-r] [-s] [-v] [-x] 属性名称 文件 [文件 ...]</span><br><span class="line">xattr -w [-r] [-s] [-x] 属性名称 属性值 文件 [文件 ...]</span><br><span class="line">xattr -d [-r] [-s] 属性名称 文件 [文件 ...]</span><br><span class="line">xattr -c [-r] [-s] 文件 [文件 ...]</span><br><span class="line"></span><br><span class="line">第一种形式列出给定文件上所有 xattr 的名称。</span><br><span class="line">第二种形式 (-p) 打印 xattr 属性名称的值。</span><br><span class="line">第三种形式 (-w) 将 xattr 属性名称的值设置为字符串 attr_value。</span><br><span class="line">第四种形式 (-d) 删除 xattr 属性名称。</span><br><span class="line">第五种格式 (-c) 删除（清除）所有扩展属性。</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line">-h：打印此帮助</span><br><span class="line">-l：打印长格式（属性名称：属性值，十六进制输出包含偏移量和</span><br><span class="line">ASCII 表示）</span><br><span class="line">-r：递归执行</span><br><span class="line">-s：对符号链接本身执行操作，而不是链接指向的内容</span><br><span class="line">-v：同时打印文件名（使用 -r 选项并处理多个文件时自动执行）</span><br><span class="line">-x：将属性值表示为十六进制字符串，用于输入和输出</span><br></pre></td></tr></table></figure></div>
+<p>扩展属性是 Mac 给 app 添加的元数据，比如：</p>
+<ul>
+<li><code>com.apple.quarantine</code> ：表示文件是从网上下载的，macOS 会限制运行并弹出“来自不明开发者”的提示。</li>
+<li><code>com.apple.metadata:kMDItemWhereFroms</code> ：文件的来源网址或路径，用于 Finder “显示简介”中显示“从何处下载”。</li>
+<li><code>com.apple.ResourceFork</code> ：存储老式 Mac 资源分支的数据（已较少使用）。</li>
+<li><code>com.apple.FinderInfo</code> ：用于 Finder 显示图标、标签等信息。</li>
+<li><code>com.apple.metadata:_kMDItemUserTags</code> ：Finder 标签（颜色标签等）信息。</li>
+<li><code>com.apple.metadata:kMDItemDownloadedDate</code> ：下载日期。</li>
+<li><code>com.apple.TextEncoding</code> ：文件的文本编码信息（如 UTF-8）。</li>
+<li><code>com.apple.backup.SnapshotVolumeUUID</code> ：Time Machine 快照相关信息。</li>
+<li><code>com.apple.provenance</code> ：App 安装源标识（如 App Store）。</li>
+<li><code>com.apple.lastuseddate#PS</code> ：最近使用日期，Spotlight 使用的。</li>
+</ul>
+<blockquote>
+<p>如果在使用 Time Machine 就要谨慎使用这个命令，这可能会让你的存储信息损坏</p>
+</blockquote>
+</li>
+<li>
+<p>打开所有 app 安装来源</p>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure></div>
+</li>
+</ol>
+<h2 id="12-JvmPlatformAnnotations-kt">12. JvmPlatformAnnotations.kt</h2>
+<img src="/2023/04/23/开发小知识、问题（持续更新）/image-20250505212602199.png" alt="image-20250505212602199"  class="article-image">
+<h3 id="JvmOverloads"><code>@JvmOverloads</code></h3>
+<p>在 Kotlin 中支持默认参数，写了默认参数的函数在调用的时候可以不写有默认值参数，但 Java 不支持。</p>
+<p>这个注解会为具有默认参数的函数生成多个重载方法，使 Java 调用时达到和 kotlin 类似的效果。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">JvmPlatformAnnotationsDemo</span> &#123;</span><br><span class="line">    <span class="meta">@JvmOverloads</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testOverLoad</span><span class="params">(a: <span class="type">Int</span> = <span class="number">0</span>, b: <span class="type">String</span> = <span class="string">&quot;s&quot;</span>, c: <span class="type">Double</span>, d: <span class="type">Float</span> = <span class="number">0</span>f, e: <span class="type">Long</span> = <span class="number">0</span>)</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>这里有 5 个参数，其中就 c 是没有默认值的，所以编译器应该考虑所有的有默认值的参数不被写的情况，但实际呢？</p>
+<p>反编译成 java ：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">JvmPlatformAnnotationsDemo</span> &#123;</span><br><span class="line">   <span class="meta">@JvmOverloads</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testOverLoad</span><span class="params">(<span class="type">int</span> a, <span class="meta">@NotNull</span> String b, <span class="type">double</span> c, <span class="type">float</span> d, <span class="type">long</span> e)</span> &#123;</span><br><span class="line">      Intrinsics.checkNotNullParameter(b, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// $FF: synthetic method</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> testOverLoad$<span class="keyword">default</span>(JvmPlatformAnnotationsDemo var0, <span class="type">int</span> var1, String var2, <span class="type">double</span> var3, <span class="type">float</span> var5, <span class="type">long</span> var6, <span class="type">int</span> var8, Object var9) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((var8 &amp; <span class="number">1</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">         var1 = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((var8 &amp; <span class="number">2</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">         var2 = <span class="string">&quot;s&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((var8 &amp; <span class="number">8</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">         var5 = <span class="number">0.0F</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((var8 &amp; <span class="number">16</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">         var6 = <span class="number">0L</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      var0.testOverLoad(var1, var2, var3, var5, var6);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@JvmOverloads</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testOverLoad</span><span class="params">(<span class="type">int</span> a, <span class="meta">@NotNull</span> String b, <span class="type">double</span> c, <span class="type">float</span> d)</span> &#123;</span><br><span class="line">      Intrinsics.checkNotNullParameter(b, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">      testOverLoad$<span class="keyword">default</span>(<span class="built_in">this</span>, a, b, c, d, <span class="number">0L</span>, <span class="number">16</span>, (Object)<span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@JvmOverloads</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testOverLoad</span><span class="params">(<span class="type">int</span> a, <span class="meta">@NotNull</span> String b, <span class="type">double</span> c)</span> &#123;</span><br><span class="line">      Intrinsics.checkNotNullParameter(b, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">      testOverLoad$<span class="keyword">default</span>(<span class="built_in">this</span>, a, b, c, <span class="number">0.0F</span>, <span class="number">0L</span>, <span class="number">24</span>, (Object)<span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@JvmOverloads</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testOverLoad</span><span class="params">(<span class="type">int</span> a, <span class="type">double</span> c)</span> &#123;</span><br><span class="line">      testOverLoad$<span class="keyword">default</span>(<span class="built_in">this</span>, a, (String)<span class="literal">null</span>, c, <span class="number">0.0F</span>, <span class="number">0L</span>, <span class="number">26</span>, (Object)<span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@JvmOverloads</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testOverLoad</span><span class="params">(<span class="type">double</span> c)</span> &#123;</span><br><span class="line">      testOverLoad$<span class="keyword">default</span>(<span class="built_in">this</span>, <span class="number">0</span>, (String)<span class="literal">null</span>, c, <span class="number">0.0F</span>, <span class="number">0L</span>, <span class="number">27</span>, (Object)<span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>可以看到，编译器并是不排列组合生成重载，也就是说，如果你的 kotlin 这么调用：</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JvmPlatformAnnotationsDemo().testOverLoad(b = <span class="string">&quot;sss&quot;</span>, c = <span class="number">3.14</span>)</span><br></pre></td></tr></table></figure></div>
+<p>java 是没法调用的，java 只能调用 <code>public final void testOverLoad(int a, @NotNull String b, double c)</code> 方法</p>
+<p>这是为啥啊？大概就是防止指数级膨胀</p>
+</blockquote>
+<h3 id="JvmStatic"><code>@JvmStatic</code></h3>
+<p>用于将 Kotlin 的对象（<code>object</code>）或伴生对象中的方法标记为静态方法（static）供 Java 调用。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Utils &#123;</span><br><span class="line">    <span class="meta">@JvmStatic</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Utils.foo();</span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmName"><code>@JvmName</code></h3>
+<p>用于更改 Kotlin 生成的 Java 方法或类的名字。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">&quot;MyKt&quot;</span>)</span><br><span class="line"><span class="meta">@JvmName(<span class="string">&quot;addInt&quot;</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = a + b</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> MyKt.addInt(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmMultifileClass"><code>@JvmMultifileClass</code></h3>
+<p>用于将多个 Kotlin 文件合并为一个 Java 类（通常用于多个 <code>file</code> 声明中带 <code>@file:JvmName(&quot;...&quot;)</code>）。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">&quot;Utils&quot;</span>)</span><br><span class="line"><span class="meta">@file:JvmMultifileClass</span></span><br></pre></td></tr></table></figure></div>
+<p>多个文件的顶层函数会被合并到一个 Java 类中。</p>
+<h3 id="JvmPackageName"><code>@JvmPackageName</code></h3>
+<p>指定生成的 Java 类的包名，避免 Kotlin 的文件在默认包中生成 Java 类。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@file:JvmPackageName</span>(<span class="string">&quot;com.example.utils&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmSynthetic"><code>@JvmSynthetic</code></h3>
+<p>该方法或属性对 Java 是不可见的，但在 Kotlin 中可用。常用于隐藏不安全的 API 或内部实现。</p>
+<h3 id="Throws"><code>@Throws</code></h3>
+<p>声明 Kotlin 函数会抛出哪些异常，让 Java 可以正确捕获异常。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">readFile</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> IOException(<span class="string">&quot;Failed&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="ImplicitlyActualizedByJvmDeclaration"><code>@ImplicitlyActualizedByJvmDeclaration</code></h3>
+<p>用于 <code>expect/actual</code> 多平台支持。这个注解通常由编译器自动处理，用于实际实现是 JVM 上的 API。</p>
+<h3 id="JvmField"><code>@JvmField</code></h3>
+<p>使属性在 Java 中可直接访问为字段，避免生成 getter/setter。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="meta">@JvmField</span></span><br><span class="line">    <span class="keyword">val</span> id = <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>Java 中可以直接 <code>myClass.id</code>，否则需要调用 <code>getId()</code>。</p>
+<h3 id="JvmSuppressWildcards"><code>@JvmSuppressWildcards</code></h3>
+<p>抑制泛型类型中通配符的自动生成，常用于与 Java 泛型协作。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">acceptList</span><span class="params">(<span class="meta">@JvmSuppressWildcards</span> list: <span class="type">List</span>&lt;<span class="type">Any</span>&gt;)</span></span></span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmWildcard"><code>@JvmWildcard</code></h3>
+<p>与 <code>@JvmSuppressWildcards</code> 相对，强制某个类型参数生成通配符。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">provide</span><span class="params">()</span></span>: List&lt;<span class="meta">@JvmWildcard</span> String&gt;</span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmInline"><code>@JvmInline</code></h3>
+<p>用于定义内联类（value class），它会在字节码中作为原始类型使用以提高性能。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JvmInline</span></span><br><span class="line">value <span class="keyword">class</span> <span class="title class_">UserId</span>(<span class="keyword">val</span> id: String)</span><br></pre></td></tr></table></figure></div>
+<h3 id="JvmRecord"><code>@JvmRecord</code></h3>
+<p>用于标记 Kotlin 的数据类为 Java 16+ 的 <code>record</code> 类型，需配合 JVM target 17。</p>
+<div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JvmRecord</span></span><br><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Point</span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>, <span class="keyword">val</span> y: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="13-IDEA-快捷键（适用-Android-Studio）">13. IDEA 快捷键（适用 Android Studio）</h2>
+<h3 id="1-检索当前文件的变量和函数（File-Structure）：cmd-F12">1. 检索当前文件的变量和函数（File Structure）：<code>cmd + F12</code></h3>
+<h3 id="2-参数信息（Parameter-Info）：cmd-P">2. 参数信息（Parameter Info）：<code>cmd + P</code></h3>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 开发小知识、问题（持续更新）</li>
+        <li><strong>作者:</strong> Lucas</li>
+        <li><strong>创建于
+                :</strong> 2023-04-23 22:30:58</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-20 22:40:09
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://darkflamemasterdev.github.io/2023/04/23/开发小知识、问题（持续更新）/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Android/">#Android</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Gradle/">#Gradle</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Android-Studio/">#Android Studio</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/C/">#C</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/OpenGL-ES/">#OpenGL ES</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/MacOS/">#MacOS</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Mac/">#Mac</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Linux/">#Linux</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Cpp/">#Cpp</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Windows/">#Windows</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/25/kotlin-data-class-%E8%A7%A3%E6%9E%90/" title="kotlin data class 解析" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin data class 解析" class="!max-w-none">
+  <span class="title">kotlin data class 解析</span>
+</a><a class="recommended-article-item" href="/2025/04/24/kotlin-%E5%86%85%E9%83%A8%E7%B1%BB/" title="kotlin 内部类" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 内部类" class="!max-w-none">
+  <span class="title">kotlin 内部类</span>
+</a><a class="recommended-article-item" href="/2025/04/08/java-static-%E5%92%8C-kotlin-%E7%9A%84-object/" title="kotlin 中的 java static" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 中的 java static" class="!max-w-none">
+  <span class="title">kotlin 中的 java static</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>其他文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/04/25/kotlin-data-class-%E8%A7%A3%E6%9E%90/" title="kotlin data class 解析" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin data class 解析" class="!max-w-none">
+  <span class="title">kotlin data class 解析</span>
+</a><a class="recommended-article-item" href="/2025/04/24/kotlin-%E5%86%85%E9%83%A8%E7%B1%BB/" title="kotlin 内部类" rel="bookmark">
+  <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 内部类" class="!max-w-none">
+  <span class="title">kotlin 内部类</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2023/05/14/Java-%E5%A4%9A%E7%BB%A7%E6%89%BF-or-interface/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">多继承 or interface</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">java并发-线程基础（未完成）</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '93e6ea4b03a1de4487db',
+                    clientSecret: '519cb1844d6e3adfa445b4c59b13cfedf926b152',
+                    repo: 'forGitalk',
+                    owner: 'DarkFlameMasterDev',
+                    admin: ['DarkFlameMasterDev'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">开发小知识、问题（持续更新）</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-AS-apk-%E5%AE%89%E8%A3%85%E5%8C%85%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE"><span class="nav-text">1. AS apk 安装包安装位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-AS-R-%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="nav-text">2. AS R 文件位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-AS-OpenGL-ES-%E7%9B%B8%E5%85%B3%E5%BA%93%E6%96%87%E4%BB%B6%E5%9C%A8%E4%BB%80%E4%B9%88%E4%BD%8D%E7%BD%AE"><span class="nav-text">3. AS OpenGL ES 相关库文件在什么位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Android-%E5%BC%80%E5%8F%91-OpenGL-ES-%E6%89%BE%E4%B8%8D%E5%88%B0-GL-TEXTURE-BORDER-COLOR"><span class="nav-text">4. Android 开发 OpenGL ES 找不到 GL_TEXTURE_BORDER_COLOR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-AS-%E5%86%99-C-%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B8%80%E7%9B%B4%E6%8F%90%E7%A4%BA%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%9E%E4%BA%8E%E4%BB%BB%E4%BD%95%E9%A1%B9%E7%9B%AE"><span class="nav-text">5. AS 写 C++ 的时候，一直提示当前文件不属于任何项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-AS-C-%E6%B2%A1%E6%9C%89%E4%BB%A3%E7%A0%81%E6%8F%90%E7%A4%BA%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E5%A4%9A%E5%A4%84%E7%88%86%E7%BA%A2"><span class="nav-text">6. AS C++ 没有代码提示，并且代码高亮多处爆红</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-MacOS-%E5%88%A0%E9%99%A4-DS-Store"><span class="nav-text">7. MacOS 删除 .DS_Store</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-jni-%E4%B8%AD%EF%BC%8C%E7%B1%BB%E5%9E%8B%E6%98%A0%E5%B0%84"><span class="nav-text">8. jni 中，类型映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Windows-%E7%9A%84%E7%8B%97%E5%B1%8E%E5%BF%AB%E6%8D%B7%E9%94%AE-%F0%9F%96%95%F0%9F%96%95%F0%9F%96%95%F0%9F%92%A9%F0%9F%92%A9%F0%9F%92%A9"><span class="nav-text">9. Windows 的狗屎快捷键 🖕🖕🖕💩💩💩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-text">10. 什么是内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-mac-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">11. mac 常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-JvmPlatformAnnotations-kt"><span class="nav-text">12. JvmPlatformAnnotations.kt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmOverloads"><span class="nav-text">@JvmOverloads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmStatic"><span class="nav-text">@JvmStatic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmName"><span class="nav-text">@JvmName</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmMultifileClass"><span class="nav-text">@JvmMultifileClass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmPackageName"><span class="nav-text">@JvmPackageName</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmSynthetic"><span class="nav-text">@JvmSynthetic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Throws"><span class="nav-text">@Throws</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImplicitlyActualizedByJvmDeclaration"><span class="nav-text">@ImplicitlyActualizedByJvmDeclaration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmField"><span class="nav-text">@JvmField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmSuppressWildcards"><span class="nav-text">@JvmSuppressWildcards</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmWildcard"><span class="nav-text">@JvmWildcard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmInline"><span class="nav-text">@JvmInline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JvmRecord"><span class="nav-text">@JvmRecord</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-IDEA-%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%88%E9%80%82%E7%94%A8-Android-Studio%EF%BC%89"><span class="nav-text">13. IDEA 快捷键（适用 Android Studio）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A3%80%E7%B4%A2%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E7%9A%84%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0%EF%BC%88File-Structure%EF%BC%89%EF%BC%9Acmd-F12"><span class="nav-text">1. 检索当前文件的变量和函数（File Structure）：cmd + F12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%82%E6%95%B0%E4%BF%A1%E6%81%AF%EF%BC%88Parameter-Info%EF%BC%89%EF%BC%9Acmd-P"><span class="nav-text">2. 参数信息（Parameter Info）：cmd + P</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Lucas</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 65 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>
