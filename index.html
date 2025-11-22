@@ -189,17 +189,27 @@
     
             
                 
-                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important; line-height: 2rem !important;} </style>
                 
     
             
                 
-                    <style> .code-container { border-radius: 4px !important; } </style>
+                    <style> .code-container { width: fit-content; min-width: 280px !important; max-width: 100% !important; transition: width 0.3s ease !important; border-radius: 4px !important; } </style>
                 
     
             
                 
                     <style> figure.iseeu.highlight { border-radius: 0px 0px 4px 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .copy-button {opacity: 1 !important;}; </style>
+                
+    
+            
+                
+                    <style> .fold-button {opacity: 1 !important;}; </style>
                 
     
             
@@ -225,6 +235,41 @@
             
                 
                     <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { border-radius: 0 4px 0 0; !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-title p { word-wrap: break-word !important; min-width: 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-content p { word-wrap: break-word !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large .notel-content { border-radius: 0 0 4px 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .note { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important; display: flex !important; flex-direction: row !important;align-items: center !important;} </style>
+                
+    
+            
+                
+                    <style> .note p { word-wrap: break-word !important; min-width: 0 !important; } </style>
                 
     
 
@@ -589,7 +634,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -616,7 +661,7 @@
                 <div class="author flex flex-col justify-center my-2.5 mx-0">
     <div class="name">Lucas</div>
     
-        <div class="label">Lv5</div>
+        <div class="label">Lv4</div>
     
 </div>
                 <div class="statistics flex justify-around my-2.5">
@@ -629,7 +674,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -644,250 +689,6 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/11/20/test-table/">
-                            test_table
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-
-
-a
-a
-a
-s
-s
-s
-s
-s
-
-
-
-
-aasdadadadadasd
-asasdasdsadadsadd
-asasdadsadadas
-asdasasdadsaddasd
-asdasdadsadadasd
-asdasdadadadadsad
-asasdadadsadada
-asasdadsadadadd
-
-
-
-
-
-
-a
-a
-a
-s
-
-
-
-
-aasdadadadadasd
-asasda...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Nov 20 2025 20:18:03 GMT+0800">
-                
-                    2025-11-20
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/11/20/test-table/">阅读全文<span class="seo-reader-text">test_table</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/11/20/test-code/">
-                            test_code
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            12345678#include &lt;stdbool.h&gt;#include &lt;stdio.h&gt;bool is_leap_year(int year) &#123;    if (year % 4 == 0 &amp;&amp; year % 100 != 0 || year % 400 == 0) &#123;        return true;    &#125;...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Nov 20 2025 19:44:06 GMT+0800">
-                
-                    2025-11-20
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/11/20/test-code/">阅读全文<span class="seo-reader-text">test_code</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/11/20/test-img/">
-                            test_img
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Nov 20 2025 17:57:26 GMT+0800">
-                
-                    2025-11-20
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/11/20/test-img/">阅读全文<span class="seo-reader-text">test_img</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/11/20/test-math/">
-                            test-math
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            这里是行内公式：a2+b2=c2a^2 + b^2 = c^2a2+b2=c2
-这里是块级公式：
-−b±b2−4ac2a\frac{-b\pm\sqrt{b^2-4ac}}{2a}
-2a−b±b2−4ac​​
-Trans⋅Scale=[1001010200130001]⋅[2000020000200001]=[2001020200230001]Trans \cdot Scale =
-\beg...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Nov 20 2025 10:37:03 GMT+0800">
-                
-                    2025-11-20
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/11/20/test-math/">阅读全文<span class="seo-reader-text">test-math</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/11/18/hello-world/">
-                            Hello World
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Nov 18 2025 01:05:39 GMT+0800">
-                
-                    2025-11-18
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/11/18/hello-world/">阅读全文<span class="seo-reader-text">Hello World</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
         
             <li class="home-article-item">
 
@@ -1271,11 +1072,453 @@ inner class 内部类
                 </div>
             </li>
         
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/">
+                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="阅读 Retrofit 源码" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/">
+                            阅读 Retrofit 源码
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            Retrofit 简介
+Retrofit 是 Square 公司开发的一款针对 Android 和 Java 的类型安全的网络请求框架。
+官网说的是：A type-safe HTTP client for Android and Java
+type-safe（类型安全）：一个框架类型安全指的是它会在编译期间就将类型错误，不会在运行时报类型错误。
+所以他会有大量的类型检查，在编译期间
+OkHt...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Apr 02 2025 20:17:50 GMT+0800">
+                
+                    2025-04-02
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/java/">java</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Retrofit/">Retrofit</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/OkHttp/">OkHttp</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/http/">http</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/04/02/%E9%98%85%E8%AF%BB-Retrofit-%E6%BA%90%E7%A0%81/">阅读全文<span class="seo-reader-text">阅读 Retrofit 源码</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2025/03/24/kotlin%E6%B3%9B%E5%9E%8B/">
+                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin泛型" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/24/kotlin%E6%B3%9B%E5%9E%8B/">
+                            kotlin泛型
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            前言
+学习 kotlin 泛型肯定离不开 java 泛型，这是显而易见的
+很多大佬写过 kotlin 泛型的文章或者出过讲 kotlin 泛型的教程，我深受启发
+所以，我们先学 java 泛型
+Java 泛型
+泛型是什么
+
+一些前提术语
+
+泛型：泛型是 Java 引入的一种参数化类型机制，允许在定义类、接口或方法时使用类型占位符（如 T、E 等），并在调用&gt; 时指定具体类型，从而增强代...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Mar 24 2025 21:49:32 GMT+0800">
+                
+                    2025-03-24
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/java/">java</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Generic/">Generic</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/24/kotlin%E6%B3%9B%E5%9E%8B/">阅读全文<span class="seo-reader-text">kotlin泛型</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2025/03/18/kotlin-%E7%9A%84-class-java-%E5%92%8C-javaClass/">
+                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="kotlin 的 ::class.java 和 .javaClass" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/18/kotlin-%E7%9A%84-class-java-%E5%92%8C-javaClass/">
+                            kotlin 的 ::class.java 和 .javaClass
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+
+
+特性
+Kotlin
+Java
+用途
+
+
+
+
+静态类引用
+SomeClass::class.java
+SomeClass.class
+获取类的 Class 对象（编译时类型）
+
+
+实例类引用
+instance.javaClass
+instance.getClass()
+获取实例的运行时类对象（可能被子类覆盖）
+
+
+Kotlin 类引用
+SomeClass::class（返回 KClas...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Mar 18 2025 20:04:56 GMT+0800">
+                
+                    2025-03-18
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Class/">Class</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/KClass/">KClass</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/18/kotlin-%E7%9A%84-class-java-%E5%92%8C-javaClass/">阅读全文<span class="seo-reader-text">kotlin 的 ::class.java 和 .javaClass</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2025/03/05/Android-Studio-Gradle-%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%80%A7%E9%80%82%E9%85%8D%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/">
+                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Android Studio Gradle 版本兼容性适配（理论篇）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/05/Android-Studio-Gradle-%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%80%A7%E9%80%82%E9%85%8D%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/">
+                            Android Studio Gradle 版本兼容性适配（理论篇）
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            AGP 是什么
+Gradle 的专用插件
+AGP 是一个 Gradle 插件，专门为 Android 项目定制，添加了 Android 特有的构建能力（如编译资源、生成 APK/AAB 文件）
+
+Gradle扩展
+gradle plugin 是基于 Gradle 构建系统的扩展工具，是辅助 gradle 主程序构建项目的
+
+所以，不同类型的项目有不同的插件，例如 Android 有 com....
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Mar 05 2025 19:57:46 GMT+0800">
+                
+                    2025-03-05
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Android/">Android</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Gradle/">Gradle</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/JDK/">JDK</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Android-Studio/">Android Studio</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/05/Android-Studio-Gradle-%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%80%A7%E9%80%82%E9%85%8D%EF%BC%88%E7%90%86%E8%AE%BA%E7%AF%87%EF%BC%89/">阅读全文<span class="seo-reader-text">Android Studio Gradle 版本兼容性适配（理论篇）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
+                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="Kotlin data class 被 gson 解析遇到的坑" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
+                            Kotlin data class 被 gson 解析遇到的坑
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+此篇文章来自于学习 Gson 和 Kotlin Data Class 的避坑指南
+本文的所有代码和结论都经过实际验证和推敲，并且加入了我自己的理解和细节，更多算是对原文作者的补充，像是一个学习笔记，原文写的非常好，但我也希望你能看看我的这篇文章，
+因为我对于我底层逻辑的思考很有信心，这里有简单的介绍 学习的本质在于摸透底层逻辑
+
+从一个 NullPointerException 开始
+12...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Feb 27 2025 15:20:51 GMT+0800">
+                
+                    2025-02-27
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/kotlin/">kotlin</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/json/">json</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/gson/">gson</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/data-class/">data class</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/02/27/Kotlin-data-class-%E8%A2%AB-gson-%E8%A7%A3%E6%9E%90%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">阅读全文<span class="seo-reader-text">Kotlin data class 被 gson 解析遇到的坑</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
+	<span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
     </div>
@@ -1301,7 +1544,7 @@ inner class 内部类
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>
@@ -1501,6 +1744,71 @@ inner class 内部类
 
 
 	
-</body>
+<!-- hexo injector body_end start -->
+<script>
+  (function() {
+    // 1. 单例模式：防止 Hexo PJAX 重复注入
+    if (window.hasHexoCodeFix) return;
+    window.hasHexoCodeFix = true;
+
+    // 2. 全局事件委托
+    document.addEventListener('mousedown', function(e) {
+      // 快速筛选：如果点击的不是按钮，直接返回
+      var foldBtn = e.target.closest('.fold-button');
+      if (!foldBtn) return;
+      
+      var container = foldBtn.closest('.code-container');
+      if (!container) return;
+
+      // 3. 清理之前的解锁任务 (防抖)
+      if (container.dataset.unlockTimer) {
+          clearTimeout(parseInt(container.dataset.unlockTimer));
+          container.dataset.unlockTimer = '';
+      }
+
+      // 4. 状态检测
+      var isLocked = container.style.width !== '' && container.style.width !== 'fit-content';
+
+      if (!isLocked) {
+          // =================================================
+          // 场景：准备折叠 (需要计算并锁定宽度)
+          // =================================================
+          
+          // 寻找内部撑开宽度的核心元素 (优先级：Table > Highlight > Pre)
+          // 使用选择器组一次性查询，提高效率
+          var innerEl = container.querySelector('table, .highlight, pre');
+          
+          // 获取父容器当前宽度 (可见宽度)
+          var parentWidth = container.offsetWidth;
+          
+          // 获取内容真实宽度 (包含被卷去的部分)
+          var childWidth = innerEl ? innerEl.scrollWidth : 0;
+          
+          // 取两者最大值，确保能包容内容
+          // Math.ceil: 向上取整，防止小数误差
+          // +1: 额外增加 1px 容错空间，防止临界值换行
+          var realWidth = Math.ceil(Math.max(parentWidth, childWidth)) + 1;
+          
+          // 缓存并锁定
+          container.dataset.savedWidth = realWidth;
+          container.style.width = realWidth + 'px';
+
+      } else {
+          // =================================================
+          // 场景：准备展开 (需要延时解锁)
+          // =================================================
+          
+          // 保持锁定 400ms (配合 CSS transition 动画时间)
+          var timerId = setTimeout(function() {
+              container.style.width = '';
+          }, 400);
+          
+          container.dataset.unlockTimer = timerId;
+      }
+      
+    }, true); // useCapture: true
+  })();
+</script>
+<!-- hexo injector body_end end --></body>
 
 </html>

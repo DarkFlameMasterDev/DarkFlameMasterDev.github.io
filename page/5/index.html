@@ -189,17 +189,27 @@
     
             
                 
-                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important; line-height: 2rem !important;} </style>
                 
     
             
                 
-                    <style> .code-container { border-radius: 4px !important; } </style>
+                    <style> .code-container { width: fit-content; min-width: 280px !important; max-width: 100% !important; transition: width 0.3s ease !important; border-radius: 4px !important; } </style>
                 
     
             
                 
                     <style> figure.iseeu.highlight { border-radius: 0px 0px 4px 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .copy-button {opacity: 1 !important;}; </style>
+                
+    
+            
+                
+                    <style> .fold-button {opacity: 1 !important;}; </style>
                 
     
             
@@ -225,6 +235,41 @@
             
                 
                     <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { border-radius: 0 4px 0 0; !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-title p { word-wrap: break-word !important; min-width: 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-content p { word-wrap: break-word !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large .notel-content { border-radius: 0 0 4px 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .note { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important; display: flex !important; flex-direction: row !important;align-items: center !important;} </style>
+                
+    
+            
+                
+                    <style> .note p { word-wrap: break-word !important; min-width: 0 !important; } </style>
                 
     
 
@@ -567,7 +612,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -594,7 +639,7 @@
                 <div class="author flex flex-col justify-center my-2.5 mx-0">
     <div class="name">Lucas</div>
     
-        <div class="label">Lv5</div>
+        <div class="label">Lv4</div>
     
 </div>
                 <div class="statistics flex justify-around my-2.5">
@@ -607,7 +652,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -622,371 +667,6 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/10/14/%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81-01%E5%87%8F%E5%B0%91%E6%8B%AC%E5%8F%B7%E5%B5%8C%E5%A5%97/">
-                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="优秀代码-01减少括号嵌套" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/14/%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81-01%E5%87%8F%E5%B0%91%E6%8B%AC%E5%8F%B7%E5%B5%8C%E5%A5%97/">
-                            优秀代码-01减少括号嵌套
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            前言
-这是我新起的一个系列，目的地总结一下写出优秀代码的方法。
-大家都知道，代码如果括号嵌套太多了，会影响代码的可读性和扩展性，这次就总结一些代码中减少嵌套的一些方法
-第一个例子
-1234567891011121314fun test1(condition1: Boolean, condition2: Boolean, condition3: Boolean) &#123;  if (obj...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Oct 14 2023 23:42:27 GMT+0800">
-                
-                    2023-10-14
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2023/10/14/%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81-01%E5%87%8F%E5%B0%91%E6%8B%AC%E5%8F%B7%E5%B5%8C%E5%A5%97/">阅读全文<span class="seo-reader-text">优秀代码-01减少括号嵌套</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">
-                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 矩阵（没写完）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">
-                            OpenGL 矩阵（没写完）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            向量
-向量点乘（内积）
-A=[a11a12...a1na21a22...a2na31a22...a3n⋮⋮⋱⋮an1an2...ann],b=[b1b2b3⋮bn]    A = \begin{bmatrix}
-    a_{11} &amp; a_{12} &amp; ... &amp; a_{1n}\\
-    a_{21} &amp; a_{22} &amp; ... &amp; a_...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Oct 05 2023 15:24:28 GMT+0800">
-                
-                    2023-10-05
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/10/05/OpenGL-%E7%9F%A9%E9%98%B5/">阅读全文<span class="seo-reader-text">OpenGL 矩阵（没写完）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/09/25/%E5%92%8B%E5%86%99-Markdown/">
-                            <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="咋写 Markdown" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/09/25/%E5%92%8B%E5%86%99-Markdown/">
-                            咋写 Markdown
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            2023-09-25 改用 Typora
-最近不用 VSCode 了，改用 Typora 感觉还不错
-主要是 VSCode 没行号，就有点痛苦，快捷键也麻烦一点
-1. 改字体
-
-全局字体
-
- 123body&#123;  font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace;&#125;
-
-行内代码块
-
- 123code...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Sep 25 2023 17:57:08 GMT+0800">
-                
-                    2023-09-25
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Markdown/">Markdown</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Typora/">Typora</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/VSCode/">VSCode</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/09/25/%E5%92%8B%E5%86%99-Markdown/">阅读全文<span class="seo-reader-text">咋写 Markdown</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/09/24/OpenGL-%E7%BA%B9%E7%90%86/">
-                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 纹理" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/09/24/OpenGL-%E7%BA%B9%E7%90%86/">
-                            OpenGL 纹理
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            纹理坐标（2D）
-纹理坐标在 x 和 y 轴上，范围为 0 到 1 之间
-
-blue 使用纹理坐标获取纹理颜色叫做采样(Sampling)
-这个采样是什么意思呢？我们看一个图
-
-这是一个纹理的坐标图
-123456float texCoords[] = &#123;    0.0f, 0.0f, // 左下角    1.0f, 0.0f, // 右下角    0.0f, 1.0f, // 左上...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Sep 24 2023 15:25:08 GMT+0800">
-                
-                    2023-09-24
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/09/24/OpenGL-%E7%BA%B9%E7%90%86/">阅读全文<span class="seo-reader-text">OpenGL 纹理</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/09/13/%E7%9B%B4%E6%92%AD%E6%96%B9%E6%A1%88%E5%88%86%E4%BA%AB/">
-                            <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="直播方案分享" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/09/13/%E7%9B%B4%E6%92%AD%E6%96%B9%E6%A1%88%E5%88%86%E4%BA%AB/">
-                            直播方案分享
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            9-13 直播方案分享
-拓扑图
-
-硬件设备
-
-MacBook 写代码用
-Windows 推流用，因为老 MacBook 性能太羸弱
-两个显示器（4k 接 MacBook，2k 接 Windows 用来监看推流）
-一个 150 元左右的采集卡（4k60 环出，1080p 60 采集）
-
-软件设备
-
-obs（Windows 端）
-loopback（Mac 端）
-
-软件设置
-
-
-obs 设置
-
-
-...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Sep 13 2023 10:07:45 GMT+0800">
-                
-                    2023-09-13
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Mac/">Mac</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Windows/">Windows</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%9B%B4%E6%92%AD/">直播</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%AE%BE%E5%A4%87/">设备</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%96%B9%E6%A1%88/">方案</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/09/13/%E7%9B%B4%E6%92%AD%E6%96%B9%E6%A1%88%E5%88%86%E4%BA%AB/">阅读全文<span class="seo-reader-text">直播方案分享</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
         
             <li class="home-article-item">
 
@@ -1342,11 +1022,364 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
                 </div>
             </li>
         
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/17/OpenGL-%E5%9B%9B%E5%85%83%E6%95%B0/">
+                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 四元数" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/17/OpenGL-%E5%9B%9B%E5%85%83%E6%95%B0/">
+                            OpenGL 四元数
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            万向节死锁
+关键点
+理解万向节死锁的关键就在于理解为什么会前面旋转会带动后面坐标轴一起进行旋转
+欧拉角
+我们设置三个旋转方向, 分别为绕 x 轴, 绕 y 轴, 绕 z 轴 旋转, 这就是欧拉角, 以数学家欧拉的名字命名
+请注意, 我很还必须指定先绕着谁旋转, 因为旋转的先后次序不一样, 最终结果也就不一样
+写成矩阵就是这个样子： Rz⋅Ry⋅Rx⋅VR_z\cdot R_y\cdot R_...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Aug 17 2023 22:31:41 GMT+0800">
+                
+                    2023-08-17
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/17/OpenGL-%E5%9B%9B%E5%85%83%E6%95%B0/">阅读全文<span class="seo-reader-text">OpenGL 四元数</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/17/%E5%BE%AE%E6%98%9F-4060-%E4%B8%87%E5%9B%BE%E5%B8%88-8G-%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">
+                            <img src="https://darkflamemasterdev.github.io/img/game_headimg.png" alt="微星 4060 万图师 8G 游戏设置" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/17/%E5%BE%AE%E6%98%9F-4060-%E4%B8%87%E5%9B%BE%E5%B8%88-8G-%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">
+                            微星 4060 万图师 8G 游戏设置
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            2499京东买的微星 4060 万图师 8G
+犹豫了一下3060 12G，最终还是买了4060 8G，心想着有dlss3还勉强可以战未来
+现在发现8G显存有点不够用
+尤其是巫师3显存占用高得离谱
+
+以下是4k60hz流畅不跳帧 尽可能高画质 的设置
+
+1. 巫师3
+值得注意的是，这个DLSS 帧生成非常不好用，他会禁用垂直同步，导致画面撕裂，所以不到万不得已，最好不要开
+
+
+2. 荒野大镖客...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Aug 17 2023 13:35:44 GMT+0800">
+                
+                    2023-08-17
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%98%BE%E5%8D%A1/">显卡</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/4060/">4060</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/17/%E5%BE%AE%E6%98%9F-4060-%E4%B8%87%E5%9B%BE%E5%B8%88-8G-%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">阅读全文<span class="seo-reader-text">微星 4060 万图师 8G 游戏设置</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 三角形" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                            OpenGL 三角形
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            渲染管线
+
+这是常见的渲染管线的图，每一步都以上一步的输出为输入，图形渲染管线接受一组3D坐标，然后把它们转变为你屏幕上的有色2D像素输出。
+
+
+图形渲染管线的第一个部分是顶点着色器(Vertex Shader)，它把一个单独的顶点作为输入。
+顶点着色器主要的目的是把3D坐标转为另一种3D坐标，同时顶点着色器允许我们对顶点属性进行一些基本处理。
+
+
+图元装配(Primitive Assemb...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Aug 15 2023 22:31:41 GMT+0800">
+                
+                    2023-08-15
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/15/OpenGL-%E4%B8%89%E8%A7%92%E5%BD%A2/">阅读全文<span class="seo-reader-text">OpenGL 三角形</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/">
+                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL 窗口" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/">
+                            OpenGL 窗口
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            学习地址
+我是从这里学习的 OpenGL LearnOpenGL-CN
+了解背景
+首先，了解背景很重要的，这能让我们更好地初步对OpenGL有一个概念
+概念
+OpenGL 并不是一个 API ，它仅仅是一个由Khronos组织制定并维护的规范（ Specification ）。
+文档链接
+实际的OpenGL库的开发者通常是显卡的生产商。你购买的显卡所支持的OpenGL版本都为这个系列的显卡专...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Aug 13 2023 11:13:27 GMT+0800">
+                
+                    2023-08-13
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/13/OpenGL-%E7%AA%97%E5%8F%A3/">阅读全文<span class="seo-reader-text">OpenGL 窗口</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
+                            <img src="https://darkflamemasterdev.github.io/img/opengl_headimg.png" alt="OpenGL on Mac 环境" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
+                            OpenGL on Mac 环境
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            环境介绍
+这次我将环境部署到了Mac + Clion上
+
+其实并没有解决上次的编译glfw的问题，但好像不太影响使用
+因为我不会自己写编译脚本(〒︿〒)
+解决了！！！chatGPT 真好用！！！
+
+
+1xcode-select --install
+123git clone https://github.com/glfw/glfw.gitcd glfwgit checkout 3.3.8
+12...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Aug 08 2023 09:42:52 GMT+0800">
+                
+                    2023-08-08
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">阅读全文<span class="seo-reader-text">OpenGL on Mac 环境</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<a class="extend prev" rel="prev" href="/page/4/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa-regular fa-angle-right"></i></a>
+	<a class="extend prev" rel="prev" href="/page/4/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
     </div>
@@ -1372,7 +1405,7 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>
@@ -1572,6 +1605,71 @@ EBO是一个缓冲区，就像一个顶点缓冲区对象一样，它存储OpenG
 
 
 	
-</body>
+<!-- hexo injector body_end start -->
+<script>
+  (function() {
+    // 1. 单例模式：防止 Hexo PJAX 重复注入
+    if (window.hasHexoCodeFix) return;
+    window.hasHexoCodeFix = true;
+
+    // 2. 全局事件委托
+    document.addEventListener('mousedown', function(e) {
+      // 快速筛选：如果点击的不是按钮，直接返回
+      var foldBtn = e.target.closest('.fold-button');
+      if (!foldBtn) return;
+      
+      var container = foldBtn.closest('.code-container');
+      if (!container) return;
+
+      // 3. 清理之前的解锁任务 (防抖)
+      if (container.dataset.unlockTimer) {
+          clearTimeout(parseInt(container.dataset.unlockTimer));
+          container.dataset.unlockTimer = '';
+      }
+
+      // 4. 状态检测
+      var isLocked = container.style.width !== '' && container.style.width !== 'fit-content';
+
+      if (!isLocked) {
+          // =================================================
+          // 场景：准备折叠 (需要计算并锁定宽度)
+          // =================================================
+          
+          // 寻找内部撑开宽度的核心元素 (优先级：Table > Highlight > Pre)
+          // 使用选择器组一次性查询，提高效率
+          var innerEl = container.querySelector('table, .highlight, pre');
+          
+          // 获取父容器当前宽度 (可见宽度)
+          var parentWidth = container.offsetWidth;
+          
+          // 获取内容真实宽度 (包含被卷去的部分)
+          var childWidth = innerEl ? innerEl.scrollWidth : 0;
+          
+          // 取两者最大值，确保能包容内容
+          // Math.ceil: 向上取整，防止小数误差
+          // +1: 额外增加 1px 容错空间，防止临界值换行
+          var realWidth = Math.ceil(Math.max(parentWidth, childWidth)) + 1;
+          
+          // 缓存并锁定
+          container.dataset.savedWidth = realWidth;
+          container.style.width = realWidth + 'px';
+
+      } else {
+          // =================================================
+          // 场景：准备展开 (需要延时解锁)
+          // =================================================
+          
+          // 保持锁定 400ms (配合 CSS transition 动画时间)
+          var timerId = setTimeout(function() {
+              container.style.width = '';
+          }, 400);
+          
+          container.dataset.unlockTimer = timerId;
+      }
+      
+    }, true); // useCapture: true
+  })();
+</script>
+<!-- hexo injector body_end end --></body>
 
 </html>

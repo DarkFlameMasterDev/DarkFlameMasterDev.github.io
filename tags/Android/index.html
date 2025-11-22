@@ -189,17 +189,27 @@
     
             
                 
-                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important; line-height: 2rem !important;} </style>
                 
     
             
                 
-                    <style> .code-container { border-radius: 4px !important; } </style>
+                    <style> .code-container { width: fit-content; min-width: 280px !important; max-width: 100% !important; transition: width 0.3s ease !important; border-radius: 4px !important; } </style>
                 
     
             
                 
                     <style> figure.iseeu.highlight { border-radius: 0px 0px 4px 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .copy-button {opacity: 1 !important;}; </style>
+                
+    
+            
+                
+                    <style> .fold-button {opacity: 1 !important;}; </style>
                 
     
             
@@ -225,6 +235,41 @@
             
                 
                     <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { border-radius: 0 4px 0 0; !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-title p { word-wrap: break-word !important; min-width: 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-content p { word-wrap: break-word !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large .notel-content { border-radius: 0 0 4px 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .note { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important; display: flex !important; flex-direction: row !important;align-items: center !important;} </style>
+                
+    
+            
+                
+                    <style> .note p { word-wrap: break-word !important; min-width: 0 !important; } </style>
                 
     
 
@@ -532,7 +577,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -703,7 +748,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>
@@ -902,6 +947,71 @@
 
 
 	
-</body>
+<!-- hexo injector body_end start -->
+<script>
+  (function() {
+    // 1. 单例模式：防止 Hexo PJAX 重复注入
+    if (window.hasHexoCodeFix) return;
+    window.hasHexoCodeFix = true;
+
+    // 2. 全局事件委托
+    document.addEventListener('mousedown', function(e) {
+      // 快速筛选：如果点击的不是按钮，直接返回
+      var foldBtn = e.target.closest('.fold-button');
+      if (!foldBtn) return;
+      
+      var container = foldBtn.closest('.code-container');
+      if (!container) return;
+
+      // 3. 清理之前的解锁任务 (防抖)
+      if (container.dataset.unlockTimer) {
+          clearTimeout(parseInt(container.dataset.unlockTimer));
+          container.dataset.unlockTimer = '';
+      }
+
+      // 4. 状态检测
+      var isLocked = container.style.width !== '' && container.style.width !== 'fit-content';
+
+      if (!isLocked) {
+          // =================================================
+          // 场景：准备折叠 (需要计算并锁定宽度)
+          // =================================================
+          
+          // 寻找内部撑开宽度的核心元素 (优先级：Table > Highlight > Pre)
+          // 使用选择器组一次性查询，提高效率
+          var innerEl = container.querySelector('table, .highlight, pre');
+          
+          // 获取父容器当前宽度 (可见宽度)
+          var parentWidth = container.offsetWidth;
+          
+          // 获取内容真实宽度 (包含被卷去的部分)
+          var childWidth = innerEl ? innerEl.scrollWidth : 0;
+          
+          // 取两者最大值，确保能包容内容
+          // Math.ceil: 向上取整，防止小数误差
+          // +1: 额外增加 1px 容错空间，防止临界值换行
+          var realWidth = Math.ceil(Math.max(parentWidth, childWidth)) + 1;
+          
+          // 缓存并锁定
+          container.dataset.savedWidth = realWidth;
+          container.style.width = realWidth + 'px';
+
+      } else {
+          // =================================================
+          // 场景：准备展开 (需要延时解锁)
+          // =================================================
+          
+          // 保持锁定 400ms (配合 CSS transition 动画时间)
+          var timerId = setTimeout(function() {
+              container.style.width = '';
+          }, 400);
+          
+          container.dataset.unlockTimer = timerId;
+      }
+      
+    }, true); // useCapture: true
+  })();
+</script>
+<!-- hexo injector body_end end --></body>
 
 </html>

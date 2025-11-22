@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/page/7/"/>
+    <link rel="canonical" href="http://example.com/test/test-note.html"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -139,12 +139,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:title" content="test_note">
+<meta property="og:url" content="http://example.com/test/test-note.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-11-22T16:40:11.000Z">
+<meta property="article:modified_time" content="2025-11-22T18:46:04.001Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -159,7 +161,7 @@
     
     <title>
         
-            DarkFlameMaster&#39;s blog - Redefine Your Hexo Journey.
+            test_note | DarkFlameMaster&#39;s blog
         
     </title>
 
@@ -189,17 +191,27 @@
     
             
                 
-                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important;line-height: 2rem !important;} </style>
+                    <style> .markdown-body ul > li, .markdown-body ol > li {margin-left: 30px !important; line-height: 2rem !important;} </style>
                 
     
             
                 
-                    <style> .code-container { border-radius: 4px !important; } </style>
+                    <style> .code-container { width: fit-content; min-width: 280px !important; max-width: 100% !important; transition: width 0.3s ease !important; border-radius: 4px !important; } </style>
                 
     
             
                 
                     <style> figure.iseeu.highlight { border-radius: 0px 0px 4px 4px !important;} </style>
+                
+    
+            
+                
+                    <style> .copy-button {opacity: 1 !important;}; </style>
+                
+    
+            
+                
+                    <style> .fold-button {opacity: 1 !important;}; </style>
                 
     
             
@@ -225,6 +237,41 @@
             
                 
                     <style> .markdown-body > table thead th:last-child, .markdown-body .tab-pane > table thead th:last-child { border-top-right-radius: 6px !important;} </style>
+                
+    
+            
+                
+                    <style> .note-large { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important;} </style>
+                
+    
+            
+                
+                    <style> .notel-title { border-radius: 0 4px 0 0; !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-title p { word-wrap: break-word !important; min-width: 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .notel-content p { word-wrap: break-word !important; } </style>
+                
+    
+            
+                
+                    <style> .note-large .notel-content { border-radius: 0 0 4px 0 !important; } </style>
+                
+    
+            
+                
+                    <style> .note { border-radius: 4px !important; width: fit-content !important; max-width: 100% !important; display: flex !important; flex-direction: row !important;align-items: center !important;} </style>
+                
+    
+            
+                
+                    <style> .note p { word-wrap: break-word !important; min-width: 0 !important; } </style>
                 
     
 
@@ -289,41 +336,6 @@
 <main class="page-container" id="swup">
 
 	
-	<style>
-    .home-article-item,
-    .sidebar-links,
-    .sidebar-content,
-    a.page-number,
-    a.extend,
-    .sidebar-links .links:hover,
-    .right-bottom-tools,
-    footer.footer {
-        background-color: var(--background-color-transparent-80) !important;
-    }
-    .right-bottom-tools:hover,
-    a.page-number:hover,
-    a.extend:hover {
-        background-color: var(--primary-color) !important;
-    }
-    .site-info,
-    .home-article-sticky-label {
-        background-color: var(--background-color-transparent-15) !important;
-    }
-    .home-article-sticky-label {
-        backdrop-filter: none !important;
-    }
-    .home-banner-background {
-        filter: blur(15px);
-    }
-</style>
-
-<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
-    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
-    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
-</div>
-
-
-	
 
 	<div class="main-content-container flex flex-col justify-between min-h-dvh">
 		<div class="main-content-header">
@@ -332,9 +344,9 @@
         <div class="left">
             
             <a class="logo-title" href="/">
-                <h1>
+                
                 DarkFlameMaster&#39;s blog
-                </h1>
+                
             </a>
         </div>
 
@@ -348,7 +360,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class="active"
+                                <a class=""
                                    href="/"
                                         >
                                     <i class="fa-solid fa-house fa-fw"></i>
@@ -457,7 +469,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
                            href="/"
                         >
                             <span>
@@ -567,7 +579,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -582,460 +594,46 @@
 
 		<div class="main-content-body transition-fade-up">
 			
-			<div class="home-sidebar-container">
-    <div class="sticky-container sticky">
-        
-        
-            
-            <div class="sidebar-content" >
-                <div class="avatar flex justify-center">
-    <img src="/img/lucas_avatar.png">
-</div>
-                <div class="author flex flex-col justify-center my-2.5 mx-0">
-    <div class="name">Lucas</div>
-    
-        <div class="label">Lv5</div>
-    
-</div>
-                <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">107</div>
-        <div class="label text-third-text-color text-sm">标签</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
-        <div class="label text-third-text-color text-sm">分类</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
-        <div class="label text-third-text-color text-sm">文章</div>
-    </a>
-</div>
-            </div>
-        
-
-    </div>
-</div>
-
-			
 
 			<div class="main-content">
-				<div class="home-content-container">
-    <ul class="home-article-list">
-        
-            <li class="home-article-item">
+				<div class="page-template-container">
+	
 
-                
+	
 
-                
-                    
-                
+	<div class="page-template-content markdown-body">
+		
+		<h1>test_note</h1>
+		
 
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="java并发-线程基础（未完成）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-                            java并发-线程基础（未完成）
-                        </a>
-                    </h3>
+		
+  <div class="note-large default">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>fuck you baby! why do you do this? Hippopotomonstrosesquippedaliophobia</p>
 
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            线程的状态
-
-
-New（新建）
-创建后尚未启动。
-
-
-Runnable（运行）
-可能正在运行，也可能正在等待 CPU 时间片。
-包含了操作系统线程状态中的 Running 和 Ready。
-
-
-Blocking（阻塞）
-等待获取一个排它锁，如果其线程释放了锁就会结束此状态。
-
-
-Waiting（无限期等待）
-没有设置 Timeout 参数的 Object.wait() 方法
-没有设置 Tim...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Apr 20 2023 21:16:37 GMT+0800">
-                
-                    2023-04-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Java/">Java</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Jvm/">Jvm</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
     </div>
+    <div class="notel-content markdown-body">
+      <p>fuck you baby! why do you do this? Hippopotomonstrosesquippedaliophobia<br>
+fuck you baby! why do you do this?</p>
 
-    <a href="/2023/04/20/java%E5%B9%B6%E5%8F%91-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">阅读全文<span class="seo-reader-text">java并发-线程基础（未完成）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="note p-4 mb-4 rounded-small markdown-body primary icon-padding">
+    <i class="note-icon fa-solid fa-circle-exclamation"></i><p>fuck you baby! why do you do this? Hippopotomonstrosesquippedaliophobia</p>
+
+  </div>
+	</div>
+
+	<div class="page-template-comments">
+		
+	</div>
 </div>
 
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/">
-                            <img src="https://darkflamemasterdev.github.io/img/language_headimg.png" alt="java垃圾回收（GC）（未完成）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/">
-                            java垃圾回收（GC）（未完成）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-本文大量引用 GC - Java 垃圾回收基础知识 | Java 全栈知识体系，尤其是到后面直接照抄了，因为根本看不懂。如果有机会一定要去看原文，写的非常好！！！而且很多博客都是抄的这篇文章，并且并未注明出处，当然我也抄的这里。
-
-概述
-
-垃圾回收主要是针对 堆 和 方法区 进行回收
-程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后也会消失，...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 19 2023 15:56:10 GMT+0800">
-                
-                    2023-04-19
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Java/">Java</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Jvm/">Jvm</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%BC%95%E7%94%A8/">引用</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/19/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%88GC%EF%BC%89/">阅读全文<span class="seo-reader-text">java垃圾回收（GC）（未完成）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/18/%E5%8A%9B%E6%89%A342%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4%EF%BC%88%E5%8A%9B%E6%89%A311-%E7%9B%9B%E6%B0%B4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AE%B9%E5%99%A8-%E6%89%A9%E5%B1%95%EF%BC%89/">
-                            <img src="https://darkflamemasterdev.github.io/img/algorithm_headimg.png" alt="力扣42 接雨水 （力扣11 盛最多水的容器 扩展）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/18/%E5%8A%9B%E6%89%A342%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4%EF%BC%88%E5%8A%9B%E6%89%A311-%E7%9B%9B%E6%B0%B4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AE%B9%E5%99%A8-%E6%89%A9%E5%B1%95%EF%BC%89/">
-                            力扣42 接雨水 （力扣11 盛最多水的容器 扩展）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            题目
-给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
-示例 1
-  
-
-输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
-输出：6
-解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
-
-示例 2
-
-输入：height =...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Apr 18 2023 21:41:43 GMT+0800">
-                
-                    2023-04-18
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/18/%E5%8A%9B%E6%89%A342%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4%EF%BC%88%E5%8A%9B%E6%89%A311-%E7%9B%9B%E6%B0%B4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AE%B9%E5%99%A8-%E6%89%A9%E5%B1%95%EF%BC%89/">阅读全文<span class="seo-reader-text">力扣42 接雨水 （力扣11 盛最多水的容器 扩展）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/18/%E5%8A%9B%E6%89%A311%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
-                            <img src="https://darkflamemasterdev.github.io/img/algorithm_headimg.png" alt="力扣11：盛最多水的容器" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/18/%E5%8A%9B%E6%89%A311%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
-                            力扣11：盛最多水的容器
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            题目
-给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
-找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
-返回容器可以储存的最大水量。
-说明：你不能倾斜容器。
-示例一
-
-
-输入：[1,8,6,2,5,4,8,3,7]
-输出：49
-解释：图中垂直线代表输入数组 [1,8,6,2,5,...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Apr 18 2023 17:20:43 GMT+0800">
-                
-                    2023-04-18
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/18/%E5%8A%9B%E6%89%A311%EF%BC%9A%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">阅读全文<span class="seo-reader-text">力扣11：盛最多水的容器</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">
-                            <img src="https://darkflamemasterdev.github.io/img/life_headimg.png" alt="部署hexo到github.io的一些小问题（持续更新）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">
-                            部署hexo到github.io的一些小问题（持续更新）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            1. 操作没问题，但就是部署失败
-hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确信你的操作没问题，但就是主题没有生效，那很有可能是github-Pages正在处理( github-pages 会显示一个 Queued ，意思就是在队列里面，还没处理)
-   
-2. 加载图片
-加载图片是一个稍微复杂一点的操作
-官方文档推荐了两种方法
-
-
-自己设置文件夹：应该将图片文...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Apr 18 2023 03:57:31 GMT+0800">
-                
-                    2023-04-18
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/hexo/">hexo</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">阅读全文<span class="seo-reader-text">部署hexo到github.io的一些小问题（持续更新）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator px-7 py-5">
-        <div class="paginator">
-	<a class="extend prev" rel="prev" href="/page/6/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+<div class="paginator">
+	
 </div>
   
-    </div>
-</div>
-
 			</div>
 
 			
@@ -1056,7 +654,7 @@ hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确�
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>
@@ -1212,7 +810,6 @@ hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确�
 
 
 
-
 	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
 
 
@@ -1256,6 +853,71 @@ hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确�
 
 
 	
-</body>
+<!-- hexo injector body_end start -->
+<script>
+  (function() {
+    // 1. 单例模式：防止 Hexo PJAX 重复注入
+    if (window.hasHexoCodeFix) return;
+    window.hasHexoCodeFix = true;
+
+    // 2. 全局事件委托
+    document.addEventListener('mousedown', function(e) {
+      // 快速筛选：如果点击的不是按钮，直接返回
+      var foldBtn = e.target.closest('.fold-button');
+      if (!foldBtn) return;
+      
+      var container = foldBtn.closest('.code-container');
+      if (!container) return;
+
+      // 3. 清理之前的解锁任务 (防抖)
+      if (container.dataset.unlockTimer) {
+          clearTimeout(parseInt(container.dataset.unlockTimer));
+          container.dataset.unlockTimer = '';
+      }
+
+      // 4. 状态检测
+      var isLocked = container.style.width !== '' && container.style.width !== 'fit-content';
+
+      if (!isLocked) {
+          // =================================================
+          // 场景：准备折叠 (需要计算并锁定宽度)
+          // =================================================
+          
+          // 寻找内部撑开宽度的核心元素 (优先级：Table > Highlight > Pre)
+          // 使用选择器组一次性查询，提高效率
+          var innerEl = container.querySelector('table, .highlight, pre');
+          
+          // 获取父容器当前宽度 (可见宽度)
+          var parentWidth = container.offsetWidth;
+          
+          // 获取内容真实宽度 (包含被卷去的部分)
+          var childWidth = innerEl ? innerEl.scrollWidth : 0;
+          
+          // 取两者最大值，确保能包容内容
+          // Math.ceil: 向上取整，防止小数误差
+          // +1: 额外增加 1px 容错空间，防止临界值换行
+          var realWidth = Math.ceil(Math.max(parentWidth, childWidth)) + 1;
+          
+          // 缓存并锁定
+          container.dataset.savedWidth = realWidth;
+          container.style.width = realWidth + 'px';
+
+      } else {
+          // =================================================
+          // 场景：准备展开 (需要延时解锁)
+          // =================================================
+          
+          // 保持锁定 400ms (配合 CSS transition 动画时间)
+          var timerId = setTimeout(function() {
+              container.style.width = '';
+          }, 400);
+          
+          container.dataset.unlockTimer = timerId;
+      }
+      
+    }, true); // useCapture: true
+  })();
+</script>
+<!-- hexo injector body_end end --></body>
 
 </html>
