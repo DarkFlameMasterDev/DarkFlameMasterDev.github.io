@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -172,7 +172,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -287,11 +287,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -316,10 +316,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -658,6 +658,14 @@
                     </li>
                 
                     <li>
+                        | <a href="/tags/stream/">stream</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B5%81/">流</a>&nbsp;
+                    </li>
+                
+                    <li>
                         | <a href="/tags/java/">java</a>&nbsp;
                     </li>
                 
@@ -671,14 +679,6 @@
                 
                     <li>
                         | <a href="/tags/okio/">okio</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E6%B5%81/">流</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/stream/">stream</a>&nbsp;
                     </li>
                 
             </ul>
@@ -832,7 +832,7 @@
 <h3 id="Buffer-操作细节">Buffer 操作细节</h3>
 <p>我们以一个读文件的代码来讲解 nio 的原理</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">val</span> randomAccessFile = RandomAccessFile(<span class="string">&quot;./asd.txt&quot;</span>, <span class="string">&quot;rw&quot;</span>)</span><br><span class="line">  <span class="keyword">val</span> channel = randomAccessFile.channel</span><br><span class="line">  <span class="keyword">val</span> byteBuffer = ByteBuffer.allocate(<span class="number">1024</span>)</span><br><span class="line">  channel.read(byteBuffer)</span><br><span class="line">  byteBuffer.flip()</span><br><span class="line">  println(Charset.defaultCharset().decode(byteBuffer))</span><br><span class="line">&#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">  e.printStackTrace()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<img src="/2023/11/15/Java-io-nio-okio/nio01.png" alt="nio.png"  class="article-image">
+<img src="/2023/11/15/Java-io-nio-okio/nio01.png" alt="nio.png" >
 <p>我画了一个图，蓝色为 buffer，capacity 是 buffer 的容量，limit 是限制符，position 是当前位置</p>
 <p>可以看到，当 Channel 读取字符到 Buffer 里面的时候，position 一直在记录当前位置</p>
 <p>ByteBuffer.flip() 是切换读模式，其实就是 limit 记录 position 位置，position 重置为 0，mark 重置（mark 后面会提到）</p>
@@ -935,6 +935,14 @@
 			</li>
 			
 			<li class="tag-item mx-0.5">
+				<a href="/tags/stream/">#stream</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B5%81/">#流</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
 				<a href="/tags/java/">#java</a>&nbsp;
 			</li>
 			
@@ -948,14 +956,6 @@
 			
 			<li class="tag-item mx-0.5">
 				<a href="/tags/okio/">#okio</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E6%B5%81/">#流</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/stream/">#stream</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -1272,7 +1272,7 @@
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1295,44 +1295,44 @@
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

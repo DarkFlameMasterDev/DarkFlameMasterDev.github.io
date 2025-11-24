@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -169,7 +169,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -284,11 +284,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -313,10 +313,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -694,7 +694,7 @@
 <h3 id="协程的概念">协程的概念</h3>
 <p>开头就说了，我们没有必要关注协程是什么！因为协程并没有一个官方的或者统一的定义，包括维基百科（作者一直在说 kotlin 协程，而不是只说协程，应该也是在表示，视频里只是讲解 kotlin 协程，而不是所有协程）</p>
 <p>而对于 kotlin 协程，明确给出了，就是一套线程 API</p>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_线程API.png" alt="第一个视频_线程API.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_线程API.png" alt="第一个视频_线程API.png" >
 <h3 id="协程的好处">协程的好处</h3>
 <h4 id="基本的好处">基本的好处</h4>
 <p>协程和其他的线程框架类似，比如 Handler、Executor、AsyncTask。都是是方便调度线程，但是由于 kotlin 的语言特性，协程会更方便。</p>
@@ -702,17 +702,17 @@
 <p>最重要的是，协程可以通过同步方式，写出异步代码</p>
 <p>同样，这里作者说了很多教程并没有正确理解和使用这种非阻塞式挂起，写出的教程都是错的</p>
 <h3 id="协程长什么样？">协程长什么样？</h3>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_协程长什么样.png" alt="第一个视频_协程长什么样.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_协程长什么样.png" alt="第一个视频_协程长什么样.png" >
 <p>如图所示，我们可以用同步方式写异步代码</p>
 <p>这样就不用写回调了，大大减少了并发开发的难度，减少了回调地域</p>
 <p>这是对于我们的开发工作带来了质变，减小开发难度，就可以让开发者写出了更优质高效的代码</p>
 <h3 id="协程怎么用？">协程怎么用？</h3>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_协程是一段代码.png" alt="第一个视频_协程是一段代码.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_协程是一段代码.png" alt="第一个视频_协程是一段代码.png" >
 <p>我们写在大括号里的那部分代码就是写成本身（看到这里，就基本猜到 kotlin 协程将 kotlin 的高阶函数 lambda 联系到一起）</p>
 <p>这个 launch 函数的意思是，我要创建一个协程，并在指定线程上运行协程</p>
 <h4 id="切线程">切线程</h4>
 <p>我们可以方便地通过协程来切线程</p>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_切线程.png" alt="第一个视频_切线程.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_切线程.png" alt="第一个视频_切线程.png" >
 <p>withContext 可以让我们把协程切回去再切回来，这样就可以方便地把异步代码写成同步代码了</p>
 <h4 id="suspend-关键字">suspend 关键字</h4>
 <p>suspend 函数需要在协程里调用，或者 suspend 函数里调用（其实也就是最终会在协程里调用，毕竟 suspend 函数也在协程调用）</p>
@@ -722,12 +722,12 @@
 <p>挂起的是协程，不是函数，也不是线程</p>
 <p>挂起就是：协程脱离当前线程，不是停下来了，而是跑到另一个线程了</p>
 <h4 id="例子：主线程启动一个协程">例子：主线程启动一个协程</h4>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_主线程的协程.png" alt="第一个视频_主线程的协程.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_主线程的协程.png" alt="第一个视频_主线程的协程.png" >
 <p>当你的协程挂起的时候，实际上就是 post 这个任务提前结束了，主线程就会继续刷新界面了</p>
 <p>那协程被挂起到哪里了？其实就是你调用的挂起函数指定的线程。</p>
 <p>并且如果你使用了 WithContext ，协程可以在执行结束后，将线程再切回来。</p>
 <p>这个切回来的实现，是 Dispatcher 来实现的，当然你也可以自定义一个 Dispatcher ，然后决定它的实现细节，切回来还是什么其他操作</p>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_挂起的本质.png" alt="第一个视频_挂起的本质.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_挂起的本质.png" alt="第一个视频_挂起的本质.png" >
 <p>所谓挂起，其实就是一个可以被切回来的线程切换</p>
 <p>而切回来这个在协程里叫 resume</p>
 
@@ -773,10 +773,10 @@
 
     </div>
   </div>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_非阻塞式挂起.png" alt="第一个视频_非阻塞式挂起.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_非阻塞式挂起.png" alt="第一个视频_非阻塞式挂起.png" >
 <h3 id="kotlin官方的错误">kotlin官方的错误</h3>
 <p>kotlin 官方用下图的左边两段代码对比，来证明协程更更高效，这是偷换概念</p>
-<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_kotlin官方文档的错误.png" alt="第一个视频_kotlin官方文档的错误.png"  class="article-image">
+<img src="/2023/11/30/记录扔物线的三个协程视频/第一个视频_kotlin官方文档的错误.png" alt="第一个视频_kotlin官方文档的错误.png" >
 <p>只有使用绿色框框里的才是正确的对比方式，而且就没有性能差异了</p>
 
 		</div>
@@ -1147,7 +1147,7 @@
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1170,44 +1170,44 @@
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

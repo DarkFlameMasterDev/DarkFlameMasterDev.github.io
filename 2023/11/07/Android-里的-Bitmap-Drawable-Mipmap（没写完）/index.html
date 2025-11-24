@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -170,7 +170,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -285,11 +285,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -314,10 +314,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -810,7 +810,7 @@ XML 中定义并由您的应用实例化。</p>
 <li>通过在边框的左侧和顶部绘制一条（或多条）1 像素宽的黑线来指示可拉伸部分（其他边框像素应为完全透明或白色）</li>
 <li>在右侧绘制一条线，在底部绘制一条线来定义图像的可绘制部分（实际上是填充线）。也就是你设置<code>text</code>填充的地方</li>
 </ul>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/ninepatch_raw.png" alt="ninepatch_raw.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/ninepatch_raw.png" alt="ninepatch_raw.png" >
 <h3 id="Custom-drawables（自定义-Drawable）">Custom drawables（自定义 Drawable）</h3>
 <p>自定义<code>Drawable</code>类似于 自定义<code>View</code></p>
 <p>下面的代码显示了绘制圆圈的简单自定义<code>Drawable</code></p>
@@ -836,14 +836,14 @@ Asset”。您还可以将 SVG 文件作为矢量可绘制对象导入 Android S
 <h3 id="关于-VectorDrawable-类">关于 VectorDrawable 类</h3>
 <p><code>VectorDrawable</code>定义静态可绘制对象。与 SVG 格式类似，每个矢量图形被定义为一个树层次结构，由<code>path</code>和<code>group</code><br>
 对象组成。每个<code>path</code>都包含对象轮廓的几何图形，<code>group</code>包含转换的详细信息。所有路径的绘制顺序均与它们在 XML 文件中显示的顺序相同。</p>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/vectorpath.png" alt="vectorpath.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/vectorpath.png" alt="vectorpath.png" >
 <p><a class="link"   target="_blank" rel="noopener" href="https://developer.android.com/studio/write/vector-asset-studio?hl=zh-cn" >Vector Asset Studio<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 工具提供了一种将矢量图形作为<br>
 XML 文件添加到项目中的简单方法。</p>
 <h4 id="示例">示例</h4>
 <p>以下<code>VectorDrawable</code>XML 文件示例会渲染充电模式下电池的图片。</p>
 <div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- res/drawable/battery_charging.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">vector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:height</span>=<span class="string">&quot;24dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:width</span>=<span class="string">&quot;24dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:viewportWidth</span>=<span class="string">&quot;24.0&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:viewportHeight</span>=<span class="string">&quot;24.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">group</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;rotationGroup&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:pivotX</span>=<span class="string">&quot;10.0&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:pivotY</span>=<span class="string">&quot;10.0&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:rotation</span>=<span class="string">&quot;15.0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">path</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:name</span>=<span class="string">&quot;vect&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:fillColor</span>=<span class="string">&quot;#FF000000&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:pathData</span>=<span class="string">&quot;M15.67,4H14V2h-4v2H8.33C7.6,4 7,4.6 7,5.33V9h4.93L13,7v2h4V5.33C17,4.6 16.4,4 15.67,4z&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:fillAlpha</span>=<span class="string">&quot;.3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">path</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:name</span>=<span class="string">&quot;draw&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:fillColor</span>=<span class="string">&quot;#FF000000&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:pathData</span>=<span class="string">&quot;M13,12.5h2L11,20v-5.5H9L11.93,9H7v11.67C7,21.4 7.6,22 8.33,22h7.33c0.74,0 1.34,-0.6 1.34,-1.33V9h-4v3.5z&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vector</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 <p>此 XML 会渲染以下图片：</p>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/ic_battery_charging_80_black_24dp.png" alt="ic_battery_charging_80_black_24dp.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/ic_battery_charging_80_black_24dp.png" alt="ic_battery_charging_80_black_24dp.png" >
 <h3 id="关于-AnimatedVectorDrawable-类">关于 AnimatedVectorDrawable 类</h3>
 <p><code>AnimatedVectorDrawable</code>用于为矢量图形的属性添加动画。您可以将动画矢量图形定义为三个单独的资源文件或定义整个可绘制对象的单个<br>
 XML 文件。</p>
@@ -952,7 +952,7 @@ Build Tools 24 或更高版本，并且输出可向后兼容。</p>
 <h2 id="使用-Bitmap">使用 Bitmap</h2>
 <h3 id="位深和色深">位深和色深</h3>
 <p>首先我们需要理解两个概念：位深和色深</p>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/位深.png" alt="位深.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/位深.png" alt="位深.png" >
 <p>可以看到其实这是一个非常有歧义的概念</p>
 
   <div class="note-large orange">
@@ -1057,10 +1057,10 @@ Build Tools 24 或更高版本，并且输出可向后兼容。</p>
 </ul>
 <h3 id="创建方法">创建方法</h3>
 <h4 id="BitmapFactory">BitmapFactory</h4>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/BitmapFactory.png" alt="BitmapFactory.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/BitmapFactory.png" alt="BitmapFactory.png" >
 <p>可见 BitmapFactory 有很多方便我们将图片加载成 Bitmap 的方法，并且还有一个 Options 类来方便我们进行一些其他的配置</p>
 <p>接下来我们看看 bitmapFactory.Options</p>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/BitmapFactory.Options.png" alt="BitmapFactory.Options.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/BitmapFactory.Options.png" alt="BitmapFactory.Options.png" >
 <p>可以看到有很多成员变量，根据前缀可以将他们分为，in 开头和 out 开头</p>
 <ul>
 <li>
@@ -1073,11 +1073,11 @@ Build Tools 24 或更高版本，并且输出可向后兼容。</p>
 </li>
 </ul>
 <h4 id="Bitmap">Bitmap</h4>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/Bitmap.png" alt="Bitmap.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/Bitmap.png" alt="Bitmap.png" >
 <p>这里的方法都是创建空白的 Bitmap 或者需要自己绘制的 Bitmap</p>
 <h3 id="压缩">压缩</h3>
 <h4 id="计算-Bitmap-大小">计算 Bitmap 大小</h4>
-<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/moon.jpg" alt="earth.png"  class="article-image">
+<img src="/2023/11/07/Android-里的-Bitmap-Drawable-Mipmap（没写完）/moon.jpg" alt="earth.png" >
 <p>我们加载这个漂亮的（实际文件大小是 192309 字节）</p>
 <p>根据我们的了解，如果我们加载这张图片， 应该是 1920 × 1080×4 = 8294400 byte</p>
 <p>我们计算验证一下</p>
@@ -1482,7 +1482,7 @@ Build Tools 24 或更高版本，并且输出可向后兼容。</p>
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1505,44 +1505,44 @@ Build Tools 24 或更高版本，并且输出可向后兼容。</p>
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -169,7 +169,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -284,11 +284,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -313,10 +313,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -719,27 +719,27 @@ Gradle 要给所有需要编译的语言添加扩展。<br>
 以前用的是 java 的时候，需要添加 Java Gradle plugin。<br>
 使用 Compose 的时候，需要添加 Compose Gradle plugin</p>
 </blockquote>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP7.0-build.gradle(Project).png" alt="AGP7.0-build.gradle(Project).png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP7.0-build.gradle(Project).png" alt="AGP7.0-build.gradle(Project).png" >
 <p>然后看 build.gradle(app)</p>
 <blockquote>
 <p>plugins</p>
 <p>在 AGP 7.0+ 时，使用的 plugins，而是之前是 apply plugin<br>
 这是版本更新后的语法变更，不用过多在意<br>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP7.0-build.gradle(app).png" alt="AGP7.0-build.gradle(app).png"  class="article-image"></p>
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP7.0-build.gradle(app).png" alt="AGP7.0-build.gradle(app).png" ></p>
 </blockquote>
 </li>
 <li>
 <p><strong>Android Studio Ladybug Feature Drop | 2024.2.2 Patch 1 （AGP 8.8.1）</strong><br>
 这个是出现在 gradle 使用 kotlin dsl 之后<br>
 还是先看 build.gradle(project)</p>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP8.8.1-build.gradle(project).png" alt="AGP8.8.1-build.gradle(project).png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP8.8.1-build.gradle(project).png" alt="AGP8.8.1-build.gradle(project).png" >
 <p>这里的 <code>alias</code> 是引用了 <code>/ProjectRootPath/gradle/libs.versions.toml</code> 里面设置的变量，如图所示</p>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/lib.version.toml.png" alt="lib.version.toml.png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/lib.version.toml.png" alt="lib.version.toml.png" >
 <p>官方文档里提到了，<strong>您可以在 Android Studio 的 File &gt; Project Structure &gt; Project 菜单中指定插件版本</strong>，专指 AGP</p>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/Project-Structure.png" alt="Project-Structure.png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/Project-Structure.png" alt="Project-Structure.png" >
 <p>build.gradle(app)<br>
 这里使用的还是 <code>alias</code> 引用的还是 <code>/ProjectRootPath/gradle/libs.versions.toml</code> 里面设置的变量</p>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP8.8.1-build.gradle(app).png" alt="AGP8.8.1-build.gradle(app).png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/AGP8.8.1-build.gradle(app).png" alt="AGP8.8.1-build.gradle(app).png" >
 </li>
 </ol>
 <h2 id="AGP-Gradle-的兼容性列表">AGP Gradle 的兼容性列表</h2>
@@ -950,9 +950,9 @@ Gradle 要给所有需要编译的语言添加扩展。<br>
 <p>超级提示</p>
 <p>我特别烦恼在选择 jdk 的时候，有重复的项目</p>
 </blockquote>
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/more-than-one-JDK.png" alt="more-than-one-JDK.png"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/more-than-one-JDK.png" alt="more-than-one-JDK.png" >
 你可以在下面地址找到重复项并删除 `~/Library/Application Support/Google/AndroidStudio[版本号]/options/jdk.table.xml`
-<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/more-than-one-JDK.png" alt="img"  class="article-image">
+<img src="/2025/03/05/Android-Studio-Gradle-版本兼容性适配（理论篇）/more-than-one-JDK.png" alt="img" >
 <table>
 <thead>
 <tr>
@@ -1352,7 +1352,7 @@ Gradle 要给所有需要编译的语言添加扩展。<br>
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1375,44 +1375,44 @@ Gradle 要给所有需要编译的语言添加扩展。<br>
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

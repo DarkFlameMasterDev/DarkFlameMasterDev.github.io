@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -169,7 +169,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -284,11 +284,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -313,10 +313,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -800,7 +800,7 @@
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">StringBox</span> <span class="keyword">extends</span> <span class="title class_">Box</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是一个只能装 String 的 Box，放入&quot;</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 编译器生成的桥方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">putIn</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">        putIn((String)obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <h3 id="第二个问题：协变和逆变">第二个问题：协变和逆变</h3>
 <p>接下来我们就使用这三个类的继承关系</p>
-<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png"  class="article-image">
+<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png" >
 <p>搞明白了类型擦除，我们就可以解释为什么 <code>List&lt;Animal&gt;</code> 和 <code>List&lt;Peopple&gt;</code> 是完全不同的类型</p>
 <p>因为 <code>List&lt;Animal&gt;</code> 和 <code>List&lt;People&gt;</code> 在运行时表现为相同的原始类型（<code>List&lt;Object&gt;</code>），但编译器在编译时通过类型擦除和强制转换确保它们无法互换使用，从而维护泛型类型的安全性。运行时的类型擦除不影响编译时对类型一致性的严格检查。</p>
 <blockquote>
@@ -837,7 +837,7 @@
 <p><code>? extends</code> 的修饰，表示使用协变————类型参数是子类的泛型类型，是此泛型类型的，子类。</p>
 <p>但是这会还有一个限制，你只能用这个泛型类型参数，但不能修改它，也就是只读不写，因为你没法找到一个类型为 <code>? extends</code> 的变量。</p>
 <p>是的，编译器会直接把类型识别成 <code>? extends</code></p>
-<img src="/2025/03/24/kotlin泛型/capture-extends.png" alt="capture-extends.png"  class="article-image">
+<img src="/2025/03/24/kotlin泛型/capture-extends.png" alt="capture-extends.png" >
 <p>具体表现在，你不能调用，方法参数里 包含泛型类型参数 的方法。也不能给它 包含类型参数的字段 赋值，除了 <code>null</code>。</p>
 <blockquote>
 <p>以上原因————都是，因为没法填写类型为 <code>? extends</code> 的参数。</p>
@@ -902,7 +902,7 @@
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Number&gt;</span> <span class="title">add</span><span class="params">(a: <span class="type">T</span>, b: <span class="type">T</span>)</span></span>: <span class="built_in">Double</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a.toDouble() + b.toDouble()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <h3 id="kotlin-的协变和逆变">kotlin 的协变和逆变</h3>
 <p>我们还是使用之前的 Animal People<br>
-<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png"  class="article-image"></p>
+<img src="/2025/03/24/kotlin泛型/Animal继承关系.png" alt="Animal继承关系.png" ></p>
 <p>java 的 <code>? extends</code> 在 kotlin 里变成了 <code>out</code>，<code>? super</code> 在 kotlin 里变成了 <code>in</code></p>
 <p>这样就会避免了 <code>? extends</code> 和 <code>T extends</code> 的歧义</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 协变</span></span><br><span class="line"><span class="keyword">val</span> peopleArrayList: MutableList&lt;People&gt; = ArrayList()</span><br><span class="line">peopleArrayList.add(People())</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> animalList: MutableList&lt;<span class="keyword">out</span> Animal&gt; = peopleArrayList</span><br><span class="line"><span class="keyword">val</span> p = animalList[<span class="number">0</span>] <span class="keyword">as</span> People</span><br><span class="line">println(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这行会报错，Argument type mismatch: actual </span></span><br><span class="line"><span class="comment">// type is &#x27;org.czb.bean.Man&#x27;, but </span></span><br><span class="line"><span class="comment">// &#x27;CapturedType(out org.czb.bean.Animal)&#x27; was expected.</span></span><br><span class="line"><span class="comment">// 参数类型不匹配：实际类型是 &#x27;org.czb.bean.Man&#x27;，但</span></span><br><span class="line"><span class="comment">// &#x27;CapturedType（out org.czb.bean.Animal）&#x27; 是预期的。</span></span><br><span class="line">animalList.add(Man())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆变</span></span><br><span class="line">peopleArrayList.clear()</span><br><span class="line"><span class="keyword">val</span> manList: MutableList&lt;<span class="keyword">in</span> Man&gt; = peopleArrayList</span><br><span class="line">manList.add(Man())</span><br><span class="line"><span class="keyword">val</span> m = manList[<span class="number">0</span>] <span class="keyword">as</span> Man</span><br><span class="line">println(m)</span><br></pre></td></tr></table></figure></div>
@@ -910,7 +910,7 @@
 <p>逆变这里，也是和 java 一样，可以读取，但是前提是你必须知道类型，因为返回的是 <code>Any?</code> 类型</p>
 <p>在看一个例子：</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">consume</span><span class="params">(list: <span class="type">MutableList</span>&lt;<span class="type">out</span> <span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    list.add()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<img src="/2025/03/24/kotlin泛型/add_Nothing.png" alt="add_Nothing.png"  class="article-image">
+<img src="/2025/03/24/kotlin泛型/add_Nothing.png" alt="add_Nothing.png" >
 <blockquote>
 <p><code>out</code> 和 <code>? extends</code> / <code>in</code> 和 <code>? super</code></p>
 <ul>
@@ -930,7 +930,7 @@
 <p>当你直接将 <code>out</code> 和 <code>in</code> 写在类和接口的声明时，表明你在定义类或者接口的时候，你的意图就是将泛型类型设计成只写不读，或者只读不写。</p>
 <p>这时候的 <code>out</code> 和 <code>in</code> 是 kotlin 的独家语法，并且这个语法要求会更严格</p>
 <p>借助郭霖大佬的一个图</p>
-<img src="/2025/03/24/kotlin泛型/第三行代码泛型-in-out.png" alt="第三行代码泛型-in-out.png"  class="article-image">
+<img src="/2025/03/24/kotlin泛型/第三行代码泛型-in-out.png" alt="第三行代码泛型-in-out.png" >
 <p>方法参数位置是 <code>in position</code> ，返回值位置是 <code>out position</code></p>
 <h3 id="kotlin-多类型参数">kotlin 多类型参数</h3>
 <p>kotlin 这里也和 java 保持一致，取交集</p>
@@ -1356,7 +1356,7 @@
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1379,44 +1379,44 @@
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

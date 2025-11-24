@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -172,7 +172,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -287,11 +287,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -316,10 +316,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -865,7 +865,7 @@
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealCall.kt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">getResponseWithInterceptorChain</span><span class="params">()</span></span>: Response &#123;</span><br><span class="line">  <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line">  <span class="keyword">val</span> interceptors = mutableListOf&lt;Interceptor&gt;()</span><br><span class="line">  interceptors += client.interceptors</span><br><span class="line">  interceptors += RetryAndFollowUpInterceptor(client)</span><br><span class="line">  interceptors += BridgeInterceptor(client.cookieJar)</span><br><span class="line">  interceptors += CacheInterceptor(client.cache)</span><br><span class="line">  interceptors += ConnectInterceptor</span><br><span class="line">  <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">    interceptors += client.networkInterceptors</span><br><span class="line">  &#125;</span><br><span class="line">  interceptors += CallServerInterceptor(forWebSocket)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> chain = RealInterceptorChain(</span><br><span class="line">      call = <span class="keyword">this</span>,</span><br><span class="line">      interceptors = interceptors,</span><br><span class="line">      index = <span class="number">0</span>,</span><br><span class="line">      exchange = <span class="literal">null</span>,</span><br><span class="line">      request = originalRequest,</span><br><span class="line">      connectTimeoutMillis = client.connectTimeoutMillis,</span><br><span class="line">      readTimeoutMillis = client.readTimeoutMillis,</span><br><span class="line">      writeTimeoutMillis = client.writeTimeoutMillis</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> calledNoMoreExchanges = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">val</span> response = chain.proceed(originalRequest)</span><br><span class="line">    <span class="keyword">if</span> (isCanceled()) &#123;</span><br><span class="line">      response.closeQuietly()</span><br><span class="line">      <span class="keyword">throw</span> IOException(<span class="string">&quot;Canceled&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">    calledNoMoreExchanges = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">throw</span> noMoreExchanges(e) <span class="keyword">as</span> Throwable</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!calledNoMoreExchanges) &#123;</span><br><span class="line">      noMoreExchanges(<span class="literal">null</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>我们看到他先是声明了一个名为 <code>interceptors</code> 的 <code>mutableListOf&lt;Interceptor&gt;()</code></p>
 <p>然后依次添加各种 <code>interceptor</code> 到这个 <code>List</code> 里面</p>
-<img src="/2025/04/26/阅读-OKHttp-源码/interceptors.png" alt="interceptors"  class="article-image">
+<img src="/2025/04/26/阅读-OKHttp-源码/interceptors.png" alt="interceptors" >
 <p>然后继续往下看，它生成了一个名为 <code>chain</code> 的 <code>RealInterceptorChain</code></p>
 <p>然后后面调用了 <code>chain.proceed(originalRequest)</code>，我们继续往里追</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealInterceptorChain.kt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">proceed</span><span class="params">(request: <span class="type">Request</span>)</span></span>: Response &#123;</span><br><span class="line">  check(index &lt; interceptors.size)</span><br><span class="line"></span><br><span class="line">  calls++</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (exchange != <span class="literal">null</span>) &#123;</span><br><span class="line">    check(exchange.finder.sameHostAndPort(request.url)) &#123;</span><br><span class="line">      <span class="string">&quot;network interceptor <span class="subst">$&#123;interceptors[index - <span class="number">1</span>]&#125;</span> must retain the same host and port&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    check(calls == <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="string">&quot;network interceptor <span class="subst">$&#123;interceptors[index - <span class="number">1</span>]&#125;</span> must call proceed() exactly once&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Call the next interceptor in the chain.</span></span><br><span class="line">  <span class="keyword">val</span> next = copy(index = index + <span class="number">1</span>, request = request)</span><br><span class="line">  <span class="keyword">val</span> interceptor = interceptors[index]</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Suppress(<span class="string">&quot;USELESS_ELVIS&quot;</span>)</span></span><br><span class="line">  <span class="keyword">val</span> response = interceptor.intercept(next) ?: <span class="keyword">throw</span> NullPointerException(</span><br><span class="line">      <span class="string">&quot;interceptor <span class="variable">$interceptor</span> returned null&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (exchange != <span class="literal">null</span>) &#123;</span><br><span class="line">    check(index + <span class="number">1</span> &gt;= interceptors.size || next.calls == <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="string">&quot;network interceptor <span class="variable">$interceptor</span> must call proceed() exactly once&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  check(response.body != <span class="literal">null</span>) &#123; <span class="string">&quot;interceptor <span class="variable">$interceptor</span> returned a response with no body&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> response</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -891,7 +891,7 @@
 <li>
 <p><code>getResponseWithInterceptorChain</code> 里生成一个 <code>RealInterceptorChain</code> ，调用 <code>chain.proceed</code></p>
 <p><code>chain</code> 默认内容如下：</p>
-<img src="/2025/04/26/阅读-OKHttp-源码/image-20250507160702107.png" alt="image-20250507160702107"  class="article-image">
+<img src="/2025/04/26/阅读-OKHttp-源码/image-20250507160702107.png" alt="image-20250507160702107" >
 </li>
 <li>
 <p>然后在 <code>chain.proceed</code> 里调用如下代码：</p>
@@ -1077,7 +1077,7 @@
 <p><strong>但是！！！</strong></p>
 <p>我感觉 <code>4.12.0</code> 这个版本的 OkHttp 或许有点问题，因为这个最终的判断并没有加锁，只在将 <code>newConnection</code> 放进 <code>connectionPool</code> 的时候会加锁，那么怎么确定这个这两段代码之间，不会因多线程导致连接多次创建但是没有被获取到呢？</p>
 <p>在之前的某个版本，是直接将 <code>connectionPool</code> 加锁进行判断并添加的，我感觉那个才是更稳妥的，如图：</p>
-<img src="/2025/04/26/阅读-OKHttp-源码/another-okhttp.png" alt="another-okhttp.png"  class="article-image">
+<img src="/2025/04/26/阅读-OKHttp-源码/another-okhttp.png" alt="another-okhttp.png" >
 </blockquote>
 <h5 id="newConnection-connect"><code>newConnection.connect</code></h5>
 <p>我们最后看一下这个新的连接是如何建立的</p>
@@ -1501,7 +1501,7 @@
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1524,44 +1524,44 @@
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

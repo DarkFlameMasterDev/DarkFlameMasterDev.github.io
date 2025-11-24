@@ -124,7 +124,7 @@
         
         
         
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
         
     
     <!--- Seo Part-->
@@ -169,7 +169,7 @@
         
     </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -284,11 +284,11 @@
 
 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/css/build/tailwind.css">
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -313,10 +313,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/fontawesome/regular.min.css">
     
     
     
@@ -720,20 +720,20 @@
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3行1列 的 1维列向量</span></span><br><span class="line"><span class="keyword">val</span> a = Matrix(</span><br><span class="line">  <span class="number">3</span>, <span class="number">1</span>,</span><br><span class="line">  <span class="number">1f</span>,</span><br><span class="line">  <span class="number">1f</span>,</span><br><span class="line">  <span class="number">1f</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3行3列 的 位移矩阵</span></span><br><span class="line"><span class="keyword">val</span> matrixTranslate = Matrix(</span><br><span class="line">  <span class="number">3</span>, <span class="number">3</span>,</span><br><span class="line">  <span class="number">1f</span>, <span class="number">0f</span>, <span class="number">7f</span>,</span><br><span class="line">  <span class="number">0f</span>, <span class="number">1f</span>, <span class="number">8f</span>,</span><br><span class="line">  <span class="number">0f</span>, <span class="number">0f</span>, <span class="number">1f</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3行3列 的 旋转矩阵（绕 0 点）</span></span><br><span class="line"><span class="keyword">val</span> matrixRotate = Matrix(</span><br><span class="line">  <span class="number">3</span>, <span class="number">3</span>,</span><br><span class="line">  <span class="number">0.8660254f</span>, -<span class="number">0.5f</span>, <span class="number">0f</span>,</span><br><span class="line">  <span class="number">0.5f</span>, <span class="number">0.8660254f</span>, <span class="number">0f</span>,</span><br><span class="line">  <span class="number">0f</span>, <span class="number">0f</span>, <span class="number">1f</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3行3列 的 缩放矩阵</span></span><br><span class="line"><span class="keyword">val</span> matrixScale = Matrix(</span><br><span class="line">  <span class="number">3</span>, <span class="number">3</span>,</span><br><span class="line">  <span class="number">6f</span>, <span class="number">0f</span>, <span class="number">0f</span>,</span><br><span class="line">  <span class="number">0f</span>, <span class="number">2f</span>, <span class="number">0f</span>,</span><br><span class="line">  <span class="number">0f</span>, <span class="number">0f</span>, <span class="number">1f</span></span><br><span class="line">)</span><br><span class="line">println(matrixTranslate * a)</span><br><span class="line">println(matrixRotate * matrixTranslate * a)</span><br><span class="line">println(matrixScale * matrixRotate * matrixTranslate * a)</span><br></pre></td></tr></table></figure></div>
 <div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;[8.0],[9.0],[1.0]&#125;</span><br><span class="line">&#123;[2.428203],[11.7942295],[1.0]&#125;</span><br><span class="line">&#123;[14.569218],[23.588459],[1.0]&#125;</span><br></pre></td></tr></table></figure></div>
 <p>我们来看结果，这里使用的是 <a href="www.desmos.com">desmos</a></p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/MatrixOperationResult.png" alt="MatrixOperationResult.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/MatrixOperationResult.png" alt="MatrixOperationResult.png" >
 <p>可以看到，矩阵左乘会让一个列向量按我们写的顺序进行变换</p>
 <h3 id="右乘">右乘</h3>
 <p>我们把这个情况在 Android 上复现（为了更明显，我们以 50px 是单位 1）</p>
 <p>当然，由于 Android 是右乘，我们需要倒着写，也就是先缩放，再旋转，最后位移</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line"></span><br><span class="line">  canvas.save()</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">  canvas.restore()</span><br><span class="line"></span><br><span class="line">  canvas.save()</span><br><span class="line">  canvas.rotate(<span class="number">30f</span>)</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">  canvas.restore()</span><br><span class="line"></span><br><span class="line">  canvas.scale(<span class="number">6f</span>, <span class="number">2f</span>)</span><br><span class="line">  canvas.rotate(<span class="number">30f</span>)</span><br><span class="line">  canvas.translate(<span class="number">400f</span>, <span class="number">450f</span>)</span><br><span class="line">  canvas.drawCircle(<span class="number">50f</span>, <span class="number">50f</span>, <span class="number">10f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<img src="/2023/12/08/Android自定义View02-绘制流程/transformOnAndroid.png" alt="transformOnAndroid.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/transformOnAndroid.png" alt="transformOnAndroid.png" >
 <p>我们把两个坐标系对比一下：</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/transformOnAndroidCompare.png" alt="transformOnAndroid.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/transformOnAndroidCompare.png" alt="transformOnAndroid.png" >
 <p>而对于 Matrix ，右乘就是<code>Matrix.post...</code>， 而<code>Matrix.pre...</code>则是左乘，这个下面还会提到</p>
 <h3 id="坐标系">坐标系</h3>
 <p>只进行 translate rotate clip skew scale 等系统预设的变换，我称之为 简单变换</p>
 <p>我们拿自定义 View 举例，在进行 canvas 绘制的时候，canvas 本身的坐标是和 View坐标独立的，也就是说 canvas 和 View 分别有自己的坐标</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/translation.png" alt="translation.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/translation.png" alt="translation.png" >
 <p>举个例子，蓝色为 View 坐标系，绿色为 Canvas 坐标系</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  canvas.translate(<span class="number">200f</span>,<span class="number">100f</span>)</span><br><span class="line">  canvas.drawBitmap(bitmap, <span class="number">0f</span>, <span class="number">0f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>如图所示，这是先将画布平移，然后绘制在画布的 (0, 0) 的位置</p>
@@ -783,14 +783,14 @@
 <h4 id="Camera-模型">Camera 模型</h4>
 <p>Camera 类似于 3d 软件里的模型，如果你使用过类似 Blender 之类的软件一定非常好理解</p>
 <p>而 Camera 本质还是通过建立这样的 3d 模型计算出一个 Matrix</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera_coordinate_system.png" alt="camera_coordinate_system.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera_coordinate_system.png" alt="camera_coordinate_system.png" >
 
   <div class="note p-4 mb-4 rounded-small markdown-body info">
     <p>这是 Camera 的坐标系，除了 X 轴，其他的都是和 View 坐标轴相反的</p>
 
   </div>
 <p>我们打开 Camera 这个类，发现很短，就只有短短 171 行</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera03.png" alt="camera03.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera03.png" alt="camera03.png" >
 <p>方法也只有位移和旋转而已，所以相机这个模型就是为了解决投影的倾斜对应的矩阵计算的</p>
 
   <div class="note p-4 mb-4 rounded-small markdown-body info">
@@ -802,10 +802,10 @@
 <p>你可以传进去一个空的 Matrix 对象，然后 Camera 的信息会被复制进你传入的这个函数里</p>
 <p>所以你有理由怀疑，所有的自定义 View 变换都是通过矩阵变换计算来的，当然我也是这样想的…大概吧</p>
 <p>我们用 blender 模拟一下这样的摄像机模型，图片长 5 宽 5，摄像机距图片 14</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera00.png" alt="camera00.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera00.png" alt="camera00.png" >
 <p>当摄像头默认在正上方，不旋转的时候，是这样的</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera01.png" alt="camera01.png"  class="article-image">
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera02.png" alt="camera02.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera01.png" alt="camera01.png" >
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera02.png" alt="camera02.png" >
 <p>上图是摄像机旋转 45 度的样子</p>
 <h4 id="Location">Location</h4>
 <p>我们先查看一下这个摄像机的默认设置，主要就是这个摄像机的位置信息</p>
@@ -835,7 +835,7 @@
 <p>从现在开始，一定要牢记，camera 的原理是矩阵变换</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> paint = Paint(Paint.ANTI_ALIAS_FLAG)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> padding = <span class="number">200f</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">  Camera().apply &#123;</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8</span>)</span><br><span class="line">    <span class="comment">//setLocation(0f, 0f, -16)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, padding, padding, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>我们让相机绕 X 轴旋转 30°，分别设置两个不同的 Z 轴值</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera_rotateX_Location.png" alt="camera_rotateX_Location.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera_rotateX_Location.png" alt="camera_rotateX_Location.png" >
 <p>左图是 LocationZ 为 -16，右图 Location 为 -8</p>
 <p>可见，Location 虽然不会缩放，它会影响旋转的效果，这很容易理解，因为旋转的角度相同，距离越近，肯定效果越明显</p>
 <p>我们将矩阵打印出来</p>
@@ -845,7 +845,7 @@
 <h5 id="垂直翻转">垂直翻转</h5>
 <p>由于，Camera 的原理是矩阵运算，并且其他操作包括 Canvas.translate 等操作都是矩阵运算，所以我们先执行最简单的翻转</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bitmap 长宽均为 400</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> camera <span class="keyword">by</span> lazy &#123;</span><br><span class="line">  Camera().apply &#123;</span><br><span class="line">    rotateX(<span class="number">30f</span>)</span><br><span class="line">    setLocation(<span class="number">0f</span>, <span class="number">0f</span>, -<span class="number">8f</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">  camera.applyToCanvas(canvas)</span><br><span class="line">  canvas.drawBitmap(bitmap, -<span class="number">200f</span>, -<span class="number">200f</span>, paint)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<img src="/2023/12/08/Android自定义View02-绘制流程/camera_rotateX_Center.png" alt="camera_rotateX_Center.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/camera_rotateX_Center.png" alt="camera_rotateX_Center.png" >
 <p>我们该如何将这个图放到中间呢？（也就是向右下角移动）</p>
 <h5 id="垂直翻转-平移">垂直翻转 + 平移</h5>
 <p>怎么才能让 Camera 计算出来的 Matrix 使得图形在任意位置垂直翻转呢？</p>
@@ -865,7 +865,7 @@
 <p>这句话是不对的！！！！！！</p>
 <p>你依旧是按照第一个代码倒着写的原理就行</p>
 <p>这个代码我们将位移的变量进行了修改，最终效果就是这样的</p>
-<img src="/2023/12/08/Android自定义View02-绘制流程/Matrix_Center00.png" alt="Matrix_Center00.png"  class="article-image">
+<img src="/2023/12/08/Android自定义View02-绘制流程/Matrix_Center00.png" alt="Matrix_Center00.png" >
 
 		</div>
 
@@ -1235,7 +1235,7 @@
 </main>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Swup.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1258,44 +1258,44 @@
 
 
 
-	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
+	<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/utils.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/main.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/categoryList.js" ></script>
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/localSearch.js" ></script>
-
-
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/localSearch.js" ></script>
 
 
 
-
-
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/codeBlock.js" ></script>
 
 
 
 
 
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/assets/odometer-theme-minimal.css">
 
 
-    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
+
+  <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/typed.js" ></script>
 
 
 
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+    <script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.8.5/files/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 
