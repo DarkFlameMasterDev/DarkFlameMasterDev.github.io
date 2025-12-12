@@ -1,27 +1,30 @@
 @font-face {
     font-family: 'Maple Mono';
-    src: url("https://darkflamemasterdev.github.io/Maple_mono/MapleMono-Bold.woff2") format('woff2');
+    src: url("MapleMono-Bold.woff2") format('woff2');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Maple Mono';
-    src: url("https://darkflamemasterdev.github.io/Maple_mono/MapleMono-BoldItalic.woff2") format('woff2');
+    src: url("MapleMono-BoldItalic.woff2") format('woff2');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Maple Mono';
-    src: url("https://darkflamemasterdev.github.io/Maple_mono/MapleMono-Regular.woff2") format('woff2');
+    src: url("MapleMono-Regular.woff2") format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Maple Mono';
-    src: url("https://darkflamemasterdev.github.io/Maple_mono/MapleMono-Bold.woff2") format('woff2');
+    src: url("MapleMono-Bold.woff2") format('woff2');
     font-weight: normal;
     font-style: italic;
     font-display: swap;

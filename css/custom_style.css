@@ -1,0 +1,209 @@
+/* ==============================
+   引入外部样式 (Katex)
+   ============================== */
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
+/* ==============================
+   自定义样式补丁
+   ============================== */
+
+/* # 公式边框 美化要不太丑了 */
+.katex-block {
+    border-radius: 6px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    border: dashed !important;
+}
+
+/* 主页隐藏头图 */
+.home-banner-container {
+    display: none !important;
+}
+
+/* 对齐列表 */
+.markdown-body ul > li,
+.markdown-body ol > li {
+    margin-left: 30px !important;
+    line-height: 2rem !important;
+}
+
+/* 代码块容器过渡和圆角 */
+.code-container {
+    transition: width 0.3s ease !important;
+    border-radius: 6px !important;
+}
+
+/* 代码块底部圆角 */
+figure.iseeu.highlight {
+    border-radius: 0 0 6px 6px !important;
+}
+
+/* 代码块按钮透明度 */
+.copy-button {
+    opacity: 1 !important;
+}
+
+.fold-button {
+    opacity: 1 !important;
+}
+
+/* 行内代码样式 */
+code {
+    margin-left: 6px !important;
+    margin-right: 6px !important;
+    border-color: #686868 !important;
+    border-style: solid !important;
+    border-width: 0.1px !important;
+}
+
+/* 图片边框 */
+.markdown-body img {
+    border: solid !important; /* 建议指定宽度 */
+}
+
+/* 表格样式 (修复宽度溢出) */
+table {
+    display: block !important;
+    border-radius: 6px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    overflow-x: auto !important; /* 建议加上这个，防止手机端撑破屏幕 */
+}
+
+/* 表格圆角修复 */
+.markdown-body > table thead th:first-child,
+.markdown-body .tab-pane > table thead th:first-child {
+    border-top-left-radius: 6px !important;
+}
+
+.markdown-body > table thead th:last-child,
+.markdown-body .tab-pane > table thead th:last-child {
+    border-top-right-radius: 6px !important;
+}
+
+/* Note Large (大提示块) 样式 */
+.note-large {
+    border-radius: 4px !important;
+}
+
+.notel-title {
+    border-radius: 0 6px 0 0 !important;
+}
+
+.notel-title p {
+    word-wrap: break-word !important;
+    min-width: 0 !important;
+}
+
+.notel-content p {
+    word-wrap: break-word !important;
+}
+
+.note-large .notel-content {
+    border-radius: 0 0 6px 0 !important;
+}
+
+/* Note (小提示块) 样式 */
+.note {
+    border-radius: 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+.note p {
+    word-wrap: break-word !important;
+    min-width: 0 !important;
+}
+
+/* 引用块样式 */
+.markdown-body blockquote {
+    border-radius: 0 6px 6px 0 !important;
+}
+
+/* 强制全局字体 */
+body,
+.content,
+.markdown-body,
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Maple Mono', 'Noto Serif SC', sans-serif !important;
+}
+
+.article-copyright-info-container {
+    border-radius: 6px !important;
+}
+
+.recommended-article-item {
+    border-radius: 6px !important;
+}
+
+.recommended-article-item img {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+.article-content-container {
+    border-radius: 6px !important;
+}
+
+.article-tools-list li {
+    border-radius: 6px !important;
+}
+
+.rounded-xl {
+    border-radius: 6px !important;
+}
+
+.article-title img {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+.home-article-item {
+    border-radius: 6px !important;
+}
+
+.rounded-t-large {
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+}
+
+.home-sidebar-container .sidebar-content {
+    border-radius: 6px !important;
+}
+
+.home-sidebar-container .sidebar-content .avatar img {
+    border-radius: 6px !important;
+}
+
+.post-page-container .article-content-container .article-header .avatar img {
+    border-radius: 2px !important;
+}
+
+.rounded-medium {
+    border-radius: 4px !important;
+}
+
+.paginator a.page-number, .paginator span.page-number, .paginator a.prev, .paginator a.next {
+    border-radius: 6px !important;
+}
+
+.comments-container .gt-container .gt-btn {
+    border-radius: 6px !important;
+}
+
+.page-template-container {
+    border-radius: 6px !important;
+}
+
+.archive-container {
+    border-radius: 6px !important;
+}
+
+.rounded-small {
+    border-radius: 6px !important;
+}
+
+.side-tools-container .right-bottom-tools {
+    border-radius: 6px !important;
+}
