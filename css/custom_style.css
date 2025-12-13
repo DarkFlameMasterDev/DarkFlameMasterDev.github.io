@@ -89,7 +89,7 @@ table {
 }
 
 .notel-title {
-    border-radius: 0 6px 0 0 !important;
+    border-radius: 0 4px 0 0 !important;
 }
 
 .notel-title p {
@@ -102,7 +102,7 @@ table {
 }
 
 .note-large .notel-content {
-    border-radius: 0 0 6px 0 !important;
+    border-radius: 0 0 4px 0 !important;
 }
 
 /* Note (小提示块) 样式 */
@@ -205,5 +205,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .side-tools-container .right-bottom-tools {
+    border-radius: 6px !important;
+}
+
+details[open] > summary {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+summary {
     border-radius: 6px !important;
 }
