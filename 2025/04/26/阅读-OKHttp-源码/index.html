@@ -146,7 +146,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-04-26T15:00:57.000Z">
-<meta property="article:modified_time" content="2025-12-12T09:14:46.469Z">
+<meta property="article:modified_time" content="2025-12-22T02:58:07.364Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="OkHttp">
 <meta property="article:tag" content="http">
@@ -483,7 +483,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -491,7 +491,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -546,8 +546,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-12 17:14:46</span>
-            <span class="mobile">2025-12-12 17:14:46</span>
+            <span class="desktop">2025-12-22 10:58:07</span>
+            <span class="mobile">2025-12-22 10:58:07</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -818,7 +818,7 @@
 </li>
 </ol>
 <p>这也就是这拦截链请求的代码逻辑</p>
-<p>回到 <code>RetryAndFollowUpInterceptor</code> ，它往后推进逻辑就是 <code>proceed(requset)</code> ，所以就会在 <code>request</code> 里进行更改，以便下次请求</p>
+<p>回到 <code>RetryAndFollowUpInterceptor</code> ，它往后推进逻辑就是 <code>proceed(requset)</code> ，所以就会在 <code>request</code> 里进行更改，以便下次请求</p>
 <p>我们大体框架了解了之后，现在继续回归 <code>RetryAndFollowUpInterceptor</code> 在执行推进逻辑的时候，会有一些前置工作和一些后置工作</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call.enterNetworkInterceptorExchange(request, newExchangeFinder)</span><br></pre></td></tr></table></figure></div>
 <p>这个函数我们看看里面做了什么</p>
@@ -1051,7 +1051,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-12-12 17:14:46
+                    :</strong> 2025-12-22 10:58:07
             </li>
         
         <li>
@@ -1264,7 +1264,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 60 篇文章
+                        共撰写了 61 篇文章
                     </span>
                     
                 </p>

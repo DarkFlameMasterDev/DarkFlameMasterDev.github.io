@@ -509,7 +509,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -517,7 +517,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -549,7 +549,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -557,7 +557,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -572,6 +572,76 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
+                            <img src="/img/opengl_headimg.png" alt="OpenGL on Mac 环境" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">
+                            OpenGL on Mac 环境
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            环境介绍
+这次我将环境部署到了Mac + Clion上
+
+其实并没有解决上次的编译glfw的问题，但好像不太影响使用
+因为我不会自己写编译脚本(〒︿〒)
+解决了！！！chatGPT 真好用！！！
+
+
+1xcode-select --install
+123git clone https://github.com/glfw/glfw.gitcd glfwgit checkout 3.3.8
+12...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Aug 08 2023 09:42:52 GMT+0800">
+                
+                    2023-08-08
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/08/OpenGL-on-Mac-%E7%8E%AF%E5%A2%83/">阅读全文<span class="seo-reader-text">OpenGL on Mac 环境</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1269,8 +1339,8 @@ Waiting（无限期等待）
                         
                             
                             题目
-给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
-找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
+找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 返回容器可以储存的最大水量。
 说明：你不能倾斜容器。
 示例一
@@ -1323,79 +1393,11 @@ Waiting（无限期等待）
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">
-                            <img src="/img/life_headimg.png" alt="部署hexo到github.io的一些小问题（持续更新）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">
-                            部署hexo到github.io的一些小问题（持续更新）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            1. 操作没问题，但就是部署失败
-hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确信你的操作没问题，但就是主题没有生效，那很有可能是github-Pages正在处理( github-pages 会显示一个 Queued ，意思就是在队列里面，还没处理)
-   
-2. 加载图片
-加载图片是一个稍微复杂一点的操作
-官方文档推荐了两种方法
-
-
-自己设置文件夹：应该将图片文...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Apr 18 2023 03:57:31 GMT+0800">
-                
-                    2023-04-18
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/hexo/">hexo</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/18/%E9%83%A8%E7%BD%B2hexo%E5%88%B0github.io%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">阅读全文<span class="seo-reader-text">部署hexo到github.io的一些小问题（持续更新）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<a class="extend prev" rel="prev" href="/page/5/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+	<a class="extend prev" rel="prev" href="/page/5/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
     </div>
@@ -1421,7 +1423,7 @@ hexo 在部署主题到 github.io 的时候，会有不小的延迟，如果确�
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 60 篇文章
+                        共撰写了 61 篇文章
                     </span>
                     
                 </p>
