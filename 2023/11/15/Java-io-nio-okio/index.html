@@ -146,7 +146,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2023-11-15T01:14:12.000Z">
-<meta property="article:modified_time" content="2025-12-12T09:14:46.483Z">
+<meta property="article:modified_time" content="2025-12-22T03:08:33.694Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="io">
 <meta property="article:tag" content="java">
@@ -491,7 +491,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -546,8 +546,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-12 17:14:46</span>
-            <span class="mobile">2025-12-12 17:14:46</span>
+            <span class="desktop">2025-12-22 11:08:33</span>
+            <span class="mobile">2025-12-22 11:08:33</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -790,7 +790,7 @@
     </div>
   </div>
 <h3 id="buffer-作为输出对象">buffer 作为输出对象</h3>
-<p>在传统 io 里面，Buffer 并不能作为输出位置，也就是说，我们可以有 FileOutPutStream 但是并没有  BufferOutPutStream</p>
+<p>在传统 io 里面，Buffer 并不能作为输出位置，也就是说，我们可以有 FileOutPutStream 但是并没有 BufferOutPutStream</p>
 <p>而 okio 给了我们机会，他直接在自己的 Buffer 上写了一个 OutPutStream 这样我们就可以就可以直接输出到 Buffer 里了</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> buffer = Buffer()</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  ObjectOutputStream(buffer.outputStream()).use &#123; objectOutputStream -&gt;</span><br><span class="line">    objectOutputStream.writeUTF(<span class="string">&quot;abc&quot;</span>)</span><br><span class="line">    objectOutputStream.writeBoolean(<span class="literal">true</span>)</span><br><span class="line">    objectOutputStream.writeChar(<span class="string">&#x27;0&#x27;</span>.code)</span><br><span class="line">    objectOutputStream.flush()</span><br><span class="line">    <span class="keyword">val</span> objectInputStream = ObjectInputStream(buffer.inputStream())</span><br><span class="line">    println(objectInputStream.readUTF())</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">  e.printStackTrace()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <blockquote>
@@ -810,7 +810,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-12-12 17:14:46
+                    :</strong> 2025-12-22 11:08:33
             </li>
         
         <li>
@@ -1023,7 +1023,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 61 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>

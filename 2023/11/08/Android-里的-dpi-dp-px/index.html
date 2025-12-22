@@ -146,7 +146,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2023-11-08T08:18:43.000Z">
-<meta property="article:modified_time" content="2025-12-12T09:14:46.453Z">
+<meta property="article:modified_time" content="2025-12-22T06:33:30.511Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="dp">
@@ -488,7 +488,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -543,8 +543,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-12 17:14:46</span>
-            <span class="mobile">2025-12-12 17:14:46</span>
+            <span class="desktop">2025-12-22 14:33:30</span>
+            <span class="mobile">2025-12-22 14:33:30</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -601,7 +601,7 @@
 <p>我们需要先了解一下这个<code>DisplayMetrics</code>类</p>
 <p>里面有几个常用的常量</p>
 <div class="code-container" data-rel="Kotlin"><figure class="iseeu highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;density = <span class="subst">$&#123;resources.displayMetrics.density&#125;</span>&quot;</span>)</span><br><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;densityDpi = <span class="subst">$&#123;resources.displayMetrics.densityDpi&#125;</span>&quot;</span>)</span><br><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;heightPixels = <span class="subst">$&#123;resources.displayMetrics.heightPixels&#125;</span>&quot;</span>)</span><br><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;widthPixels = <span class="subst">$&#123;resources.displayMetrics.widthPixels&#125;</span>&quot;</span>)</span><br><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;xdpi = <span class="subst">$&#123;resources.displayMetrics.xdpi&#125;</span>&quot;</span>)</span><br><span class="line">Log.d(<span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;ydpi = <span class="subst">$&#123;resources.displayMetrics.ydpi&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示的逻辑密度，也就是一个比例。</span></span><br><span class="line"><span class="comment">// 其中 1 DIP等于一个屏幕密度为160 DPI的屏幕上的一个物理像素，提供系统显示的基线。</span></span><br><span class="line"><span class="comment">// 因此，在 160dpi 屏幕上，此密度值将为 1；在 120 dpi 的屏幕上，它将是 0.75。</span></span><br><span class="line"><span class="comment">// 此值并不完全遵循实际屏幕大小（由 xdpi 和 ydpi给出），而是用于根据显示 dpi 的粗略变化分步缩放整个 UI 的大小。</span></span><br><span class="line"><span class="comment">// 例如，即使 240x320 屏幕的宽度为 1.8 英寸、1.3 英寸等，其密度也将为 1。</span></span><br><span class="line"><span class="comment">// 但是，如果屏幕分辨率增加到 320x480，但屏幕尺寸仍为 1.5“x2”，则密度将增加（可能增加到 1.5）。</span></span><br><span class="line">density = <span class="number">2.75</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 就是屏幕密度以每英寸点数表示</span></span><br><span class="line">densityDpi = <span class="number">440</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可用显示大小的绝对高度（以像素为单位）</span></span><br><span class="line">heightPixels = <span class="number">2250</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可用显示大小的绝对宽度（以像素为单位）</span></span><br><span class="line">widthPixels = <span class="number">1080</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// X 维度中每英寸屏幕的确切物理像素数。</span></span><br><span class="line">xdpi = <span class="number">386.366</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Y 维度中每英寸屏幕的确切物理像素数。</span></span><br><span class="line">ydpi = <span class="number">386.701</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// 显示的逻辑密度，也就是一个比例。</span><br><span class="line">// 其中 1 DIP等于一个屏幕密度为160 DPI的屏幕上的一个物理像素，提供系统显示的基线。</span><br><span class="line">// 因此，在 160dpi 屏幕上，此密度值将为 1；在 120 dpi 的屏幕上，它将是 0.75。</span><br><span class="line">// 此值并不完全遵循实际屏幕大小（由 xdpi 和 ydpi给出），而是用于根据显示 dpi 的粗略变化分步缩放整个 UI 的大小。</span><br><span class="line">// 例如，即使 240x320 屏幕的宽度为 1.8 英寸、1.3 英寸等，其密度也将为 1。</span><br><span class="line">// 但是，如果屏幕分辨率增加到 320x480，但屏幕尺寸仍为 1.5“x2”，则密度将增加（可能增加到 1.5）。</span><br><span class="line">density = 2.75</span><br><span class="line"></span><br><span class="line">// 就是屏幕密度以每英寸点数表示</span><br><span class="line">densityDpi = 440</span><br><span class="line"></span><br><span class="line">// 可用显示大小的绝对高度（以像素为单位）</span><br><span class="line">heightPixels = 2250</span><br><span class="line"></span><br><span class="line">// 可用显示大小的绝对宽度（以像素为单位）</span><br><span class="line">widthPixels = 1080</span><br><span class="line"></span><br><span class="line">// X 维度中每英寸屏幕的确切物理像素数。</span><br><span class="line">xdpi = 386.366</span><br><span class="line"></span><br><span class="line">// Y 维度中每英寸屏幕的确切物理像素数。</span><br><span class="line">ydpi = 386.701</span><br></pre></td></tr></table></figure></div>
 
   <div class="note-large blue">
     <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
@@ -705,7 +705,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-12-12 17:14:46
+                    :</strong> 2025-12-22 14:33:30
             </li>
         
         <li>
@@ -906,7 +906,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 61 篇文章
+                        共撰写了 60 篇文章
                     </span>
                     
                 </p>
