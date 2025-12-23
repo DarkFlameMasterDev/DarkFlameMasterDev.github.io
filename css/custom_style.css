@@ -18,6 +18,10 @@
     border: dashed !important;
 }
 
+.katex {
+    font-size: 1em !important;
+}
+
 /* 主页隐藏头图 */
 .home-banner-container {
     display: none !important;
@@ -190,7 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .comments-container .gt-container .gt-btn {
-    border-radius: 6px !important;
+    border-radius: 4px !important;
 }
 
 .page-template-container {
@@ -201,8 +205,8 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 6px !important;
 }
 
-.rounded-small {
-    border-radius: 6px !important;
+span.author-label {
+    border-radius: 4px !important;
 }
 
 .side-tools-container .right-bottom-tools {
