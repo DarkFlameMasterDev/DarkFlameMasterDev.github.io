@@ -54,6 +54,12 @@ figure.iseeu.highlight {
     opacity: 1 !important;
 }
 
+/* 代码块行号 */
+.highlight .gutter pre {
+    border-right: solid !important;
+    border-color: #67758F26 !important;
+}
+
 /* 行内代码样式 */
 code {
     margin-left: 6px !important;
