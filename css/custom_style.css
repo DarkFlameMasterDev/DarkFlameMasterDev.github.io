@@ -100,7 +100,7 @@ table {
 }
 
 .notel-title {
-    border-radius: 0 4px 0 0 !important;
+    border-radius: 4px 4px 0 0 !important;
 }
 
 .notel-title p {
@@ -113,7 +113,7 @@ table {
 }
 
 .note-large .notel-content {
-    border-radius: 0 0 4px 0 !important;
+    border-radius: 0 0 4px 4px !important;
 }
 
 /* Note (小提示块) 样式 */
@@ -132,6 +132,11 @@ table {
 /* 引用块样式 */
 .markdown-body blockquote {
     border-radius: 0 6px 6px 0 !important;
+}
+
+.markdown-body a {
+    text-underline-offset: 6px !important;
+    text-decoration-color: #86868687 !important;
 }
 
 /* 强制全局字体 */
