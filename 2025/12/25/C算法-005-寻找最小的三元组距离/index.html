@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/11/25/学习-makefile-02-初探makefile/"/>
+    <link rel="canonical" href="http://example.com/2025/12/25/c算法-005-寻找最小的三元组距离/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -139,18 +139,17 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习 MakeFile [02] 初探 Makefile">
-<meta property="og:url" content="http://example.com/2024/11/25/%E5%AD%A6%E4%B9%A0-MakeFile-02-%E5%88%9D%E6%8E%A2Makefile/index.html">
+<meta property="og:title" content="[C算法]005-寻找最小的三元组距离">
+<meta property="og:url" content="http://example.com/2025/12/25/C%E7%AE%97%E6%B3%95-005-%E5%AF%BB%E6%89%BE%E6%9C%80%E5%B0%8F%E7%9A%84%E4%B8%89%E5%85%83%E7%BB%84%E8%B7%9D%E7%A6%BB/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2024-11-25T01:35:51.000Z">
-<meta property="article:modified_time" content="2025-12-22T06:29:30.170Z">
+<meta property="article:published_time" content="2025-12-25T12:35:29.000Z">
+<meta property="article:modified_time" content="2025-12-25T12:56:54.614Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="编译原理">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -164,7 +163,7 @@
     
     <title>
         
-            学习 MakeFile [02] 初探 Makefile | DarkFlameMaster&#39;s blog
+            [C算法]005-寻找最小的三元组距离 | DarkFlameMaster&#39;s blog
         
     </title>
 
@@ -509,10 +508,10 @@
 			
 			
 			
-			<img src="/img/language_headimg.png" alt="学习 MakeFile [02] 初探 Makefile" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="/img/algorithm_headimg.png" alt="[C算法]005-寻找最小的三元组距离" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">学习 MakeFile [02] 初探 Makefile</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">[C算法]005-寻找最小的三元组距离</h1>
 			</div>
 			
 		</div>
@@ -533,15 +532,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-25 09:35:51</span>
-        <span class="mobile">2024-11-25 09:35:51</span>
+        <span class="desktop">2025-12-25 20:35:29</span>
+        <span class="mobile">2025-12-25 20:35:29</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-22 14:29:30</span>
-            <span class="mobile">2025-12-22 14:29:30</span>
+            <span class="desktop">2025-12-25 20:56:54</span>
+            <span class="mobile">2025-12-25 20:56:54</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -553,15 +552,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/C/">C++</a>&nbsp;
+                        <a href="/tags/C/">C</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/C/">C</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>&nbsp;
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                     </li>
                 
             </ul>
@@ -588,206 +583,31 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<blockquote>
-<p>本文主要参考了 <a class="link"   target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/index.html" >跟我一起写 Makefile<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，甚至有一些是直接复制的，原因有三：</p>
-<ol>
-<li>因为我有一些自己见解浅薄的</li>
-<li>还有一些确实原文章作者写的很好了，但是不写出来又不完整的。</li>
-</ol>
+<p>均采用C语言来编写，版本为C17，使用其他版本也可以，仅仅停留在算法层面，各大版本几乎区别不大</p>
 </blockquote>
-<h2 id="前言">前言</h2>
-<p>其实我不太知道要咋写 Makefile 这篇文章，感觉可能会变成翻译官方文档</p>
-<p>所以…就随心写吧</p>
-<h2 id="从一个例子开始">从一个例子开始</h2>
-<p>首先我们得知道 Makefile 的规则</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">    recipe （命令）</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>
-<p>target<br>
-可以是一个object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label）。对于标签这种特性，在后续的“伪目标”章节中会有叙述。</p>
-</li>
-<li>
-<p>prerequisites<br>
-生成该target所依赖的文件和/或target。</p>
-</li>
-<li>
-<p>recipe<br>
-该target要执行的命令（任意的shell命令）。</p>
-</li>
-</ul>
-<p>带着这个规则我们看看个官方的例子：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br><span class="line">    cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">    cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">    cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">    cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">    cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">    cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">    cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">    cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">    cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">    rm edit main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure></div>
+<h2 id="题目">题目</h2>
 
-  <div class="note-large orange">
+  <div class="note-large warning">
     <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-triangle-exclamation"></i><p>注意事项</p>
+      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>2020年真题</p>
 
     </div>
     <div class="notel-content markdown-body">
-      <p>Makefile 的缩进都需要使用 tab 而不是 space 空格</p>
-<p>由于本文章是用 Markdown 写的所以可能会出现缩进使用空格的情况，如需复制请自己更改一下）</p>
+      <p>定义三元组 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mtext> 均为整数</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b,c) (a,b,c \text{ 均为整数})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mord text"><span class="mord"> </span><span class="mord cjk_fallback">均为整数</span></span><span class="mclose">)</span></span></span></span> 的距离 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>b</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>b</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">D=|a-b|+|a-c|+|b-c|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span></span></span></span>。<br>
+给定三个非空整数集合 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">S_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，按升序分别存储在3个数组中.<br>
+请设计一个尽可能高效的算法，计算并输出所有可能的三元组 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo>∈</mo><mi>S</mi><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>∈</mo><mi>S</mi><mn>2</mn><mo separator="true">,</mo><mi>c</mi><mo>∈</mo><mi>S</mi><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b,c)(a∈S1,b∈S2,c∈S3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord">3</span><span class="mclose">)</span></span></span></span> 中最小距离。<br>
+例如：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>9</mn><mo stretchy="false">}</mo><mtext>，</mtext><msub><mi>S</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mo>−</mo><mn>25</mn><mo separator="true">,</mo><mo>−</mo><mn>10</mn><mo separator="true">,</mo><mn>10</mn><mo separator="true">,</mo><mn>11</mn><mo stretchy="false">}</mo><mtext>，</mtext><msub><mi>S</mi><mn>3</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mn>2</mn><mo separator="true">,</mo><mn>9</mn><mo separator="true">,</mo><mn>17</mn><mo separator="true">,</mo><mn>30</mn><mo separator="true">,</mo><mn>41</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S_1=\{-1,0,9\}，S_2=\{-25,-10,10,11\}，S_3=\{2,9,17,30,41\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mclose">}</span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">−</span><span class="mord">2</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mclose">}</span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord">1</span><span class="mclose">}</span></span></span></span>，则最小距离为2，相应的三元组为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>9</mn><mo separator="true">,</mo><mn>10</mn><mo separator="true">,</mo><mn>9</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(9,10,9)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">9</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mclose">)</span></span></span></span>。</p>
 
     </div>
   </div>
-<p>这是一个简单的 Makefile</p>
-<ul>
-<li>
-<p>其中第一行：<code>edit</code> 为 target，也就是生成的目标<br>
-另外所有的冒号前面的都是 target，只不过由于 <code>edit</code> 在第一行，所以就成为了最终生成的目标</p>
-</li>
-<li>
-<p>这里 <code>clean</code> 是伪目标，伪目标只是长得像目标，并不应该生成一个叫 clean 的文件，他的目的是执行下一行的命令，就比如 <code>rm</code> ，在命令行输入 <code>make clean</code> 调用它。</p>
-
-  <div class="note-large blue">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>关于伪目标</p>
-
-    </div>
-    <div class="notel-content markdown-body">
-      <p>区分目标和伪目标，我们可以写上 <code>.IPHONY : clean</code> ，这样就相当于直接告诉 make clean 并不是需要输出文件的目标</p>
-<p>我认为，伪目标是一个很奇怪的规则，他完全可以使用其他的语法，这样设计出一个和目标差不多的东西，会 Makefile 新手感到疑惑，最起码我是这样的</p>
-
-    </div>
-  </div>
-</li>
-<li>
-<p><code>\</code> 表示换行</p>
-</li>
-<li>
-<p><code>target :</code> 后面是依赖</p>
-</li>
-<li>
-<p>基于上面的规则，我们到该就能明白，makefile 是一个逐步寻找依赖进行编译的文件<br>
-比如 edit 依赖于后面的 .o 文件，而下面写了众多 .o 文件依赖于哪些 .c 和 .h 文件，这样在执行 <code>make</code> 命令的时候，就会像调用方法栈一样，一步步找到最开始需要编译的文件，然后出栈，最后调用完输出结果</p>
-</li>
-</ul>
-<h2 id="make-如何工作">make 如何工作</h2>
-<p>在命令行中输入 make 命令，工作流程如下：</p>
-<ol>
-<li>make会在当前目录下找名字叫“Makefile”或“makefile”的文件。</li>
-<li>如果找到，它会找文件中的第一个目标文件（target），在上面的例子中，他会找到“edit”这个文件，并把这个文件作为最终的目标文件。</li>
-<li>如果edit文件不存在，或是 <code>edit</code> 所依赖的后面的 .o 文件的文件修改时间要比 edit 这个文件新，那么，他就会执行后面所定义的命令来生成 edit 这个文件。</li>
-<li>如果 <code>edit</code> 所依赖的 .o 文件也不存在，那么 <code>make</code> 会在当前文件中找目标为 .o 文件的依赖性，如果找到则再根据那一个规则生成 .o 文件。</li>
-<li>你的 .c 文件和 .h 文件是存在的啦，于是 <code>make</code> 会生成 .o 文件，然后再用 .o 文件生成 <code>make</code> 的终极任务，也就是可执行文件 <code>edit</code> 了。</li>
-</ol>
-
-  <div class="note p-4 mb-4 rounded-small markdown-body blue icon-padding">
-    <i class="note-icon fa-solid fa-circle-exclamation"></i><p>第 4 步和第 5 步的工作流程就像方法栈一样</p>
-
-  </div>
-<h2 id="使用变量">使用变量</h2>
-<p>在上面的例子中，有些地方是大量重复的，此时我们就可以跟写代码一样，使用变量</p>
-<p>就比如我们可以设置一个名为 objects 的变量，让他代替所有的 .o 文件</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : $&#123;objects&#125;</span><br><span class="line">    cc -o edit $&#123;objects&#125;</span><br><span class="line"></span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">    cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">    cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">    cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">    cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">    cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">    cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">    cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">    cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">    rm edit $&#123;objects&#125;</span><br></pre></td></tr></table></figure></div>
-
-  <div class="note-large blue">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>这么做的好处</p>
-
-    </div>
-    <div class="notel-content markdown-body">
-      <p>这么做的好处是显而易见的</p>
-<p>如果出现其他的 .o 文件，只用改定义处就可以了</p>
-
-    </div>
-  </div>
-<h2 id="make-自动推导">make 自动推导</h2>
-<p>make 是一个智能的工具，它可以自动推导文件以及文件依赖关系后面的命令，于是我们就没必要去在每一个 .o 文件后都写上类似的命令，因为，我们的make会自动识别，并自己推导命令。</p>
-<p>所以我们只保留依赖关系即可 Makefile 就可以改成这样</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span></span><br><span class="line">    cc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line">main.o : defs.h</span><br><span class="line">kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line"></span><br><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure></div>
-<h2 id="更精简的-Makefile-自动推导文件">更精简的 Makefile 自动推导文件</h2>
-<p>Makefile 还提供了自动推导文件的功能，我们要生成 main.o 他会自动识别出来 依赖项为 main.c 或者 main.cpp</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span></span><br><span class="line">    cc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(objects)</span> : defs.h</span><br><span class="line">kbd.o command.o files.o : command.h</span><br><span class="line">display.o insert.o search.o files.o : buffer.h</span><br><span class="line"></span><br><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>第 7 行 .o 文件对应着 .c 文件，并且所有的 .o 文件都需要依赖于 <code>defs.h</code></li>
-<li>第 8 行 <code>kbd.o command.o files.o</code> 这三个文件除了依赖于名字相同的 .c 文件，大家都依赖的 <code>defs.h</code> 文件，还会依赖 <code>command.h</code> 文件</li>
-<li>第 9 行 <code>display.o insert.o search.o files.o</code> 这三个文件除了依赖于名字相同的 .c 文件，大家都依赖的 <code>defs.h</code> 文件，还会依赖 <code>buffer.h</code> 文件</li>
-</ul>
-
-  <div class="note-large blue">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>对于这种方式的评价</p>
-
-    </div>
-    <div class="notel-content markdown-body">
-      <p>这种方式里面套的逻辑关系会更多，所以耦合更多，可读性差一些，如果要修改文件结构，则会很麻烦，而且 Makefile 并不是经常需要修改的文件，写的精简但是可读性差有点得不偿失</p>
-
-    </div>
-  </div>
-<h2 id="伪目标（以-clean-为例）">伪目标（以 clean 为例）</h2>
-<p>前面简答提到过伪目标，我们这里再总结一下</p>
-<p>伪目标是一个为了执行某些命令而写的东西，看着像目标，但实际上并不需要生成任何文件</p>
-<p>这种有些迷惑性的规则确实让很多新手小白困惑，因为你可以定义很多你需要的命令，比如你可以定义一个 <code>make ql</code> 的命令，只需要如下定义：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ql :</span><br><span class="line">    rm edit *.o</span><br></pre></td></tr></table></figure></div>
-<p>可以想象，如果 Makefile 变大之后，就很难将 Makefile 里的目标和伪目标区分清楚</p>
-<p>所以，我们可以使用 <code>.PHONY</code> 来标明哪些是伪目标，并且将所有的伪目标写到一起。</p>
-<h2 id="包含其他-Makefile">包含其他 Makefile</h2>
-<p>在Makefile使用 include 指令可以把别的Makefile包含进来，这很像C语言的 #include ，被包含的文件会原模原样的放在当前文件的包含位置。 include 的语法是：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> &lt;filenames or pathname&gt;...</span><br></pre></td></tr></table></figure></div>
-<p>在 <code>include</code> 前面可以有一些空字符，但是绝不能是 Tab 键开始。 <code>include</code> 和 <code>&lt;filenames&gt;</code> 可以用一个或多个空格隔开。举个例子，你有这样几个 Makefile： <a class="link"   target="_blank" rel="noopener" href="http://a.mk" >a.mk<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 、 <a class="link"   target="_blank" rel="noopener" href="http://b.mk" >b.mk<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 、 <a class="link"   target="_blank" rel="noopener" href="http://c.mk" >c.mk<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> ，还有一个文件叫 foo.make ，以及一个变量 $(bar) ，其包含了 bish 和 bash ，那么，下面的语句：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> foo.make *.mk <span class="variable">$(bar)</span></span><br></pre></td></tr></table></figure></div>
-<p>等价于：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> foo.make a.mk b.mk c.mk bish bash</span><br></pre></td></tr></table></figure></div>
-<p>make命令开始时，会找寻 <code>include</code> 所指出的其它 Makefile，并把其内容安置在当前的位置。就好像C/C++的 <code>#include</code> 指令一样。如果文件都没有指定绝对路径或是相对路径的话，make会在当前目录下首先寻找，如果当前目录下没有找到，那么，make还会在下面的几个目录下找：</p>
-<p>如果 <code>make</code> 执行时，有 <code>-I</code> 或 <code>--include-dir</code> 参数，那么make就会在这个参数所指定的目录下去寻找。</p>
-<p>接下来按顺序寻找目录 <code>&lt;prefix&gt;/include</code> （一般是 <code>/usr/local/bin</code> ）、 /<code>usr/gnu/include</code> 、 <code>/usr/local/include</code> 、 <code>/usr/include</code> 。</p>
-<p>环境变量 <code>.INCLUDE_DIRS</code> 包含当前 <code>make</code> 会寻找的目录列表。你应当避免使用命令行参数 -I 来寻找以上这些默认目录，否则会使得 <code>make</code> “忘掉”所有已经设定的包含目录，包括默认目录。</p>
-<p>如果有文件没有找到的话，<code>make</code> 会生成一条警告信息，但不会马上出现致命错误。它会继续载入其它的文件，一旦完成 makefile 的读取，<code>make</code> 会再重试这些没有找到，或是不能读取的文件，如果还是不行，make才会出现一条致命信息。如果你想让 <code>make</code> 不理那些无法读取的文件，而继续执行，你可以在 <code>include</code> 前加一个减号 <code>-</code> 。如：</p>
-<div class="code-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-include</span> &lt;filenames&gt;...</span><br></pre></td></tr></table></figure></div>
-<p>其表示，无论 include 过程中出现什么错误，都不要报错继续执行。如果要和其它版本 make 兼容，可以使用 sinclude 代替 -include 。</p>
-<h2 id="环境变量-MAKEFILES">环境变量 MAKEFILES</h2>
-<p>如果你的当前环境中定义了环境变量 <code>MAKEFILES</code> ，那么 <code>make</code> 会把这个变量中的值做一个类似于 <code>include</code> 的动作。这个变量中的值是其它的 <code>Makefile</code>，用空格分隔。</p>
-<p>只是，它和 <code>include</code> 不同的是，从这个环境变量中引入的 Makefile 的“默认目标”(the default goal)不会起作用，如果环境变量中定义的文件发现错误，<code>make</code> 也会不理。</p>
-<p>但是在这里我还是建议不要使用这个环境变量，因为只要这个变量一被定义，那么当你使用 <code>make</code> 时，所有的 Makefile 都会受到它的影响，这绝不是你想看到的。在这里提这个事，只是为了告诉大家，也许有时候你的 Makefile 出现了怪事，那么你可以看看当前环境中有没有定义这个变量。</p>
-<h2 id="make-的工作方式">make 的工作方式</h2>
-<p>GNU 的 make工作时的执行步骤如下：（想来其它的 <code>make</code> 也是类似）</p>
-<ol>
-<li>读入所有的 Makefile。</li>
-<li>读入被 <code>include</code> 的其它 Makefile。</li>
-<li>初始化文件中的变量。</li>
-<li>推导隐式规则，并分析所有规则。</li>
-<li>为所有的目标文件创建依赖关系链。</li>
-<li>根据依赖关系，决定哪些目标要重新生成。</li>
-<li>执行生成命令。</li>
-</ol>
-<p>1-5步为第一个阶段，6-7为第二个阶段。第一个阶段中，如果定义的变量被使用了，那么，<code>make</code> 会把其展开在使用的位置。但 <code>make</code> 并不会完全马上展开，<code>make</code> 使用的是拖延战术，如果变量出现在依赖关系的规则中，那么仅当这条依赖被决定要使用了，变量才会在其内部展开。</p>
-<p>当然，这个工作方式你不一定要清楚，但是知道这个方式你也会对 <code>make</code> 更为熟悉。有了这个基础，后续部分也就容易看懂了。</p>
-<h2 id="总结">总结</h2>
-<p>Makefile 里主要包含了五个东西：显式规则、隐式规则、变量定义、指令和注释。</p>
-<ol>
-<li>
-<p>显式规则<br>
-显式规则说明了如何生成一个或多个目标文件。这是由 Makefile 的书写者明显指出要生成的文件、文件的依赖文件和生成的命令。</p>
-</li>
-<li>
-<p>隐式规则<br>
-由于我们的 <code>make</code> 有自动推导的功能，所以隐式规则可以让我们比较简略地书写 Makefile ，这是由 make 所支持的。</p>
-</li>
-<li>
-<p>变量的定义<br>
-在 Makefile 中我们要定义一系列的变量，变量一般都是字符串，这个有点像你 C语言中的宏，当 Makefile 被执行时，其中的变量都会被扩展到相应的引用位置上。</p>
-</li>
-<li>
-<p>指令<br>
-其包括了三个部分，一个是在一个 Makefile 中引用另一个 Makefile ，就像C语言中的 <code>include</code> 一样；另一个是指根据某些情况指定 Makefile 中的有效部分，就像 C语言中的预编译 <code>#if</code> 一样；还有就是定义一个多行的命令。有关这一部分的内容，我会在后续的部分中讲述。</p>
-</li>
-<li>
-<p>注释<br>
-Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 <code>#</code> 字符，这个就像 C/C++ 中的 // 一样。如果你要在你的Makefile中使用 # 字符，可以用反斜杠进行转义，如： <code>\#</code> 。</p>
-</li>
-</ol>
-<p>最后，还值得一提的是，在 Makefile 中的命令，必须要以 Tab 键开始。</p>
-
-  <div class="note-large blue">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-circle-exclamation"></i><p>Makefile的文件名</p>
-
-    </div>
-    <div class="notel-content markdown-body">
-      <p>默认的情况下，make命令会在当前目录下按顺序寻找文件名为 GNUmakefile 、 makefile 和 Makefile 的文件。在这三个文件名中，最好使用 Makefile 这个文件名，因为这个文件名在排序上靠近其它比较重要的文件，比如 README。最好不要用 GNUmakefile，因为这个文件名只能由GNU make ，其它版本的 <code>make</code> 无法识别，但是基本上来说，大多数的 <code>make</code> 都支持 makefile 和 Makefile 这两种默认文件名。</p>
-<p>当然，你可以使用别的文件名来书写Makefile，比如：“Make.Solaris”，“Make.Linux”等，如果要指定特定的Makefile，你可以使用make的 <code>-f</code> 或 <code>--file</code> 参数，如： <code>make -f Make.Solaris</code> 或 <code>make --file Make.Linux</code> 。如果你使用多条 <code>-f</code> 或 <code>--file</code> 参数，你可以指定多个 makefile。</p>
-
-    </div>
-  </div>
+<h2 id="分析">分析</h2>
+<p>这道算法既考察数学洞察力，也考察对双指针（在这里是三指针）技巧的运用。让我们一步步来拆解它。</p>
+<p>首先，我们看这个距离公式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>b</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>b</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">D=|a-b|+|a-c|+|b-c|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span></span></span></span>。乍一看它包含三个绝对值，计算起来似乎有点繁琐。</p>
+<p>为了简化问题，<strong>假设</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi><mo>≤</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \le b \le c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span></p>
+<p>在这种假设下，我们计算得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>b</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>a</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><mi>b</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mn>2</mn><mi>c</mi><mo>−</mo><mn>2</mn><mi>a</mi></mrow><annotation encoding="application/x-tex">|a-b|+|a-c|+|b-c|=2c-2a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathnormal">a</span></span></span></span></p>
+<p>也就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>2</mn><mo>×</mo><mo stretchy="false">(</mo><mtext>最大</mtext><mo>−</mo><mtext>最小</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D=2\times(\text{最大}-\text{最小})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord cjk_fallback">最大</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord cjk_fallback">最小</span></span><span class="mclose">)</span></span></span></span></p>
+<h2 id="代码实现">代码实现</h2>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 基础工具：static inline (静态内联)</span></span><br><span class="line"><span class="comment">// 编译器会把它们像宏一样展开，但完全安全</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">max_val</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">min_val</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123; <span class="keyword">return</span> a &lt; b ? a : b; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 三数最值工具</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">max3</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> max_val(a, max_val(b, c));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">min3</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> min_val(a, min_val(b, c));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 核心逻辑</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">find_min_of_trip</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n_a, <span class="type">int</span> b[], <span class="type">int</span> n_b, <span class="type">int</span> c[], <span class="type">int</span> n_c)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> min_dist = INT_MAX; <span class="comment">// 初始化为最大整数</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用于记录最终结果</span></span><br><span class="line">    <span class="type">int</span> res_a = a[<span class="number">0</span>], res_b = b[<span class="number">0</span>], res_c = c[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; n_a &amp;&amp; j &lt; n_b &amp;&amp; k &lt; n_c) &#123;</span><br><span class="line">        <span class="comment">// 取值</span></span><br><span class="line">        <span class="type">int</span> val_a = a[i];</span><br><span class="line">        <span class="type">int</span> val_b = b[j];</span><br><span class="line">        <span class="type">int</span> val_c = c[k];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算：利用数学等价公式 2 * (max - min)</span></span><br><span class="line">        <span class="comment">// 编译器会极度优化这部分代码</span></span><br><span class="line">        <span class="type">int</span> current_min = min3(val_a, val_b, val_c);</span><br><span class="line">        <span class="type">int</span> current_max = max3(val_a, val_b, val_c);</span><br><span class="line">        <span class="type">int</span> current_dist = <span class="number">2</span> * (current_max - current_min);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新最优解</span></span><br><span class="line">        <span class="keyword">if</span> (current_dist &lt; min_dist) &#123;</span><br><span class="line">            min_dist = current_dist;</span><br><span class="line">            res_a = val_a;</span><br><span class="line">            res_b = val_b;</span><br><span class="line">            res_c = val_c;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 小优化：如果距离已经是0了，不可能更小了，直接收工</span></span><br><span class="line">            <span class="keyword">if</span> (min_dist == <span class="number">0</span>) <span class="keyword">break</span>; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 移动指针：谁是最小的，谁就往后移</span></span><br><span class="line">        <span class="comment">// 这里直接用我们算好的 current_min，逻辑清晰且安全</span></span><br><span class="line">        <span class="keyword">if</span> (val_a == current_min) i++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (val_b == current_min) j++;</span><br><span class="line">        <span class="keyword">else</span> k++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;最小距离为%d，三元组为(%d, %d, %d)\n&quot;</span>, min_dist, res_a, res_b, res_c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> s1[] = &#123;<span class="number">-1</span>, <span class="number">0</span>, <span class="number">9</span>&#125;;</span><br><span class="line">    <span class="type">int</span> s2[] = &#123;<span class="number">-25</span>, <span class="number">-10</span>, <span class="number">10</span>, <span class="number">11</span>&#125;;</span><br><span class="line">    <span class="type">int</span> s3[] = &#123;<span class="number">2</span>, <span class="number">9</span>, <span class="number">17</span>, <span class="number">30</span>, <span class="number">41</span>&#125;;</span><br><span class="line">    find_min_of_trip(s1, <span class="number">3</span>, s2, <span class="number">4</span>, s3, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 		</div>
 
@@ -795,18 +615,18 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 学习 MakeFile [02] 初探 Makefile</li>
+        <li><strong>标题:</strong> [C算法]005-寻找最小的三元组距离</li>
         <li><strong>作者:</strong> Lucas</li>
         <li><strong>创建于
-                :</strong> 2024-11-25 09:35:51</li>
+                :</strong> 2025-12-25 20:35:29</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-12-22 14:29:30
+                    :</strong> 2025-12-25 20:56:54
             </li>
         
         <li>
-            <strong>链接:</strong> https://darkflamemasterdev.github.io/2024/11/25/学习-MakeFile-02-初探Makefile/
+            <strong>链接:</strong> https://darkflamemasterdev.github.io/2025/12/25/C算法-005-寻找最小的三元组距离/
         </li>
         <li>
             <strong>
@@ -828,15 +648,11 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/C/">#C++</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
 				<a href="/tags/C/">#C</a>&nbsp;
 			</li>
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">#编译原理</a>&nbsp;
+				<a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -851,12 +667,12 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
     <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/11/19/%E5%AD%A6%E4%B9%A0MakeFile-01-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91-%E5%8C%85%E5%90%ABC++/" title="学习 MakeFile [01] C语言编译（包含 C++）" rel="bookmark">
   <img src="/img/language_headimg.png" alt="学习 MakeFile [01] C语言编译（包含 C++）" class="!max-w-none">
   <span class="title">学习 MakeFile [01] C语言编译（包含 C++）</span>
-</a><a class="recommended-article-item" href="/2024/04/01/C-%E5%8F%AF%E6%81%B6%E7%9A%84-duplicate-symbol-%E7%AC%A6%E5%8F%B7%E9%87%8D%E5%A4%8D/" title="C++ 可恶的 duplicate symbol (符号重复)" rel="bookmark">
-  <img src="/img/language_headimg.png" alt="C++ 可恶的 duplicate symbol (符号重复)" class="!max-w-none">
-  <span class="title">C++ 可恶的 duplicate symbol (符号重复)</span>
 </a><a class="recommended-article-item" href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="开发小知识、问题（持续更新）" rel="bookmark">
   <img src="/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="!max-w-none">
   <span class="title">开发小知识、问题（持续更新）</span>
+</a><a class="recommended-article-item" href="/2023/10/27/C-%E5%82%BB%E9%B8%9F%E6%8C%87%E9%92%88/" title="C 傻鸟指针" rel="bookmark">
+  <img src="/img/language_headimg.png" alt="C 傻鸟指针" class="!max-w-none">
+  <span class="title">C 傻鸟指针</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -866,9 +682,9 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/11/19/%E5%AD%A6%E4%B9%A0MakeFile-01-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91-%E5%8C%85%E5%90%ABC++/" title="学习 MakeFile [01] C语言编译（包含 C++）" rel="bookmark">
   <img src="/img/language_headimg.png" alt="学习 MakeFile [01] C语言编译（包含 C++）" class="!max-w-none">
   <span class="title">学习 MakeFile [01] C语言编译（包含 C++）</span>
-</a><a class="recommended-article-item" href="/2024/04/01/C-%E5%8F%AF%E6%81%B6%E7%9A%84-duplicate-symbol-%E7%AC%A6%E5%8F%B7%E9%87%8D%E5%A4%8D/" title="C++ 可恶的 duplicate symbol (符号重复)" rel="bookmark">
-  <img src="/img/language_headimg.png" alt="C++ 可恶的 duplicate symbol (符号重复)" class="!max-w-none">
-  <span class="title">C++ 可恶的 duplicate symbol (符号重复)</span>
+</a><a class="recommended-article-item" href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="开发小知识、问题（持续更新）" rel="bookmark">
+  <img src="/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="!max-w-none">
+  <span class="title">开发小知识、问题（持续更新）</span>
 </a></div>
    </div>
   </div>
@@ -876,23 +692,11 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/02/27/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0%E6%96%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">关于学习新技术的个人看法（持续更新）</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/11/19/%E5%AD%A6%E4%B9%A0MakeFile-01-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91-%E5%8C%85%E5%90%ABC++/">
+				<a class="next" rel="next" href="/2025/12/25/C%E7%AE%97%E6%B3%95-004-%E5%AF%BB%E6%89%BE%E6%9C%AA%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B4%E6%95%B0/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">学习 MakeFile [01] C语言编译（包含 C++）</span>
+						<span class="post-nav-title-item truncate max-w-48">[C算法]004-寻找未出现的最小整数</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -971,8 +775,8 @@ Makefile 中只有行注释，和 UNIX 的 Shell 脚本一样，其注释是用 
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">学习 MakeFile [02] 初探 Makefile</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%BC%80%E5%A7%8B"><span class="nav-text">从一个例子开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make-%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="nav-text">make 如何工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F"><span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make-%E8%87%AA%E5%8A%A8%E6%8E%A8%E5%AF%BC"><span class="nav-text">make 自动推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E7%B2%BE%E7%AE%80%E7%9A%84-Makefile-%E8%87%AA%E5%8A%A8%E6%8E%A8%E5%AF%BC%E6%96%87%E4%BB%B6"><span class="nav-text">更精简的 Makefile 自动推导文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E7%9B%AE%E6%A0%87%EF%BC%88%E4%BB%A5-clean-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-text">伪目标（以 clean 为例）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%85%B6%E4%BB%96-Makefile"><span class="nav-text">包含其他 Makefile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-MAKEFILES"><span class="nav-text">环境变量 MAKEFILES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-text">make 的工作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+		<div class="page-title">[C算法]005-寻找最小的三元组距离</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a></li></ol>
 
 	</div>
 </div>
