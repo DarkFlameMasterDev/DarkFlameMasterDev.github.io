@@ -237,3 +237,9 @@ summary {
     font-family: 'Maple Mono', 'Noto Serif SC', sans-serif !important;
     font-weight: bold !important;
 }
+
+/* 修改首页用户信息 */
+/* 隐藏分类item */
+.statistics .item:nth-child(2) {
+    display: none;
+}
