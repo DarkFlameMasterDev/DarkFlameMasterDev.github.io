@@ -146,7 +146,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2023-10-27T02:14:16.000Z">
-<meta property="article:modified_time" content="2026-01-28T16:45:20.549Z">
+<meta property="article:modified_time" content="2026-03-05T00:34:40.114Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="C语言">
@@ -540,8 +540,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-29 00:45:20</span>
-            <span class="mobile">2026-01-29 00:45:20</span>
+            <span class="desktop">2026-03-05 08:34:40</span>
+            <span class="mobile">2026-03-05 08:34:40</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -612,10 +612,8 @@
 <p>举个例子：<code>int* x,y;</code><br>
 此时这个<code>x</code>的类型和<code>y</code>的类型一样吗?<br>
 必然不一样！<code>x</code>是<code>int *</code>类型，而<code>y</code>是<code>int</code>类型<br>
-但是在观感上，就好像<code>x</code>和<code>y</code>都是<code>int *</code>类型</p>
-<ul>
-<li>号是跟着变量名走的，不是跟着类型名走的</li>
-</ul>
+但是在观感上，就好像<code>x</code>和<code>y</code>都是<code>int *</code>类型<br>
+<code>*</code> 是跟着变量名走的，不是跟着类型名走的</p>
 </blockquote>
 <p>当你声明成<code>int *p;</code>，然后在调用指针的时候，也就非常清晰了<code>*p</code>是指针指向的对象（在声明时其实也是如此），<code>p</code>是指针（声明时候也是如此）。</p>
 <p>这样逻辑就完整了，而且在二级指针中显得更加清晰。</p>
@@ -840,8 +838,8 @@
 <li>p = … ：不带星号。这是修改指向（把 p 里的地址换成别人的）。</li>
 </ul>
 <p>指针的改指向，往往只在链表，数组遍历，寻找最值之类的。<br>
-更多的还是跟<code>=</code>区别的不大。主要是为了避免重复创建过多指针。<br>
-所以最终，大部分情况，不太需要纠结是否需要指针改指向。只有需要大量创建指针，或者指针目前往后并不知道指向哪里的时候，才需要指针改指向。</p>
+更多的还是使用<code>*p =</code> 来改变指向的值。主要是为了避免重复创建过多指针。</p>
+<p>所以最终，大部分情况，不太需要纠结是否需要指针改指向。只有需要大量创建指针，或者指针目前往后并不知道指向哪里的时候，才需要指针改指向，练习几次就明白了。</p>
 <h5 id="1-根本不知道有多少个东西（数量未知）">1. 根本不知道有多少个东西（数量未知）</h5>
 <p>想象一下，如果给你一个数组，里面可能有 10 个数字，也可能有 10,000 个数字。</p>
 <ul>
@@ -881,7 +879,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-01-29 00:45:20
+                    :</strong> 2026-03-05 08:34:40
             </li>
         
         <li>
