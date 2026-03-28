@@ -146,7 +146,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-12-25T12:07:44.000Z">
-<meta property="article:modified_time" content="2026-03-09T06:52:26.767Z">
+<meta property="article:modified_time" content="2026-03-09T07:24:10.943Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="算法">
@@ -484,7 +484,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">66</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -539,8 +539,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-03-09 14:52:26</span>
-            <span class="mobile">2026-03-09 14:52:26</span>
+            <span class="desktop">2026-03-09 15:24:10</span>
+            <span class="mobile">2026-03-09 15:24:10</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -603,7 +603,7 @@
 <h2 id="代码展示">代码展示</h2>
 <p>这里我们就要使用原地 Hash<br>
 将所有的数放到 索引为 数值-1 的地方</p>
-<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b)</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> temp = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">find_missing_smallest_number</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] != i + <span class="number">1</span> &amp;&amp; arr[i] &gt; <span class="number">0</span> &amp;&amp; arr[i] &lt;= n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] == arr[arr[i] - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            swap(&amp;arr[i], &amp;arr[arr[i] - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] != i + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123;<span class="number">-5</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> size = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> result = find_missing_smallest_number(a, size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b)</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> temp = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">find_missing_smallest_number</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] != i + <span class="number">1</span> &amp;&amp; arr[i] &gt; <span class="number">0</span> &amp;&amp; arr[i] &lt;= n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] == arr[arr[i] - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            swap(&amp;arr[i], &amp;arr[arr[i] - <span class="number">1</span>]);</span><br><span class="line">            <span class="comment">// 交换之后，会再次查看 i 位置是否需要交换</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] != i + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123;<span class="number">-5</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> size = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> result = find_missing_smallest_number(a, size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <h2 id="代码解释">代码解释</h2>
 <p>这种算法通常被称为 <strong>“原地哈希”（In-place Hashing）</strong>，也被形象地称为 <strong>“萝卜坑置换法”</strong>。</p>
 <p>它的核心思想是：<strong>利用数组下标作为哈希表的索引，将每个数字放到它“应该”在的位置上。</strong></p>
@@ -683,7 +683,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-03-09 14:52:26
+                    :</strong> 2026-03-09 15:24:10
             </li>
         
         <li>
@@ -876,7 +876,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 66 篇文章
                     </span>
                     
                 </p>

@@ -16,10 +16,18 @@
     width: fit-content !important;
     max-width: 100% !important;
     border: dashed !important;
+    background-color: #313131 !important;
 }
 
 .katex {
     font-size: 1em !important;
+}
+
+:not(.katex-display) > .katex {
+    border-radius: 4px !important;
+    padding: 2px !important;
+    border: 1px dotted !important;
+    background-color: #313131 !important;
 }
 
 /* 主页隐藏头图 */
@@ -28,9 +36,9 @@
 }
 
 /* 对齐列表 */
-.markdown-body ul > li,
+/*.markdown-body ul > li, 暂时先删掉，有问题再加回来*/
 .markdown-body ol > li {
-    margin-left: 30px !important;
+    margin-left: 32px !important;
     line-height: 2rem !important;
 }
 
@@ -62,8 +70,6 @@ figure.iseeu.highlight {
 
 /* 行内代码样式 */
 code {
-    margin-left: 6px !important;
-    margin-right: 6px !important;
     border-color: #686868 !important;
     border-style: solid !important;
     border-width: 0.1px !important;

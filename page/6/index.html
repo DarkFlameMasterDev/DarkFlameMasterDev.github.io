@@ -515,7 +515,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">66</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -555,7 +555,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">66</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -570,6 +570,72 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/21/OpenGL-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E5%A6%99%E7%94%A8/">
+                            <img src="/img/opengl_headimg.png" alt="OpenGL 齐次坐标的妙用" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/21/OpenGL-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E5%A6%99%E7%94%A8/">
+                            OpenGL 齐次坐标的妙用
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            非透视投影变换
+非透视投影包括 R(旋转)、S(缩放)、T(位移)、虚拟摄像机变换、正视投影变换，所有的非透视投影变换 都是 R S T 组合而来的
+位移变换
+假设我们有一个向量代表一个物体 V=(x,y)V=(x,y)V=(x,y) ，然后我们想平移它
+比如这样：V′=(x+tx,y+tx)V^{&#x27;}=(x+t_x,y+t_x)V′=(x+tx​,y+tx​)
+而矩阵运算
+[ab...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Aug 21 2023 22:31:41 GMT+0800">
+                
+                    2023-08-21
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/08/21/OpenGL-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E5%A6%99%E7%94%A8/">阅读全文<span class="seo-reader-text">OpenGL 齐次坐标的妙用</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1221,119 +1287,6 @@ C 继承 A ，所以 C 也有 gender ，
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
-                            <img src="/img/language_headimg.png" alt="开发小知识、问题（持续更新）" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
-                            开发小知识、问题（持续更新）
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            1. AS apk 安装包安装位置
-2022.3.1版本
-/app/build/intermediates/
-/app/build/outputs/apk/debug/app-debug.apk
-2. AS R 文件位置
-2022.3.1版本
-
-/app/build/intermediates/runtime_symbol_list/debug/R.txt
-3. AS OpenGL ES 相...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Apr 23 2023 22:30:58 GMT+0800">
-                
-                    2023-04-23
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Android/">Android</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Gradle/">Gradle</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Android-Studio/">Android Studio</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/cpp/">C++</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/C/">C</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/OpenGL-ES/">OpenGL ES</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/MacOS/">MacOS</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Mac/">Mac</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Windows/">Windows</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/23/%E5%BC%80%E5%8F%91%E5%B0%8F%E7%9F%A5%E8%AF%86%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">阅读全文<span class="seo-reader-text">开发小知识、问题（持续更新）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -1364,7 +1317,7 @@ C 继承 A ，所以 C 也有 gender ，
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 65 篇文章
+                        共撰写了 66 篇文章
                     </span>
                     
                 </p>
