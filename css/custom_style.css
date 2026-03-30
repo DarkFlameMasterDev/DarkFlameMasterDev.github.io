@@ -6,6 +6,13 @@
 /* ==============================
    自定义样式补丁
    ============================== */
+.light-mode {
+    --katex-background-color: #f1f1f1;
+}
+
+.dark-mode {
+    --katex-background-color: #313131;
+}
 
 /* # 公式边框 美化要不太丑了 */
 .katex-block {
@@ -16,7 +23,7 @@
     width: fit-content !important;
     max-width: 100% !important;
     border: dashed !important;
-    background-color: #313131 !important;
+    background-color: var(--katex-background-color) !important;
 }
 
 .katex {
@@ -27,7 +34,7 @@
     border-radius: 4px !important;
     padding: 4px !important;
     border: 1px dotted !important;
-    background-color: #313131 !important;
+    background-color: var(--katex-background-color) !important;
 }
 
 /* 主页隐藏头图 */
