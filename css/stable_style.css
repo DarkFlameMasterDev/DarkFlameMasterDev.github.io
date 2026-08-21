@@ -1,0 +1,181 @@
+/* 主页隐藏头图 */
+.home-banner-container {
+    display: none !important;
+}
+
+
+/* ====== 对齐列表 ====== */
+/*.markdown-body ul > li, 暂时先删掉，有问题再加回来*/
+.markdown-body ol > li {
+    margin-left: 32px !important;
+    line-height: 2rem !important;
+}
+
+/* ======== 代码块 ======== */
+/* 代码块容器过渡和圆角 */
+.code-container {
+    transition: width 0.3s ease !important;
+    border-radius: 6px !important;
+}
+
+/* 代码块底部圆角 */
+figure.iseeu.highlight {
+    border-radius: 0 0 6px 6px !important;
+}
+
+/* 代码块行号 分割线 */
+.highlight .gutter pre {
+    border-right: 1px solid !important;
+    border-color: #67758F26 !important;
+}
+
+/* ====== 图片边框 ====== */
+.markdown-body img {
+    border: 1px solid !important; /* 建议指定宽度 */
+}
+
+/* ====== 表格样式 (修复宽度溢出) ====== */
+table {
+    display: block !important;
+    border-radius: 6px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    overflow-x: auto !important; /* 建议加上这个，防止手机端撑破屏幕 */
+}
+
+/* ====== 表格圆角修复 ====== */
+.markdown-body > table thead th:first-child,
+.markdown-body .tab-pane > table thead th:first-child {
+    border-top-left-radius: 6px !important;
+}
+
+.markdown-body > table thead th:last-child,
+.markdown-body .tab-pane > table thead th:last-child {
+    border-top-right-radius: 6px !important;
+}
+
+/* callout 样式 */
+.callout {
+    border-radius: 6px !important;
+}
+
+/* 引用块样式 */
+.markdown-body blockquote {
+    border-radius: 0 6px 6px 0 !important;
+}
+
+.markdown-body a {
+    text-underline-offset: 6px !important;
+    text-decoration-color: #86868687 !important;
+}
+
+
+
+
+
+
+
+/* 强制全局字体 */
+body,
+.content,
+.markdown-body,
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Maple Mono', 'Noto Serif SC', sans-serif !important;
+}
+
+.article-copyright-info-container {
+    border-radius: 6px !important;
+}
+
+.recommended-article-item {
+    border-radius: 6px !important;
+}
+
+.recommended-article-item img {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+.article-content-container {
+    border-radius: 6px !important;
+}
+
+.article-tools-list li {
+    border-radius: 6px !important;
+}
+
+.rounded-xl {
+    border-radius: 6px !important;
+}
+
+.article-title img {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+.home-article-item {
+    border-radius: 6px !important;
+}
+
+.rounded-t-large {
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+}
+
+.home-sidebar-container .sidebar-content {
+    border-radius: 6px !important;
+}
+
+.home-sidebar-container .sidebar-content .avatar img {
+    border-radius: 6px !important;
+}
+
+.post-page-container .article-content-container .article-header .avatar img {
+    border-radius: 2px !important;
+}
+
+.rounded-medium {
+    border-radius: 4px !important;
+}
+
+.paginator a.page-number, .paginator span.page-number, .paginator a.prev, .paginator a.next {
+    border-radius: 6px !important;
+}
+
+.comments-container .gt-container .gt-btn {
+    border-radius: 4px !important;
+}
+
+.page-template-container {
+    border-radius: 6px !important;
+}
+
+.archive-container {
+    border-radius: 6px !important;
+}
+
+span.author-label {
+    border-radius: 4px !important;
+}
+
+.side-tools-container .right-bottom-tools {
+    border-radius: 6px !important;
+}
+
+details[open] > summary {
+    border-radius: 6px 6px 0 0 !important;
+}
+
+summary {
+    border-radius: 6px !important;
+}
+
+/* 只修改第一个导航菜单项（通常是首页） */
+.navbar-item a {
+    font-family: 'Maple Mono', 'Noto Serif SC', sans-serif !important;
+    font-weight: bold !important;
+}
+
+/* 修改首页用户信息 */
+/* 隐藏分类item */
+.statistics .item:nth-child(2) {
+    display: none;
+}
