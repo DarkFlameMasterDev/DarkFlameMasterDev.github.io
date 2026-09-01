@@ -1,7 +1,7 @@
 /* 主页隐藏头图 */
-.home-banner-container {
-    display: none !important;
-}
+/*.home-banner-container {*/
+/*    display: none !important;*/
+/*}*/
 
 
 /* ====== 对齐列表 ====== */
@@ -69,17 +69,13 @@ table {
     text-decoration-color: #86868687 !important;
 }
 
-
-
-
-
-
-
 /* 强制全局字体 */
 body,
 .content,
 .markdown-body,
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.home-banner-container,
+.description p i {
     font-family: 'Maple Mono', 'Noto Serif SC', sans-serif !important;
 }
 
