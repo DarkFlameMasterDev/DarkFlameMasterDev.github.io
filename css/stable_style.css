@@ -175,3 +175,8 @@ summary {
 .statistics .item:nth-child(2) {
     display: none;
 }
+
+/* 底部微信收款码图片 */
+.social-qr-container {
+    border-radius: 6px !important;
+}
