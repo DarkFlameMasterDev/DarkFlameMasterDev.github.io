@@ -14,7 +14,7 @@
     --katex-background-color: #313131;
 }
 
-/* # 公式边框 美化要不太丑了 */
+/* 公式边框 美化要不太丑了 */
 .katex-block {
     overflow-x: auto !important;
     border-radius: 6px !important;
@@ -22,7 +22,7 @@
     padding-right: 12px !important;
     width: fit-content !important;
     max-width: 100% !important;
-    border: 1px solid #535353 !important;
+    border: 0.5px solid #535353 !important;
     background-color: var(--katex-background-color) !important;
 }
 
@@ -31,8 +31,18 @@
 }
 
 :not(.katex-display) > .katex {
+    display: inline-block !important;
     border-radius: 4px !important;
     padding: 4px !important;
-    border: 1px solid #535353 !important;
+    margin: 2px 0 !important;
+    border: 0.5px solid #535353 !important;
     background-color: var(--katex-background-color) !important;
+}
+
+/* 设置公式正体而不是斜体 */
+.katex .mathnormal {
+    font-family: KaTeX_Main !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    font-style: normal !important;
 }
