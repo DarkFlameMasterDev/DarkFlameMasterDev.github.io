@@ -39,10 +39,35 @@
     background-color: var(--katex-background-color) !important;
 }
 
-/* 设置公式正体而不是斜体 */
-.katex .mathnormal {
-    font-family: KaTeX_Main !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-    font-style: normal !important;
+/* 小写 a-z：使用 KaTeX 数学斜体字形 */
+@font-face {
+    font-family: "KaTeX-Lowercase-Italic";
+    src: url("https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/fonts/KaTeX_Math-Italic.woff2") format("woff2");
+    font-style: normal;
+    font-weight: normal;
+    unicode-range: U+0061-007A;
 }
+
+/* 其他字符：使用 KaTeX 正体字形 */
+@font-face {
+    font-family: "KaTeX-Lowercase-Italic";
+    src: url("https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/fonts/KaTeX_Main-Regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: normal;
+    unicode-range: U+0000-0060, U+007B-10FFFF;
+}
+
+.katex .mathnormal {
+    font-family: "KaTeX-Lowercase-Italic", "KaTeX_Main", serif !important;
+    font-style: normal !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/*!* 设置公式正体而不是斜体 *!*/
+/*.katex .mathnormal {*/
+/*    font-family: KaTeX_Main !important;*/
+/*    margin-right: 0 !important;*/
+/*    margin-left: 0 !important;*/
+/*    font-style: normal !important;*/
+/*}*/

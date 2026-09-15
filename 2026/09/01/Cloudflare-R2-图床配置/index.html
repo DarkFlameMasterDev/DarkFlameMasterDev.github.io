@@ -100,7 +100,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/09/01/Cloudflare-R2-%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE/img/graph.png">
 <meta property="article:published_time" content="2026-09-01T00:43:40.000Z">
-<meta property="article:modified_time" content="2026-09-04T00:53:42.692Z">
+<meta property="article:modified_time" content="2026-09-14T08:55:01.168Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Cloudflare">
 <meta property="article:tag" content="图床">
@@ -400,7 +400,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -408,7 +408,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -461,8 +461,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-09-04 08:53:42</span>
-            <span class="mobile">2026-09-04 08:53:42</span>
+            <span class="desktop">2026-09-14 16:55:01</span>
+            <span class="mobile">2026-09-14 16:55:01</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -495,6 +495,14 @@
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
     
     
         <span class="article-pv article-meta-item">
@@ -513,20 +521,20 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<h2 id="购买域名">购买域名</h2>
-<p>作用：</p>
+<p>作用:</p>
 <ol>
-<li>Cloudflare 域名做加速/防止 r2.dev 限速 (r2.dev 是公共开发 URL ，允许任何人通过 r2.dev URL 查看存储桶内容。此 URL 有速率限制。诸如 Access 和 Caching 等 Cloudflare 功能不可用。)</li>
-<li>用自己的域名，将来换存储、换 CDN、加速方案调整，只需要改 DNS 解析，文章一个字都不用动。用厂商域名，一旦要迁移就得全仓库 sed 替换 + 重新部署，而且历史快照、别人转载的文章里的链接全废。</li>
-<li>cloudflare 域名价格大约是 10 美元一年，相当合适，续费不涨价。</li>
+<li>Cloudflare 域名做加速/防止 r2.dev 限速 (r2.dev 是公共开发 URL , 允许任何人通过 r2.dev URL 查看存储桶内容. 此 URL 有速率限制. 诸如 Access 和 Caching 等 Cloudflare 功能不可用. )</li>
+<li>用自己的域名, 将来换存储、换 CDN、加速方案调整, 只需要改 DNS 解析, 文章一个字都不用动. 用厂商域名, 一旦要迁移就得全仓库 sed 替换 + 重新部署, 而且历史快照、别人转载的文章里的链接全废.</li>
+<li>cloudflare 域名价格大约是 10 美元一年, 相当合适, 续费不涨价.</li>
 </ol>
-<p>很简单，在 cloudflare 里搜你想要的域名然后付款就行。</p>
+<p>很简单, 在 cloudflare 里搜你想要的域名然后付款就行.</p>
 <h3 id="用你的域名打开博客">用你的域名打开博客</h3>
 <h4 id="1-在域名配置-DNS-Records">1.在域名配置 DNS Records</h4>
 <p>Type:CNAME Name:blog Target:DarkFlameMasterDev.io</p>
 <p>打开 Proxied 显示橙色云朵图标</p>
 <h4 id="2-配置-github">2. 配置 github</h4>
-<p>在 github 的个人主页的设置里选 pages，add a domain</p>
-<p>填写你的域名，比如 <code>blog.darkflamemaster.org</code></p>
+<p>在 github 的个人主页的设置里选 pages, add a domain</p>
+<p>填写你的域名, 比如 <code>blog.darkflamemaster.org</code></p>
 <p>然后他会让你添加一个 DNS Record</p>
 <p><img  
                      lazyload
@@ -539,29 +547,29 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://img.darkflamemaster.org/260901830ec86b2c4413ca20260901110305083.png"
-                      alt=""
+                      alt="DNS Record.png"
                 ></p>
 <p>然后去你的 <a class="link"   target="_blank" rel="noopener" href="http://github.io" >github.io<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 的仓库</p>
-<p>点击仓库的设置，pages -&gt; Custom domain</p>
+<p>点击仓库的设置, pages -&gt; Custom domain</p>
 <p>填入你的域名 <code>blog.darkflamemaster.org</code></p>
-<p>一开始可能会 DNS 不通过，因为你的域名配置有延迟，等 2 个小时后再配置也行。</p>
-<div class="callout callout--simple warning mb-4 rounded-small shadow-redefine-flat bg-(--callout-bg-color) p-3 pl-1 relative flex flex-row gap-2 items-center"><div role="none" class="rounded-full self-stretch w-0.5 bg-(--callout-primary-color) shrink-0 opacity-60"></div><div class="callout__content markdown-body flex-1 min-w-0"><p>配置成功候你的仓库会出现一个 CNAME 的文件，为了避免下次部署博客的时候这个文件被覆盖，把这个文件放进你的博客里<br>
+<p>一开始可能会 DNS 不通过, 因为你的域名配置有延迟, 等 2 个小时后再配置也行.</p>
+<div class="callout callout--simple warning mb-4 rounded-small shadow-redefine-flat bg-(--callout-bg-color) p-3 pl-1 relative flex flex-row gap-2 items-center"><div role="none" class="rounded-full self-stretch w-0.5 bg-(--callout-primary-color) shrink-0 opacity-60"></div><div class="callout__content markdown-body flex-1 min-w-0"><p>配置成功候你的仓库会出现一个 CNAME 的文件, 为了避免下次部署博客的时候这个文件被覆盖, 把这个文件放进你的博客里<br>
 hexo 就放在 source 里</p></div></div>
 <h4 id="3-配置-WAF-规则">3. 配置 WAF 规则</h4>
-<p>配置防盗链：防止别人直接访问你的域名（防盗链 / Referer 白名单）</p>
+<p>配置防盗链:防止别人直接访问你的域名  (防盗链 / Referer 白名单 )</p>
 <p>配置 Web Application FireWall</p>
 <p>创建自定义规则</p>
 <p>切换表达式输入</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(http.host eq &quot;img.darkflamemaster.org&quot; </span><br><span class="line">and not starts_with(http.referer, &quot;https://blog.darkflamemaster.org&quot;) </span><br><span class="line">and not starts_with(http.referer, &quot;https://darkflamemasterdev.github.io&quot;) </span><br><span class="line">and not starts_with(http.referer, &quot;http://localhost:&quot;) </span><br><span class="line">and not starts_with(http.referer, &quot;http://127.0.0.1:&quot;))</span><br></pre></td></tr></table></figure></div>
 <p>Then take action… 选 block</p>
 <p>其他默认</p>
-<p>这样就可以只允许你的域名和 <a class="link"   target="_blank" rel="noopener" href="http://github.io" >github.io<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 还有本地的预览 才能访问你的图床，防止别人将你的图片链接复制到别的地方，偷用你图床的流量。</p>
+<p>这样就可以只允许你的域名和 <a class="link"   target="_blank" rel="noopener" href="http://github.io" >github.io<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 还有本地的预览 才能访问你的图床, 防止别人将你的图片链接复制到别的地方, 偷用你图床的流量.</p>
 <h4 id="4-配置SSL-TLS">4.配置SSL/TLS</h4>
 <p>进入 Domain -&gt; SSL/TLS -&gt; Overview -&gt; 点击 Configure<br>
 Cloudflare 默认应该是 Full</p>
-<p>我改成了 Full (strict) 这个还会检查指向网站的证书，也就是 github 的证书，可以有效防止中间人利用伪造证书进行攻击。</p>
+<p>我改成了 Full (strict) 这个还会检查指向网站的证书, 也就是 github 的证书, 可以有效防止中间人利用伪造证书进行攻击.</p>
 <p>由于我们前面 WAF 规则设置的都是 https 协议</p>
-<p>所以我们需要在 Edge Certificates 勾选 Always Use HTTPS，否则当使用 http 协议的时候，就会无法加载图片。</p>
+<p>所以我们需要在 Edge Certificates 勾选 Always Use HTTPS, 否则当使用 http 协议的时候, 就会无法加载图片.</p>
 <h4 id="5-配置缓存">5.配置缓存</h4>
 <p>If incoming requests match… 选择 Custom filter expression</p>
 <p>表达式填写 (starts_with (http.host, “<a class="link"   target="_blank" rel="noopener" href="http://img.darkflamemaster.org" >img.darkflamemaster.org<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>”))</p>
@@ -570,36 +578,36 @@ Cloudflare 默认应该是 Full</p>
 <p>浏览器 TTL 我选的 1 个月</p>
 <p>保存</p>
 <h2 id="部署-R2-存储">部署 R2 存储</h2>
-<p>Cloudflare R2 是 Cloudflare 提供的“对象存储（Object Storage）”</p>
-<p>类似于一个放在云端的超大硬盘，但它特别适合存图片、视频、文件，然后通过互联网访问。</p>
+<p>Cloudflare R2 是 Cloudflare 提供的&quot;对象存储  (Object Storage )&quot;</p>
+<p>类似于一个放在云端的超大硬盘, 但它特别适合存图片、视频、文件, 然后通过互联网访问.</p>
 <p>找到 Storage &amp; databases -&gt; R2 Object Storage</p>
-<p>选择 Create Bucket（桶）</p>
-<p>地区选离你近的，我选择 APAC</p>
+<p>选择 Create Bucket  (桶 )</p>
+<p>地区选离你近的, 我选择 APAC</p>
 <p>Default Storage Class: 选标准方便频繁访问</p>
-<p>创建成功后点进去，设置 Custom Domains 填写 <code>img.你的域名</code> 保存的时候会提示你创建 DNS Record 他会自动帮你创建。</p>
+<p>创建成功后点进去, 设置 Custom Domains 填写 <code>img.你的域名</code> 保存的时候会提示你创建 DNS Record 他会自动帮你创建.</p>
 <p>DNS Records 最终展示</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://img.darkflamemaster.org/26090196b994dfa089db7920260901112855471.png"
-                      alt=""
+                      alt="DNS Records 最终展示.png"
                 ></p>
-<p>回到上一层，我们创建一个 API token 来访问这个 Bucket</p>
+<p>回到上一层, 我们创建一个 API token 来访问这个 Bucket</p>
 <p>User API Token 就行</p>
-<p>里面的权限后期可以改，我觉的选 Admin Read &amp; Write 也没啥问题</p>
+<p>里面的权限后期可以改, 我觉的选 Admin Read &amp; Write 也没啥问题</p>
 <p>TTL 选 永久</p>
 <p>并且直接选择了 Apply to all buckets in this account (including newly created buckets)</p>
-<div class="callout callout--simple warning mb-4 rounded-small shadow-redefine-flat bg-(--callout-bg-color) p-3 pl-1 relative flex flex-row gap-2 items-center"><div role="none" class="rounded-full self-stretch w-0.5 bg-(--callout-primary-color) shrink-0 opacity-60"></div><div class="callout__content markdown-body flex-1 min-w-0"><p>注意要保存下来里面的所有 最终生成的信息，离开这个页面就再也看不到了</p></div></div>
+<div class="callout callout--simple warning mb-4 rounded-small shadow-redefine-flat bg-(--callout-bg-color) p-3 pl-1 relative flex flex-row gap-2 items-center"><div role="none" class="rounded-full self-stretch w-0.5 bg-(--callout-primary-color) shrink-0 opacity-60"></div><div class="callout__content markdown-body flex-1 min-w-0"><p>注意要保存下来里面的所有 最终生成的信息, 离开这个页面就再也看不到了</p></div></div>
 <p>然后 Cloudflare 的工作就结束了</p>
 <h3 id="配置-PicGo-或-PicList">配置 PicGo 或 PicList</h3>
 <p>我用的 PicList</p>
-<p>我感觉都那么回事，开源免费的体验都不会特别好，只能说是配置好了很方便</p>
-<p>里面选 AWS S3 （PicGo 需要额外安装插件）</p>
-<p>信息照着填写就行，别的都默认。</p>
-<p>云端管理功能非常不好用，甚至功能都没做，需要自己手动修改配置并且多次重启软件，建议不用。（2026年9月1日）</p>
-<p>将 AWS S3 选为默认，并且开启高级重命名</p>
+<p>我感觉都那么回事, 开源免费的体验都不会特别好, 只能说是配置好了很方便</p>
+<p>里面选 AWS S3   (PicGo 需要额外安装插件 )</p>
+<p>信息照着填写就行, 别的都默认.</p>
+<p>云端管理功能非常不好用, 甚至功能都没做, 需要自己手动修改配置并且多次重启软件, 建议不用.   (2026年9月1日 )</p>
+<p>将 AWS S3 选为默认, 并且开启高级重命名</p>
 <p>输入 {y}{m}{d}{md5-16}{filename} 就可以了</p>
-<p>这个很简单就不过多赘述了。</p>
+<p>这个很简单就不过多赘述了.</p>
 
 		</div>
 
@@ -614,7 +622,7 @@ Cloudflare 默认应该是 Full</p>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-09-04 08:53:42
+                    :</strong> 2026-09-14 16:55:01
             </li>
         
         <li>
@@ -664,12 +672,12 @@ Cloudflare 默认应该是 Full</p>
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>其他文章</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/08/14/hexo-redefine-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="hexo-redefine 部署指南（持续更新）" rel="bookmark">
-  <img src="/img/tech_headimg.png" alt="hexo-redefine 部署指南（持续更新）" class="!max-w-none">
-  <span class="title">hexo-redefine 部署指南（持续更新）</span>
-</a><a class="recommended-article-item" href="/2026/09/01/C%E8%AF%AD%E8%A8%80%E6%98%93%E5%BF%98%E7%9F%A5%E8%AF%86%E7%82%B9/" title="C语言易忘知识点" rel="bookmark">
-  <img src="/img/language_headimg.png" alt="C语言易忘知识点" class="!max-w-none">
-  <span class="title">C语言易忘知识点</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/08/14/hexo-redefine-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="hexo-redefine 部署指南  (持续更新 )" rel="bookmark">
+  <img src="/img/tech_headimg.png" alt="hexo-redefine 部署指南  (持续更新 )" class="!max-w-none">
+  <span class="title">hexo-redefine 部署指南  (持续更新 )</span>
+</a><a class="recommended-article-item" href="/2026/09/09/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" title="数据库-关系代数" rel="bookmark">
+  <img src="/img/tech_headimg.png" alt="数据库-关系代数" class="!max-w-none">
+  <span class="title">数据库-关系代数</span>
 </a><a class="recommended-article-item" href="/2026/09/02/%E5%8E%9F%E7%A0%81-%E5%8F%8D%E7%A0%81-%E8%A1%A5%E7%A0%81-%E7%A7%BB%E7%A0%81/" title="原码、反码、补码、移码" rel="bookmark">
   <img src="/img/tech_headimg.png" alt="原码、反码、补码、移码" class="!max-w-none">
   <span class="title">原码、反码、补码、移码</span>
@@ -679,12 +687,12 @@ Cloudflare 默认应该是 Full</p>
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>其他文章</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/08/14/hexo-redefine-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="hexo-redefine 部署指南（持续更新）" rel="bookmark">
-  <img src="/img/tech_headimg.png" alt="hexo-redefine 部署指南（持续更新）" class="!max-w-none">
-  <span class="title">hexo-redefine 部署指南（持续更新）</span>
-</a><a class="recommended-article-item" href="/2026/09/01/C%E8%AF%AD%E8%A8%80%E6%98%93%E5%BF%98%E7%9F%A5%E8%AF%86%E7%82%B9/" title="C语言易忘知识点" rel="bookmark">
-  <img src="/img/language_headimg.png" alt="C语言易忘知识点" class="!max-w-none">
-  <span class="title">C语言易忘知识点</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2023/08/14/hexo-redefine-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="hexo-redefine 部署指南  (持续更新 )" rel="bookmark">
+  <img src="/img/tech_headimg.png" alt="hexo-redefine 部署指南  (持续更新 )" class="!max-w-none">
+  <span class="title">hexo-redefine 部署指南  (持续更新 )</span>
+</a><a class="recommended-article-item" href="/2026/09/09/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" title="数据库-关系代数" rel="bookmark">
+  <img src="/img/tech_headimg.png" alt="数据库-关系代数" class="!max-w-none">
+  <span class="title">数据库-关系代数</span>
 </a></div>
    </div>
   </div>
@@ -708,7 +716,7 @@ Cloudflare 默认应该是 Full</p>
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2023/08/14/hexo-redefine-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">hexo-redefine 部署指南（持续更新）</span>
+						<span class="post-nav-title-item truncate max-w-48">hexo-redefine 部署指南  (持续更新 )</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -886,8 +894,12 @@ Cloudflare 默认应该是 Full</p>
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 5 篇文章
+                        共撰写了 7 篇文章
                     </span>
+                    
+                        <span>
+                            共 12.8k 字
+                        </span>
                     
                 </p>
             
