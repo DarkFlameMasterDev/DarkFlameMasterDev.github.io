@@ -100,9 +100,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/09/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E8%AE%BE%E7%BD%AE/img/graph.png">
 <meta property="article:published_time" content="2026-09-14T23:59:45.000Z">
-<meta property="article:modified_time" content="2026-09-24T14:00:26.423Z">
+<meta property="article:modified_time" content="2026-09-29T01:44:42.323Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Ghostty">
 <meta property="article:tag" content="Jetbrains">
+<meta property="article:tag" content="Terminal">
 <meta property="article:tag" content="VSCode">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2026/09/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E8%AE%BE%E7%BD%AE/img/graph.png">
@@ -398,7 +400,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -459,8 +461,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-09-24 22:26</span>
-            <span class="mobile">2026-09-24 22:26</span>
+            <span class="desktop">2026-09-29 09:44:42</span>
+            <span class="mobile">2026-09-29 09:44:42</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -479,6 +481,14 @@
                         | <a href="/tags/Jetbrains/">Jetbrains</a>&nbsp;
                     </li>
                 
+                    <li>
+                        | <a href="/tags/Ghostty/">Ghostty</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Terminal/">Terminal</a>&nbsp;
+                    </li>
+                
             </ul>
         </span>
     
@@ -486,12 +496,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>132 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>483 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -513,7 +523,26 @@
 			<h2 id="VSCode">VSCode</h2>
 <h3 id="VSCode-高亮显示">VSCode 高亮显示 $</h3>
 <p>VSCode 的 $ 符号没有高亮, 也没有找到合适的扩展, 所以我干脆让 AI 生成了设置</p>
-<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;markdown.math.enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;editor.tokenColorCustomizations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;textMateRules&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Markdown 成对数学符号&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;scope&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                    <span class="string">&quot;markup.math.inline.markdown punctuation.definition.math.begin.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="string">&quot;markup.math.inline.markdown punctuation.definition.math.end.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="string">&quot;markup.math.block.markdown punctuation.definition.math.begin.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="string">&quot;markup.math.block.markdown punctuation.definition.math.end.markdown&quot;</span></span><br><span class="line">                <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;foreground&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#00bcbc&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;fontStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bold&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;markdown.math.enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;editor.tokenColorCustomizations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;textMateRules&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Markdown 成对数学符号&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;scope&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="string">&quot;markup.math.inline.markdown punctuation.definition.math.begin.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;markup.math.inline.markdown punctuation.definition.math.end.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;markup.math.block.markdown punctuation.definition.math.begin.markdown&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;markup.math.block.markdown punctuation.definition.math.end.markdown&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;foreground&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#00bcbc&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;fontStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bold&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="Jetbrains">Jetbrains</h2>
+<h3 id="Markdown-的代码背景">Markdown 的代码背景</h3>
+<p>Settings | Editor | Color Scheme | General<br>
+找到 Injected language fragment<br>
+就是他的背景</p>
+<h3 id="行号栏的按钮">行号栏的按钮</h3>
+<p>Settings | Editor | General | Gutter Icons</p>
+<h3 id="Live-plugin">Live plugin</h3>
+<p>Live plugin 是一个 Jetbrains 的插件, 可以在里面写脚本辅助完成一些功能</p>
+<h4 id="公式包围"><code>$$</code>公式包围</h4>
+<p>选中一段文字的时候按 <code>$</code> 就令这段文字被 <code>$</code> 包裹, 仅限 Markdown<br>
+很难想象这个功能在 Jetbrains IDE 里居然没有</p>
+<p>我让 AI 写了一个脚本, 目前来说只是选择一段文本,还没出什么错</p>
+<div class="code-container" data-rel="Groovy"><figure class="iseeu highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.intellij.openapi.actionSystem.*</span><br><span class="line"><span class="keyword">import</span> com.intellij.openapi.editor.Editor</span><br><span class="line"><span class="keyword">import</span> com.intellij.openapi.fileEditor.FileDocumentManager</span><br><span class="line"><span class="keyword">import</span> com.intellij.openapi.util.TextRange</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> liveplugin.PluginUtil.*</span><br><span class="line"></span><br><span class="line">registerAction(<span class="string">&quot;Markdown Math Wrapper&quot;</span>) &#123; AnActionEvent event -&gt;</span><br><span class="line"></span><br><span class="line">    Editor editor = event.getData(CommonDataKeys.EDITOR)</span><br><span class="line">    <span class="keyword">if</span> (editor == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> file = FileDocumentManager</span><br><span class="line">            .getInstance()</span><br><span class="line">            .getFile(editor.document)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 只处理 Markdown</span></span><br><span class="line">    <span class="keyword">if</span> (file == <span class="literal">null</span> || file.extension != <span class="string">&quot;md&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> selectionModel = editor.selectionModel</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!selectionModel.hasSelection()) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> start = selectionModel.selectionStart</span><br><span class="line">    <span class="type">int</span> end = selectionModel.selectionEnd</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> document = editor.document</span><br><span class="line">    <span class="keyword">def</span> text = document.getText(</span><br><span class="line">            <span class="keyword">new</span> TextRange(start, end)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    document.replaceString(</span><br><span class="line">            start,</span><br><span class="line">            end,</span><br><span class="line">            <span class="string">&quot;\$$&#123;text&#125;\$&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    selectionModel.removeSelection()</span><br><span class="line"></span><br><span class="line">    editor.caretModel.moveToOffset(</span><br><span class="line">            start + text.length() + <span class="number">2</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="Ghostty">Ghostty</h2>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">background = 0F0F11</span><br><span class="line">macos-titlebar-style = tabs</span><br><span class="line">cursor-style = bar</span><br><span class="line">cursor-style-blink = true</span><br><span class="line">theme = Material Darker</span><br><span class="line">term = xterm-256color</span><br></pre></td></tr></table></figure></div>
+<h2 id="zshrc">.zshrc</h2>
+<p>我秉承着不要多余配置, 轻快直观就是最好的. 我不想因为某些软件出错而导致我配置软件浪费很长时间</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">export ZSH=&quot;$HOME/.oh-my-zsh&quot;</span><br><span class="line"></span><br><span class="line">ZSH_THEME=&quot;robbyrussell&quot;</span><br><span class="line"></span><br><span class="line">plugins=(</span><br><span class="line">    git</span><br><span class="line">    zsh-autosuggestions</span><br><span class="line">    zsh-syntax-highlighting</span><br><span class="line">    history</span><br><span class="line">    history-substring-search</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:~/platform-tools</span><br><span class="line">export EDITOR=&quot;code --wait&quot;</span><br><span class="line">export VISUAL=&quot;code --wait&quot;</span><br></pre></td></tr></table></figure></div>
 
 		</div>
 
@@ -528,7 +557,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-09-24 22:00:26
+                    :</strong> 2026-09-29 09:44:42
             </li>
         
         <li>
@@ -561,6 +590,14 @@
 				<a href="/tags/Jetbrains/">#Jetbrains</a>&nbsp;
 			</li>
 			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Ghostty/">#Ghostty</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Terminal/">#Terminal</a>&nbsp;
+			</li>
+			
 		</ul>
 		
 
@@ -576,9 +613,9 @@
 </a><a class="recommended-article-item" href="/2026/09/02/%E5%8E%9F%E7%A0%81-%E5%8F%8D%E7%A0%81-%E8%A1%A5%E7%A0%81-%E7%A7%BB%E7%A0%81/" title="原码、反码、补码、移码" rel="bookmark">
   <img src="/img/tech_headimg.png" alt="原码、反码、补码、移码" class="!max-w-none">
   <span class="title">原码、反码、补码、移码</span>
-</a><a class="recommended-article-item" href="/2026/09/09/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" title="数据库-关系代数" rel="bookmark">
-  <img src="/img/tech_headimg.png" alt="数据库-关系代数" class="!max-w-none">
-  <span class="title">数据库-关系代数</span>
+</a><a class="recommended-article-item" href="/2026/09/01/C%E8%AF%AD%E8%A8%80%E6%98%93%E5%BF%98%E7%9F%A5%E8%AF%86%E7%82%B9/" title="C语言易忘知识点" rel="bookmark">
+  <img src="/img/language_headimg.png" alt="C语言易忘知识点" class="!max-w-none">
+  <span class="title">C语言易忘知识点</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -764,7 +801,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">开发工具设置</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VSCode"><span class="nav-text">VSCode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode-%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA"><span class="nav-text">VSCode 高亮显示 $</span></a></li></ol></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VSCode"><span class="nav-text">VSCode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode-%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA"><span class="nav-text">VSCode 高亮显示 $</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jetbrains"><span class="nav-text">Jetbrains</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-%E7%9A%84%E4%BB%A3%E7%A0%81%E8%83%8C%E6%99%AF"><span class="nav-text">Markdown 的代码背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%8F%B7%E6%A0%8F%E7%9A%84%E6%8C%89%E9%92%AE"><span class="nav-text">行号栏的按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Live-plugin"><span class="nav-text">Live plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E5%8C%85%E5%9B%B4"><span class="nav-text">$$公式包围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ghostty"><span class="nav-text">Ghostty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zshrc"><span class="nav-text">.zshrc</span></a></li></ol>
 
 	</div>
 </div>
@@ -796,7 +833,7 @@
                     </span>
                     
                         <span>
-                            共 17k 字
+                            共 17.7k 字
                         </span>
                     
                 </p>
